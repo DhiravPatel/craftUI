@@ -36,7 +36,6 @@ import {
   CardHeader,
   CardTitle,
   Checkbox,
-  Combobox,
   Command,
   CommandEmpty,
   CommandGroup,
@@ -122,7 +121,6 @@ import {
   Bell,
   CheckCircle2,
   CreditCard,
-  Mail,
   MoreHorizontal,
   Search,
   Settings,
@@ -237,19 +235,6 @@ const catalog: ComponentDoc[] = [
         title: "Loading",
         code: `<Button loading>Saving…</Button>`,
         render: <Button loading>Saving…</Button>,
-      },
-      {
-        title: "With icon",
-        code: `<Button>
-  <Mail />
-  Login with Email
-</Button>`,
-        render: (
-          <Button>
-            <Mail className="h-4 w-4" />
-            Login with Email
-          </Button>
-        ),
       },
       {
         title: "As link (asChild)",
@@ -570,27 +555,6 @@ const catalog: ComponentDoc[] = [
           </RadioGroup>
         ),
       },
-      {
-        title: "Horizontal sizes",
-        code: `<RadioGroup defaultValue="md" className="flex gap-4">
-  {["sm","md","lg"].map(s => (
-    <div key={s} className="flex items-center gap-2">
-      <RadioGroupItem id={s} value={s} />
-      <Label htmlFor={s}>{s.toUpperCase()}</Label>
-    </div>
-  ))}
-</RadioGroup>`,
-        render: (
-          <RadioGroup defaultValue="md" className="flex gap-4">
-            {["sm", "md", "lg"].map((s) => (
-              <div key={s} className="flex items-center gap-2">
-                <RadioGroupItem id={`ex-rh-${s}`} value={s} />
-                <Label htmlFor={`ex-rh-${s}`}>{s.toUpperCase()}</Label>
-              </div>
-            ))}
-          </RadioGroup>
-        ),
-      },
     ],
     props: [
       { name: "value", type: "string" },
@@ -744,35 +708,6 @@ const catalog: ComponentDoc[] = [
           </Select>
         ),
       },
-      {
-        title: "Multi-select with checkboxes",
-        description:
-          "Radix Select doesn't natively support multiple selection — build a Combobox-style trigger that holds an array, with a checkbox per option.",
-        code: `const [selected, setSelected] = React.useState<string[]>([]);
-
-<Popover>
-  <PopoverTrigger asChild>
-    <Button variant="outline" className="justify-between">
-      {selected.map(v => <Badge key={v}>{label(v)}</Badge>) || "Select…"}
-    </Button>
-  </PopoverTrigger>
-  <PopoverContent>
-    <Command>
-      <CommandList>
-        <CommandGroup>
-          {options.map(o => (
-            <CommandItem onSelect={() => toggle(o.value)}>
-              <Checkbox checked={selected.includes(o.value)} />
-              {o.label}
-            </CommandItem>
-          ))}
-        </CommandGroup>
-      </CommandList>
-    </Command>
-  </PopoverContent>
-</Popover>`,
-        render: <MultiSelectDemo />,
-      },
     ],
     related: ["combobox", "dropdown-menu"],
   },
@@ -879,27 +814,6 @@ const catalog: ComponentDoc[] = [
             <Badge variant="outline" className="gap-1">
               <Star className="h-3 w-3" /> Featured
             </Badge>
-          </div>
-        ),
-      },
-      {
-        title: "Counter",
-        code: `<div className="flex items-center gap-3">
-  <Bell className="h-5 w-5" />
-  <Badge variant="destructive" className="px-1.5 py-0 text-[10px]">12</Badge>
-</div>`,
-        render: (
-          <div className="flex items-center gap-2">
-            <span className="relative inline-flex">
-              <Bell className="h-5 w-5" />
-              <Badge
-                variant="destructive"
-                className="absolute -right-2 -top-2 h-4 min-w-[16px] justify-center px-1 py-0 text-[9px] leading-none"
-              >
-                12
-              </Badge>
-            </span>
-            <span className="text-sm">Notifications</span>
           </div>
         ),
       },
@@ -1021,17 +935,6 @@ const catalog: ComponentDoc[] = [
           </Card>
         ),
       },
-      {
-        title: "Plain content",
-        code: `<Card className="w-[300px] p-4 text-sm">
-  Just a styled container — no header or footer needed.
-</Card>`,
-        render: (
-          <Card className="w-[300px] p-4 text-sm">
-            Just a styled container — no header or footer needed.
-          </Card>
-        ),
-      },
     ],
   },
 
@@ -1073,25 +976,6 @@ const catalog: ComponentDoc[] = [
             <span>API</span>
             <Separator orientation="vertical" />
             <span>Blog</span>
-          </div>
-        ),
-      },
-      {
-        title: "With section heading",
-        code: `<div className="w-full max-w-sm">
-  <h4 className="text-sm font-semibold">Profile</h4>
-  <p className="text-xs text-muted-foreground">Public info.</p>
-  <Separator className="my-4" />
-  <h4 className="text-sm font-semibold">Notifications</h4>
-  <p className="text-xs text-muted-foreground">Email & push.</p>
-</div>`,
-        render: (
-          <div className="w-full max-w-sm">
-            <h4 className="text-sm font-semibold">Profile</h4>
-            <p className="text-xs text-muted-foreground">Public info.</p>
-            <Separator className="my-4" />
-            <h4 className="text-sm font-semibold">Notifications</h4>
-            <p className="text-xs text-muted-foreground">Email & push.</p>
           </div>
         ),
       },
@@ -1181,28 +1065,6 @@ const catalog: ComponentDoc[] = [
       },
       { name: "label", type: "string", default: `"Loading"` },
     ],
-    examples: [
-      {
-        title: "With label",
-        code: `<div className="flex items-center gap-3">
-  <Spinner />
-  <span className="text-sm text-muted-foreground">Fetching data…</span>
-</div>`,
-        render: (
-          <div className="flex items-center gap-3">
-            <Spinner />
-            <span className="text-sm text-muted-foreground">
-              Fetching data…
-            </span>
-          </div>
-        ),
-      },
-      {
-        title: "Inside a button",
-        code: `<Button loading>Saving…</Button>`,
-        render: <Button loading>Saving…</Button>,
-      },
-    ],
   },
 
   // ---------- Alert ----------
@@ -1228,33 +1090,25 @@ const catalog: ComponentDoc[] = [
     },
     examples: [
       {
-        title: "Destructive",
-        code: `<Alert variant="destructive">
-  <AlertCircle className="h-4 w-4" />
-  <AlertTitle>Error</AlertTitle>
-  <AlertDescription>Your session has expired.</AlertDescription>
-</Alert>`,
+        title: "All variants",
+        description:
+          "Switch the visual tone with the variant prop — default, destructive, success, warning, info.",
+        code: `<Alert variant="destructive">…</Alert>
+<Alert variant="success">…</Alert>
+<Alert variant="warning">…</Alert>`,
         render: (
-          <Alert variant="destructive" className="w-full max-w-md">
-            <AlertCircle className="h-4 w-4" />
-            <AlertTitle>Error</AlertTitle>
-            <AlertDescription>Your session has expired.</AlertDescription>
-          </Alert>
-        ),
-      },
-      {
-        title: "Success",
-        code: `<Alert variant="success">
-  <CheckCircle2 className="h-4 w-4" />
-  <AlertTitle>Deploy succeeded</AlertTitle>
-  <AlertDescription>Shipped to production.</AlertDescription>
-</Alert>`,
-        render: (
-          <Alert variant="success" className="w-full max-w-md">
-            <CheckCircle2 className="h-4 w-4" />
-            <AlertTitle>Deploy succeeded</AlertTitle>
-            <AlertDescription>Shipped to production.</AlertDescription>
-          </Alert>
+          <div className="w-full max-w-md space-y-3">
+            <Alert variant="destructive">
+              <AlertCircle className="h-4 w-4" />
+              <AlertTitle>Error</AlertTitle>
+              <AlertDescription>Your session has expired.</AlertDescription>
+            </Alert>
+            <Alert variant="success">
+              <CheckCircle2 className="h-4 w-4" />
+              <AlertTitle>Deploy succeeded</AlertTitle>
+              <AlertDescription>Shipped to production.</AlertDescription>
+            </Alert>
+          </div>
         ),
       },
     ],
@@ -1296,21 +1150,6 @@ const catalog: ComponentDoc[] = [
               <span>74%</span>
             </div>
             <Progress value={74} />
-          </div>
-        ),
-      },
-      {
-        title: "Stages",
-        code: `<div className="w-full max-w-sm space-y-3">
-  <Progress value={20} className="h-1.5" />
-  <Progress value={50} className="h-1.5" />
-  <Progress value={90} className="h-1.5" />
-</div>`,
-        render: (
-          <div className="w-full max-w-sm space-y-3">
-            <Progress value={20} className="h-1.5" />
-            <Progress value={50} className="h-1.5" />
-            <Progress value={90} className="h-1.5" />
           </div>
         ),
       },
@@ -1393,47 +1232,6 @@ const catalog: ComponentDoc[] = [
           </div>
         ),
       },
-      {
-        title: "Square shape",
-        code: `<Avatar shape="square">
-  <AvatarFallback>SQ</AvatarFallback>
-</Avatar>`,
-        render: (
-          <Avatar shape="square">
-            <AvatarFallback>SQ</AvatarFallback>
-          </Avatar>
-        ),
-      },
-      {
-        title: "User row",
-        code: `<div className="flex items-center gap-3">
-  <Avatar>
-    <AvatarImage src="https://github.com/shadcn.png" />
-    <AvatarFallback>CN</AvatarFallback>
-  </Avatar>
-  <div className="text-sm">
-    <div className="font-medium">shadcn</div>
-    <div className="text-xs text-muted-foreground">m@example.com</div>
-  </div>
-</div>`,
-        render: (
-          <div className="flex items-center gap-3">
-            <Avatar>
-              <AvatarImage
-                src="https://github.com/shadcn.png"
-                alt="avatar"
-              />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-            <div className="text-sm">
-              <div className="font-medium">shadcn</div>
-              <div className="text-xs text-muted-foreground">
-                m@example.com
-              </div>
-            </div>
-          </div>
-        ),
-      },
     ],
     props: [
       {
@@ -1482,89 +1280,6 @@ const catalog: ComponentDoc[] = [
         </Tabs>
       ),
     },
-    examples: [
-      {
-        title: "With cards",
-        code: `<Tabs defaultValue="overview" className="w-[400px]">
-  <TabsList className="grid grid-cols-2">
-    <TabsTrigger value="overview">Overview</TabsTrigger>
-    <TabsTrigger value="analytics">Analytics</TabsTrigger>
-  </TabsList>
-  <TabsContent value="overview">
-    <Card><CardHeader><CardTitle>Overview</CardTitle></CardHeader></Card>
-  </TabsContent>
-  <TabsContent value="analytics">
-    <Card><CardHeader><CardTitle>Analytics</CardTitle></CardHeader></Card>
-  </TabsContent>
-</Tabs>`,
-        render: (
-          <Tabs defaultValue="overview" className="w-full max-w-md">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="analytics">Analytics</TabsTrigger>
-            </TabsList>
-            <TabsContent value="overview" className="mt-3">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-base">Overview</CardTitle>
-                  <CardDescription>
-                    Last 30 days of activity.
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-            </TabsContent>
-            <TabsContent value="analytics" className="mt-3">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-base">Analytics</CardTitle>
-                  <CardDescription>
-                    1,234 unique visitors.
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-            </TabsContent>
-          </Tabs>
-        ),
-      },
-      {
-        title: "Three tabs",
-        code: `<Tabs defaultValue="js" className="w-[420px]">
-  <TabsList>
-    <TabsTrigger value="js">JavaScript</TabsTrigger>
-    <TabsTrigger value="ts">TypeScript</TabsTrigger>
-    <TabsTrigger value="py">Python</TabsTrigger>
-  </TabsList>
-  ...
-</Tabs>`,
-        render: (
-          <Tabs defaultValue="ts" className="w-full max-w-md">
-            <TabsList>
-              <TabsTrigger value="js">JavaScript</TabsTrigger>
-              <TabsTrigger value="ts">TypeScript</TabsTrigger>
-              <TabsTrigger value="py">Python</TabsTrigger>
-            </TabsList>
-            <TabsContent
-              value="js"
-              className="mt-4 rounded-md border p-4 text-sm"
-            >
-              JavaScript guide.
-            </TabsContent>
-            <TabsContent
-              value="ts"
-              className="mt-4 rounded-md border p-4 text-sm"
-            >
-              TypeScript guide.
-            </TabsContent>
-            <TabsContent
-              value="py"
-              className="mt-4 rounded-md border p-4 text-sm"
-            >
-              Python guide.
-            </TabsContent>
-          </Tabs>
-        ),
-      },
-    ],
   },
 
   // ---------- Accordion ----------
@@ -1638,47 +1353,6 @@ const catalog: ComponentDoc[] = [
                 <AccordionContent>
                   Content for section {k.toUpperCase()}.
                 </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        ),
-      },
-      {
-        title: "FAQ",
-        code: `<Accordion type="single" collapsible className="w-full">
-  {faq.map(q => (
-    <AccordionItem key={q.id} value={q.id}>
-      <AccordionTrigger>{q.question}</AccordionTrigger>
-      <AccordionContent>{q.answer}</AccordionContent>
-    </AccordionItem>
-  ))}
-</Accordion>`,
-        render: (
-          <Accordion
-            type="single"
-            collapsible
-            className="w-full max-w-md"
-          >
-            {[
-              {
-                id: "ship",
-                q: "How long does shipping take?",
-                a: "Orders ship within 1–2 business days. Delivery in 3–5 days.",
-              },
-              {
-                id: "refund",
-                q: "What's your refund policy?",
-                a: "Full refund within 30 days. No questions asked.",
-              },
-              {
-                id: "support",
-                q: "How do I contact support?",
-                a: "Email support@example.com or use the chat in your dashboard.",
-              },
-            ].map((f) => (
-              <AccordionItem key={f.id} value={f.id}>
-                <AccordionTrigger>{f.q}</AccordionTrigger>
-                <AccordionContent>{f.a}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
@@ -1784,48 +1458,6 @@ const catalog: ComponentDoc[] = [
           </Dialog>
         ),
       },
-      {
-        title: "With form",
-        code: `<Dialog>
-  <DialogTrigger asChild><Button>Invite teammate</Button></DialogTrigger>
-  <DialogContent>
-    <DialogHeader>
-      <DialogTitle>Invite a teammate</DialogTitle>
-      <DialogDescription>They'll get read-only access.</DialogDescription>
-    </DialogHeader>
-    <div className="space-y-3">
-      <Label htmlFor="ie">Email</Label>
-      <Input id="ie" placeholder="name@company.com" />
-    </div>
-    <DialogFooter><Button>Send invite</Button></DialogFooter>
-  </DialogContent>
-</Dialog>`,
-        render: (
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button>Invite teammate</Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Invite a teammate</DialogTitle>
-                <DialogDescription>
-                  They&apos;ll get read-only access.
-                </DialogDescription>
-              </DialogHeader>
-              <div className="space-y-3">
-                <Label htmlFor="ex-invite-email">Email</Label>
-                <Input
-                  id="ex-invite-email"
-                  placeholder="name@company.com"
-                />
-              </div>
-              <DialogFooter>
-                <Button>Send invite</Button>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
-        ),
-      },
     ],
   },
 
@@ -1885,75 +1517,23 @@ const catalog: ComponentDoc[] = [
     },
     examples: [
       {
-        title: "Sign out",
-        code: `<AlertDialog>
-  <AlertDialogTrigger asChild><Button variant="outline">Sign out</Button></AlertDialogTrigger>
-  <AlertDialogContent>
-    <AlertDialogHeader>
-      <AlertDialogTitle>Sign out?</AlertDialogTitle>
-      <AlertDialogDescription>You'll need to log in again to access your account.</AlertDialogDescription>
-    </AlertDialogHeader>
-    <AlertDialogFooter>
-      <AlertDialogCancel>Stay signed in</AlertDialogCancel>
-      <AlertDialogAction>Sign out</AlertDialogAction>
-    </AlertDialogFooter>
-  </AlertDialogContent>
-</AlertDialog>`,
+        title: "Programmatic open",
+        description:
+          "Use controlled open state to fire the dialog from anywhere — useful for confirming async actions.",
+        code: `const [open, setOpen] = React.useState(false);
+
+<AlertDialog open={open} onOpenChange={setOpen}>
+  <AlertDialogContent>…</AlertDialogContent>
+</AlertDialog>
+
+// elsewhere
+<Button onClick={() => setOpen(true)}>Trigger</Button>`,
         render: (
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button variant="outline">Sign out</Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Sign out?</AlertDialogTitle>
-                <AlertDialogDescription>
-                  You&apos;ll need to log in again to access your account.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Stay signed in</AlertDialogCancel>
-                <AlertDialogAction>Sign out</AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
-        ),
-      },
-      {
-        title: "Reset settings",
-        code: `<AlertDialog>
-  <AlertDialogTrigger asChild>
-    <Button variant="ghost">Reset to defaults</Button>
-  </AlertDialogTrigger>
-  <AlertDialogContent>
-    <AlertDialogHeader>
-      <AlertDialogTitle>Reset all settings?</AlertDialogTitle>
-      <AlertDialogDescription>This will clear your preferences but keep your data intact.</AlertDialogDescription>
-    </AlertDialogHeader>
-    <AlertDialogFooter>
-      <AlertDialogCancel>Cancel</AlertDialogCancel>
-      <AlertDialogAction>Reset</AlertDialogAction>
-    </AlertDialogFooter>
-  </AlertDialogContent>
-</AlertDialog>`,
-        render: (
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button variant="ghost">Reset to defaults</Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Reset all settings?</AlertDialogTitle>
-                <AlertDialogDescription>
-                  This will clear your preferences but keep your data intact.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction>Reset</AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
+          <div className="text-sm text-muted-foreground">
+            Wire <code>open</code>/<code>onOpenChange</code> to your own
+            state to call the dialog imperatively (e.g. before destructive
+            mutations).
+          </div>
         ),
       },
     ],
@@ -2020,41 +1600,6 @@ const catalog: ComponentDoc[] = [
           </Popover>
         ),
       },
-      {
-        title: "Profile preview",
-        code: `<Popover>
-  <PopoverTrigger asChild><Button variant="ghost">@shadcn</Button></PopoverTrigger>
-  <PopoverContent className="w-72">
-    <div className="flex gap-3">
-      <Avatar><AvatarFallback>SH</AvatarFallback></Avatar>
-      <div>
-        <h4 className="font-semibold">@shadcn</h4>
-        <p className="text-xs text-muted-foreground">Building UI primitives that you own.</p>
-      </div>
-    </div>
-  </PopoverContent>
-</Popover>`,
-        render: (
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button variant="ghost">@shadcn</Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-72">
-              <div className="flex gap-3">
-                <Avatar>
-                  <AvatarFallback>SH</AvatarFallback>
-                </Avatar>
-                <div>
-                  <h4 className="font-semibold">@shadcn</h4>
-                  <p className="text-xs text-muted-foreground">
-                    Building UI primitives that you own.
-                  </p>
-                </div>
-              </div>
-            </PopoverContent>
-          </Popover>
-        ),
-      },
     ],
   },
 
@@ -2115,29 +1660,6 @@ const catalog: ComponentDoc[] = [
                 </Tooltip>
               ))}
             </div>
-          </TooltipProvider>
-        ),
-      },
-      {
-        title: "Icon button",
-        code: `<TooltipProvider>
-  <Tooltip>
-    <TooltipTrigger asChild>
-      <Button variant="ghost" size="icon"><Settings className="h-4 w-4" /></Button>
-    </TooltipTrigger>
-    <TooltipContent>Settings</TooltipContent>
-  </Tooltip>
-</TooltipProvider>`,
-        render: (
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Settings className="h-4 w-4" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>Settings</TooltipContent>
-            </Tooltip>
           </TooltipProvider>
         ),
       },
@@ -2247,56 +1769,6 @@ const catalog: ComponentDoc[] = [
           </DropdownMenu>
         ),
       },
-      {
-        title: "Avatar trigger",
-        code: `<DropdownMenu>
-  <DropdownMenuTrigger asChild>
-    <Button variant="ghost" size="icon" className="rounded-full">
-      <Avatar><AvatarFallback>SH</AvatarFallback></Avatar>
-    </Button>
-  </DropdownMenuTrigger>
-  <DropdownMenuContent align="end" className="w-56">
-    <DropdownMenuLabel>shadcn</DropdownMenuLabel>
-    <DropdownMenuSeparator />
-    <DropdownMenuItem><User className="h-4 w-4" />Profile</DropdownMenuItem>
-    <DropdownMenuItem><CreditCard className="h-4 w-4" />Billing</DropdownMenuItem>
-    <DropdownMenuSeparator />
-    <DropdownMenuItem className="text-destructive">Sign out</DropdownMenuItem>
-  </DropdownMenuContent>
-</DropdownMenu>`,
-        render: (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full"
-                aria-label="Account menu"
-              >
-                <Avatar size="sm">
-                  <AvatarFallback>SH</AvatarFallback>
-                </Avatar>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56">
-              <DropdownMenuLabel>shadcn</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <User className="h-4 w-4" />
-                Profile
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <CreditCard className="h-4 w-4" />
-                Billing
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem className="text-destructive">
-                Sign out
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        ),
-      },
     ],
   },
 
@@ -2341,40 +1813,6 @@ const catalog: ComponentDoc[] = [
       ),
     },
     examples: [
-      {
-        title: "With icons",
-        code: `<Command className="rounded-lg border w-[380px]">
-  <CommandInput placeholder="Search..." />
-  <CommandList>
-    <CommandGroup heading="Account">
-      <CommandItem><User className="h-4 w-4" />Profile</CommandItem>
-      <CommandItem><CreditCard className="h-4 w-4" />Billing</CommandItem>
-      <CommandItem><Settings className="h-4 w-4" />Settings</CommandItem>
-    </CommandGroup>
-  </CommandList>
-</Command>`,
-        render: (
-          <Command className="w-[380px] rounded-lg border">
-            <CommandInput placeholder="Search…" />
-            <CommandList>
-              <CommandGroup heading="Account">
-                <CommandItem>
-                  <User className="mr-2 h-4 w-4" />
-                  Profile
-                </CommandItem>
-                <CommandItem>
-                  <CreditCard className="mr-2 h-4 w-4" />
-                  Billing
-                </CommandItem>
-                <CommandItem>
-                  <Settings className="mr-2 h-4 w-4" />
-                  Settings
-                </CommandItem>
-              </CommandGroup>
-            </CommandList>
-          </Command>
-        ),
-      },
       {
         title: "Multiple groups",
         code: `<Command className="rounded-lg border w-[380px]">
@@ -2492,33 +1930,6 @@ const TIMEZONES = [
 </Popover>`,
         render: <MultiSelectDemo />,
       },
-      {
-        title: "Simple <Combobox /> wrapper",
-        description:
-          "When you don't need a custom selection chip, the simpler <Combobox /> wrapper is plenty.",
-        code: `<Combobox
-  options={[
-    { label: "Next.js", value: "next" },
-    { label: "Remix", value: "remix" },
-    { label: "Vite", value: "vite" },
-    { label: "Astro", value: "astro" },
-  ]}
-  placeholder="Select framework…"
-/>`,
-        render: (
-          <div className="w-full max-w-sm">
-            <Combobox
-              options={[
-                { label: "Next.js", value: "next" },
-                { label: "Remix", value: "remix" },
-                { label: "Vite", value: "vite" },
-                { label: "Astro", value: "astro" },
-              ]}
-              placeholder="Select framework…"
-            />
-          </div>
-        ),
-      },
     ],
   },
 
@@ -2590,24 +2001,6 @@ import { Calendar } from "@/components/ui/calendar";`,
   numberOfMonths={2}
 />`,
         render: <CalendarMultipleMonthsDemo />,
-      },
-      {
-        title: "Custom placeholder",
-        code: `<DatePicker placeholder="When were you born?" />`,
-        render: (
-          <div className="w-full max-w-sm">
-            <DatePicker placeholder="When were you born?" />
-          </div>
-        ),
-      },
-      {
-        title: "Disabled",
-        code: `<DatePicker disabled />`,
-        render: (
-          <div className="w-full max-w-sm">
-            <DatePicker disabled />
-          </div>
-        ),
       },
     ],
   },
@@ -2982,36 +2375,6 @@ toast({ title: "Copied", description: "Link copied to clipboard" });`,
 </Button>`,
       render: <ToastDemo />,
     },
-    examples: [
-      {
-        title: "With action",
-        code: `toast({
-  title: "Scheduled",
-  description: "Meeting at 10:30am tomorrow.",
-  action: <Button variant="outline" size="sm">Undo</Button>,
-});`,
-        render: (
-          <div className="text-sm text-muted-foreground">
-            Click <strong>With action</strong> in the preview above — the
-            toast renders an Undo button alongside the message.
-          </div>
-        ),
-      },
-      {
-        title: "Destructive variant",
-        code: `toast({
-  variant: "destructive",
-  title: "Failed to save",
-  description: "Check your connection and try again.",
-});`,
-        render: (
-          <div className="text-sm text-muted-foreground">
-            Click <strong>Error toast</strong> in the preview above to see
-            the destructive style.
-          </div>
-        ),
-      },
-    ],
   },
 
   // ---------- Form ----------
@@ -3368,24 +2731,6 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
           </ToggleGroup>
         ),
       },
-      {
-        title: "Variants and sizes",
-        code: `<div className="flex items-center gap-2">
-  <Toggle variant="outline"><Star className="h-4 w-4" /> Favorite</Toggle>
-  <Toggle size="lg">Large</Toggle>
-  <Toggle disabled>Disabled</Toggle>
-</div>`,
-        render: (
-          <div className="flex flex-wrap items-center gap-2">
-            <Toggle variant="outline">
-              <Star className="h-4 w-4" />
-              Favorite
-            </Toggle>
-            <Toggle size="lg">Large</Toggle>
-            <Toggle disabled>Disabled</Toggle>
-          </div>
-        ),
-      },
     ],
     props: [
       {
@@ -3501,58 +2846,6 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
           </div>
         ),
       },
-      {
-        title: "Mobile menu",
-        code: `<Sheet>
-  <SheetTrigger asChild>
-    <Button variant="outline" size="icon"><MoreHorizontal className="h-4 w-4" /></Button>
-  </SheetTrigger>
-  <SheetContent side="left">
-    <SheetHeader>
-      <SheetTitle>Menu</SheetTitle>
-    </SheetHeader>
-    <nav className="mt-4 grid gap-2">
-      <a href="#" className="rounded-md px-3 py-2 hover:bg-accent">Home</a>
-      <a href="#" className="rounded-md px-3 py-2 hover:bg-accent">Pricing</a>
-      <a href="#" className="rounded-md px-3 py-2 hover:bg-accent">Docs</a>
-    </nav>
-  </SheetContent>
-</Sheet>`,
-        render: (
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="outline" size="icon" aria-label="Open menu">
-                <MoreHorizontal className="h-4 w-4" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="left">
-              <SheetHeader>
-                <SheetTitle>Menu</SheetTitle>
-              </SheetHeader>
-              <nav className="mt-4 grid gap-2 text-sm">
-                <a
-                  href="#"
-                  className="rounded-md px-3 py-2 hover:bg-accent"
-                >
-                  Home
-                </a>
-                <a
-                  href="#"
-                  className="rounded-md px-3 py-2 hover:bg-accent"
-                >
-                  Pricing
-                </a>
-                <a
-                  href="#"
-                  className="rounded-md px-3 py-2 hover:bg-accent"
-                >
-                  Docs
-                </a>
-              </nav>
-            </SheetContent>
-          </Sheet>
-        ),
-      },
     ],
     related: ["dialog", "drawer"],
   },
@@ -3608,41 +2901,6 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
         </HoverCard>
       ),
     },
-    examples: [
-      {
-        title: "Definition",
-        code: `<p>
-  Try our new <HoverCard>
-    <HoverCardTrigger className="underline decoration-dotted">CraftUI</HoverCardTrigger>
-    <HoverCardContent className="w-64">
-      A Tailwind-native, copy-paste React component system.
-    </HoverCardContent>
-  </HoverCard> components.
-</p>`,
-        render: (
-          <p className="text-sm">
-            Try our new{" "}
-            <HoverCard>
-              <HoverCardTrigger asChild>
-                <button
-                  type="button"
-                  className="underline decoration-dotted underline-offset-4"
-                >
-                  CraftUI
-                </button>
-              </HoverCardTrigger>
-              <HoverCardContent className="w-64">
-                <p className="text-sm">
-                  A Tailwind-native, copy-paste React component system. Own
-                  the source — no runtime, no lock-in.
-                </p>
-              </HoverCardContent>
-            </HoverCard>{" "}
-            components.
-          </p>
-        ),
-      },
-    ],
     props: [
       { name: "openDelay", type: "number", default: "200" },
       { name: "closeDelay", type: "number", default: "150" },
