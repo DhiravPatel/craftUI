@@ -1,0 +1,16 @@
+{
+  "name": "toggle",
+  "description": "A two-state button that can be either on or off.",
+  "category": "inputs",
+  "files": [
+    {
+      "path": "components/toggle/toggle.tsx",
+      "target": "{{components}}/toggle.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["class-variance-authority"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["toggle", "button", "press"]
+}

@@ -47,6 +47,9 @@ importers:
       '@craftui/utils':
         specifier: workspace:*
         version: link:../../packages/utils
+      '@hookform/resolvers':
+        specifier: ^3.3.4
+        version: 3.10.0(react-hook-form@7.73.1)
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.1
@@ -68,12 +71,18 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.3.1(react@18.3.1)
+      react-hook-form:
+        specifier: ^7.51.0
+        version: 7.73.1(react@18.3.1)
       shiki:
         specifier: ^1.3.0
         version: 1.29.2
       tailwind-merge:
         specifier: ^2.2.2
         version: 2.6.1
+      zod:
+        specifier: ^3.22.4
+        version: 3.25.76
     devDependencies:
       '@craftui/config':
         specifier: workspace:*

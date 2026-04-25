@@ -14,6 +14,7 @@
     "@craftui/registry": "workspace:*",
     "@craftui/ui": "workspace:*",
     "@craftui/utils": "workspace:*",
+    "@hookform/resolvers": "^3.3.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "lucide-react": "^0.369.0",
@@ -21,8 +22,10 @@
     "next-mdx-remote": "^4.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.0",
     "shiki": "^1.3.0",
-    "tailwind-merge": "^2.2.2"
+    "tailwind-merge": "^2.2.2",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@craftui/config": "workspace:*",

@@ -1,0 +1,16 @@
+{
+  "name": "hover-card",
+  "description": "Rich content preview that appears on hover or focus.",
+  "category": "overlay",
+  "files": [
+    {
+      "path": "components/hover-card/hover-card.tsx",
+      "target": "{{components}}/hover-card.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["@radix-ui/react-popover"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["hover", "card", "preview", "tooltip"]
+}

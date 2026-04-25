@@ -20,7 +20,9 @@ export * from "./components/dialog";
 export * from "./components/drawer";
 export * from "./components/dropdown-menu";
 export * from "./components/form";
+export * from "./components/hover-card";
 export * from "./components/input";
+export * from "./components/input-otp";
 export * from "./components/label";
 export * from "./components/layout";
 export * from "./components/navbar";
@@ -31,6 +33,7 @@ export * from "./components/radio-group";
 export * from "./components/scroll-area";
 export * from "./components/select";
 export * from "./components/separator";
+export * from "./components/sheet";
 export * from "./components/sidebar";
 export * from "./components/skeleton";
 export * from "./components/slider";
@@ -41,6 +44,8 @@ export * from "./components/tabs";
 export * from "./components/textarea";
 export * from "./components/theme-provider";
 export * from "./components/toast";
+export * from "./components/toggle";
+export * from "./components/toggle-group";
 export * from "./components/tooltip";
 
 // Hooks

@@ -17,7 +17,9 @@ import dialog from "./components/dialog.json";
 import drawer from "./components/drawer.json";
 import dropdownMenu from "./components/dropdown-menu.json";
 import form from "./components/form.json";
+import hoverCard from "./components/hover-card.json";
 import input from "./components/input.json";
+import inputOtp from "./components/input-otp.json";
 import label from "./components/label.json";
 import layout from "./components/layout.json";
 import navbar from "./components/navbar.json";
@@ -28,6 +30,7 @@ import radioGroup from "./components/radio-group.json";
 import scrollArea from "./components/scroll-area.json";
 import select from "./components/select.json";
 import separator from "./components/separator.json";
+import sheet from "./components/sheet.json";
 import sidebar from "./components/sidebar.json";
 import skeleton from "./components/skeleton.json";
 import slider from "./components/slider.json";
@@ -38,6 +41,8 @@ import tabs from "./components/tabs.json";
 import textarea from "./components/textarea.json";
 import themeProvider from "./components/theme-provider.json";
 import toast from "./components/toast.json";
+import toggle from "./components/toggle.json";
+import toggleGroup from "./components/toggle-group.json";
 import tooltip from "./components/tooltip.json";
 
 export const registry: Registry = [
@@ -58,7 +63,9 @@ export const registry: Registry = [
   drawer,
   dropdownMenu,
   form,
+  hoverCard,
   input,
+  inputOtp,
   label,
   layout,
   navbar,
@@ -69,6 +76,7 @@ export const registry: Registry = [
   scrollArea,
   select,
   separator,
+  sheet,
   sidebar,
   skeleton,
   slider,
@@ -79,6 +87,8 @@ export const registry: Registry = [
   textarea,
   themeProvider,
   toast,
+  toggle,
+  toggleGroup,
   tooltip,
 ] as Registry;
 

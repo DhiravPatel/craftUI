@@ -51,13 +51,6 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  Drawer,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -65,7 +58,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
   Grid,
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
   Input,
+  InputOTP,
   Label,
   Pagination,
   PaginationContent,
@@ -80,13 +77,22 @@ import {
   Progress,
   RadioGroup,
   RadioGroupItem,
-  ScrollArea,
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
+  SelectSeparator,
   SelectTrigger,
   SelectValue,
   Separator,
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
   Skeleton,
   Slider,
   Spinner,
@@ -103,6 +109,9 @@ import {
   TabsList,
   TabsTrigger,
   Textarea,
+  Toggle,
+  ToggleGroup,
+  ToggleGroupItem,
   Tooltip,
   TooltipContent,
   TooltipProvider,
@@ -110,14 +119,35 @@ import {
 } from "@craftui/ui";
 import {
   AlertCircle,
+  Bell,
   CheckCircle2,
+  CreditCard,
   Mail,
   MoreHorizontal,
+  Search,
   Settings,
+  Star,
   Terminal,
   Trash,
   User,
 } from "lucide-react";
+import {
+  CalendarSingleDemo,
+  CalendarRangeDemo,
+  CalendarMultipleMonthsDemo,
+} from "@/components/demos/calendar-demos";
+import { FullFormDemo, LoginFormDemo } from "@/components/demos/form-demo";
+import {
+  ComboboxDemo,
+  ModernNavbarDemo,
+  MultiSelectDemo,
+  SelectableTableDemo,
+  SidebarDemo,
+  TextareaCounterDemo,
+  ThemeProviderDemo,
+  ToastDemo,
+  ToggleDemo,
+} from "@/components/demos/interactive-demos";
 
 export interface PropDef {
   name: string;
@@ -273,42 +303,35 @@ const catalog: ComponentDoc[] = [
     },
     examples: [
       {
-        title: "With label",
-        code: `<div className="space-y-1.5">
-  <Label htmlFor="email">Email</Label>
-  <Input id="email" type="email" placeholder="you@example.com" />
-</div>`,
-        render: (
-          <div className="w-full max-w-sm space-y-1.5">
-            <Label htmlFor="ex-email">Email</Label>
-            <Input
-              id="ex-email"
-              type="email"
-              placeholder="you@example.com"
-            />
-          </div>
-        ),
-      },
-      {
         title: "With icon",
-        code: `<Input leftElement={<Mail />} placeholder="Search…" />`,
+        description:
+          "Use leftElement / rightElement to embed icons or actions.",
+        code: `<Input leftElement={<Search />} placeholder="Search…" />`,
         render: (
           <Input
             className="max-w-sm"
-            leftElement={<Mail className="h-4 w-4" />}
+            leftElement={<Search className="h-4 w-4" />}
             placeholder="Search…"
           />
         ),
       },
       {
         title: "Error state",
+        description:
+          "Pair with `<FormMessage />` in forms to show validation errors.",
         code: `<Input error placeholder="Invalid email" />`,
-        render: <Input error className="max-w-sm" placeholder="Invalid" />,
+        render: (
+          <Input
+            error
+            className="max-w-sm"
+            placeholder="name@invalid"
+          />
+        ),
       },
       {
-        title: "Disabled",
-        code: `<Input disabled placeholder="Disabled" />`,
-        render: <Input disabled className="max-w-sm" placeholder="Disabled" />,
+        title: "File input",
+        code: `<Input type="file" />`,
+        render: <Input className="max-w-sm" type="file" />,
       },
     ],
     props: [
@@ -319,7 +342,7 @@ const catalog: ComponentDoc[] = [
       { name: "rightElement", type: "ReactNode" },
       { name: "disabled", type: "boolean", default: "false" },
     ],
-    related: ["label", "textarea", "form"],
+    related: ["textarea", "form"],
   },
 
   // ---------- Textarea ----------
@@ -340,20 +363,9 @@ const catalog: ComponentDoc[] = [
     },
     examples: [
       {
-        title: "With label",
-        code: `<div className="space-y-1.5">
-  <Label htmlFor="msg">Message</Label>
-  <Textarea id="msg" />
-</div>`,
-        render: (
-          <div className="w-full max-w-sm space-y-1.5">
-            <Label htmlFor="ex-msg">Message</Label>
-            <Textarea id="ex-msg" />
-          </div>
-        ),
-      },
-      {
         title: "Auto-resize",
+        description:
+          "The textarea grows with its content — no scrollbars on short text.",
         code: `<Textarea autoResize placeholder="Keeps growing…" />`,
         render: (
           <Textarea
@@ -363,42 +375,23 @@ const catalog: ComponentDoc[] = [
           />
         ),
       },
+      {
+        title: "With character count",
+        description:
+          "Bind to local state to render a live count under the field.",
+        code: `const [value, setValue] = React.useState("");
+
+<div className="space-y-1.5">
+  <Textarea value={value} onChange={(e) => setValue(e.target.value)} maxLength={160} />
+  <p className="text-right text-xs text-muted-foreground">{value.length} / 160</p>
+</div>`,
+        render: <TextareaCounterDemo />,
+      },
     ],
     props: [
       { name: "error", type: "boolean", default: "false" },
       { name: "autoResize", type: "boolean", default: "false" },
       { name: "rows", type: "number" },
-    ],
-    related: ["input", "label", "form"],
-  },
-
-  // ---------- Label ----------
-  {
-    name: "label",
-    title: "Label",
-    description: "Accessible label built on @radix-ui/react-label.",
-    imports: `import { Label } from "@/components/ui/label";`,
-    defaultExample: {
-      title: "Default",
-      code: `<Label htmlFor="email">Email address</Label>`,
-      render: <Label htmlFor="_">Email address</Label>,
-    },
-    examples: [
-      {
-        title: "Required",
-        code: `<Label required>Password</Label>`,
-        render: <Label required>Password</Label>,
-      },
-      {
-        title: "Optional",
-        code: `<Label optional>Nickname</Label>`,
-        render: <Label optional>Nickname</Label>,
-      },
-    ],
-    props: [
-      { name: "required", type: "boolean", default: "false" },
-      { name: "optional", type: "boolean", default: "false" },
-      { name: "htmlFor", type: "string" },
     ],
     related: ["input", "form"],
   },
@@ -424,14 +417,64 @@ const catalog: ComponentDoc[] = [
     },
     examples: [
       {
-        title: "Checked",
-        code: `<Checkbox defaultChecked />`,
-        render: <Checkbox defaultChecked />,
+        title: "Notification preferences",
+        description:
+          "A list of independent toggles, each with its own description.",
+        code: `<div className="space-y-4">
+  {options.map(o => (
+    <div key={o.id} className="flex items-start gap-3">
+      <Checkbox id={o.id} defaultChecked={o.checked} />
+      <div>
+        <Label htmlFor={o.id}>{o.label}</Label>
+        <p className="text-xs text-muted-foreground">{o.body}</p>
+      </div>
+    </div>
+  ))}
+</div>`,
+        render: (
+          <div className="w-full max-w-sm space-y-4">
+            {[
+              {
+                id: "ck-news",
+                label: "Email newsletters",
+                body: "Monthly digest of new components.",
+                checked: true,
+              },
+              {
+                id: "ck-promo",
+                label: "Promotional offers",
+                body: "Get notified about sales and discounts.",
+                checked: false,
+              },
+              {
+                id: "ck-update",
+                label: "Product updates",
+                body: "Important changes to your account.",
+                checked: true,
+              },
+            ].map((o) => (
+              <div key={o.id} className="flex items-start gap-3">
+                <Checkbox id={o.id} defaultChecked={o.checked} />
+                <div>
+                  <Label htmlFor={o.id}>{o.label}</Label>
+                  <p className="text-xs text-muted-foreground">{o.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        ),
       },
       {
-        title: "Disabled",
-        code: `<Checkbox disabled />`,
-        render: <Checkbox disabled />,
+        title: "Indeterminate (for tri-state lists)",
+        description:
+          "Set checked='indeterminate' to show a partial-selection state.",
+        code: `<Checkbox checked="indeterminate" />`,
+        render: (
+          <div className="flex items-center gap-3">
+            <Checkbox checked="indeterminate" />
+            <span className="text-sm">3 of 5 selected</span>
+          </div>
+        ),
       },
     ],
     props: [
@@ -475,6 +518,80 @@ const catalog: ComponentDoc[] = [
         </RadioGroup>
       ),
     },
+    examples: [
+      {
+        title: "Card-style payment options",
+        description:
+          "Wrap each radio in a `<Label>` so the whole card is clickable, and use `has-[:checked]` to highlight the selection.",
+        code: `<RadioGroup defaultValue="card" className="gap-3">
+  {plans.map(p => (
+    <Label key={p.value} className="flex cursor-pointer items-start gap-3 rounded-lg border p-3 has-[:checked]:border-foreground">
+      <RadioGroupItem value={p.value} className="mt-0.5" />
+      <div>
+        <div className="font-semibold">{p.title}</div>
+        <p className="text-xs text-muted-foreground">{p.body}</p>
+      </div>
+    </Label>
+  ))}
+</RadioGroup>`,
+        render: (
+          <RadioGroup
+            defaultValue="card"
+            className="w-full max-w-sm gap-3"
+          >
+            {[
+              {
+                value: "card",
+                title: "Credit card",
+                body: "Pay with Visa, Mastercard, or Amex.",
+              },
+              {
+                value: "invoice",
+                title: "Invoice",
+                body: "Net 30. We'll email you a PDF.",
+              },
+              {
+                value: "wire",
+                title: "Wire transfer",
+                body: "Best for amounts over $10k.",
+              },
+            ].map((p) => (
+              <Label
+                key={p.value}
+                className="flex cursor-pointer items-start gap-3 rounded-lg border p-3 has-[:checked]:border-foreground"
+              >
+                <RadioGroupItem value={p.value} className="mt-0.5" />
+                <div>
+                  <div className="font-semibold">{p.title}</div>
+                  <p className="text-xs text-muted-foreground">{p.body}</p>
+                </div>
+              </Label>
+            ))}
+          </RadioGroup>
+        ),
+      },
+      {
+        title: "Horizontal sizes",
+        code: `<RadioGroup defaultValue="md" className="flex gap-4">
+  {["sm","md","lg"].map(s => (
+    <div key={s} className="flex items-center gap-2">
+      <RadioGroupItem id={s} value={s} />
+      <Label htmlFor={s}>{s.toUpperCase()}</Label>
+    </div>
+  ))}
+</RadioGroup>`,
+        render: (
+          <RadioGroup defaultValue="md" className="flex gap-4">
+            {["sm", "md", "lg"].map((s) => (
+              <div key={s} className="flex items-center gap-2">
+                <RadioGroupItem id={`ex-rh-${s}`} value={s} />
+                <Label htmlFor={`ex-rh-${s}`}>{s.toUpperCase()}</Label>
+              </div>
+            ))}
+          </RadioGroup>
+        ),
+      },
+    ],
     props: [
       { name: "value", type: "string" },
       { name: "defaultValue", type: "string" },
@@ -491,15 +608,51 @@ const catalog: ComponentDoc[] = [
     description: "Toggle switch for boolean state.",
     imports: `import { Switch } from "@/components/ui/switch";`,
     defaultExample: {
-      title: "Default",
-      code: `<div className="flex items-center gap-2">
-  <Switch id="notif" />
-  <Label htmlFor="notif">Notifications</Label>
+      title: "Settings list",
+      code: `<div className="space-y-4">
+  {settings.map(s => (
+    <div key={s.id} className="flex items-center justify-between">
+      <div>
+        <Label htmlFor={s.id}>{s.title}</Label>
+        <p className="text-xs text-muted-foreground">{s.body}</p>
+      </div>
+      <Switch id={s.id} defaultChecked={s.on} />
+    </div>
+  ))}
 </div>`,
       render: (
-        <div className="flex items-center gap-2">
-          <Switch id="ex-switch" />
-          <Label htmlFor="ex-switch">Notifications</Label>
+        <div className="w-full max-w-sm space-y-4">
+          {[
+            {
+              id: "sw-mkt",
+              title: "Marketing emails",
+              body: "Receive monthly product updates.",
+              on: true,
+            },
+            {
+              id: "sw-2fa",
+              title: "Two-factor auth",
+              body: "Protect your account with a TOTP code.",
+              on: false,
+            },
+            {
+              id: "sw-public",
+              title: "Public profile",
+              body: "Show your profile to everyone.",
+              on: true,
+            },
+          ].map((s) => (
+            <div
+              key={s.id}
+              className="flex items-center justify-between gap-4"
+            >
+              <div>
+                <Label htmlFor={s.id}>{s.title}</Label>
+                <p className="text-xs text-muted-foreground">{s.body}</p>
+              </div>
+              <Switch id={s.id} defaultChecked={s.on} />
+            </div>
+          ))}
         </div>
       ),
     },
@@ -549,6 +702,78 @@ const catalog: ComponentDoc[] = [
         </Select>
       ),
     },
+    examples: [
+      {
+        title: "Grouped with labels",
+        code: `<Select>
+  <SelectTrigger className="w-[220px]">
+    <SelectValue placeholder="Select a food" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectGroup>
+      <SelectLabel>Fruits</SelectLabel>
+      <SelectItem value="apple">Apple</SelectItem>
+      <SelectItem value="orange">Orange</SelectItem>
+    </SelectGroup>
+    <SelectSeparator />
+    <SelectGroup>
+      <SelectLabel>Vegetables</SelectLabel>
+      <SelectItem value="carrot">Carrot</SelectItem>
+      <SelectItem value="spinach">Spinach</SelectItem>
+    </SelectGroup>
+  </SelectContent>
+</Select>`,
+        render: (
+          <Select>
+            <SelectTrigger className="w-[220px]">
+              <SelectValue placeholder="Select…" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Fruits</SelectLabel>
+                <SelectItem value="apple">Apple</SelectItem>
+                <SelectItem value="orange">Orange</SelectItem>
+              </SelectGroup>
+              <SelectSeparator />
+              <SelectGroup>
+                <SelectLabel>Vegetables</SelectLabel>
+                <SelectItem value="carrot">Carrot</SelectItem>
+                <SelectItem value="spinach">Spinach</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        ),
+      },
+      {
+        title: "Multi-select with checkboxes",
+        description:
+          "Radix Select doesn't natively support multiple selection — build a Combobox-style trigger that holds an array, with a checkbox per option.",
+        code: `const [selected, setSelected] = React.useState<string[]>([]);
+
+<Popover>
+  <PopoverTrigger asChild>
+    <Button variant="outline" className="justify-between">
+      {selected.map(v => <Badge key={v}>{label(v)}</Badge>) || "Select…"}
+    </Button>
+  </PopoverTrigger>
+  <PopoverContent>
+    <Command>
+      <CommandList>
+        <CommandGroup>
+          {options.map(o => (
+            <CommandItem onSelect={() => toggle(o.value)}>
+              <Checkbox checked={selected.includes(o.value)} />
+              {o.label}
+            </CommandItem>
+          ))}
+        </CommandGroup>
+      </CommandList>
+    </Command>
+  </PopoverContent>
+</Popover>`,
+        render: <MultiSelectDemo />,
+      },
+    ],
     related: ["combobox", "dropdown-menu"],
   },
 
@@ -570,6 +795,36 @@ const catalog: ComponentDoc[] = [
         />
       ),
     },
+    examples: [
+      {
+        title: "Range (two thumbs)",
+        description:
+          "Pass two values to capture a from/to range — useful for price filters and time windows.",
+        code: `<Slider defaultValue={[20, 80]} max={100} step={1} />`,
+        render: (
+          <Slider
+            className="w-full max-w-sm"
+            defaultValue={[20, 80]}
+            max={100}
+            step={1}
+          />
+        ),
+      },
+      {
+        title: "Stepped",
+        description:
+          "Use step to constrain the slider to discrete values — here, multiples of 20.",
+        code: `<Slider defaultValue={[40]} max={100} step={20} />`,
+        render: (
+          <Slider
+            className="w-full max-w-sm"
+            defaultValue={[40]}
+            max={100}
+            step={20}
+          />
+        ),
+      },
+    ],
   },
 
   // ---------- Badge ----------
@@ -599,6 +854,56 @@ const catalog: ComponentDoc[] = [
         </div>
       ),
     },
+    examples: [
+      {
+        title: "With icon",
+        code: `<div className="flex flex-wrap gap-2">
+  <Badge variant="success" className="gap-1">
+    <CheckCircle2 className="h-3 w-3" /> Verified
+  </Badge>
+  <Badge variant="destructive" className="gap-1">
+    <AlertCircle className="h-3 w-3" /> Failed
+  </Badge>
+  <Badge variant="outline" className="gap-1">
+    <Star className="h-3 w-3" /> Featured
+  </Badge>
+</div>`,
+        render: (
+          <div className="flex flex-wrap gap-2">
+            <Badge variant="success" className="gap-1">
+              <CheckCircle2 className="h-3 w-3" /> Verified
+            </Badge>
+            <Badge variant="destructive" className="gap-1">
+              <AlertCircle className="h-3 w-3" /> Failed
+            </Badge>
+            <Badge variant="outline" className="gap-1">
+              <Star className="h-3 w-3" /> Featured
+            </Badge>
+          </div>
+        ),
+      },
+      {
+        title: "Counter",
+        code: `<div className="flex items-center gap-3">
+  <Bell className="h-5 w-5" />
+  <Badge variant="destructive" className="px-1.5 py-0 text-[10px]">12</Badge>
+</div>`,
+        render: (
+          <div className="flex items-center gap-2">
+            <span className="relative inline-flex">
+              <Bell className="h-5 w-5" />
+              <Badge
+                variant="destructive"
+                className="absolute -right-2 -top-2 h-4 min-w-[16px] justify-center px-1 py-0 text-[9px] leading-none"
+              >
+                12
+              </Badge>
+            </span>
+            <span className="text-sm">Notifications</span>
+          </div>
+        ),
+      },
+    ],
     props: [
       {
         name: "variant",
@@ -647,6 +952,87 @@ const catalog: ComponentDoc[] = [
         </Card>
       ),
     },
+    examples: [
+      {
+        title: "Stat card",
+        code: `<Card className="w-[260px]">
+  <CardHeader className="flex flex-row items-center justify-between pb-2">
+    <CardDescription>Revenue</CardDescription>
+    <CreditCard className="h-4 w-4 text-muted-foreground" />
+  </CardHeader>
+  <CardContent>
+    <div className="text-2xl font-semibold">$45,231.89</div>
+    <p className="text-xs text-success">+20.1% from last month</p>
+  </CardContent>
+</Card>`,
+        render: (
+          <Card className="w-[260px]">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardDescription>Revenue</CardDescription>
+              <CreditCard className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-semibold">$45,231.89</div>
+              <p className="text-xs text-success">+20.1% from last month</p>
+            </CardContent>
+          </Card>
+        ),
+      },
+      {
+        title: "With form",
+        code: `<Card className="w-[360px]">
+  <CardHeader>
+    <CardTitle>Sign in</CardTitle>
+    <CardDescription>Enter your email below.</CardDescription>
+  </CardHeader>
+  <CardContent className="space-y-4">
+    <div className="space-y-1.5">
+      <Label htmlFor="email">Email</Label>
+      <Input id="email" placeholder="you@example.com" />
+    </div>
+    <div className="space-y-1.5">
+      <Label htmlFor="password">Password</Label>
+      <Input id="password" type="password" />
+    </div>
+  </CardContent>
+  <CardFooter>
+    <Button className="w-full">Sign in</Button>
+  </CardFooter>
+</Card>`,
+        render: (
+          <Card className="w-[360px]">
+            <CardHeader>
+              <CardTitle>Sign in</CardTitle>
+              <CardDescription>Enter your email below.</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-1.5">
+                <Label htmlFor="ex-card-email">Email</Label>
+                <Input id="ex-card-email" placeholder="you@example.com" />
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="ex-card-pass">Password</Label>
+                <Input id="ex-card-pass" type="password" />
+              </div>
+            </CardContent>
+            <CardFooter>
+              <Button className="w-full">Sign in</Button>
+            </CardFooter>
+          </Card>
+        ),
+      },
+      {
+        title: "Plain content",
+        code: `<Card className="w-[300px] p-4 text-sm">
+  Just a styled container — no header or footer needed.
+</Card>`,
+        render: (
+          <Card className="w-[300px] p-4 text-sm">
+            Just a styled container — no header or footer needed.
+          </Card>
+        ),
+      },
+    ],
   },
 
   // ---------- Separator ----------
@@ -670,6 +1056,46 @@ const catalog: ComponentDoc[] = [
         </div>
       ),
     },
+    examples: [
+      {
+        title: "Vertical",
+        code: `<div className="flex h-12 items-center gap-4 text-sm">
+  <span>Docs</span>
+  <Separator orientation="vertical" />
+  <span>API</span>
+  <Separator orientation="vertical" />
+  <span>Blog</span>
+</div>`,
+        render: (
+          <div className="flex h-12 items-center gap-4 text-sm">
+            <span>Docs</span>
+            <Separator orientation="vertical" />
+            <span>API</span>
+            <Separator orientation="vertical" />
+            <span>Blog</span>
+          </div>
+        ),
+      },
+      {
+        title: "With section heading",
+        code: `<div className="w-full max-w-sm">
+  <h4 className="text-sm font-semibold">Profile</h4>
+  <p className="text-xs text-muted-foreground">Public info.</p>
+  <Separator className="my-4" />
+  <h4 className="text-sm font-semibold">Notifications</h4>
+  <p className="text-xs text-muted-foreground">Email & push.</p>
+</div>`,
+        render: (
+          <div className="w-full max-w-sm">
+            <h4 className="text-sm font-semibold">Profile</h4>
+            <p className="text-xs text-muted-foreground">Public info.</p>
+            <Separator className="my-4" />
+            <h4 className="text-sm font-semibold">Notifications</h4>
+            <p className="text-xs text-muted-foreground">Email & push.</p>
+          </div>
+        ),
+      },
+    ],
     props: [
       {
         name: "orientation",
@@ -705,6 +1131,23 @@ const catalog: ComponentDoc[] = [
         </div>
       ),
     },
+    examples: [
+      {
+        title: "Text lines",
+        code: `<div className="w-full max-w-sm space-y-2">
+  <Skeleton className="h-3 w-full" />
+  <Skeleton className="h-3 w-full" />
+  <Skeleton className="h-3 w-2/3" />
+</div>`,
+        render: (
+          <div className="w-full max-w-sm space-y-2">
+            <Skeleton className="h-3 w-full" />
+            <Skeleton className="h-3 w-full" />
+            <Skeleton className="h-3 w-2/3" />
+          </div>
+        ),
+      },
+    ],
   },
 
   // ---------- Spinner ----------
@@ -737,6 +1180,28 @@ const catalog: ComponentDoc[] = [
         default: `"default"`,
       },
       { name: "label", type: "string", default: `"Loading"` },
+    ],
+    examples: [
+      {
+        title: "With label",
+        code: `<div className="flex items-center gap-3">
+  <Spinner />
+  <span className="text-sm text-muted-foreground">Fetching data…</span>
+</div>`,
+        render: (
+          <div className="flex items-center gap-3">
+            <Spinner />
+            <span className="text-sm text-muted-foreground">
+              Fetching data…
+            </span>
+          </div>
+        ),
+      },
+      {
+        title: "Inside a button",
+        code: `<Button loading>Saving…</Button>`,
+        render: <Button loading>Saving…</Button>,
+      },
     ],
   },
 
@@ -814,6 +1279,42 @@ const catalog: ComponentDoc[] = [
       code: `<Progress value={60} />`,
       render: <Progress className="w-full max-w-sm" value={60} />,
     },
+    examples: [
+      {
+        title: "With label",
+        code: `<div className="w-full max-w-sm space-y-1.5">
+  <div className="flex justify-between text-xs text-muted-foreground">
+    <span>Uploading</span>
+    <span>74%</span>
+  </div>
+  <Progress value={74} />
+</div>`,
+        render: (
+          <div className="w-full max-w-sm space-y-1.5">
+            <div className="flex justify-between text-xs text-muted-foreground">
+              <span>Uploading</span>
+              <span>74%</span>
+            </div>
+            <Progress value={74} />
+          </div>
+        ),
+      },
+      {
+        title: "Stages",
+        code: `<div className="w-full max-w-sm space-y-3">
+  <Progress value={20} className="h-1.5" />
+  <Progress value={50} className="h-1.5" />
+  <Progress value={90} className="h-1.5" />
+</div>`,
+        render: (
+          <div className="w-full max-w-sm space-y-3">
+            <Progress value={20} className="h-1.5" />
+            <Progress value={50} className="h-1.5" />
+            <Progress value={90} className="h-1.5" />
+          </div>
+        ),
+      },
+    ],
     props: [
       { name: "value", type: "number" },
       { name: "indicatorClassName", type: "string" },
@@ -869,6 +1370,70 @@ const catalog: ComponentDoc[] = [
           </div>
         ),
       },
+      {
+        title: "Stacked group",
+        code: `<div className="flex -space-x-2">
+  {team.map(m => (
+    <Avatar key={m} className="ring-2 ring-background">
+      <AvatarFallback>{m}</AvatarFallback>
+    </Avatar>
+  ))}
+  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-muted text-xs font-medium ring-2 ring-background">+5</div>
+</div>`,
+        render: (
+          <div className="flex -space-x-2">
+            {["OM", "JL", "IN", "WK"].map((m) => (
+              <Avatar key={m} className="ring-2 ring-background">
+                <AvatarFallback>{m}</AvatarFallback>
+              </Avatar>
+            ))}
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-muted text-xs font-medium ring-2 ring-background">
+              +5
+            </div>
+          </div>
+        ),
+      },
+      {
+        title: "Square shape",
+        code: `<Avatar shape="square">
+  <AvatarFallback>SQ</AvatarFallback>
+</Avatar>`,
+        render: (
+          <Avatar shape="square">
+            <AvatarFallback>SQ</AvatarFallback>
+          </Avatar>
+        ),
+      },
+      {
+        title: "User row",
+        code: `<div className="flex items-center gap-3">
+  <Avatar>
+    <AvatarImage src="https://github.com/shadcn.png" />
+    <AvatarFallback>CN</AvatarFallback>
+  </Avatar>
+  <div className="text-sm">
+    <div className="font-medium">shadcn</div>
+    <div className="text-xs text-muted-foreground">m@example.com</div>
+  </div>
+</div>`,
+        render: (
+          <div className="flex items-center gap-3">
+            <Avatar>
+              <AvatarImage
+                src="https://github.com/shadcn.png"
+                alt="avatar"
+              />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+            <div className="text-sm">
+              <div className="font-medium">shadcn</div>
+              <div className="text-xs text-muted-foreground">
+                m@example.com
+              </div>
+            </div>
+          </div>
+        ),
+      },
     ],
     props: [
       {
@@ -917,6 +1482,89 @@ const catalog: ComponentDoc[] = [
         </Tabs>
       ),
     },
+    examples: [
+      {
+        title: "With cards",
+        code: `<Tabs defaultValue="overview" className="w-[400px]">
+  <TabsList className="grid grid-cols-2">
+    <TabsTrigger value="overview">Overview</TabsTrigger>
+    <TabsTrigger value="analytics">Analytics</TabsTrigger>
+  </TabsList>
+  <TabsContent value="overview">
+    <Card><CardHeader><CardTitle>Overview</CardTitle></CardHeader></Card>
+  </TabsContent>
+  <TabsContent value="analytics">
+    <Card><CardHeader><CardTitle>Analytics</CardTitle></CardHeader></Card>
+  </TabsContent>
+</Tabs>`,
+        render: (
+          <Tabs defaultValue="overview" className="w-full max-w-md">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="overview">Overview</TabsTrigger>
+              <TabsTrigger value="analytics">Analytics</TabsTrigger>
+            </TabsList>
+            <TabsContent value="overview" className="mt-3">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-base">Overview</CardTitle>
+                  <CardDescription>
+                    Last 30 days of activity.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            </TabsContent>
+            <TabsContent value="analytics" className="mt-3">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-base">Analytics</CardTitle>
+                  <CardDescription>
+                    1,234 unique visitors.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            </TabsContent>
+          </Tabs>
+        ),
+      },
+      {
+        title: "Three tabs",
+        code: `<Tabs defaultValue="js" className="w-[420px]">
+  <TabsList>
+    <TabsTrigger value="js">JavaScript</TabsTrigger>
+    <TabsTrigger value="ts">TypeScript</TabsTrigger>
+    <TabsTrigger value="py">Python</TabsTrigger>
+  </TabsList>
+  ...
+</Tabs>`,
+        render: (
+          <Tabs defaultValue="ts" className="w-full max-w-md">
+            <TabsList>
+              <TabsTrigger value="js">JavaScript</TabsTrigger>
+              <TabsTrigger value="ts">TypeScript</TabsTrigger>
+              <TabsTrigger value="py">Python</TabsTrigger>
+            </TabsList>
+            <TabsContent
+              value="js"
+              className="mt-4 rounded-md border p-4 text-sm"
+            >
+              JavaScript guide.
+            </TabsContent>
+            <TabsContent
+              value="ts"
+              className="mt-4 rounded-md border p-4 text-sm"
+            >
+              TypeScript guide.
+            </TabsContent>
+            <TabsContent
+              value="py"
+              className="mt-4 rounded-md border p-4 text-sm"
+            >
+              Python guide.
+            </TabsContent>
+          </Tabs>
+        ),
+      },
+    ],
   },
 
   // ---------- Accordion ----------
@@ -961,6 +1609,82 @@ const catalog: ComponentDoc[] = [
         </Accordion>
       ),
     },
+    examples: [
+      {
+        title: "Multiple open",
+        code: `<Accordion type="multiple" defaultValue={["a"]} className="w-full">
+  <AccordionItem value="a">
+    <AccordionTrigger>Section A</AccordionTrigger>
+    <AccordionContent>Content A.</AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="b">
+    <AccordionTrigger>Section B</AccordionTrigger>
+    <AccordionContent>Content B.</AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="c">
+    <AccordionTrigger>Section C</AccordionTrigger>
+    <AccordionContent>Content C.</AccordionContent>
+  </AccordionItem>
+</Accordion>`,
+        render: (
+          <Accordion
+            type="multiple"
+            defaultValue={["a"]}
+            className="w-full max-w-md"
+          >
+            {["a", "b", "c"].map((k) => (
+              <AccordionItem key={k} value={k}>
+                <AccordionTrigger>Section {k.toUpperCase()}</AccordionTrigger>
+                <AccordionContent>
+                  Content for section {k.toUpperCase()}.
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        ),
+      },
+      {
+        title: "FAQ",
+        code: `<Accordion type="single" collapsible className="w-full">
+  {faq.map(q => (
+    <AccordionItem key={q.id} value={q.id}>
+      <AccordionTrigger>{q.question}</AccordionTrigger>
+      <AccordionContent>{q.answer}</AccordionContent>
+    </AccordionItem>
+  ))}
+</Accordion>`,
+        render: (
+          <Accordion
+            type="single"
+            collapsible
+            className="w-full max-w-md"
+          >
+            {[
+              {
+                id: "ship",
+                q: "How long does shipping take?",
+                a: "Orders ship within 1–2 business days. Delivery in 3–5 days.",
+              },
+              {
+                id: "refund",
+                q: "What's your refund policy?",
+                a: "Full refund within 30 days. No questions asked.",
+              },
+              {
+                id: "support",
+                q: "How do I contact support?",
+                a: "Email support@example.com or use the chat in your dashboard.",
+              },
+            ].map((f) => (
+              <AccordionItem key={f.id} value={f.id}>
+                <AccordionTrigger>{f.q}</AccordionTrigger>
+                <AccordionContent>{f.a}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        ),
+      },
+    ],
   },
 
   // ---------- Dialog ----------
@@ -1020,6 +1744,89 @@ const catalog: ComponentDoc[] = [
         </Dialog>
       ),
     },
+    examples: [
+      {
+        title: "Confirmation",
+        code: `<Dialog>
+  <DialogTrigger asChild>
+    <Button variant="destructive">Delete project</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Delete project?</DialogTitle>
+      <DialogDescription>
+        This permanently removes the project and all its data.
+      </DialogDescription>
+    </DialogHeader>
+    <DialogFooter>
+      <Button variant="outline">Cancel</Button>
+      <Button variant="destructive">Delete</Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>`,
+        render: (
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="destructive">Delete project</Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Delete project?</DialogTitle>
+                <DialogDescription>
+                  This permanently removes the project and all its data.
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter>
+                <Button variant="outline">Cancel</Button>
+                <Button variant="destructive">Delete</Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        ),
+      },
+      {
+        title: "With form",
+        code: `<Dialog>
+  <DialogTrigger asChild><Button>Invite teammate</Button></DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Invite a teammate</DialogTitle>
+      <DialogDescription>They'll get read-only access.</DialogDescription>
+    </DialogHeader>
+    <div className="space-y-3">
+      <Label htmlFor="ie">Email</Label>
+      <Input id="ie" placeholder="name@company.com" />
+    </div>
+    <DialogFooter><Button>Send invite</Button></DialogFooter>
+  </DialogContent>
+</Dialog>`,
+        render: (
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button>Invite teammate</Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Invite a teammate</DialogTitle>
+                <DialogDescription>
+                  They&apos;ll get read-only access.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-3">
+                <Label htmlFor="ex-invite-email">Email</Label>
+                <Input
+                  id="ex-invite-email"
+                  placeholder="name@company.com"
+                />
+              </div>
+              <DialogFooter>
+                <Button>Send invite</Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        ),
+      },
+    ],
   },
 
   // ---------- Alert Dialog ----------
@@ -1076,55 +1883,80 @@ const catalog: ComponentDoc[] = [
         </AlertDialog>
       ),
     },
-  },
-
-  // ---------- Drawer ----------
-  {
-    name: "drawer",
-    title: "Drawer",
-    description: "Mobile-first bottom drawer. Built on vaul.",
-    imports: `import {
-  Drawer,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";`,
-    defaultExample: {
-      title: "Default",
-      code: `<Drawer>
-  <DrawerTrigger asChild><Button>Open drawer</Button></DrawerTrigger>
-  <DrawerContent>
-    <DrawerHeader>
-      <DrawerTitle>Move goal</DrawerTitle>
-      <DrawerDescription>Set your daily activity goal.</DrawerDescription>
-    </DrawerHeader>
-    <DrawerFooter>
-      <Button>Save</Button>
-    </DrawerFooter>
-  </DrawerContent>
-</Drawer>`,
-      render: (
-        <Drawer>
-          <DrawerTrigger asChild>
-            <Button variant="outline">Open drawer</Button>
-          </DrawerTrigger>
-          <DrawerContent>
-            <DrawerHeader>
-              <DrawerTitle>Move goal</DrawerTitle>
-              <DrawerDescription>
-                Set your daily activity goal.
-              </DrawerDescription>
-            </DrawerHeader>
-            <DrawerFooter>
-              <Button>Save</Button>
-            </DrawerFooter>
-          </DrawerContent>
-        </Drawer>
-      ),
-    },
+    examples: [
+      {
+        title: "Sign out",
+        code: `<AlertDialog>
+  <AlertDialogTrigger asChild><Button variant="outline">Sign out</Button></AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Sign out?</AlertDialogTitle>
+      <AlertDialogDescription>You'll need to log in again to access your account.</AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Stay signed in</AlertDialogCancel>
+      <AlertDialogAction>Sign out</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>`,
+        render: (
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="outline">Sign out</Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Sign out?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  You&apos;ll need to log in again to access your account.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Stay signed in</AlertDialogCancel>
+                <AlertDialogAction>Sign out</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        ),
+      },
+      {
+        title: "Reset settings",
+        code: `<AlertDialog>
+  <AlertDialogTrigger asChild>
+    <Button variant="ghost">Reset to defaults</Button>
+  </AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Reset all settings?</AlertDialogTitle>
+      <AlertDialogDescription>This will clear your preferences but keep your data intact.</AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Cancel</AlertDialogCancel>
+      <AlertDialogAction>Reset</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>`,
+        render: (
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="ghost">Reset to defaults</Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Reset all settings?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This will clear your preferences but keep your data intact.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction>Reset</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        ),
+      },
+    ],
   },
 
   // ---------- Popover ----------
@@ -1148,6 +1980,82 @@ const catalog: ComponentDoc[] = [
         </Popover>
       ),
     },
+    examples: [
+      {
+        title: "With form",
+        code: `<Popover>
+  <PopoverTrigger asChild><Button variant="outline">Set dimensions</Button></PopoverTrigger>
+  <PopoverContent className="w-72">
+    <div className="space-y-3">
+      <h4 className="font-medium">Dimensions</h4>
+      <div className="space-y-1.5">
+        <Label htmlFor="w">Width</Label>
+        <Input id="w" defaultValue="100" />
+      </div>
+      <div className="space-y-1.5">
+        <Label htmlFor="h">Height</Label>
+        <Input id="h" defaultValue="100" />
+      </div>
+    </div>
+  </PopoverContent>
+</Popover>`,
+        render: (
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button variant="outline">Set dimensions</Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-72">
+              <div className="space-y-3">
+                <h4 className="font-medium">Dimensions</h4>
+                <div className="space-y-1.5">
+                  <Label htmlFor="ex-pop-w">Width</Label>
+                  <Input id="ex-pop-w" defaultValue="100" />
+                </div>
+                <div className="space-y-1.5">
+                  <Label htmlFor="ex-pop-h">Height</Label>
+                  <Input id="ex-pop-h" defaultValue="100" />
+                </div>
+              </div>
+            </PopoverContent>
+          </Popover>
+        ),
+      },
+      {
+        title: "Profile preview",
+        code: `<Popover>
+  <PopoverTrigger asChild><Button variant="ghost">@shadcn</Button></PopoverTrigger>
+  <PopoverContent className="w-72">
+    <div className="flex gap-3">
+      <Avatar><AvatarFallback>SH</AvatarFallback></Avatar>
+      <div>
+        <h4 className="font-semibold">@shadcn</h4>
+        <p className="text-xs text-muted-foreground">Building UI primitives that you own.</p>
+      </div>
+    </div>
+  </PopoverContent>
+</Popover>`,
+        render: (
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button variant="ghost">@shadcn</Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-72">
+              <div className="flex gap-3">
+                <Avatar>
+                  <AvatarFallback>SH</AvatarFallback>
+                </Avatar>
+                <div>
+                  <h4 className="font-semibold">@shadcn</h4>
+                  <p className="text-xs text-muted-foreground">
+                    Building UI primitives that you own.
+                  </p>
+                </div>
+              </div>
+            </PopoverContent>
+          </Popover>
+        ),
+      },
+    ],
   },
 
   // ---------- Tooltip ----------
@@ -1180,6 +2088,60 @@ const catalog: ComponentDoc[] = [
         </TooltipProvider>
       ),
     },
+    examples: [
+      {
+        title: "All sides",
+        code: `<TooltipProvider>
+  <div className="flex gap-2">
+    {(["top","right","bottom","left"]).map(s => (
+      <Tooltip key={s}>
+        <TooltipTrigger asChild><Button variant="outline" size="sm">{s}</Button></TooltipTrigger>
+        <TooltipContent side={s}>Side: {s}</TooltipContent>
+      </Tooltip>
+    ))}
+  </div>
+</TooltipProvider>`,
+        render: (
+          <TooltipProvider>
+            <div className="flex gap-2">
+              {(["top", "right", "bottom", "left"] as const).map((s) => (
+                <Tooltip key={s}>
+                  <TooltipTrigger asChild>
+                    <Button variant="outline" size="sm">
+                      {s}
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side={s}>Side: {s}</TooltipContent>
+                </Tooltip>
+              ))}
+            </div>
+          </TooltipProvider>
+        ),
+      },
+      {
+        title: "Icon button",
+        code: `<TooltipProvider>
+  <Tooltip>
+    <TooltipTrigger asChild>
+      <Button variant="ghost" size="icon"><Settings className="h-4 w-4" /></Button>
+    </TooltipTrigger>
+    <TooltipContent>Settings</TooltipContent>
+  </Tooltip>
+</TooltipProvider>`,
+        render: (
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Settings className="h-4 w-4" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Settings</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        ),
+      },
+    ],
   },
 
   // ---------- Dropdown Menu ----------
@@ -1238,6 +2200,104 @@ const catalog: ComponentDoc[] = [
         </DropdownMenu>
       ),
     },
+    examples: [
+      {
+        title: "With shortcuts",
+        code: `<DropdownMenu>
+  <DropdownMenuTrigger asChild><Button variant="outline">File</Button></DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuItem>
+      New file <DropdownMenuShortcut>⌘N</DropdownMenuShortcut>
+    </DropdownMenuItem>
+    <DropdownMenuItem>
+      Open <DropdownMenuShortcut>⌘O</DropdownMenuShortcut>
+    </DropdownMenuItem>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>
+      Save <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+    </DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>`,
+        render: (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline">File</Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem>
+                New file
+                <span className="ml-auto text-xs tracking-widest opacity-60">
+                  ⌘N
+                </span>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                Open
+                <span className="ml-auto text-xs tracking-widest opacity-60">
+                  ⌘O
+                </span>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                Save
+                <span className="ml-auto text-xs tracking-widest opacity-60">
+                  ⌘S
+                </span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        ),
+      },
+      {
+        title: "Avatar trigger",
+        code: `<DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Button variant="ghost" size="icon" className="rounded-full">
+      <Avatar><AvatarFallback>SH</AvatarFallback></Avatar>
+    </Button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent align="end" className="w-56">
+    <DropdownMenuLabel>shadcn</DropdownMenuLabel>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem><User className="h-4 w-4" />Profile</DropdownMenuItem>
+    <DropdownMenuItem><CreditCard className="h-4 w-4" />Billing</DropdownMenuItem>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem className="text-destructive">Sign out</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>`,
+        render: (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="rounded-full"
+                aria-label="Account menu"
+              >
+                <Avatar size="sm">
+                  <AvatarFallback>SH</AvatarFallback>
+                </Avatar>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56">
+              <DropdownMenuLabel>shadcn</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <User className="h-4 w-4" />
+                Profile
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <CreditCard className="h-4 w-4" />
+                Billing
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem className="text-destructive">
+                Sign out
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        ),
+      },
+    ],
   },
 
   // ---------- Command ----------
@@ -1280,61 +2340,201 @@ const catalog: ComponentDoc[] = [
         </Command>
       ),
     },
+    examples: [
+      {
+        title: "With icons",
+        code: `<Command className="rounded-lg border w-[380px]">
+  <CommandInput placeholder="Search..." />
+  <CommandList>
+    <CommandGroup heading="Account">
+      <CommandItem><User className="h-4 w-4" />Profile</CommandItem>
+      <CommandItem><CreditCard className="h-4 w-4" />Billing</CommandItem>
+      <CommandItem><Settings className="h-4 w-4" />Settings</CommandItem>
+    </CommandGroup>
+  </CommandList>
+</Command>`,
+        render: (
+          <Command className="w-[380px] rounded-lg border">
+            <CommandInput placeholder="Search…" />
+            <CommandList>
+              <CommandGroup heading="Account">
+                <CommandItem>
+                  <User className="mr-2 h-4 w-4" />
+                  Profile
+                </CommandItem>
+                <CommandItem>
+                  <CreditCard className="mr-2 h-4 w-4" />
+                  Billing
+                </CommandItem>
+                <CommandItem>
+                  <Settings className="mr-2 h-4 w-4" />
+                  Settings
+                </CommandItem>
+              </CommandGroup>
+            </CommandList>
+          </Command>
+        ),
+      },
+      {
+        title: "Multiple groups",
+        code: `<Command className="rounded-lg border w-[380px]">
+  <CommandInput placeholder="Type a command..." />
+  <CommandList>
+    <CommandGroup heading="Suggestions">
+      <CommandItem>Open quickly</CommandItem>
+      <CommandItem>Search files</CommandItem>
+    </CommandGroup>
+    <CommandGroup heading="Settings">
+      <CommandItem>Preferences</CommandItem>
+      <CommandItem>Keyboard shortcuts</CommandItem>
+    </CommandGroup>
+  </CommandList>
+</Command>`,
+        render: (
+          <Command className="w-[380px] rounded-lg border">
+            <CommandInput placeholder="Type a command…" />
+            <CommandList>
+              <CommandGroup heading="Suggestions">
+                <CommandItem>Open quickly</CommandItem>
+                <CommandItem>Search files</CommandItem>
+              </CommandGroup>
+              <CommandGroup heading="Settings">
+                <CommandItem>Preferences</CommandItem>
+                <CommandItem>Keyboard shortcuts</CommandItem>
+              </CommandGroup>
+            </CommandList>
+          </Command>
+        ),
+      },
+    ],
   },
 
   // ---------- Combobox ----------
   {
     name: "combobox",
     title: "Combobox",
-    description: "Searchable select built on Popover + Command.",
+    description:
+      "Searchable, keyboard-first single-select. Built on Popover + Command, with a custom-rendered selection chip.",
     imports: `import { Combobox } from "@/components/ui/combobox";`,
     defaultExample: {
-      title: "Default",
-      code: `<Combobox
+      title: "Timezone picker",
+      code: `const [value, setValue] = React.useState<string>("");
+const TIMEZONES = [
+  { value: "pst", label: "Pacific Standard Time", abbr: "UTC−08:00" },
+  { value: "est", label: "Eastern Standard Time", abbr: "UTC−05:00" },
+  { value: "gmt", label: "Greenwich Mean Time", abbr: "UTC+00:00" },
+  { value: "ist", label: "India Standard Time", abbr: "UTC+05:30" },
+];
+
+<Popover>
+  <PopoverTrigger asChild>
+    <Button variant="outline" role="combobox">
+      {selected?.label ?? "Pick a timezone…"}
+      <ChevronsUpDown className="ml-auto h-4 w-4 opacity-50" />
+    </Button>
+  </PopoverTrigger>
+  <PopoverContent className="w-[--radix-popover-trigger-width] p-0">
+    <Command>
+      <CommandInput placeholder="Search timezones…" />
+      <CommandList>
+        <CommandEmpty>No matches.</CommandEmpty>
+        <CommandGroup>
+          {TIMEZONES.map(t => (
+            <CommandItem
+              key={t.value}
+              value={\`\${t.label} \${t.abbr}\`}
+              onSelect={() => setValue(t.value)}
+            >
+              {t.label}
+              <span className="ml-auto font-mono text-[10px] text-muted-foreground">
+                {t.abbr}
+              </span>
+            </CommandItem>
+          ))}
+        </CommandGroup>
+      </CommandList>
+    </Command>
+  </PopoverContent>
+</Popover>`,
+      render: <ComboboxDemo />,
+    },
+    examples: [
+      {
+        title: "Multi-select with checkboxes",
+        description:
+          "Combobox-style trigger that holds multiple values — the selected items render as chips inline.",
+        code: `const [selected, setSelected] = React.useState<string[]>([]);
+
+<Popover>
+  <PopoverTrigger asChild>
+    <Button variant="outline" role="combobox" className="w-full justify-between">
+      {selected.length === 0
+        ? "Select frameworks…"
+        : selected.map(v => <Badge key={v}>{label(v)}</Badge>)}
+      <ChevronsUpDown className="h-4 w-4 opacity-50" />
+    </Button>
+  </PopoverTrigger>
+  <PopoverContent className="p-0">
+    <Command>
+      <CommandInput placeholder="Search…" />
+      <CommandList>
+        <CommandGroup>
+          {options.map(o => (
+            <CommandItem key={o.value} onSelect={() => toggle(o.value)}>
+              <Checkbox checked={selected.includes(o.value)} />
+              {o.label}
+            </CommandItem>
+          ))}
+        </CommandGroup>
+      </CommandList>
+    </Command>
+  </PopoverContent>
+</Popover>`,
+        render: <MultiSelectDemo />,
+      },
+      {
+        title: "Simple <Combobox /> wrapper",
+        description:
+          "When you don't need a custom selection chip, the simpler <Combobox /> wrapper is plenty.",
+        code: `<Combobox
   options={[
     { label: "Next.js", value: "next" },
     { label: "Remix", value: "remix" },
     { label: "Vite", value: "vite" },
+    { label: "Astro", value: "astro" },
   ]}
   placeholder="Select framework…"
 />`,
-      render: (
-        <div className="w-full max-w-sm">
-          <Combobox
-            options={[
-              { label: "Next.js", value: "next" },
-              { label: "Remix", value: "remix" },
-              { label: "Vite", value: "vite" },
-              { label: "Astro", value: "astro" },
-            ]}
-            placeholder="Select framework…"
-          />
-        </div>
-      ),
-    },
+        render: (
+          <div className="w-full max-w-sm">
+            <Combobox
+              options={[
+                { label: "Next.js", value: "next" },
+                { label: "Remix", value: "remix" },
+                { label: "Vite", value: "vite" },
+                { label: "Astro", value: "astro" },
+              ]}
+              placeholder="Select framework…"
+            />
+          </div>
+        ),
+      },
+    ],
   },
 
-  // ---------- Calendar ----------
-  {
-    name: "calendar",
-    title: "Calendar",
-    description: "Date picker built on react-day-picker, styled to match.",
-    imports: `import { Calendar } from "@/components/ui/calendar";`,
-    defaultExample: {
-      title: "Default",
-      code: `<Calendar mode="single" />`,
-      render: <Calendar mode="single" />,
-    },
-  },
-
-  // ---------- Date Picker ----------
+  // ---------- Date Picker (Calendar + Popover) ----------
   {
     name: "date-picker",
     title: "Date Picker",
-    description: "Calendar inside a popover.",
-    imports: `import { DatePicker } from "@/components/ui/date-picker";`,
+    description:
+      "Calendar-driven date selection. Use the inline <Calendar /> for embedded UI, or <DatePicker /> for a compact popover trigger.",
+    imports: `// Compact popover trigger
+import { DatePicker } from "@/components/ui/date-picker";
+
+// Inline / embedded calendar
+import { Calendar } from "@/components/ui/calendar";`,
     defaultExample: {
-      title: "Default",
+      title: "Popover (compact)",
       code: `<DatePicker />`,
       render: (
         <div className="w-full max-w-sm">
@@ -1342,6 +2542,74 @@ const catalog: ComponentDoc[] = [
         </div>
       ),
     },
+    examples: [
+      {
+        title: "With label",
+        code: `<div className="space-y-1.5">
+  <Label htmlFor="dob">Date of birth</Label>
+  <DatePicker />
+</div>`,
+        render: (
+          <div className="w-full max-w-sm space-y-1.5">
+            <Label htmlFor="ex-dp-dob">Date of birth</Label>
+            <DatePicker />
+          </div>
+        ),
+      },
+      {
+        title: "Inline calendar",
+        description:
+          "Embed the calendar directly in your layout — no popover, always visible.",
+        code: `const [date, setDate] = React.useState<Date | undefined>(new Date());
+
+<Calendar
+  mode="single"
+  selected={date}
+  onSelect={setDate}
+  className="rounded-md border"
+/>`,
+        render: <CalendarSingleDemo />,
+      },
+      {
+        title: "Range selection",
+        description: "Use mode=\"range\" to capture a from/to date pair.",
+        code: `const [range, setRange] = React.useState<DateRange | undefined>({
+  from: today,
+  to: addDays(today, 4),
+});
+
+<Calendar mode="range" selected={range} onSelect={setRange} />`,
+        render: <CalendarRangeDemo />,
+      },
+      {
+        title: "Two months",
+        code: `<Calendar
+  mode="single"
+  selected={date}
+  onSelect={setDate}
+  numberOfMonths={2}
+/>`,
+        render: <CalendarMultipleMonthsDemo />,
+      },
+      {
+        title: "Custom placeholder",
+        code: `<DatePicker placeholder="When were you born?" />`,
+        render: (
+          <div className="w-full max-w-sm">
+            <DatePicker placeholder="When were you born?" />
+          </div>
+        ),
+      },
+      {
+        title: "Disabled",
+        code: `<DatePicker disabled />`,
+        render: (
+          <div className="w-full max-w-sm">
+            <DatePicker disabled />
+          </div>
+        ),
+      },
+    ],
   },
 
   // ---------- Breadcrumb ----------
@@ -1386,6 +2654,72 @@ const catalog: ComponentDoc[] = [
         </Breadcrumb>
       ),
     },
+    examples: [
+      {
+        title: "Custom separator",
+        code: `<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>
+    <BreadcrumbSeparator>/</BreadcrumbSeparator>
+    <BreadcrumbItem><BreadcrumbLink href="/docs">Docs</BreadcrumbLink></BreadcrumbItem>
+    <BreadcrumbSeparator>/</BreadcrumbSeparator>
+    <BreadcrumbItem><BreadcrumbPage>Components</BreadcrumbPage></BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>`,
+        render: (
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="#">Home</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator>/</BreadcrumbSeparator>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="#">Docs</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator>/</BreadcrumbSeparator>
+              <BreadcrumbItem>
+                <BreadcrumbPage>Components</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        ),
+      },
+      {
+        title: "With ellipsis",
+        code: `<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem><BreadcrumbEllipsis /></BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem><BreadcrumbLink href="#">Components</BreadcrumbLink></BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem><BreadcrumbPage>Button</BreadcrumbPage></BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>`,
+        render: (
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="#">Home</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <span className="px-1 text-muted-foreground">…</span>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="#">Components</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>Button</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        ),
+      },
+    ],
   },
 
   // ---------- Pagination ----------
@@ -1441,6 +2775,35 @@ const catalog: ComponentDoc[] = [
         </Pagination>
       ),
     },
+    examples: [
+      {
+        title: "Bare prev / next",
+        description:
+          "Drop the numeric pages for a minimal previous/next pattern.",
+        code: `<Pagination>
+  <PaginationContent>
+    <PaginationItem><PaginationPrevious href="#" /></PaginationItem>
+    <span className="px-3 text-sm text-muted-foreground">Page 3 of 12</span>
+    <PaginationItem><PaginationNext href="#" /></PaginationItem>
+  </PaginationContent>
+</Pagination>`,
+        render: (
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious href="#" />
+              </PaginationItem>
+              <span className="px-3 text-sm text-muted-foreground">
+                Page 3 of 12
+              </span>
+              <PaginationItem>
+                <PaginationNext href="#" />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        ),
+      },
+    ],
   },
 
   // ---------- Table ----------
@@ -1507,29 +2870,96 @@ const catalog: ComponentDoc[] = [
         </Table>
       ),
     },
-  },
+    examples: [
+      {
+        title: "Team members",
+        code: `<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Role</TableHead>
+      <TableHead>Status</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    {team.map(t => (
+      <TableRow key={t.email}>
+        <TableCell className="font-medium">{t.name}</TableCell>
+        <TableCell>{t.role}</TableCell>
+        <TableCell><Badge variant="success">Active</Badge></TableCell>
+      </TableRow>
+    ))}
+  </TableBody>
+</Table>`,
+        render: (
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Name</TableHead>
+                <TableHead>Role</TableHead>
+                <TableHead>Status</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {[
+                { name: "Olivia Martin", role: "Designer", status: "Active" },
+                { name: "Jackson Lee", role: "Engineer", status: "Active" },
+                { name: "Isabella Nguyen", role: "PM", status: "Invited" },
+              ].map((t) => (
+                <TableRow key={t.name}>
+                  <TableCell className="font-medium">{t.name}</TableCell>
+                  <TableCell>{t.role}</TableCell>
+                  <TableCell>
+                    <Badge
+                      variant={
+                        t.status === "Active" ? "success" : "secondary"
+                      }
+                    >
+                      {t.status}
+                    </Badge>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        ),
+      },
+      {
+        title: "Selectable rows",
+        description:
+          "Combine the table with Checkbox to support row selection. The first column toggles a single row; the header cell selects all.",
+        code: `const [selected, setSelected] = React.useState<Set<number>>(new Set());
 
-  // ---------- Scroll area ----------
-  {
-    name: "scroll-area",
-    title: "Scroll Area",
-    description: "Custom-styled scroll container with a themed scrollbar.",
-    imports: `import { ScrollArea } from "@/components/ui/scroll-area";`,
-    defaultExample: {
-      title: "Default",
-      code: `<ScrollArea className="h-72 w-48 rounded-md border p-4">
-  {tags.map(t => <div key={t} className="text-sm py-1">{t}</div>)}
-</ScrollArea>`,
-      render: (
-        <ScrollArea className="h-60 w-48 rounded-md border p-4">
-          {Array.from({ length: 30 }, (_, i) => (
-            <div key={i} className="py-1 text-sm">
-              Tag {i + 1}
-            </div>
-          ))}
-        </ScrollArea>
-      ),
-    },
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead className="w-10">
+        <Checkbox checked={allChecked} onCheckedChange={toggleAll} />
+      </TableHead>
+      <TableHead>Name</TableHead>
+      <TableHead>Email</TableHead>
+      <TableHead>Role</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    {data.map(row => (
+      <TableRow key={row.id} data-state={selected.has(row.id) ? "selected" : undefined}>
+        <TableCell>
+          <Checkbox
+            checked={selected.has(row.id)}
+            onCheckedChange={() => toggle(row.id)}
+          />
+        </TableCell>
+        <TableCell>{row.name}</TableCell>
+        <TableCell>{row.email}</TableCell>
+        <TableCell><Badge variant="secondary">{row.role}</Badge></TableCell>
+      </TableRow>
+    ))}
+  </TableBody>
+</Table>`,
+        render: <SelectableTableDemo />,
+      },
+    ],
   },
 
   // ---------- Toast ----------
@@ -1544,18 +2974,44 @@ import { Toaster } from "@/components/ui/toaster";`,
 const { toast } = useToast();
 toast({ title: "Copied", description: "Link copied to clipboard" });`,
     defaultExample: {
-      title: "Programmatic",
-      code: `const { toast } = useToast();
+      title: "Try it",
+      code: `import { toast } from "@/hooks/use-toast";
+
 <Button onClick={() => toast({ title: "Saved", description: "Your changes are live." })}>
-  Save
+  Show toast
 </Button>`,
-      render: (
-        <div className="text-sm text-muted-foreground">
-          Add <code>&lt;Toaster /&gt;</code> to your root layout and call{" "}
-          <code>toast(…)</code> from any component.
-        </div>
-      ),
+      render: <ToastDemo />,
     },
+    examples: [
+      {
+        title: "With action",
+        code: `toast({
+  title: "Scheduled",
+  description: "Meeting at 10:30am tomorrow.",
+  action: <Button variant="outline" size="sm">Undo</Button>,
+});`,
+        render: (
+          <div className="text-sm text-muted-foreground">
+            Click <strong>With action</strong> in the preview above — the
+            toast renders an Undo button alongside the message.
+          </div>
+        ),
+      },
+      {
+        title: "Destructive variant",
+        code: `toast({
+  variant: "destructive",
+  title: "Failed to save",
+  description: "Check your connection and try again.",
+});`,
+        render: (
+          <div className="text-sm text-muted-foreground">
+            Click <strong>Error toast</strong> in the preview above to see
+            the destructive style.
+          </div>
+        ),
+      },
+    ],
   },
 
   // ---------- Form ----------
@@ -1586,37 +3042,68 @@ const form = useForm<z.infer<typeof schema>>({
   defaultValues: { email: "" },
 });`,
     defaultExample: {
-      title: "Pattern",
-      code: `<Form {...form}>
-  <form onSubmit={form.handleSubmit(onSubmit)}>
-    <FormField
-      control={form.control}
-      name="email"
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel>Email</FormLabel>
-          <FormControl><Input {...field} /></FormControl>
-          <FormDescription>We&apos;ll never share your email.</FormDescription>
-          <FormMessage />
-        </FormItem>
-      )}
-    />
-    <Button type="submit">Submit</Button>
+      title: "Sign-up form",
+      code: `const schema = z.object({
+  name: z.string().min(2),
+  email: z.string().email(),
+  password: z.string().min(8),
+  bio: z.string().max(160).optional(),
+  country: z.string().min(1),
+  dob: z.date().optional(),
+  plan: z.enum(["hobby","pro","team"]),
+  marketing: z.boolean(),
+  terms: z.literal(true),
+});
+
+const form = useForm<z.infer<typeof schema>>({
+  resolver: zodResolver(schema),
+  defaultValues: { /* ... */ },
+});
+
+<Form {...form}>
+  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+    {/* Inputs, Textarea, Select, DatePicker, RadioGroup, Switch, Checkbox */}
+    <Button type="submit">Create account</Button>
   </form>
 </Form>`,
-      render: (
-        <div className="w-full max-w-sm space-y-4 rounded-md border bg-background p-4 text-sm">
-          <div className="space-y-1.5">
-            <Label>Email</Label>
-            <Input placeholder="you@example.com" />
-            <p className="text-xs text-muted-foreground">
-              We&apos;ll never share your email.
-            </p>
-          </div>
-          <Button size="sm">Submit</Button>
-        </div>
-      ),
+      render: <FullFormDemo />,
     },
+    examples: [
+      {
+        title: "Login form",
+        description:
+          "A minimal two-field form. Validation runs on submit; errors appear under each field.",
+        code: `const schema = z.object({
+  email: z.string().email("Invalid email"),
+  password: z.string().min(8, "At least 8 characters"),
+});
+
+const form = useForm<z.infer<typeof schema>>({
+  resolver: zodResolver(schema),
+});
+
+<Form {...form}>
+  <form onSubmit={form.handleSubmit(onSubmit)}>
+    <FormField name="email" render={({field}) => (
+      <FormItem>
+        <FormLabel>Email</FormLabel>
+        <FormControl><Input type="email" {...field} /></FormControl>
+        <FormMessage />
+      </FormItem>
+    )} />
+    <FormField name="password" render={({field}) => (
+      <FormItem>
+        <FormLabel>Password</FormLabel>
+        <FormControl><Input type="password" {...field} /></FormControl>
+        <FormMessage />
+      </FormItem>
+    )} />
+    <Button type="submit" className="w-full">Sign in</Button>
+  </form>
+</Form>`,
+        render: <LoginFormDemo />,
+      },
+    ],
   },
 
   // ---------- Layout: container ----------
@@ -1689,32 +3176,65 @@ const form = useForm<z.infer<typeof schema>>({
     description: "Top-level site navigation header with brand, links, actions.",
     imports: `import { Navbar, NavbarActions, NavbarBrand, NavbarContent } from "@/components/ui/navbar";`,
     defaultExample: {
-      title: "Default",
+      title: "Modern app navbar",
       code: `<Navbar>
-  <NavbarBrand>Acme</NavbarBrand>
+  <NavbarBrand>
+    <Logo /> Acme <Badge>Pro</Badge>
+  </NavbarBrand>
   <NavbarContent>
-    <a href="#" className="text-sm">Docs</a>
-    <a href="#" className="text-sm">Pricing</a>
+    <Link href="#">Dashboard</Link>
+    <Link href="#">Customers</Link>
+    <Link href="#">Reports</Link>
   </NavbarContent>
   <NavbarActions>
-    <Button size="sm">Sign in</Button>
+    <SearchTrigger />
+    <NotificationBell />
+    <UserMenu />
   </NavbarActions>
 </Navbar>`,
-      render: (
-        <div className="w-full overflow-hidden rounded-md border bg-background">
-          <div className="flex h-12 items-center gap-6 px-4">
-            <span className="font-semibold">Acme</span>
-            <nav className="flex gap-4 text-sm text-muted-foreground">
-              <a href="#">Docs</a>
-              <a href="#">Pricing</a>
-            </nav>
-            <Button size="sm" className="ml-auto">
-              Sign in
-            </Button>
-          </div>
-        </div>
-      ),
+      render: <ModernNavbarDemo />,
     },
+    examples: [
+      {
+        title: "Marketing site",
+        code: `<Navbar>
+  <NavbarBrand>Acme</NavbarBrand>
+  <NavbarContent>
+    <a href="#">Features</a>
+    <a href="#">Pricing</a>
+    <a href="#">Docs</a>
+  </NavbarContent>
+  <NavbarActions>
+    <Button variant="ghost" size="sm">Sign in</Button>
+    <Button size="sm">Get started</Button>
+  </NavbarActions>
+</Navbar>`,
+        render: (
+          <div className="w-full overflow-hidden rounded-md border bg-background">
+            <div className="flex h-14 items-center gap-6 px-4">
+              <span className="font-semibold">Acme</span>
+              <nav className="hidden gap-5 text-sm text-muted-foreground md:flex">
+                <a href="#" className="hover:text-foreground">
+                  Features
+                </a>
+                <a href="#" className="hover:text-foreground">
+                  Pricing
+                </a>
+                <a href="#" className="hover:text-foreground">
+                  Docs
+                </a>
+              </nav>
+              <div className="ml-auto flex items-center gap-2">
+                <Button variant="ghost" size="sm">
+                  Sign in
+                </Button>
+                <Button size="sm">Get started</Button>
+              </div>
+            </div>
+          </div>
+        ),
+      },
+    ],
   },
 
   // ---------- Sidebar ----------
@@ -1730,30 +3250,26 @@ const form = useForm<z.infer<typeof schema>>({
   SidebarNavItem,
 } from "@/components/ui/sidebar";`,
     defaultExample: {
-      title: "Default",
-      code: `<Sidebar>
+      title: "Clickable nav (try it)",
+      code: `const [active, setActive] = React.useState("overview");
+
+<Sidebar className="w-56">
   <SidebarHeader>Acme</SidebarHeader>
   <SidebarContent>
-    <SidebarNavItem active>Overview</SidebarNavItem>
-    <SidebarNavItem>Settings</SidebarNavItem>
+    {nav.map(n => (
+      <SidebarNavItem
+        key={n.id}
+        href="#"
+        active={active === n.id}
+        onClick={(e) => { e.preventDefault(); setActive(n.id); }}
+      >
+        <n.icon className="h-4 w-4" />
+        {n.label}
+      </SidebarNavItem>
+    ))}
   </SidebarContent>
 </Sidebar>`,
-      render: (
-        <div className="flex h-[220px] w-full overflow-hidden rounded-md border">
-          <div className="w-48 border-r bg-muted/20 p-3 text-sm">
-            <div className="mb-3 px-2 font-medium">Acme</div>
-            <div className="space-y-1">
-              <div className="rounded-md bg-accent px-2 py-1.5 font-medium text-accent-foreground">
-                Overview
-              </div>
-              <div className="rounded-md px-2 py-1.5 text-muted-foreground">
-                Settings
-              </div>
-            </div>
-          </div>
-          <div className="flex-1 bg-background" />
-        </div>
-      ),
+      render: <SidebarDemo />,
     },
   },
 
@@ -1772,18 +3288,421 @@ const form = useForm<z.infer<typeof schema>>({
 // Then anywhere:
 const { theme, setTheme, resolvedTheme } = useTheme();`,
     defaultExample: {
-      title: "Toggle",
-      code: `const { theme, setTheme } = useTheme();
-<Button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-  Toggle
-</Button>`,
+      title: "Light / Dark / System toggle",
+      code: `const { theme, setTheme, resolvedTheme } = useTheme();
+
+<div className="inline-flex rounded-lg border p-1">
+  {["light","dark","system"].map(t => (
+    <button
+      key={t}
+      onClick={() => setTheme(t)}
+      data-active={theme === t}
+    >
+      {t}
+    </button>
+  ))}
+</div>`,
+      render: <ThemeProviderDemo />,
+    },
+  },
+
+  // ---------- Toggle (+ ToggleGroup) ----------
+  {
+    name: "toggle",
+    title: "Toggle",
+    description:
+      "Two-state pressable buttons. Use a single Toggle for binary controls, or a ToggleGroup for segmented selection.",
+    imports: `import { Toggle } from "@/components/ui/toggle";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
+    defaultExample: {
+      title: "Single toggle",
+      code: `const [pressed, setPressed] = React.useState(false);
+
+<Toggle pressed={pressed} onPressedChange={setPressed}>
+  <Bell className="h-4 w-4" />
+  Notifications
+</Toggle>`,
+      render: <ToggleDemo />,
+    },
+    examples: [
+      {
+        title: "Toggle group — text formatting",
+        description:
+          "Multi-select group. Press to apply Bold / Italic / Underline.",
+        code: `<ToggleGroup type="multiple" defaultValue={["bold","italic"]}>
+  <ToggleGroupItem value="bold"><span className="font-bold">B</span></ToggleGroupItem>
+  <ToggleGroupItem value="italic"><span className="italic">I</span></ToggleGroupItem>
+  <ToggleGroupItem value="underline"><span className="underline">U</span></ToggleGroupItem>
+</ToggleGroup>`,
+        render: (
+          <ToggleGroup type="multiple" defaultValue={["bold", "italic"]}>
+            <ToggleGroupItem value="bold">
+              <span className="font-bold">B</span>
+            </ToggleGroupItem>
+            <ToggleGroupItem value="italic">
+              <span className="italic">I</span>
+            </ToggleGroupItem>
+            <ToggleGroupItem value="underline">
+              <span className="underline">U</span>
+            </ToggleGroupItem>
+          </ToggleGroup>
+        ),
+      },
+      {
+        title: "View switcher (single, outline)",
+        description: "Single-select group with the outline variant.",
+        code: `<ToggleGroup type="single" defaultValue="grid" variant="outline">
+  <ToggleGroupItem value="grid">Grid</ToggleGroupItem>
+  <ToggleGroupItem value="list">List</ToggleGroupItem>
+  <ToggleGroupItem value="kanban">Kanban</ToggleGroupItem>
+</ToggleGroup>`,
+        render: (
+          <ToggleGroup
+            type="single"
+            defaultValue="grid"
+            variant="outline"
+          >
+            <ToggleGroupItem value="grid">Grid</ToggleGroupItem>
+            <ToggleGroupItem value="list">List</ToggleGroupItem>
+            <ToggleGroupItem value="kanban">Kanban</ToggleGroupItem>
+          </ToggleGroup>
+        ),
+      },
+      {
+        title: "Variants and sizes",
+        code: `<div className="flex items-center gap-2">
+  <Toggle variant="outline"><Star className="h-4 w-4" /> Favorite</Toggle>
+  <Toggle size="lg">Large</Toggle>
+  <Toggle disabled>Disabled</Toggle>
+</div>`,
+        render: (
+          <div className="flex flex-wrap items-center gap-2">
+            <Toggle variant="outline">
+              <Star className="h-4 w-4" />
+              Favorite
+            </Toggle>
+            <Toggle size="lg">Large</Toggle>
+            <Toggle disabled>Disabled</Toggle>
+          </div>
+        ),
+      },
+    ],
+    props: [
+      {
+        name: "variant",
+        type: `"default" | "outline"`,
+        default: `"default"`,
+      },
+      {
+        name: "size",
+        type: `"sm" | "default" | "lg"`,
+        default: `"default"`,
+      },
+      { name: "pressed", type: "boolean" },
+      { name: "defaultPressed", type: "boolean" },
+      {
+        name: "onPressedChange",
+        type: "(pressed: boolean) => void",
+      },
+    ],
+    related: ["switch", "tabs"],
+  },
+
+  // ---------- Sheet ----------
+  {
+    name: "sheet",
+    title: "Sheet",
+    description:
+      "A side-anchored slide-in panel. Useful for mobile menus, settings, and secondary forms.",
+    imports: `import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";`,
+    defaultExample: {
+      title: "Right (default)",
+      code: `<Sheet>
+  <SheetTrigger asChild><Button variant="outline">Open sheet</Button></SheetTrigger>
+  <SheetContent>
+    <SheetHeader>
+      <SheetTitle>Edit profile</SheetTitle>
+      <SheetDescription>Make changes to your profile here.</SheetDescription>
+    </SheetHeader>
+    <div className="grid gap-3 py-4">
+      <Label>Name</Label>
+      <Input defaultValue="Pedro Duarte" />
+    </div>
+    <SheetFooter>
+      <Button>Save changes</Button>
+    </SheetFooter>
+  </SheetContent>
+</Sheet>`,
       render: (
-        <div className="text-sm text-muted-foreground">
-          Wrap your app in <code>&lt;ThemeProvider /&gt;</code> — use the header
-          toggle above to test it.
-        </div>
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="outline">Open sheet</Button>
+          </SheetTrigger>
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle>Edit profile</SheetTitle>
+              <SheetDescription>
+                Make changes to your profile here.
+              </SheetDescription>
+            </SheetHeader>
+            <div className="grid gap-3 py-4">
+              <Label htmlFor="ex-sh-name">Name</Label>
+              <Input id="ex-sh-name" defaultValue="Pedro Duarte" />
+            </div>
+            <SheetFooter>
+              <Button>Save changes</Button>
+            </SheetFooter>
+          </SheetContent>
+        </Sheet>
       ),
     },
+    examples: [
+      {
+        title: "Sides",
+        code: `<div className="flex gap-2">
+  {(["top","right","bottom","left"]).map(s => (
+    <Sheet key={s}>
+      <SheetTrigger asChild><Button variant="outline" size="sm">{s}</Button></SheetTrigger>
+      <SheetContent side={s}>
+        <SheetHeader>
+          <SheetTitle>{s} sheet</SheetTitle>
+        </SheetHeader>
+      </SheetContent>
+    </Sheet>
+  ))}
+</div>`,
+        render: (
+          <div className="flex flex-wrap gap-2">
+            {(["top", "right", "bottom", "left"] as const).map((s) => (
+              <Sheet key={s}>
+                <SheetTrigger asChild>
+                  <Button variant="outline" size="sm">
+                    {s}
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side={s}>
+                  <SheetHeader>
+                    <SheetTitle>{s} sheet</SheetTitle>
+                    <SheetDescription>
+                      Slides in from the {s}.
+                    </SheetDescription>
+                  </SheetHeader>
+                </SheetContent>
+              </Sheet>
+            ))}
+          </div>
+        ),
+      },
+      {
+        title: "Mobile menu",
+        code: `<Sheet>
+  <SheetTrigger asChild>
+    <Button variant="outline" size="icon"><MoreHorizontal className="h-4 w-4" /></Button>
+  </SheetTrigger>
+  <SheetContent side="left">
+    <SheetHeader>
+      <SheetTitle>Menu</SheetTitle>
+    </SheetHeader>
+    <nav className="mt-4 grid gap-2">
+      <a href="#" className="rounded-md px-3 py-2 hover:bg-accent">Home</a>
+      <a href="#" className="rounded-md px-3 py-2 hover:bg-accent">Pricing</a>
+      <a href="#" className="rounded-md px-3 py-2 hover:bg-accent">Docs</a>
+    </nav>
+  </SheetContent>
+</Sheet>`,
+        render: (
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="outline" size="icon" aria-label="Open menu">
+                <MoreHorizontal className="h-4 w-4" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left">
+              <SheetHeader>
+                <SheetTitle>Menu</SheetTitle>
+              </SheetHeader>
+              <nav className="mt-4 grid gap-2 text-sm">
+                <a
+                  href="#"
+                  className="rounded-md px-3 py-2 hover:bg-accent"
+                >
+                  Home
+                </a>
+                <a
+                  href="#"
+                  className="rounded-md px-3 py-2 hover:bg-accent"
+                >
+                  Pricing
+                </a>
+                <a
+                  href="#"
+                  className="rounded-md px-3 py-2 hover:bg-accent"
+                >
+                  Docs
+                </a>
+              </nav>
+            </SheetContent>
+          </Sheet>
+        ),
+      },
+    ],
+    related: ["dialog", "drawer"],
+  },
+
+  // ---------- HoverCard ----------
+  {
+    name: "hover-card",
+    title: "Hover Card",
+    description:
+      "Rich preview that appears on hover or focus — perfect for user mentions, link previews, or contextual info.",
+    imports: `import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";`,
+    defaultExample: {
+      title: "User preview",
+      code: `<HoverCard>
+  <HoverCardTrigger asChild>
+    <Button variant="link">@shadcn</Button>
+  </HoverCardTrigger>
+  <HoverCardContent className="w-72">
+    <div className="flex gap-3">
+      <Avatar><AvatarFallback>SH</AvatarFallback></Avatar>
+      <div>
+        <h4 className="font-semibold">@shadcn</h4>
+        <p className="text-xs text-muted-foreground">Building UI primitives that you own.</p>
+      </div>
+    </div>
+  </HoverCardContent>
+</HoverCard>`,
+      render: (
+        <HoverCard>
+          <HoverCardTrigger asChild>
+            <Button variant="link">@shadcn</Button>
+          </HoverCardTrigger>
+          <HoverCardContent className="w-72">
+            <div className="flex gap-3">
+              <Avatar>
+                <AvatarFallback>SH</AvatarFallback>
+              </Avatar>
+              <div>
+                <h4 className="font-semibold">@shadcn</h4>
+                <p className="text-xs text-muted-foreground">
+                  Building UI primitives that you own.
+                </p>
+                <p className="mt-2 text-xs text-muted-foreground">
+                  Joined December 2021
+                </p>
+              </div>
+            </div>
+          </HoverCardContent>
+        </HoverCard>
+      ),
+    },
+    examples: [
+      {
+        title: "Definition",
+        code: `<p>
+  Try our new <HoverCard>
+    <HoverCardTrigger className="underline decoration-dotted">CraftUI</HoverCardTrigger>
+    <HoverCardContent className="w-64">
+      A Tailwind-native, copy-paste React component system.
+    </HoverCardContent>
+  </HoverCard> components.
+</p>`,
+        render: (
+          <p className="text-sm">
+            Try our new{" "}
+            <HoverCard>
+              <HoverCardTrigger asChild>
+                <button
+                  type="button"
+                  className="underline decoration-dotted underline-offset-4"
+                >
+                  CraftUI
+                </button>
+              </HoverCardTrigger>
+              <HoverCardContent className="w-64">
+                <p className="text-sm">
+                  A Tailwind-native, copy-paste React component system. Own
+                  the source — no runtime, no lock-in.
+                </p>
+              </HoverCardContent>
+            </HoverCard>{" "}
+            components.
+          </p>
+        ),
+      },
+    ],
+    props: [
+      { name: "openDelay", type: "number", default: "200" },
+      { name: "closeDelay", type: "number", default: "150" },
+      { name: "open", type: "boolean" },
+      { name: "onOpenChange", type: "(open: boolean) => void" },
+    ],
+    related: ["popover", "tooltip"],
+  },
+
+  // ---------- InputOTP ----------
+  {
+    name: "input-otp",
+    title: "Input OTP",
+    description:
+      "Multi-cell one-time password input with auto-advance, paste support, and a blinking caret.",
+    imports: `import { InputOTP } from "@/components/ui/input-otp";`,
+    defaultExample: {
+      title: "Six-digit code",
+      code: `<InputOTP length={6} />`,
+      render: <InputOTP length={6} />,
+    },
+    examples: [
+      {
+        title: "With label and helper",
+        description:
+          "Pair the input with descriptive copy so users know where the code came from.",
+        code: `<div className="space-y-2">
+  <Label>Verification code</Label>
+  <InputOTP length={6} />
+  <p className="text-xs text-muted-foreground">
+    We sent a 6-digit code to your email — it expires in 10 minutes.
+  </p>
+</div>`,
+        render: (
+          <div className="space-y-2">
+            <Label>Verification code</Label>
+            <InputOTP length={6} />
+            <p className="text-xs text-muted-foreground">
+              We sent a 6-digit code to your email — it expires in 10
+              minutes.
+            </p>
+          </div>
+        ),
+      },
+      {
+        title: "Four-digit (PIN-style)",
+        description: "Shorter input for short PINs or 2FA backup codes.",
+        code: `<InputOTP length={4} />`,
+        render: <InputOTP length={4} />,
+      },
+    ],
+    props: [
+      { name: "length", type: "number", default: "6" },
+      { name: "value", type: "string" },
+      { name: "defaultValue", type: "string" },
+      { name: "onChange", type: "(value: string) => void" },
+      { name: "onComplete", type: "(value: string) => void" },
+      { name: "disabled", type: "boolean" },
+    ],
+    related: ["input", "form"],
   },
 ];
 
