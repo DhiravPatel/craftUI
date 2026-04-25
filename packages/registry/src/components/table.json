@@ -1,0 +1,16 @@
+{
+  "name": "table",
+  "description": "Semantic HTML table with styled parts.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/table/table.tsx",
+      "target": "{{components}}/table.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["table", "grid"]
+}

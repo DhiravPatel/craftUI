@@ -1,0 +1,22 @@
+{
+  "name": "form",
+  "description": "Form primitives integrated with react-hook-form + Zod.",
+  "category": "forms",
+  "files": [
+    {
+      "path": "components/form/form.tsx",
+      "target": "{{components}}/form.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [
+    "react-hook-form",
+    "@hookform/resolvers",
+    "zod",
+    "@radix-ui/react-label",
+    "@radix-ui/react-slot"
+  ],
+  "devDependencies": [],
+  "registryDependencies": ["label"],
+  "keywords": ["form", "validation", "zod", "react-hook-form"]
+}

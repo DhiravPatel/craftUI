@@ -1,0 +1,16 @@
+{
+  "name": "command",
+  "description": "Command menu built on cmdk.",
+  "category": "navigation",
+  "files": [
+    {
+      "path": "components/command/command.tsx",
+      "target": "{{components}}/command.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["cmdk", "lucide-react"],
+  "devDependencies": [],
+  "registryDependencies": ["dialog"],
+  "keywords": ["command", "menu", "cmdk", "search"]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "label",
+  "description": "Accessible label built on @radix-ui/react-label.",
+  "category": "forms",
+  "files": [
+    {
+      "path": "components/label/label.tsx",
+      "target": "{{components}}/label.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["@radix-ui/react-label", "class-variance-authority"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["label", "form"]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "alert",
+  "description": "Inline status message with icon variants.",
+  "category": "feedback",
+  "files": [
+    {
+      "path": "components/alert/alert.tsx",
+      "target": "{{components}}/alert.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["class-variance-authority", "lucide-react"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["alert", "banner", "notification"]
+}

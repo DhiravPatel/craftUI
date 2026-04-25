@@ -1,0 +1,16 @@
+{
+  "name": "dropdown-menu",
+  "description": "Accessible menu with sub-menus, radio/checkbox items.",
+  "category": "overlay",
+  "files": [
+    {
+      "path": "components/dropdown-menu/dropdown-menu.tsx",
+      "target": "{{components}}/dropdown-menu.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["@radix-ui/react-dropdown-menu", "lucide-react"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["dropdown", "menu"]
+}

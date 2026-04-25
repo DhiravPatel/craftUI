@@ -1,0 +1,16 @@
+{
+  "name": "skeleton",
+  "description": "Placeholder shimmer for loading states.",
+  "category": "feedback",
+  "files": [
+    {
+      "path": "components/skeleton/skeleton.tsx",
+      "target": "{{components}}/skeleton.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["skeleton", "loading", "placeholder"]
+}

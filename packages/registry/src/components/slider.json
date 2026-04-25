@@ -1,0 +1,16 @@
+{
+  "name": "slider",
+  "description": "Range slider.",
+  "category": "forms",
+  "files": [
+    {
+      "path": "components/slider/slider.tsx",
+      "target": "{{components}}/slider.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["@radix-ui/react-slider"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["slider", "range"]
+}

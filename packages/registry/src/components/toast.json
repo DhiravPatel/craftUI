@@ -1,0 +1,30 @@
+{
+  "name": "toast",
+  "description": "Toast notifications with useToast hook and <Toaster /> component.",
+  "category": "feedback",
+  "files": [
+    {
+      "path": "components/toast/toast.tsx",
+      "target": "{{components}}/toast.tsx",
+      "type": "component"
+    },
+    {
+      "path": "components/toast/toaster.tsx",
+      "target": "{{components}}/toaster.tsx",
+      "type": "component"
+    },
+    {
+      "path": "hooks/use-toast.ts",
+      "target": "{{hooks}}/use-toast.ts",
+      "type": "hook"
+    }
+  ],
+  "dependencies": [
+    "@radix-ui/react-toast",
+    "class-variance-authority",
+    "lucide-react"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["toast", "notification"]
+}

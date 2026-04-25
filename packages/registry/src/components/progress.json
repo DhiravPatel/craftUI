@@ -1,0 +1,16 @@
+{
+  "name": "progress",
+  "description": "Determinate progress bar.",
+  "category": "feedback",
+  "files": [
+    {
+      "path": "components/progress/progress.tsx",
+      "target": "{{components}}/progress.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["@radix-ui/react-progress"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["progress", "bar", "loader"]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "accordion",
+  "description": "Collapsible disclosure panels.",
+  "category": "navigation",
+  "files": [
+    {
+      "path": "components/accordion/accordion.tsx",
+      "target": "{{components}}/accordion.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["@radix-ui/react-accordion", "lucide-react"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["accordion", "collapse"]
+}

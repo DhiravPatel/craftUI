@@ -1,0 +1,16 @@
+{
+  "name": "sidebar",
+  "description": "Collapsible app sidebar with navigation items.",
+  "category": "navigation",
+  "files": [
+    {
+      "path": "components/sidebar/sidebar.tsx",
+      "target": "{{components}}/sidebar.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["class-variance-authority"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["sidebar"]
+}

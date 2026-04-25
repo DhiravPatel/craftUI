@@ -3685,19 +3685,3 @@ Hook:       useComponentName            (camelCase, prefix "use")
 Type:       ComponentNameProps          (PascalCase, suffix "Props")
 Test:       component-name.test.tsx     (same as component file)
 ```
-
-## Appendix D: Git Branch Strategy
-
-```
-main          → stable, production, triggers release
-dev           → integration branch, PR target
-feat/xxx      → feature branches
-fix/xxx       → bug fix branches
-docs/xxx      → documentation only
-chore/xxx     → tooling, configs
-```
-
----
-
-*CraftUI — Built for developers who own their code.*
-*craftui.dev | github.com/dhiravpatel/craftui*

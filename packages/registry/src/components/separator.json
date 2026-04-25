@@ -1,0 +1,16 @@
+{
+  "name": "separator",
+  "description": "Visual or semantic divider (horizontal/vertical).",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/separator/separator.tsx",
+      "target": "{{components}}/separator.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["@radix-ui/react-separator"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["separator", "divider", "hr"]
+}

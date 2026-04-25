@@ -1,0 +1,21 @@
+{
+  "name": "@craftui/registry",
+  "version": "0.1.0",
+  "description": "CraftUI component registry — metadata + dependency graph",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./components/*": "./src/components/*"
+  },
+  "scripts": {
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist .turbo"
+  },
+  "devDependencies": {
+    "@craftui/config": "workspace:*",
+    "typescript": "^5.4.5"
+  }
+}

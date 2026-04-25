@@ -1,0 +1,16 @@
+{
+  "name": "card",
+  "description": "A flexible compound container: Card, Header, Title, Description, Content, Footer.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/card/card.tsx",
+      "target": "{{components}}/card.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["card", "container", "panel"]
+}

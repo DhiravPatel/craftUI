@@ -1,0 +1,16 @@
+{
+  "name": "popover",
+  "description": "Floating, anchored content (tooltip-like).",
+  "category": "overlay",
+  "files": [
+    {
+      "path": "components/popover/popover.tsx",
+      "target": "{{components}}/popover.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["@radix-ui/react-popover"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["popover", "floating"]
+}

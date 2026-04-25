@@ -1,0 +1,16 @@
+{
+  "name": "dialog",
+  "description": "Accessible modal dialog with portal and focus trap.",
+  "category": "overlay",
+  "files": [
+    {
+      "path": "components/dialog/dialog.tsx",
+      "target": "{{components}}/dialog.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["@radix-ui/react-dialog", "lucide-react"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["dialog", "modal", "popup"]
+}

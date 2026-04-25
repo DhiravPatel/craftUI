@@ -1,0 +1,30 @@
+{
+  "name": "@craftui/config",
+  "version": "0.1.0",
+  "description": "Shared configs for CraftUI — ESLint, TypeScript, Tailwind",
+  "private": true,
+  "files": ["eslint", "typescript", "tailwind"],
+  "exports": {
+    "./eslint/base": "./eslint/base.js",
+    "./eslint/react": "./eslint/react.js",
+    "./eslint/next": "./eslint/next.js",
+    "./typescript/base.json": "./typescript/base.json",
+    "./typescript/react.json": "./typescript/react.json",
+    "./typescript/nextjs.json": "./typescript/nextjs.json",
+    "./tailwind/base": "./tailwind/base.ts"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.7.0",
+    "@typescript-eslint/parser": "^7.7.0",
+    "eslint-config-next": "^14.2.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5.4.5"
+  }
+}

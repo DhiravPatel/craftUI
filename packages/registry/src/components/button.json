@@ -1,0 +1,20 @@
+{
+  "name": "button",
+  "description": "A clickable button with variants, sizes, loading, and asChild support.",
+  "category": "inputs",
+  "files": [
+    {
+      "path": "components/button/button.tsx",
+      "target": "{{components}}/button.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [
+    "class-variance-authority",
+    "@radix-ui/react-slot",
+    "lucide-react"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["button", "click", "action", "submit"]
+}

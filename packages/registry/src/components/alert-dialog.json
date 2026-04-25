@@ -1,0 +1,16 @@
+{
+  "name": "alert-dialog",
+  "description": "Confirmation dialog with destructive/cancel actions.",
+  "category": "overlay",
+  "files": [
+    {
+      "path": "components/alert-dialog/alert-dialog.tsx",
+      "target": "{{components}}/alert-dialog.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["@radix-ui/react-alert-dialog"],
+  "devDependencies": [],
+  "registryDependencies": ["button"],
+  "keywords": ["alert-dialog", "confirm", "modal"]
+}

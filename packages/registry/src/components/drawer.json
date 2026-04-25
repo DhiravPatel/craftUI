@@ -1,0 +1,16 @@
+{
+  "name": "drawer",
+  "description": "Mobile-friendly bottom drawer (vaul).",
+  "category": "overlay",
+  "files": [
+    {
+      "path": "components/drawer/drawer.tsx",
+      "target": "{{components}}/drawer.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["vaul"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["drawer", "sheet", "mobile"]
+}

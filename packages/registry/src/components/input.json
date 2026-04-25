@@ -1,0 +1,16 @@
+{
+  "name": "input",
+  "description": "A styled input with error state and left/right element slots.",
+  "category": "inputs",
+  "files": [
+    {
+      "path": "components/input/input.tsx",
+      "target": "{{components}}/input.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["input", "text", "form"]
+}

@@ -1,0 +1,62 @@
+export interface NavSection {
+  title: string;
+  items: Array<{ title: string; href: string }>;
+}
+
+export const navigation: NavSection[] = [
+  {
+    title: "Getting Started",
+    items: [
+      { title: "Introduction", href: "/docs" },
+      { title: "Installation", href: "/docs/installation" },
+      { title: "CLI", href: "/docs/cli" },
+      { title: "Theming", href: "/docs/theming" },
+      { title: "Dark Mode", href: "/docs/dark-mode" },
+    ],
+  },
+  {
+    title: "Components",
+    items: [
+      { title: "All components", href: "/docs/components" },
+      { title: "Accordion", href: "/docs/components/accordion" },
+      { title: "Alert", href: "/docs/components/alert" },
+      { title: "Alert Dialog", href: "/docs/components/alert-dialog" },
+      { title: "Avatar", href: "/docs/components/avatar" },
+      { title: "Badge", href: "/docs/components/badge" },
+      { title: "Breadcrumb", href: "/docs/components/breadcrumb" },
+      { title: "Button", href: "/docs/components/button" },
+      { title: "Calendar", href: "/docs/components/calendar" },
+      { title: "Card", href: "/docs/components/card" },
+      { title: "Checkbox", href: "/docs/components/checkbox" },
+      { title: "Combobox", href: "/docs/components/combobox" },
+      { title: "Command", href: "/docs/components/command" },
+      { title: "Date Picker", href: "/docs/components/date-picker" },
+      { title: "Dialog", href: "/docs/components/dialog" },
+      { title: "Drawer", href: "/docs/components/drawer" },
+      { title: "Dropdown Menu", href: "/docs/components/dropdown-menu" },
+      { title: "Form", href: "/docs/components/form" },
+      { title: "Input", href: "/docs/components/input" },
+      { title: "Label", href: "/docs/components/label" },
+      { title: "Layout", href: "/docs/components/layout" },
+      { title: "Navbar", href: "/docs/components/navbar" },
+      { title: "Pagination", href: "/docs/components/pagination" },
+      { title: "Popover", href: "/docs/components/popover" },
+      { title: "Progress", href: "/docs/components/progress" },
+      { title: "Radio Group", href: "/docs/components/radio-group" },
+      { title: "Scroll Area", href: "/docs/components/scroll-area" },
+      { title: "Select", href: "/docs/components/select" },
+      { title: "Separator", href: "/docs/components/separator" },
+      { title: "Sidebar", href: "/docs/components/sidebar" },
+      { title: "Skeleton", href: "/docs/components/skeleton" },
+      { title: "Slider", href: "/docs/components/slider" },
+      { title: "Spinner", href: "/docs/components/spinner" },
+      { title: "Switch", href: "/docs/components/switch" },
+      { title: "Table", href: "/docs/components/table" },
+      { title: "Tabs", href: "/docs/components/tabs" },
+      { title: "Textarea", href: "/docs/components/textarea" },
+      { title: "Theme Provider", href: "/docs/components/theme-provider" },
+      { title: "Toast", href: "/docs/components/toast" },
+      { title: "Tooltip", href: "/docs/components/tooltip" },
+    ],
+  },
+];

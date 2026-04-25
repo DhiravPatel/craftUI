@@ -1,0 +1,34 @@
+{
+  "name": "@craftui/utils",
+  "version": "0.1.0",
+  "description": "Shared utilities for CraftUI — cn, formatters, types",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "clean": "rm -rf dist .turbo"
+  },
+  "dependencies": {
+    "clsx": "^2.1.0",
+    "tailwind-merge": "^2.2.2"
+  },
+  "devDependencies": {
+    "@craftui/config": "workspace:*",
+    "@types/react": "^18.2.79",
+    "typescript": "^5.4.5",
+    "vitest": "^1.5.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  }
+}

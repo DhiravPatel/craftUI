@@ -1,0 +1,16 @@
+{
+  "name": "pagination",
+  "description": "Pagination controls.",
+  "category": "navigation",
+  "files": [
+    {
+      "path": "components/pagination/pagination.tsx",
+      "target": "{{components}}/pagination.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["lucide-react"],
+  "devDependencies": [],
+  "registryDependencies": ["button"],
+  "keywords": ["pagination"]
+}
