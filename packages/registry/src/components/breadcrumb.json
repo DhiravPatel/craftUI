@@ -1,0 +1,16 @@
+{
+  "name": "breadcrumb",
+  "description": "Breadcrumb trail with ellipsis/collapse support.",
+  "category": "navigation",
+  "files": [
+    {
+      "path": "components/breadcrumb/breadcrumb.tsx",
+      "target": "{{components}}/breadcrumb.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["@radix-ui/react-slot", "lucide-react"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["breadcrumb", "nav"]
+}

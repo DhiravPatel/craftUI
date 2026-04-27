@@ -1,0 +1,16 @@
+{
+  "name": "navbar",
+  "description": "Top-level site navigation header.",
+  "category": "navigation",
+  "files": [
+    {
+      "path": "components/navbar/navbar.tsx",
+      "target": "{{components}}/navbar.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["class-variance-authority"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["navbar", "header"]
+}

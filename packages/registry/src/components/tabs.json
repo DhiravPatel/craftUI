@@ -1,0 +1,16 @@
+{
+  "name": "tabs",
+  "description": "Accessible tab navigation.",
+  "category": "navigation",
+  "files": [
+    {
+      "path": "components/tabs/tabs.tsx",
+      "target": "{{components}}/tabs.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["@radix-ui/react-tabs"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["tabs"]
+}

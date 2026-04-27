@@ -1,0 +1,16 @@
+{
+  "name": "date-picker",
+  "description": "Date picker using Calendar inside a Popover.",
+  "category": "forms",
+  "files": [
+    {
+      "path": "components/date-picker/date-picker.tsx",
+      "target": "{{components}}/date-picker.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["date-fns", "lucide-react"],
+  "devDependencies": [],
+  "registryDependencies": ["button", "calendar", "popover"],
+  "keywords": ["date", "picker"]
+}

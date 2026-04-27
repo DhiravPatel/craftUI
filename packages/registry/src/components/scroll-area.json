@@ -1,0 +1,16 @@
+{
+  "name": "scroll-area",
+  "description": "Custom-styled scroll area with scrollbar.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/scroll-area/scroll-area.tsx",
+      "target": "{{components}}/scroll-area.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["@radix-ui/react-scroll-area"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["scroll"]
+}

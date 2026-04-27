@@ -1,0 +1,16 @@
+{
+  "name": "input-otp",
+  "description": "Multi-cell one-time-password input with automatic focus and paste support.",
+  "category": "forms",
+  "files": [
+    {
+      "path": "components/input-otp/input-otp.tsx",
+      "target": "{{components}}/input-otp.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["otp", "code", "verification", "input"]
+}

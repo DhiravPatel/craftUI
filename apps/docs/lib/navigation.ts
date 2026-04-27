@@ -1,0 +1,62 @@
+export interface NavSection {
+  title: string;
+  items: Array<{ title: string; href: string }>;
+}
+
+export const navigation: NavSection[] = [
+  {
+    title: "Getting Started",
+    items: [
+      { title: "Introduction", href: "/docs" },
+      { title: "Installation", href: "/docs/installation" },
+      { title: "CLI", href: "/docs/cli" },
+      { title: "Theming", href: "/docs/theming" },
+      { title: "Dark Mode", href: "/docs/dark-mode" },
+    ],
+  },
+  {
+    title: "Components",
+    items: [
+      { title: "All components", href: "/docs/components" },
+      { title: "Accordion", href: "/docs/components/accordion" },
+      { title: "Alert", href: "/docs/components/alert" },
+      { title: "Alert Dialog", href: "/docs/components/alert-dialog" },
+      { title: "Avatar", href: "/docs/components/avatar" },
+      { title: "Badge", href: "/docs/components/badge" },
+      { title: "Breadcrumb", href: "/docs/components/breadcrumb" },
+      { title: "Button", href: "/docs/components/button" },
+      { title: "Card", href: "/docs/components/card" },
+      { title: "Checkbox", href: "/docs/components/checkbox" },
+      { title: "Combobox", href: "/docs/components/combobox" },
+      { title: "Command", href: "/docs/components/command" },
+      { title: "Date Picker", href: "/docs/components/date-picker" },
+      { title: "Dialog", href: "/docs/components/dialog" },
+      { title: "Dropdown Menu", href: "/docs/components/dropdown-menu" },
+      { title: "Form", href: "/docs/components/form" },
+      { title: "Hover Card", href: "/docs/components/hover-card" },
+      { title: "Input", href: "/docs/components/input" },
+      { title: "Input OTP", href: "/docs/components/input-otp" },
+      { title: "Layout", href: "/docs/components/layout" },
+      { title: "Navbar", href: "/docs/components/navbar" },
+      { title: "Pagination", href: "/docs/components/pagination" },
+      { title: "Popover", href: "/docs/components/popover" },
+      { title: "Progress", href: "/docs/components/progress" },
+      { title: "Radio Group", href: "/docs/components/radio-group" },
+      { title: "Select", href: "/docs/components/select" },
+      { title: "Separator", href: "/docs/components/separator" },
+      { title: "Sheet", href: "/docs/components/sheet" },
+      { title: "Sidebar", href: "/docs/components/sidebar" },
+      { title: "Skeleton", href: "/docs/components/skeleton" },
+      { title: "Slider", href: "/docs/components/slider" },
+      { title: "Spinner", href: "/docs/components/spinner" },
+      { title: "Switch", href: "/docs/components/switch" },
+      { title: "Table", href: "/docs/components/table" },
+      { title: "Tabs", href: "/docs/components/tabs" },
+      { title: "Textarea", href: "/docs/components/textarea" },
+      { title: "Theme Provider", href: "/docs/components/theme-provider" },
+      { title: "Toast", href: "/docs/components/toast" },
+      { title: "Toggle", href: "/docs/components/toggle" },
+      { title: "Tooltip", href: "/docs/components/tooltip" },
+    ],
+  },
+];

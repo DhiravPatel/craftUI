@@ -1,0 +1,16 @@
+{
+  "name": "spinner",
+  "description": "Animated loading indicator with accessible label.",
+  "category": "feedback",
+  "files": [
+    {
+      "path": "components/spinner/spinner.tsx",
+      "target": "{{components}}/spinner.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["lucide-react", "class-variance-authority"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["spinner", "loading", "loader"]
+}

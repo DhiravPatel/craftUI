@@ -1,0 +1,16 @@
+{
+  "name": "textarea",
+  "description": "A multi-line text field with optional auto-resize.",
+  "category": "inputs",
+  "files": [
+    {
+      "path": "components/textarea/textarea.tsx",
+      "target": "{{components}}/textarea.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["textarea", "text", "form"]
+}

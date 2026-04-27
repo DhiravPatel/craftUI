@@ -1,0 +1,31 @@
+{
+  "name": "layout",
+  "description": "Layout primitives: Container, Stack, Grid, AspectRatio.",
+  "category": "layout",
+  "files": [
+    {
+      "path": "components/layout/container.tsx",
+      "target": "{{components}}/container.tsx",
+      "type": "component"
+    },
+    {
+      "path": "components/layout/stack.tsx",
+      "target": "{{components}}/stack.tsx",
+      "type": "component"
+    },
+    {
+      "path": "components/layout/grid.tsx",
+      "target": "{{components}}/grid.tsx",
+      "type": "component"
+    },
+    {
+      "path": "components/layout/aspect-ratio.tsx",
+      "target": "{{components}}/aspect-ratio.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["class-variance-authority"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["layout", "stack", "grid", "container"]
+}

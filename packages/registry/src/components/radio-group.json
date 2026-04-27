@@ -1,0 +1,16 @@
+{
+  "name": "radio-group",
+  "description": "Accessible radio group.",
+  "category": "forms",
+  "files": [
+    {
+      "path": "components/radio-group/radio-group.tsx",
+      "target": "{{components}}/radio-group.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["@radix-ui/react-radio-group", "lucide-react"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["radio", "form"]
+}

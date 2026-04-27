@@ -1,0 +1,16 @@
+{
+  "name": "badge",
+  "description": "A small status or count label with color variants.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/badge/badge.tsx",
+      "target": "{{components}}/badge.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["class-variance-authority"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["badge", "tag", "pill"]
+}

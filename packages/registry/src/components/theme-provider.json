@@ -1,0 +1,16 @@
+{
+  "name": "theme-provider",
+  "description": "Client-side theme provider with light/dark/system support.",
+  "category": "theming",
+  "files": [
+    {
+      "path": "components/theme-provider/theme-provider.tsx",
+      "target": "{{components}}/theme-provider.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["theme", "dark-mode"]
+}

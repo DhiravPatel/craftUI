@@ -1,0 +1,16 @@
+{
+  "name": "avatar",
+  "description": "User avatar with image + fallback and grouping.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/avatar/avatar.tsx",
+      "target": "{{components}}/avatar.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["@radix-ui/react-avatar", "class-variance-authority"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["avatar", "user"]
+}

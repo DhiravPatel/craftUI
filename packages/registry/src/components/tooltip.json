@@ -1,0 +1,16 @@
+{
+  "name": "tooltip",
+  "description": "Text label that appears on hover/focus.",
+  "category": "overlay",
+  "files": [
+    {
+      "path": "components/tooltip/tooltip.tsx",
+      "target": "{{components}}/tooltip.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["@radix-ui/react-tooltip"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["tooltip", "hover"]
+}

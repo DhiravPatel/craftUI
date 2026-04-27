@@ -1,0 +1,16 @@
+{
+  "name": "checkbox",
+  "description": "Accessible checkbox with indeterminate support.",
+  "category": "forms",
+  "files": [
+    {
+      "path": "components/checkbox/checkbox.tsx",
+      "target": "{{components}}/checkbox.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["@radix-ui/react-checkbox", "lucide-react"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["checkbox", "form"]
+}

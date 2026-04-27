@@ -1,0 +1,16 @@
+{
+  "name": "select",
+  "description": "Accessible select dropdown with grouping.",
+  "category": "forms",
+  "files": [
+    {
+      "path": "components/select/select.tsx",
+      "target": "{{components}}/select.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["@radix-ui/react-select", "lucide-react"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["select", "dropdown", "form"]
+}

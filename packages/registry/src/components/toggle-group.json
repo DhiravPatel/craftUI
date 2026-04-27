@@ -1,0 +1,16 @@
+{
+  "name": "toggle-group",
+  "description": "Set of toggle buttons that can be selected as a single value or multiple values.",
+  "category": "inputs",
+  "files": [
+    {
+      "path": "components/toggle-group/toggle-group.tsx",
+      "target": "{{components}}/toggle-group.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["class-variance-authority"],
+  "devDependencies": [],
+  "registryDependencies": ["toggle"],
+  "keywords": ["toggle", "group", "segmented"]
+}

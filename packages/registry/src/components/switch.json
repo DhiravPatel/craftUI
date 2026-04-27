@@ -1,0 +1,16 @@
+{
+  "name": "switch",
+  "description": "Toggle switch for boolean state.",
+  "category": "forms",
+  "files": [
+    {
+      "path": "components/switch/switch.tsx",
+      "target": "{{components}}/switch.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["@radix-ui/react-switch"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["switch", "toggle"]
+}

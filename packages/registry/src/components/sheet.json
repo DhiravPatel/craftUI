@@ -1,0 +1,20 @@
+{
+  "name": "sheet",
+  "description": "Side-anchored slide-in panel (top, bottom, left, or right).",
+  "category": "overlay",
+  "files": [
+    {
+      "path": "components/sheet/sheet.tsx",
+      "target": "{{components}}/sheet.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [
+    "@radix-ui/react-dialog",
+    "class-variance-authority",
+    "lucide-react"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["sheet", "drawer", "side-panel", "off-canvas"]
+}

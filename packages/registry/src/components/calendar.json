@@ -1,0 +1,16 @@
+{
+  "name": "calendar",
+  "description": "Calendar built on react-day-picker, styled to match CraftUI.",
+  "category": "forms",
+  "files": [
+    {
+      "path": "components/calendar/calendar.tsx",
+      "target": "{{components}}/calendar.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["react-day-picker", "date-fns", "lucide-react"],
+  "devDependencies": [],
+  "registryDependencies": ["button"],
+  "keywords": ["calendar", "date"]
+}

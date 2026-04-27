@@ -1,0 +1,16 @@
+{
+  "name": "combobox",
+  "description": "Searchable select built on Popover + Command.",
+  "category": "forms",
+  "files": [
+    {
+      "path": "components/combobox/combobox.tsx",
+      "target": "{{components}}/combobox.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["lucide-react"],
+  "devDependencies": [],
+  "registryDependencies": ["button", "command", "popover"],
+  "keywords": ["combobox", "autocomplete", "search"]
+}
