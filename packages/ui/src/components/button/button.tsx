@@ -5,25 +5,27 @@ import { Loader2 } from "lucide-react";
 import { cn } from "../../lib/cn";
 
 const buttonVariants = cva(
-  "inline-flex select-none items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none transition-all duration-150 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.97] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  // Base: smooth motion, focus halo, slight press, contained icons.
+  "inline-flex select-none items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium outline-none transition-[transform,background-color,box-shadow,border-color,color] duration-150 ease-out focus-visible:ring-2 focus-visible:ring-foreground/20 focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.97] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
   {
     variants: {
       variant: {
+        // Inset top-edge highlight + soft drop shadow gives that "premium" feel.
         default:
-          "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow",
+          "bg-primary text-primary-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_-4px_rgba(0,0,0,0.12)] hover:bg-primary/[0.92] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_2px_4px_rgba(0,0,0,0.1),0_6px_16px_-4px_rgba(0,0,0,0.18)]",
         destructive:
-          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 hover:shadow",
+          "bg-destructive text-destructive-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_-4px_rgba(220,38,38,0.25)] hover:bg-destructive/[0.92]",
         outline:
-          "border border-input bg-background shadow-sm hover:border-foreground/30 hover:bg-accent hover:text-accent-foreground",
+          "border border-input bg-background text-foreground shadow-[0_1px_2px_rgba(0,0,0,0.04)] hover:border-foreground/30 hover:bg-accent hover:text-accent-foreground hover:shadow-[0_2px_6px_-2px_rgba(0,0,0,0.08)]",
         secondary:
-          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
+          "bg-secondary text-secondary-foreground shadow-[0_1px_2px_rgba(0,0,0,0.04)] hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
         default: "h-9 px-4 text-sm [&_svg]:h-4 [&_svg]:w-4",
         sm: "h-8 rounded-md px-3 text-xs [&_svg]:h-3.5 [&_svg]:w-3.5",
-        lg: "h-11 rounded-md px-6 text-sm [&_svg]:h-4 [&_svg]:w-4",
+        lg: "h-11 rounded-lg px-6 text-sm [&_svg]:h-4 [&_svg]:w-4",
         icon: "h-9 w-9 [&_svg]:h-4 [&_svg]:w-4",
       },
     },

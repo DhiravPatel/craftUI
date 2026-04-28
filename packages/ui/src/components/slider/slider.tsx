@@ -21,13 +21,14 @@ const Slider = React.forwardRef<
       )}
       {...props}
     >
-      <SliderPrimitive.Track className="relative h-1.5 w-full grow overflow-hidden rounded-full bg-secondary">
-        <SliderPrimitive.Range className="absolute h-full bg-primary" />
+      <SliderPrimitive.Track className="relative h-1.5 w-full grow overflow-hidden rounded-full bg-secondary shadow-[inset_0_1px_2px_rgba(0,0,0,0.06)]">
+        <SliderPrimitive.Range className="absolute h-full bg-gradient-to-r from-primary to-primary/85" />
       </SliderPrimitive.Track>
       {values.map((_, i) => (
         <SliderPrimitive.Thumb
           key={i}
-          className="block h-4 w-4 rounded-full border border-primary/50 bg-background shadow-[0_1px_3px_rgba(0,0,0,0.15),0_0_0_1px_rgba(0,0,0,0.05)] transition-all hover:scale-110 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/20 disabled:pointer-events-none disabled:opacity-50"
+          // Vertical gradient + layered shadow gives the thumb a tactile "lifted" look.
+          className="block h-[18px] w-[18px] rounded-full border-0 bg-gradient-to-b from-white to-white/85 shadow-[0_1px_3px_rgba(0,0,0,0.18),0_0_0_1px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.6)] transition-transform duration-150 ease-out hover:scale-110 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-foreground/15 disabled:pointer-events-none disabled:opacity-50"
         />
       ))}
     </SliderPrimitive.Root>
