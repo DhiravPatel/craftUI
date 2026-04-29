@@ -575,6 +575,23 @@ export function TextareaCounterDemo() {
   );
 }
 
+/* ------------------------------------------------------------------
+ * Rating with live readout.
+ * ------------------------------------------------------------------ */
+import { Rating } from "@craftui/ui";
+
+export function RatingDemo() {
+  const [value, setValue] = React.useState(4);
+  return (
+    <div className="flex flex-col items-center gap-2">
+      <Rating value={value} onChange={setValue} />
+      <p className="text-xs text-muted-foreground">
+        Selected: <code>{value}</code> star{value === 1 ? "" : "s"}
+      </p>
+    </div>
+  );
+}
+
 /* Avoid the unused Input import warning */
 export function _SilenceUnusedInput() {
   return <Input className="hidden" aria-hidden />;

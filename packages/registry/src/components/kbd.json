@@ -1,0 +1,16 @@
+{
+  "name": "kbd",
+  "description": "Keyboard shortcut chip — for inline shortcut hints like ⌘K.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/kbd/kbd.tsx",
+      "target": "{{components}}/kbd.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["class-variance-authority"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["kbd", "keyboard", "shortcut", "hotkey"]
+}

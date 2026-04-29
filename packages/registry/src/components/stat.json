@@ -1,0 +1,16 @@
+{
+  "name": "stat",
+  "description": "A purpose-built KPI card with label, value, trend delta, and optional helper text.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/stat/stat.tsx",
+      "target": "{{components}}/stat.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["lucide-react"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["stat", "metric", "kpi", "trend"]
+}

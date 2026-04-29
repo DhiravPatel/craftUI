@@ -1,0 +1,16 @@
+{
+  "name": "stepper",
+  "description": "Multi-step progress indicator with completed / current / upcoming states. Horizontal or vertical.",
+  "category": "navigation",
+  "files": [
+    {
+      "path": "components/stepper/stepper.tsx",
+      "target": "{{components}}/stepper.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["lucide-react"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["stepper", "wizard", "progress", "steps"]
+}

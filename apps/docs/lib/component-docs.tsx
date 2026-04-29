@@ -51,6 +51,17 @@ import {
   DialogTitle,
   DialogTrigger,
   DropdownMenu,
+  EmptyState,
+  Kbd,
+  Rating,
+  Stat,
+  Stepper,
+  Timeline,
+  TimelineDescription,
+  TimelineHeader,
+  TimelineItem,
+  TimelineTime,
+  TimelineTitle,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
@@ -132,13 +143,13 @@ import {
 import {
   CalendarSingleDemo,
   CalendarRangeDemo,
-  CalendarMultipleMonthsDemo,
 } from "@/components/demos/calendar-demos";
 import { FullFormDemo, LoginFormDemo } from "@/components/demos/form-demo";
 import {
   ComboboxDemo,
   ModernNavbarDemo,
   MultiSelectDemo,
+  RatingDemo,
   SelectableTableDemo,
   SidebarDemo,
   TextareaCounterDemo,
@@ -209,25 +220,6 @@ const catalog: ComponentDoc[] = [
             <Button variant="ghost">Ghost</Button>
             <Button variant="destructive">Destructive</Button>
             <Button variant="link">Link</Button>
-          </div>
-        ),
-      },
-      {
-        title: "Sizes",
-        code: `<div className="flex items-center gap-2">
-  <Button size="sm">Small</Button>
-  <Button>Default</Button>
-  <Button size="lg">Large</Button>
-  <Button size="icon"><Settings /></Button>
-</div>`,
-        render: (
-          <div className="flex items-center gap-2">
-            <Button size="sm">Small</Button>
-            <Button>Default</Button>
-            <Button size="lg">Large</Button>
-            <Button size="icon">
-              <Settings className="h-4 w-4" />
-            </Button>
           </div>
         ),
       },
@@ -959,27 +951,6 @@ const catalog: ComponentDoc[] = [
         </div>
       ),
     },
-    examples: [
-      {
-        title: "Vertical",
-        code: `<div className="flex h-12 items-center gap-4 text-sm">
-  <span>Docs</span>
-  <Separator orientation="vertical" />
-  <span>API</span>
-  <Separator orientation="vertical" />
-  <span>Blog</span>
-</div>`,
-        render: (
-          <div className="flex h-12 items-center gap-4 text-sm">
-            <span>Docs</span>
-            <Separator orientation="vertical" />
-            <span>API</span>
-            <Separator orientation="vertical" />
-            <span>Blog</span>
-          </div>
-        ),
-      },
-    ],
     props: [
       {
         name: "orientation",
@@ -1041,21 +1012,9 @@ const catalog: ComponentDoc[] = [
     description: "Animated loading indicator with accessible label.",
     imports: `import { Spinner } from "@/components/ui/spinner";`,
     defaultExample: {
-      title: "Sizes",
-      code: `<div className="flex items-center gap-4">
-  <Spinner size="sm" />
-  <Spinner />
-  <Spinner size="lg" />
-  <Spinner size="xl" />
-</div>`,
-      render: (
-        <div className="flex items-center gap-4">
-          <Spinner size="sm" />
-          <Spinner />
-          <Spinner size="lg" />
-          <Spinner size="xl" />
-        </div>
-      ),
+      title: "Default",
+      code: `<Spinner />`,
+      render: <Spinner />,
     },
     props: [
       {
@@ -1180,35 +1139,6 @@ const catalog: ComponentDoc[] = [
       ),
     },
     examples: [
-      {
-        title: "Sizes",
-        code: `<div className="flex items-end gap-3">
-  <Avatar size="xs"><AvatarFallback>XS</AvatarFallback></Avatar>
-  <Avatar size="sm"><AvatarFallback>SM</AvatarFallback></Avatar>
-  <Avatar><AvatarFallback>MD</AvatarFallback></Avatar>
-  <Avatar size="lg"><AvatarFallback>LG</AvatarFallback></Avatar>
-  <Avatar size="xl"><AvatarFallback>XL</AvatarFallback></Avatar>
-</div>`,
-        render: (
-          <div className="flex items-end gap-3">
-            <Avatar size="xs">
-              <AvatarFallback>XS</AvatarFallback>
-            </Avatar>
-            <Avatar size="sm">
-              <AvatarFallback>SM</AvatarFallback>
-            </Avatar>
-            <Avatar>
-              <AvatarFallback>MD</AvatarFallback>
-            </Avatar>
-            <Avatar size="lg">
-              <AvatarFallback>LG</AvatarFallback>
-            </Avatar>
-            <Avatar size="xl">
-              <AvatarFallback>XL</AvatarFallback>
-            </Avatar>
-          </div>
-        ),
-      },
       {
         title: "Stacked group",
         code: `<div className="flex -space-x-2">
@@ -1991,16 +1921,6 @@ import { Calendar } from "@/components/ui/calendar";`,
 
 <Calendar mode="range" selected={range} onSelect={setRange} />`,
         render: <CalendarRangeDemo />,
-      },
-      {
-        title: "Two months",
-        code: `<Calendar
-  mode="single"
-  selected={date}
-  onSelect={setDate}
-  numberOfMonths={2}
-/>`,
-        render: <CalendarMultipleMonthsDemo />,
       },
     ],
   },
@@ -2945,12 +2865,6 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
           </div>
         ),
       },
-      {
-        title: "Four-digit (PIN-style)",
-        description: "Shorter input for short PINs or 2FA backup codes.",
-        code: `<InputOTP length={4} />`,
-        render: <InputOTP length={4} />,
-      },
     ],
     props: [
       { name: "length", type: "number", default: "6" },
@@ -2961,6 +2875,390 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
       { name: "disabled", type: "boolean" },
     ],
     related: ["input", "form"],
+  },
+
+  // ---------- Kbd ----------
+  {
+    name: "kbd",
+    title: "Kbd",
+    description:
+      "Inline keyboard shortcut chip. Use it next to button text or in tooltips to advertise hotkeys.",
+    imports: `import { Kbd } from "@/components/ui/kbd";`,
+    defaultExample: {
+      title: "Default",
+      code: `<div className="flex items-center gap-2 text-sm">
+  Press <Kbd>⌘</Kbd> <Kbd>K</Kbd> to open the command palette.
+</div>`,
+      render: (
+        <div className="flex items-center gap-1 text-sm">
+          Press <Kbd>⌘</Kbd> <Kbd>K</Kbd>
+          <span className="ml-1 text-muted-foreground">
+            to open the command palette.
+          </span>
+        </div>
+      ),
+    },
+    props: [
+      {
+        name: "size",
+        type: `"sm" | "default" | "lg"`,
+        default: `"default"`,
+      },
+    ],
+  },
+
+  // ---------- Empty State ----------
+  {
+    name: "empty-state",
+    title: "Empty State",
+    description:
+      "A friendly placeholder for empty lists, search results, or first-run experiences. Icon + title + description + optional CTA.",
+    imports: `import { EmptyState } from "@/components/ui/empty-state";`,
+    defaultExample: {
+      title: "No results",
+      code: `<EmptyState
+  icon={<Search />}
+  title="No results found"
+  description="Try a different search term or clear the filters."
+  action={<Button variant="outline">Clear filters</Button>}
+/>`,
+      render: (
+        <EmptyState
+          className="w-full max-w-md"
+          icon={<Search />}
+          title="No results found"
+          description="Try a different search term or clear the filters."
+          action={<Button variant="outline">Clear filters</Button>}
+        />
+      ),
+    },
+    examples: [
+      {
+        title: "First-run / onboarding",
+        description:
+          "Use a stronger title and a primary CTA to guide users to their first action.",
+        code: `<EmptyState
+  icon={<Plus />}
+  title="Create your first project"
+  description="Projects let you group related work. Start with a template or a blank canvas."
+  action={<Button>New project</Button>}
+/>`,
+        render: (
+          <EmptyState
+            className="w-full max-w-md"
+            icon={<MoreHorizontal />}
+            title="Create your first project"
+            description="Projects let you group related work. Start with a template or a blank canvas."
+            action={<Button>New project</Button>}
+          />
+        ),
+      },
+    ],
+    props: [
+      { name: "icon", type: "ReactNode" },
+      { name: "title", type: "ReactNode", required: true },
+      { name: "description", type: "ReactNode" },
+      { name: "action", type: "ReactNode" },
+    ],
+  },
+
+  // ---------- Stat ----------
+  {
+    name: "stat",
+    title: "Stat",
+    description:
+      "A purpose-built KPI card with label, value, trend delta, and optional helper text.",
+    imports: `import { Stat } from "@/components/ui/stat";`,
+    defaultExample: {
+      title: "Revenue",
+      code: `<Stat
+  label="Revenue"
+  value="$45,231.89"
+  delta="+20.1%"
+  trend="up"
+  helper="vs. last month"
+  icon={<CreditCard />}
+/>`,
+      render: (
+        <Stat
+          className="w-[260px]"
+          label="Revenue"
+          value="$45,231.89"
+          delta="+20.1%"
+          trend="up"
+          helper="vs. last month"
+          icon={<CreditCard />}
+        />
+      ),
+    },
+    examples: [
+      {
+        title: "Stat grid",
+        description:
+          "Compose multiple Stat cards in a grid for dashboards. Trend automatically chooses the icon and color (up/down/flat).",
+        code: `<div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+  <Stat label="Visitors" value="12,402" delta="+12.4%" trend="up" />
+  <Stat label="Signups" value="824" delta="+4.2%" trend="up" />
+  <Stat label="Bounce" value="32%" delta="-1.8%" trend="down" />
+  <Stat label="MRR" value="$8,210" delta="0%" trend="flat" />
+</div>`,
+        render: (
+          <div className="grid w-full gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <Stat label="Visitors" value="12,402" delta="+12.4%" trend="up" />
+            <Stat label="Signups" value="824" delta="+4.2%" trend="up" />
+            <Stat label="Bounce" value="32%" delta="-1.8%" trend="down" />
+            <Stat label="MRR" value="$8,210" delta="0%" trend="flat" />
+          </div>
+        ),
+      },
+    ],
+    props: [
+      { name: "label", type: "ReactNode", required: true },
+      { name: "value", type: "ReactNode", required: true },
+      { name: "delta", type: "ReactNode" },
+      {
+        name: "trend",
+        type: `"up" | "down" | "flat"`,
+        default: `"flat"`,
+      },
+      { name: "icon", type: "ReactNode" },
+      { name: "helper", type: "ReactNode" },
+    ],
+    related: ["card"],
+  },
+
+  // ---------- Stepper ----------
+  {
+    name: "stepper",
+    title: "Stepper",
+    description:
+      "Multi-step progress indicator with completed / current / upcoming states. Horizontal for forms, vertical for narrow surfaces.",
+    imports: `import { Stepper } from "@/components/ui/stepper";`,
+    defaultExample: {
+      title: "Horizontal",
+      code: `<Stepper
+  current={1}
+  steps={[
+    { title: "Account" },
+    { title: "Profile" },
+    { title: "Plan" },
+    { title: "Confirm" },
+  ]}
+/>`,
+      render: (
+        <div className="w-full max-w-2xl">
+          <Stepper
+            current={1}
+            steps={[
+              { title: "Account" },
+              { title: "Profile" },
+              { title: "Plan" },
+              { title: "Confirm" },
+            ]}
+          />
+        </div>
+      ),
+    },
+    examples: [
+      {
+        title: "Vertical with descriptions",
+        description:
+          "Vertical orientation works better in narrow side panels and supports per-step descriptions.",
+        code: `<Stepper
+  orientation="vertical"
+  current={2}
+  steps={[
+    { title: "Create account", description: "Email and password." },
+    { title: "Verify email", description: "We sent a 6-digit code." },
+    { title: "Set up workspace", description: "Pick a name and slug." },
+    { title: "Invite teammates", description: "Optional — you can do this later." },
+  ]}
+/>`,
+        render: (
+          <div className="w-full max-w-md">
+            <Stepper
+              orientation="vertical"
+              current={2}
+              steps={[
+                {
+                  title: "Create account",
+                  description: "Email and password.",
+                },
+                {
+                  title: "Verify email",
+                  description: "We sent a 6-digit code.",
+                },
+                {
+                  title: "Set up workspace",
+                  description: "Pick a name and slug.",
+                },
+                {
+                  title: "Invite teammates",
+                  description: "Optional — you can do this later.",
+                },
+              ]}
+            />
+          </div>
+        ),
+      },
+    ],
+    props: [
+      { name: "steps", type: "StepperStep[]", required: true },
+      { name: "current", type: "number", required: true },
+      {
+        name: "orientation",
+        type: `"horizontal" | "vertical"`,
+        default: `"horizontal"`,
+      },
+    ],
+  },
+
+  // ---------- Timeline ----------
+  {
+    name: "timeline",
+    title: "Timeline",
+    description:
+      "Vertical timeline of events. Compose markers (dots, icons), titles, timestamps, and descriptions for changelogs and activity feeds.",
+    imports: `import {
+  Timeline,
+  TimelineDescription,
+  TimelineHeader,
+  TimelineItem,
+  TimelineTime,
+  TimelineTitle,
+} from "@/components/ui/timeline";`,
+    defaultExample: {
+      title: "Activity feed",
+      code: `<Timeline>
+  {events.map((e, i) => (
+    <TimelineItem key={e.id} isLast={i === events.length - 1}>
+      <TimelineHeader>
+        <TimelineTitle>{e.title}</TimelineTitle>
+        <TimelineTime>{e.when}</TimelineTime>
+      </TimelineHeader>
+      <TimelineDescription>{e.body}</TimelineDescription>
+    </TimelineItem>
+  ))}
+</Timeline>`,
+      render: (
+        <Timeline className="w-full max-w-md">
+          {[
+            {
+              id: 1,
+              title: "Deployed v0.2.0 to production",
+              when: "2 min ago",
+              body: "Includes 3 new components and the redesigned shadow language.",
+            },
+            {
+              id: 2,
+              title: "Merged feat/component-design-changes",
+              when: "1 h ago",
+              body: "47 files changed, 1,234 insertions, 412 deletions.",
+            },
+            {
+              id: 3,
+              title: "Opened PR #142",
+              when: "3 h ago",
+              body: "Design polish across Button, Card, and Switch.",
+            },
+            {
+              id: 4,
+              title: "Created branch",
+              when: "Yesterday",
+            },
+          ].map((e, i, arr) => (
+            <TimelineItem key={e.id} isLast={i === arr.length - 1}>
+              <TimelineHeader>
+                <TimelineTitle>{e.title}</TimelineTitle>
+                <TimelineTime>{e.when}</TimelineTime>
+              </TimelineHeader>
+              {e.body ? (
+                <TimelineDescription>{e.body}</TimelineDescription>
+              ) : null}
+            </TimelineItem>
+          ))}
+        </Timeline>
+      ),
+    },
+    examples: [
+      {
+        title: "With custom markers",
+        description:
+          "Pass any node to the marker prop — useful for icons that signal event type.",
+        code: `<Timeline>
+  <TimelineItem marker={<Plus />}>
+    <TimelineTitle>Project created</TimelineTitle>
+  </TimelineItem>
+  <TimelineItem marker={<CheckCircle2 />}>
+    <TimelineTitle>Domain verified</TimelineTitle>
+  </TimelineItem>
+  <TimelineItem marker={<Bell />} isLast>
+    <TimelineTitle>Notifications enabled</TimelineTitle>
+  </TimelineItem>
+</Timeline>`,
+        render: (
+          <Timeline className="w-full max-w-md">
+            <TimelineItem marker={<MoreHorizontal />}>
+              <TimelineTitle>Project created</TimelineTitle>
+              <TimelineDescription>
+                Initialized with the Next.js + Tailwind template.
+              </TimelineDescription>
+            </TimelineItem>
+            <TimelineItem marker={<CheckCircle2 />}>
+              <TimelineTitle>Domain verified</TimelineTitle>
+              <TimelineDescription>
+                acme.com is now ready to receive traffic.
+              </TimelineDescription>
+            </TimelineItem>
+            <TimelineItem marker={<Bell />} isLast>
+              <TimelineTitle>Notifications enabled</TimelineTitle>
+            </TimelineItem>
+          </Timeline>
+        ),
+      },
+    ],
+  },
+
+  // ---------- Rating ----------
+  {
+    name: "rating",
+    title: "Rating",
+    description:
+      "Star rating control with hover preview, keyboard support, and click-to-clear behavior.",
+    imports: `import { Rating } from "@/components/ui/rating";`,
+    defaultExample: {
+      title: "Interactive",
+      code: `const [rating, setRating] = React.useState(4);
+
+<Rating value={rating} onChange={setRating} />`,
+      render: <RatingDemo />,
+    },
+    examples: [
+      {
+        title: "Read-only display",
+        description:
+          "Use readOnly when showing a rating sourced from data — keyboard and click are disabled.",
+        code: `<Rating value={4.5} readOnly />`,
+        render: (
+          <div className="flex items-center gap-3 text-sm">
+            <Rating value={4} readOnly />
+            <span className="text-muted-foreground">4.0 · 1,238 reviews</span>
+          </div>
+        ),
+      },
+    ],
+    props: [
+      { name: "value", type: "number" },
+      { name: "defaultValue", type: "number", default: "0" },
+      { name: "onChange", type: "(value: number) => void" },
+      { name: "count", type: "number", default: "5" },
+      {
+        name: "size",
+        type: `"sm" | "default" | "lg"`,
+        default: `"default"`,
+      },
+      { name: "readOnly", type: "boolean", default: "false" },
+    ],
   },
 ];
 
