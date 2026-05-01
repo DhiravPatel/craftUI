@@ -1,0 +1,16 @@
+{
+  "name": "rating",
+  "description": "Star rating control with hover preview and keyboard support. Click again to clear.",
+  "category": "inputs",
+  "files": [
+    {
+      "path": "components/rating/rating.tsx",
+      "target": "{{components}}/rating.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["lucide-react"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["rating", "star", "review", "feedback"]
+}

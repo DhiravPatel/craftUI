@@ -1,0 +1,16 @@
+{
+  "name": "empty-state",
+  "description": "A friendly placeholder for when there's no data — icon, title, description, and an optional call-to-action.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/empty-state/empty-state.tsx",
+      "target": "{{components}}/empty-state.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["empty", "placeholder", "blank-slate", "zero-state"]
+}

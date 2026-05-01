@@ -16,10 +16,12 @@ import datePicker from "./components/date-picker.json";
 import dialog from "./components/dialog.json";
 import drawer from "./components/drawer.json";
 import dropdownMenu from "./components/dropdown-menu.json";
+import emptyState from "./components/empty-state.json";
 import form from "./components/form.json";
 import hoverCard from "./components/hover-card.json";
 import input from "./components/input.json";
 import inputOtp from "./components/input-otp.json";
+import kbd from "./components/kbd.json";
 import label from "./components/label.json";
 import layout from "./components/layout.json";
 import navbar from "./components/navbar.json";
@@ -27,6 +29,7 @@ import pagination from "./components/pagination.json";
 import popover from "./components/popover.json";
 import progress from "./components/progress.json";
 import radioGroup from "./components/radio-group.json";
+import rating from "./components/rating.json";
 import scrollArea from "./components/scroll-area.json";
 import select from "./components/select.json";
 import separator from "./components/separator.json";
@@ -35,10 +38,13 @@ import sidebar from "./components/sidebar.json";
 import skeleton from "./components/skeleton.json";
 import slider from "./components/slider.json";
 import spinner from "./components/spinner.json";
+import stat from "./components/stat.json";
+import stepper from "./components/stepper.json";
 import switchEntry from "./components/switch.json";
 import table from "./components/table.json";
 import tabs from "./components/tabs.json";
 import textarea from "./components/textarea.json";
+import timeline from "./components/timeline.json";
 import themeProvider from "./components/theme-provider.json";
 import toast from "./components/toast.json";
 import toggle from "./components/toggle.json";
@@ -62,10 +68,12 @@ export const registry: Registry = [
   dialog,
   drawer,
   dropdownMenu,
+  emptyState,
   form,
   hoverCard,
   input,
   inputOtp,
+  kbd,
   label,
   layout,
   navbar,
@@ -73,6 +81,7 @@ export const registry: Registry = [
   popover,
   progress,
   radioGroup,
+  rating,
   scrollArea,
   select,
   separator,
@@ -81,11 +90,14 @@ export const registry: Registry = [
   skeleton,
   slider,
   spinner,
+  stat,
+  stepper,
   switchEntry,
   table,
   tabs,
   textarea,
   themeProvider,
+  timeline,
   toast,
   toggle,
   toggleGroup,

@@ -1,0 +1,16 @@
+{
+  "name": "timeline",
+  "description": "Vertical timeline of events with markers, connectors, titles, and timestamps. Compose for changelogs and activity feeds.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/timeline/timeline.tsx",
+      "target": "{{components}}/timeline.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["timeline", "feed", "activity", "changelog"]
+}
