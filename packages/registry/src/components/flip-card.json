@@ -1,0 +1,16 @@
+{
+  "name": "flip-card",
+  "description": "A card with two faces that flips on hover or click. Pure CSS 3D, no animation libraries.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/flip-card/flip-card.tsx",
+      "target": "{{components}}/flip-card.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "flip", "card", "reveal"]
+}

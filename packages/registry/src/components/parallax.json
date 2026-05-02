@@ -1,0 +1,16 @@
+{
+  "name": "parallax",
+  "description": "Compound mouse-tracked parallax. Wrap a scene in Parallax and stack ParallaxLayers with different depth values to create depth-on-hover.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/parallax/parallax.tsx",
+      "target": "{{components}}/parallax.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "parallax", "depth", "layers", "hero"]
+}

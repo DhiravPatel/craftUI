@@ -1,0 +1,16 @@
+{
+  "name": "card-stack",
+  "description": "Auto-cycling stack of layered cards with depth + parallax. Pause on hover, click the front card to advance manually.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/card-stack/card-stack.tsx",
+      "target": "{{components}}/card-stack.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "stack", "carousel", "testimonial", "deck"]
+}

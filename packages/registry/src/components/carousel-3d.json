@@ -1,0 +1,16 @@
+{
+  "name": "carousel-3d",
+  "description": "Rotating 3D ring carousel. Items live on the surface of a virtual cylinder that rotates around the Y axis. Optional autoplay.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/carousel-3d/carousel-3d.tsx",
+      "target": "{{components}}/carousel-3d.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "carousel", "ring", "rotate", "showcase"]
+}

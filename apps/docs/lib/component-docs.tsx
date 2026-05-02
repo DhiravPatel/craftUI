@@ -157,6 +157,16 @@ import {
   ToastDemo,
   ToggleDemo,
 } from "@/components/demos/interactive-demos";
+import {
+  CardStackDemo,
+  Carousel3DDemo,
+  CoverflowDemo,
+  CubeDemo,
+  FlipCardDemo,
+  HoloCardDemo,
+  ParallaxDemo,
+  TiltDemo,
+} from "@/components/demos/threed-demos";
 
 export interface PropDef {
   name: string;
@@ -3259,6 +3269,438 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
       },
       { name: "readOnly", type: "boolean", default: "false" },
     ],
+  },
+
+  // ---------- Tilt (3D) ----------
+  {
+    name: "tilt",
+    title: "Tilt",
+    description:
+      "Pure-CSS 3D tilt that follows the cursor, with an optional glare highlight. Wraps any element to give it depth and presence.",
+    imports: `import { Tilt } from "@/components/ui/tilt";`,
+    defaultExample: {
+      title: "Brand card",
+      description:
+        "Move the cursor over the card. The element rotates on its X and Y axes, the glare tracks the pointer, and a soft scale bump sells the lift.",
+      code: `<Tilt className="rounded-2xl" intensity={14} glare>
+  <div className="h-[260px] w-[420px] rounded-2xl bg-gradient-to-br from-foreground via-foreground/85 to-foreground/70 p-6 text-background shadow-[0_20px_60px_-20px_rgba(0,0,0,0.4)]">
+    {/* card content */}
+  </div>
+</Tilt>`,
+      render: <TiltDemo />,
+    },
+    props: [
+      {
+        name: "intensity",
+        type: "number",
+        default: "12",
+        description: "Maximum tilt angle in degrees.",
+      },
+      {
+        name: "perspective",
+        type: "number",
+        default: "1000",
+        description: "Perspective distance in px. Smaller = more dramatic.",
+      },
+      {
+        name: "glare",
+        type: "boolean",
+        default: "true",
+        description: "Render a soft white glare that follows the cursor.",
+      },
+      {
+        name: "scale",
+        type: "number",
+        default: "1.02",
+        description: "Hover scale factor. Set to 1 to disable.",
+      },
+    ],
+    related: ["flip-card", "card-stack"],
+  },
+
+  // ---------- FlipCard (3D) ----------
+  {
+    name: "flip-card",
+    title: "Flip Card",
+    description:
+      "A two-sided 3D card that flips on hover or click. Useful for pricing toggles, feature reveals, or trading-card layouts.",
+    imports: `import {
+  FlipCard,
+  FlipCardFront,
+  FlipCardBack,
+} from "@/components/ui/flip-card";`,
+    defaultExample: {
+      title: "Pricing card",
+      description:
+        "Hover the card to flip and reveal the included features. The back face uses an inverted color treatment to make the transition feel intentional.",
+      code: `<FlipCard className="h-[280px] w-[260px]">
+  <FlipCardFront className="rounded-2xl border bg-card p-6">
+    {/* front content — price, summary */}
+  </FlipCardFront>
+  <FlipCardBack className="rounded-2xl bg-foreground p-6 text-background">
+    {/* back content — feature list, CTA */}
+  </FlipCardBack>
+</FlipCard>`,
+      render: <FlipCardDemo />,
+    },
+    props: [
+      {
+        name: "trigger",
+        type: `"hover" | "click"`,
+        default: `"hover"`,
+        description: "How the flip is triggered.",
+      },
+      {
+        name: "axis",
+        type: `"x" | "y"`,
+        default: `"y"`,
+        description: "Rotate around the vertical (y) or horizontal (x) axis.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "700",
+        description: "Flip duration in milliseconds.",
+      },
+      { name: "flipped", type: "boolean", description: "Controlled state." },
+      {
+        name: "defaultFlipped",
+        type: "boolean",
+        default: "false",
+        description: "Initial state when uncontrolled.",
+      },
+      { name: "onFlippedChange", type: "(flipped: boolean) => void" },
+    ],
+    related: ["tilt", "card-stack"],
+  },
+
+  // ---------- Cube (3D) ----------
+  {
+    name: "cube",
+    title: "Cube",
+    description:
+      "Pure-CSS 3D cube with six independent faces. Drive the visible face from state to build testimonial carousels, feature reels, or interactive product showcases.",
+    imports: `import { Cube, CubeFace } from "@/components/ui/cube";`,
+    defaultExample: {
+      title: "Testimonial cube",
+      description:
+        "Each side hosts a full panel. Switch the `face` prop and the cube rotates smoothly to bring that side forward.",
+      code: `const [face, setFace] = React.useState<"front" | "right" | "back" | "left">("front");
+
+<Cube face={face} size={260}>
+  <CubeFace face="front" className="...">{/* … */}</CubeFace>
+  <CubeFace face="right" className="...">{/* … */}</CubeFace>
+  <CubeFace face="back" className="...">{/* … */}</CubeFace>
+  <CubeFace face="left" className="...">{/* … */}</CubeFace>
+</Cube>`,
+      render: <CubeDemo />,
+    },
+    props: [
+      {
+        name: "face",
+        type: `"front" | "back" | "right" | "left" | "top" | "bottom"`,
+        default: `"front"`,
+        description: "Which face is currently shown to the viewer.",
+      },
+      {
+        name: "size",
+        type: "number",
+        default: "240",
+        description: "Edge length of the cube in pixels.",
+      },
+      {
+        name: "perspective",
+        type: "number",
+        default: "1200",
+        description: "Perspective distance. Smaller = more dramatic.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "800",
+        description: "Rotation duration in ms.",
+      },
+    ],
+    related: ["card-stack", "flip-card"],
+  },
+
+  // ---------- CardStack (3D) ----------
+  {
+    name: "card-stack",
+    title: "Card Stack",
+    description:
+      "Auto-cycling deck of layered cards with depth and parallax. Pauses on hover; click the front card to advance manually.",
+    imports: `import { CardStack } from "@/components/ui/card-stack";`,
+    defaultExample: {
+      title: "Cycling testimonials",
+      description:
+        "Each card translates back and scales down as it falls behind, then re-emerges when its turn comes around again.",
+      code: `const items = [
+  { id: 1, content: <Testimonial author="Sasha" quote="…" /> },
+  { id: 2, content: <Testimonial author="Diego" quote="…" /> },
+  { id: 3, content: <Testimonial author="Mira"  quote="…" /> },
+];
+
+<CardStack className="h-[260px] w-[360px]" items={items} />`,
+      render: <CardStackDemo />,
+    },
+    props: [
+      {
+        name: "items",
+        type: "{ id: string | number; content: ReactNode }[]",
+        required: true,
+      },
+      {
+        name: "interval",
+        type: "number",
+        default: "4000",
+        description: "Auto-cycle interval in ms. Set to 0 to disable.",
+      },
+      {
+        name: "visibleDepth",
+        type: "number",
+        default: "3",
+        description: "How many cards behind the front card to render.",
+      },
+      {
+        name: "offsetY",
+        type: "number",
+        default: "10",
+        description: "Vertical offset between layered cards in px.",
+      },
+      {
+        name: "scaleStep",
+        type: "number",
+        default: "0.04",
+        description: "Scale decrement per card behind the front.",
+      },
+      {
+        name: "pauseOnHover",
+        type: "boolean",
+        default: "true",
+      },
+    ],
+    related: ["cube", "tilt"],
+  },
+
+  // ---------- HoloCard (3D) ----------
+  {
+    name: "holo-card",
+    title: "Holo Card",
+    description:
+      "Holographic 3D card with iridescent conic shimmer and a cursor-tracked highlight. Pure CSS — perfect for collectibles, premium tiers, or NFT-style showcases.",
+    imports: `import { HoloCard } from "@/components/ui/holo-card";`,
+    defaultExample: {
+      title: "Founders edition",
+      description:
+        "Move the cursor over the card. The rainbow conic gradient rotates with cursor angle while a soft white highlight tracks the pointer.",
+      code: `<HoloCard className="rounded-2xl" intensity={16}>
+  <div className="h-[300px] w-[220px] rounded-2xl bg-gradient-to-br from-indigo-950 via-purple-900 to-fuchsia-900 p-5 text-white">
+    {/* card content */}
+  </div>
+</HoloCard>`,
+      render: <HoloCardDemo />,
+    },
+    props: [
+      {
+        name: "intensity",
+        type: "number",
+        default: "12",
+        description: "Maximum tilt angle in degrees.",
+      },
+      {
+        name: "perspective",
+        type: "number",
+        default: "900",
+        description: "Perspective distance in px.",
+      },
+      {
+        name: "shimmer",
+        type: "number",
+        default: "0.55",
+        description: "Strength of the iridescent rainbow (0–1).",
+      },
+      {
+        name: "glare",
+        type: "number",
+        default: "0.7",
+        description: "Strength of the cursor highlight (0–1).",
+      },
+    ],
+    related: ["tilt", "flip-card"],
+  },
+
+  // ---------- Coverflow (3D) ----------
+  {
+    name: "coverflow",
+    title: "Coverflow",
+    description:
+      "iTunes-style 3D linear carousel. The center item faces the viewer; sides angle into the distance. Click any side card to bring it forward, or use the arrow keys.",
+    imports: `import { Coverflow } from "@/components/ui/coverflow";`,
+    defaultExample: {
+      title: "Album covers",
+      description:
+        "Each card is positioned in 3D space relative to the active index, with rotation and translateZ creating the focal effect.",
+      code: `const items = [
+  { id: 1, content: <Cover title="Midnight Drive"  /> },
+  { id: 2, content: <Cover title="Deep Focus"      /> },
+  { id: 3, content: <Cover title="Late Night"      /> },
+];
+
+<Coverflow items={items} defaultIndex={1} />`,
+      render: <CoverflowDemo />,
+    },
+    props: [
+      {
+        name: "items",
+        type: "{ id: string | number; content: ReactNode }[]",
+        required: true,
+      },
+      { name: "index", type: "number", description: "Controlled active index." },
+      {
+        name: "defaultIndex",
+        type: "number",
+        default: "0",
+        description: "Initial active index when uncontrolled.",
+      },
+      { name: "onIndexChange", type: "(index: number) => void" },
+      {
+        name: "itemWidth",
+        type: "number",
+        default: "220",
+        description: "Width of each card in px.",
+      },
+      {
+        name: "itemHeight",
+        type: "number",
+        default: "280",
+        description: "Height of each card in px.",
+      },
+      {
+        name: "rotation",
+        type: "number",
+        default: "45",
+        description: "Rotation angle for off-center items, in degrees.",
+      },
+      {
+        name: "spacing",
+        type: "number",
+        default: "0.6",
+        description: "Horizontal spacing as a fraction of itemWidth.",
+      },
+    ],
+    related: ["carousel-3d", "card-stack"],
+  },
+
+  // ---------- Carousel3D (3D) ----------
+  {
+    name: "carousel-3d",
+    title: "Carousel 3D",
+    description:
+      "Items arranged on a virtual cylinder that rotates around the Y axis. Click any face to bring it forward, drive the active index from state, or set autoplay for a hands-off showcase.",
+    imports: `import { Carousel3D } from "@/components/ui/carousel-3d";`,
+    defaultExample: {
+      title: "Testimonial ring",
+      description:
+        "Six cards live on the surface of a ring. Set `autoplay` to advance automatically, or use the arrow keys when the carousel is focused.",
+      code: `<Carousel3D
+  items={items}
+  radius={300}
+  itemWidth={200}
+  itemHeight={240}
+  autoplay={3500}
+/>`,
+      render: <Carousel3DDemo />,
+    },
+    props: [
+      {
+        name: "items",
+        type: "{ id: string | number; content: ReactNode }[]",
+        required: true,
+      },
+      { name: "index", type: "number", description: "Controlled active index." },
+      { name: "defaultIndex", type: "number", default: "0" },
+      { name: "onIndexChange", type: "(index: number) => void" },
+      {
+        name: "radius",
+        type: "number",
+        default: "280",
+        description: "Ring radius in px.",
+      },
+      {
+        name: "itemWidth",
+        type: "number",
+        default: "200",
+      },
+      {
+        name: "itemHeight",
+        type: "number",
+        default: "260",
+      },
+      {
+        name: "autoplay",
+        type: "number",
+        default: "0",
+        description: "Auto-advance interval in ms. Set to 0 to disable.",
+      },
+      {
+        name: "hideBackside",
+        type: "boolean",
+        default: "true",
+        description: "Hide items on the far side of the ring.",
+      },
+    ],
+    related: ["coverflow", "cube"],
+  },
+
+  // ---------- Parallax (3D) ----------
+  {
+    name: "parallax",
+    title: "Parallax",
+    description:
+      "Compound mouse-tracked parallax. Wrap a scene in `<Parallax>` and stack `<ParallaxLayer>` components with different `depth` values to create dimensional hover scenes.",
+    imports: `import { Parallax, ParallaxLayer } from "@/components/ui/parallax";`,
+    defaultExample: {
+      title: "Layered hero",
+      description:
+        "Each layer translates a different amount based on the cursor offset. Lower-depth layers move less (deep background); higher-depth layers move more (foreground).",
+      code: `<Parallax className="h-[300px] w-[480px] rounded-2xl bg-indigo-950">
+  <ParallaxLayer depth={6}>{/* stars */}</ParallaxLayer>
+  <ParallaxLayer depth={20}>{/* clouds */}</ParallaxLayer>
+  <ParallaxLayer depth={36}>{/* mountains */}</ParallaxLayer>
+  <ParallaxLayer depth={56}>{/* title */}</ParallaxLayer>
+</Parallax>`,
+      render: <ParallaxDemo />,
+    },
+    props: [
+      {
+        name: "perspective",
+        type: "number",
+        default: "1000",
+        description: "Perspective distance in px (Parallax).",
+      },
+      {
+        name: "depth",
+        type: "number",
+        default: "20",
+        description:
+          "Distance in px the layer moves at extreme cursor positions (ParallaxLayer).",
+      },
+      {
+        name: "z",
+        type: "number",
+        default: "0",
+        description: "Z-axis translation for layered depth (ParallaxLayer).",
+      },
+      {
+        name: "invert",
+        type: "boolean",
+        default: "false",
+        description:
+          "Move the layer opposite to the cursor (ParallaxLayer).",
+      },
+    ],
+    related: ["tilt", "holo-card"],
   },
 ];
 

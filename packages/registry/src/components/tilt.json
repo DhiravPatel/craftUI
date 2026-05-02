@@ -1,0 +1,16 @@
+{
+  "name": "tilt",
+  "description": "Mouse-tracking 3D tilt effect with optional glare highlight. Wraps any content. Pure CSS — no Three.js.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/tilt/tilt.tsx",
+      "target": "{{components}}/tilt.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "tilt", "parallax", "hover", "perspective"]
+}

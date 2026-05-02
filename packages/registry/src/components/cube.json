@@ -1,0 +1,16 @@
+{
+  "name": "cube",
+  "description": "A 6-face 3D cube. Drive the visible face from props or animate through all six. Pure CSS transforms.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/cube/cube.tsx",
+      "target": "{{components}}/cube.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "cube", "rotate", "carousel", "perspective"]
+}

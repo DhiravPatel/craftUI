@@ -1,0 +1,16 @@
+{
+  "name": "holo-card",
+  "description": "Holographic 3D card with iridescent conic shimmer and cursor-tracked highlight. Pure CSS — no Three.js.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/holo-card/holo-card.tsx",
+      "target": "{{components}}/holo-card.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "holographic", "shimmer", "iridescent", "tilt"]
+}

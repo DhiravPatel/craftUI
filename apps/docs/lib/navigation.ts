@@ -65,4 +65,17 @@ export const navigation: NavSection[] = [
       { title: "Tooltip", href: "/docs/components/tooltip" },
     ],
   },
+  {
+    title: "3D",
+    items: [
+      { title: "Tilt", href: "/docs/components/tilt" },
+      { title: "Holo Card", href: "/docs/components/holo-card" },
+      { title: "Flip Card", href: "/docs/components/flip-card" },
+      { title: "Cube", href: "/docs/components/cube" },
+      { title: "Card Stack", href: "/docs/components/card-stack" },
+      { title: "Coverflow", href: "/docs/components/coverflow" },
+      { title: "Carousel 3D", href: "/docs/components/carousel-3d" },
+      { title: "Parallax", href: "/docs/components/parallax" },
+    ],
+  },
 ];

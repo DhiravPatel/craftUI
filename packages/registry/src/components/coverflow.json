@@ -1,0 +1,16 @@
+{
+  "name": "coverflow",
+  "description": "iTunes-style 3D linear carousel. Center item faces the viewer; sides are angled into the distance. Click to bring an item forward.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/coverflow/coverflow.tsx",
+      "target": "{{components}}/coverflow.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "carousel", "coverflow", "gallery"]
+}

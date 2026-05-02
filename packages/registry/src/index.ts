@@ -9,15 +9,21 @@ import breadcrumb from "./components/breadcrumb.json";
 import button from "./components/button.json";
 import calendar from "./components/calendar.json";
 import card from "./components/card.json";
+import cardStack from "./components/card-stack.json";
+import carousel3d from "./components/carousel-3d.json";
 import checkbox from "./components/checkbox.json";
 import combobox from "./components/combobox.json";
 import command from "./components/command.json";
+import coverflow from "./components/coverflow.json";
+import cube from "./components/cube.json";
 import datePicker from "./components/date-picker.json";
 import dialog from "./components/dialog.json";
 import drawer from "./components/drawer.json";
 import dropdownMenu from "./components/dropdown-menu.json";
 import emptyState from "./components/empty-state.json";
+import flipCard from "./components/flip-card.json";
 import form from "./components/form.json";
+import holoCard from "./components/holo-card.json";
 import hoverCard from "./components/hover-card.json";
 import input from "./components/input.json";
 import inputOtp from "./components/input-otp.json";
@@ -26,6 +32,7 @@ import label from "./components/label.json";
 import layout from "./components/layout.json";
 import navbar from "./components/navbar.json";
 import pagination from "./components/pagination.json";
+import parallax from "./components/parallax.json";
 import popover from "./components/popover.json";
 import progress from "./components/progress.json";
 import radioGroup from "./components/radio-group.json";
@@ -44,8 +51,9 @@ import switchEntry from "./components/switch.json";
 import table from "./components/table.json";
 import tabs from "./components/tabs.json";
 import textarea from "./components/textarea.json";
-import timeline from "./components/timeline.json";
 import themeProvider from "./components/theme-provider.json";
+import tilt from "./components/tilt.json";
+import timeline from "./components/timeline.json";
 import toast from "./components/toast.json";
 import toggle from "./components/toggle.json";
 import toggleGroup from "./components/toggle-group.json";
@@ -61,15 +69,21 @@ export const registry: Registry = [
   button,
   calendar,
   card,
+  cardStack,
+  carousel3d,
   checkbox,
   combobox,
   command,
+  coverflow,
+  cube,
   datePicker,
   dialog,
   drawer,
   dropdownMenu,
   emptyState,
+  flipCard,
   form,
+  holoCard,
   hoverCard,
   input,
   inputOtp,
@@ -78,6 +92,7 @@ export const registry: Registry = [
   layout,
   navbar,
   pagination,
+  parallax,
   popover,
   progress,
   radioGroup,
@@ -97,6 +112,7 @@ export const registry: Registry = [
   tabs,
   textarea,
   themeProvider,
+  tilt,
   timeline,
   toast,
   toggle,
