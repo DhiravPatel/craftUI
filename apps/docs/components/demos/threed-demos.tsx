@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import {
+  Aurora,
   Badge,
   Button,
   CardStack,
@@ -9,20 +10,35 @@ import {
   Coverflow,
   Cube,
   CubeFace,
+  DirectionAwareHover,
   FlipCard,
   FlipCardBack,
   FlipCardFront,
+  GlowingStars,
   HoloCard,
+  Lens,
+  Marquee3D,
+  Meteors,
+  MovingBorder,
+  OrbitingCircles,
   Parallax,
   ParallaxLayer,
+  Pin3D,
+  Spotlight,
   Tilt,
 } from "@craftui/ui";
 import {
+  ArrowUpRight,
   Cloud,
   Crown,
   Disc3,
+  Github,
+  Globe,
   Mountain,
+  Music,
+  Plane,
   Quote,
+  Rocket,
   Sparkles,
   Star,
   Zap,
@@ -279,31 +295,31 @@ const COVERS = [
     id: 1,
     title: "Midnight Drive",
     artist: "Lo-fi · 32 tracks",
-    bg: "from-rose-500 via-pink-500 to-fuchsia-600",
+    photo: "https://picsum.photos/seed/midnight-drive/400/520",
   },
   {
     id: 2,
     title: "Deep Focus",
     artist: "Ambient · 51 tracks",
-    bg: "from-sky-500 via-cyan-500 to-emerald-500",
+    photo: "https://picsum.photos/seed/deep-focus/400/520",
   },
   {
     id: 3,
     title: "Late Night Coding",
     artist: "Synthwave · 28 tracks",
-    bg: "from-indigo-600 via-violet-600 to-purple-700",
+    photo: "https://picsum.photos/seed/late-night-coding/400/520",
   },
   {
     id: 4,
     title: "Morning Run",
     artist: "Electronic · 19 tracks",
-    bg: "from-amber-500 via-orange-500 to-red-500",
+    photo: "https://picsum.photos/seed/morning-run/400/520",
   },
   {
     id: 5,
     title: "Acoustic Coffee",
     artist: "Folk · 24 tracks",
-    bg: "from-emerald-500 via-teal-500 to-cyan-600",
+    photo: "https://picsum.photos/seed/acoustic-coffee/400/520",
   },
 ];
 
@@ -313,13 +329,25 @@ export function CoverflowDemo() {
       COVERS.map((c) => ({
         id: c.id,
         content: (
-          <div
-            className={`flex h-full w-full flex-col justify-between bg-gradient-to-br ${c.bg} p-5 text-white`}
-          >
-            <Disc3 className="h-6 w-6 opacity-80" />
-            <div>
-              <p className="text-base font-semibold leading-tight">{c.title}</p>
-              <p className="mt-0.5 text-xs opacity-75">{c.artist}</p>
+          <div className="relative h-full w-full overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={c.photo}
+              alt={c.title}
+              className="absolute inset-0 h-full w-full object-cover"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+            <div className="absolute left-5 right-5 top-5 flex items-start justify-between text-white">
+              <Disc3 className="h-6 w-6 opacity-90 drop-shadow" />
+            </div>
+            <div className="absolute bottom-5 left-5 right-5 text-white">
+              <p className="text-base font-semibold leading-tight drop-shadow">
+                {c.title}
+              </p>
+              <p className="mt-0.5 text-xs opacity-85 drop-shadow">
+                {c.artist}
+              </p>
             </div>
           </div>
         ),
@@ -458,5 +486,317 @@ export function Carousel3DDemo() {
       itemHeight={240}
       autoplay={3500}
     />
+  );
+}
+
+/* ------------------------------------------------------------------
+ * Pin3D — perspective pin reveal. Hover to lift the badge above.
+ * ------------------------------------------------------------------ */
+export function Pin3DDemo() {
+  return (
+    <Pin3D
+      label={
+        <span className="inline-flex items-center gap-1">
+          View on GitHub <ArrowUpRight className="h-3 w-3" />
+        </span>
+      }
+      pinOffset={72}
+    >
+      <div className="relative h-[280px] w-[260px] overflow-hidden rounded-2xl border border-border/60 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-6 text-white shadow-[0_24px_48px_-24px_rgba(0,0,0,0.4)]">
+        <div className="flex items-start justify-between">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10">
+            <Github className="h-4 w-4" />
+          </div>
+          <span className="font-mono text-[10px] uppercase tracking-widest opacity-60">
+            v1.0
+          </span>
+        </div>
+        <div className="absolute bottom-6 left-6 right-6">
+          <p className="text-lg font-semibold tracking-tight">CraftUI</p>
+          <p className="mt-1 text-xs leading-relaxed opacity-70">
+            A modern, copy-paste component library. Open-source, themeable,
+            owned by you.
+          </p>
+        </div>
+      </div>
+    </Pin3D>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * Marquee3D — perspective-tilted scrolling logos / brand chips.
+ * ------------------------------------------------------------------ */
+const BRAND_ITEMS = [
+  { name: "Linear", icon: Rocket },
+  { name: "Stripe", icon: Sparkles },
+  { name: "Vercel", icon: Plane },
+  { name: "Figma", icon: Star },
+  { name: "Notion", icon: Globe },
+  { name: "Spotify", icon: Music },
+  { name: "GitHub", icon: Github },
+  { name: "Atlas", icon: Zap },
+];
+
+export function Marquee3DDemo() {
+  const items = BRAND_ITEMS.map(({ name, icon: Icon }) => (
+    <div
+      key={name}
+      className="flex h-16 w-44 items-center gap-3 rounded-xl border border-border/60 bg-card px-4 text-card-foreground shadow-[0_8px_24px_-8px_rgba(0,0,0,0.18)]"
+    >
+      <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-foreground text-background">
+        <Icon className="h-4 w-4" />
+      </span>
+      <span className="text-sm font-medium">{name}</span>
+    </div>
+  ));
+
+  return (
+    <Marquee3D
+      className="h-[340px] w-full max-w-2xl"
+      items={items}
+      rows={4}
+      duration={28}
+      tiltX={45}
+      rotateZ={-12}
+    />
+  );
+}
+
+/* ------------------------------------------------------------------
+ * Spotlight — cursor-following spotlight on a hero panel.
+ * ------------------------------------------------------------------ */
+export function SpotlightDemo() {
+  return (
+    <Spotlight
+      className="h-[280px] w-[480px] rounded-2xl border border-border/60 bg-slate-950 text-white"
+      size={420}
+      intensity={0.22}
+    >
+      <div className="relative flex h-full flex-col justify-end p-7">
+        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/50">
+          Introducing
+        </p>
+        <p className="mt-2 text-2xl font-semibold tracking-tight">
+          Componentry that ships with you.
+        </p>
+        <p className="mt-2 max-w-md text-sm leading-relaxed text-white/60">
+          Move your cursor anywhere in the panel — the light follows. Set the
+          size, color, and intensity with a single prop.
+        </p>
+      </div>
+    </Spotlight>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * Lens — magnifier follows the cursor and zooms the underlying photo.
+ * ------------------------------------------------------------------ */
+export function LensDemo() {
+  return (
+    <Lens className="h-[280px] w-[420px] rounded-2xl" size={150} zoom={2}>
+      <div className="relative h-full w-full overflow-hidden rounded-2xl">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://picsum.photos/seed/lens-inspect/840/560"
+          alt="Inspect detail"
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+        <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between text-white">
+          <p className="text-base font-semibold tracking-tight drop-shadow">
+            Hover to inspect
+          </p>
+          <span className="font-mono text-[10px] uppercase tracking-widest opacity-80 drop-shadow">
+            2× zoom
+          </span>
+        </div>
+      </div>
+    </Lens>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * DirectionAwareHover — overlay slides in from the cursor entry edge.
+ * ------------------------------------------------------------------ */
+export function DirectionAwareHoverDemo() {
+  return (
+    <DirectionAwareHover
+      className="h-[280px] w-[360px] rounded-2xl"
+      hoverContent={
+        <div className="flex h-full w-full flex-col justify-end bg-gradient-to-t from-black/85 via-black/40 to-transparent p-6 text-white">
+          <p className="text-xs font-medium uppercase tracking-wider opacity-70">
+            Now playing
+          </p>
+          <p className="mt-1 text-xl font-semibold tracking-tight">
+            Synthetic Dreams
+          </p>
+          <p className="mt-1 text-sm opacity-80">CraftUI Sessions · 04:21</p>
+        </div>
+      }
+    >
+      <div className="relative h-full w-full overflow-hidden rounded-2xl">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://picsum.photos/seed/synthetic-dreams/720/560"
+          alt="Album art"
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 flex items-start p-6 text-white">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 backdrop-blur">
+            <Music className="h-5 w-5" />
+          </div>
+        </div>
+      </div>
+    </DirectionAwareHover>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * Meteors — meteor shower across a hero panel.
+ * ------------------------------------------------------------------ */
+export function MeteorsDemo() {
+  return (
+    <div className="relative h-[300px] w-[480px] overflow-hidden rounded-2xl border border-border/60 bg-slate-950 text-white">
+      <Meteors count={24} speed={[3, 8]} />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(99,102,241,0.5),transparent_60%)]" />
+      <div className="relative flex h-full flex-col justify-end p-7">
+        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/60">
+          Production · Live
+        </p>
+        <p className="mt-2 text-2xl font-semibold tracking-tight">
+          Ship at the speed of light.
+        </p>
+        <p className="mt-2 max-w-md text-sm leading-relaxed text-white/65">
+          Drop the Meteors layer into any container — hero, card, sign-up
+          panel — for instant kinetic energy.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * Aurora — animated aurora gradient hero.
+ * ------------------------------------------------------------------ */
+export function AuroraDemo() {
+  return (
+    <Aurora className="h-[300px] w-[480px] rounded-2xl bg-slate-950 text-white">
+      <div className="relative flex h-[300px] flex-col justify-center p-8">
+        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/65">
+          New · 2026
+        </p>
+        <p className="mt-3 max-w-xs text-3xl font-semibold leading-tight tracking-tight">
+          Build with motion that breathes.
+        </p>
+        <p className="mt-3 max-w-md text-sm leading-relaxed text-white/70">
+          Aurora drifts a soft blanket of color behind your hero copy. Tune the
+          palette and tempo to match your brand.
+        </p>
+      </div>
+    </Aurora>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * MovingBorder — animated gradient border around a CTA.
+ * ------------------------------------------------------------------ */
+export function MovingBorderDemo() {
+  return (
+    <div className="flex flex-col items-center gap-6">
+      <MovingBorder duration={4} radius={20} className="w-[280px]">
+        <div className="flex flex-col items-center gap-3 px-6 py-7">
+          <Sparkles className="h-5 w-5 text-foreground" />
+          <p className="text-base font-semibold tracking-tight">
+            CraftUI Pro
+          </p>
+          <p className="text-center text-xs text-muted-foreground">
+            Unlock premium components, themes, and priority support.
+          </p>
+          <Button size="sm" className="mt-2 w-full">
+            Upgrade
+          </Button>
+        </div>
+      </MovingBorder>
+
+      <MovingBorder duration={6} radius={999} className="inline-block">
+        <button
+          type="button"
+          className="rounded-full bg-foreground px-5 py-2 text-xs font-semibold text-background"
+        >
+          Subscribe
+        </button>
+      </MovingBorder>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * OrbitingCircles — items orbiting a central logo on two rings.
+ * ------------------------------------------------------------------ */
+function OrbitTile({ icon: Icon }: { icon: React.ComponentType<{ className?: string }> }) {
+  return (
+    <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-border/60 bg-card text-card-foreground shadow-[0_8px_24px_-8px_rgba(0,0,0,0.18)]">
+      <Icon className="h-5 w-5" />
+    </div>
+  );
+}
+
+export function OrbitingCirclesDemo() {
+  const inner = [Github, Plane, Music, Globe].map((Icon, i) => (
+    <OrbitTile key={i} icon={Icon} />
+  ));
+  const outer = [Rocket, Sparkles, Star, Zap, Disc3, Crown].map((Icon, i) => (
+    <OrbitTile key={i} icon={Icon} />
+  ));
+
+  return (
+    <div className="relative">
+      <OrbitingCircles
+        items={outer}
+        radius={150}
+        duration={28}
+        showPath
+        center={
+          <OrbitingCircles
+            items={inner}
+            radius={80}
+            duration={18}
+            reverse
+            showPath
+            center={
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-foreground text-background shadow-[0_12px_28px_-12px_rgba(0,0,0,0.4)]">
+                <Sparkles className="h-7 w-7" />
+              </div>
+            }
+          />
+        }
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * GlowingStars — twinkling night sky as a hero background.
+ * ------------------------------------------------------------------ */
+export function GlowingStarsDemo() {
+  return (
+    <div className="relative h-[300px] w-[480px] overflow-hidden rounded-2xl border border-border/60 bg-gradient-to-b from-[#070b1f] via-[#0a1338] to-[#1a1a4a] text-white">
+      <GlowingStars count={140} speed={[2, 5]} />
+      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent" />
+      <div className="relative flex h-full flex-col justify-end p-8">
+        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/60">
+          Galaxy · v2
+        </p>
+        <p className="mt-2 text-2xl font-semibold tracking-tight">
+          Reach further than you thought.
+        </p>
+        <p className="mt-2 max-w-md text-sm leading-relaxed text-white/70">
+          A drop-in twinkling starfield. Pure CSS — no canvas, no JS animation
+          loop, no battery drain.
+        </p>
+      </div>
+    </div>
   );
 }

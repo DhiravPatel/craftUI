@@ -3,6 +3,7 @@ import type { Registry, RegistryEntry } from "./types";
 import accordion from "./components/accordion.json";
 import alert from "./components/alert.json";
 import alertDialog from "./components/alert-dialog.json";
+import aurora from "./components/aurora.json";
 import avatar from "./components/avatar.json";
 import badge from "./components/badge.json";
 import breadcrumb from "./components/breadcrumb.json";
@@ -18,11 +19,13 @@ import coverflow from "./components/coverflow.json";
 import cube from "./components/cube.json";
 import datePicker from "./components/date-picker.json";
 import dialog from "./components/dialog.json";
+import directionAwareHover from "./components/direction-aware-hover.json";
 import drawer from "./components/drawer.json";
 import dropdownMenu from "./components/dropdown-menu.json";
 import emptyState from "./components/empty-state.json";
 import flipCard from "./components/flip-card.json";
 import form from "./components/form.json";
+import glowingStars from "./components/glowing-stars.json";
 import holoCard from "./components/holo-card.json";
 import hoverCard from "./components/hover-card.json";
 import input from "./components/input.json";
@@ -30,9 +33,15 @@ import inputOtp from "./components/input-otp.json";
 import kbd from "./components/kbd.json";
 import label from "./components/label.json";
 import layout from "./components/layout.json";
+import lens from "./components/lens.json";
+import marquee3d from "./components/marquee-3d.json";
+import meteors from "./components/meteors.json";
+import movingBorder from "./components/moving-border.json";
 import navbar from "./components/navbar.json";
+import orbitingCircles from "./components/orbiting-circles.json";
 import pagination from "./components/pagination.json";
 import parallax from "./components/parallax.json";
+import pin3d from "./components/pin-3d.json";
 import popover from "./components/popover.json";
 import progress from "./components/progress.json";
 import radioGroup from "./components/radio-group.json";
@@ -45,6 +54,7 @@ import sidebar from "./components/sidebar.json";
 import skeleton from "./components/skeleton.json";
 import slider from "./components/slider.json";
 import spinner from "./components/spinner.json";
+import spotlight from "./components/spotlight.json";
 import stat from "./components/stat.json";
 import stepper from "./components/stepper.json";
 import switchEntry from "./components/switch.json";
@@ -63,6 +73,7 @@ export const registry: Registry = [
   accordion,
   alert,
   alertDialog,
+  aurora,
   avatar,
   badge,
   breadcrumb,
@@ -78,11 +89,13 @@ export const registry: Registry = [
   cube,
   datePicker,
   dialog,
+  directionAwareHover,
   drawer,
   dropdownMenu,
   emptyState,
   flipCard,
   form,
+  glowingStars,
   holoCard,
   hoverCard,
   input,
@@ -90,9 +103,15 @@ export const registry: Registry = [
   kbd,
   label,
   layout,
+  lens,
+  marquee3d,
+  meteors,
+  movingBorder,
   navbar,
+  orbitingCircles,
   pagination,
   parallax,
+  pin3d,
   popover,
   progress,
   radioGroup,
@@ -105,6 +124,7 @@ export const registry: Registry = [
   skeleton,
   slider,
   spinner,
+  spotlight,
   stat,
   stepper,
   switchEntry,

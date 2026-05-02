@@ -1,0 +1,16 @@
+{
+  "name": "pin-3d",
+  "description": "Perspective pin reveal with halo and connecting line. Card tilts back on hover; a label pops above with a vertical thread connecting the two.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/pin-3d/pin-3d.tsx",
+      "target": "{{components}}/pin-3d.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "pin", "hover", "reveal", "perspective"]
+}

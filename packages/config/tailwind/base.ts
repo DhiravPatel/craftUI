@@ -104,6 +104,31 @@ export const craftuiTailwindPreset: Partial<Config> = {
           "0%": { transform: "translateX(-100%)" },
           "100%": { transform: "translateX(100%)" },
         },
+        "marquee-x": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
+        "marquee-x-reverse": {
+          from: { transform: "translateX(-50%)" },
+          to: { transform: "translateX(0)" },
+        },
+        meteor: {
+          "0%": { transform: "rotate(215deg) translateX(0)", opacity: "1" },
+          "70%": { opacity: "1" },
+          "100%": {
+            transform: "rotate(215deg) translateX(-500px)",
+            opacity: "0",
+          },
+        },
+        aurora: {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "33%": { transform: "translate(15%, -10%) scale(1.1)" },
+          "66%": { transform: "translate(-12%, 12%) scale(0.95)" },
+        },
+        twinkle: {
+          "0%, 100%": { opacity: "0.25", transform: "scale(0.8)" },
+          "50%": { opacity: "1", transform: "scale(1.2)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -115,6 +140,12 @@ export const craftuiTailwindPreset: Partial<Config> = {
         "zoom-in": "zoom-in 0.2s ease-out",
         "zoom-out": "zoom-out 0.2s ease-in",
         shimmer: "shimmer 1.6s infinite",
+        "marquee-x": "marquee-x var(--marquee-duration, 30s) linear infinite",
+        "marquee-x-reverse":
+          "marquee-x-reverse var(--marquee-duration, 30s) linear infinite",
+        meteor: "meteor var(--meteor-duration, 5s) linear infinite",
+        aurora: "aurora var(--aurora-duration, 18s) ease-in-out infinite",
+        twinkle: "twinkle var(--twinkle-duration, 3s) ease-in-out infinite",
       },
     },
   },

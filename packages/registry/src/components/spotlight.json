@@ -1,0 +1,16 @@
+{
+  "name": "spotlight",
+  "description": "Cursor-following spotlight overlay. Wraps a section to add a soft, depth-conveying light source that tracks the pointer.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/spotlight/spotlight.tsx",
+      "target": "{{components}}/spotlight.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "spotlight", "hover", "glow", "hero"]
+}

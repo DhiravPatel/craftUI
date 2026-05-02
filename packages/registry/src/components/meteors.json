@@ -1,0 +1,16 @@
+{
+  "name": "meteors",
+  "description": "Animated meteor shower overlay. Drop into any container — meteors stream diagonally across with randomized speed and delay.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/meteors/meteors.tsx",
+      "target": "{{components}}/meteors.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "meteors", "shower", "animation", "background"]
+}

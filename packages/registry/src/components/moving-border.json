@@ -1,0 +1,16 @@
+{
+  "name": "moving-border",
+  "description": "Animated conic-gradient border that traces the perimeter. Wrap any content to add a premium, attention-grabbing edge.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/moving-border/moving-border.tsx",
+      "target": "{{components}}/moving-border.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "border", "gradient", "animation", "card"]
+}

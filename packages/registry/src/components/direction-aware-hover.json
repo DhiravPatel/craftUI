@@ -1,0 +1,16 @@
+{
+  "name": "direction-aware-hover",
+  "description": "Hover card whose overlay slides in from the cursor's entry direction. Computes the nearest edge and animates accordingly — top/right/bottom/left.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/direction-aware-hover/direction-aware-hover.tsx",
+      "target": "{{components}}/direction-aware-hover.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "hover", "direction", "card", "reveal"]
+}

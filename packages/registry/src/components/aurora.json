@@ -1,0 +1,16 @@
+{
+  "name": "aurora",
+  "description": "Animated aurora background. Multiple colored gradient blobs slowly drift and morph behind your content for a calming, premium feel.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/aurora/aurora.tsx",
+      "target": "{{components}}/aurora.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "aurora", "background", "gradient", "hero"]
+}

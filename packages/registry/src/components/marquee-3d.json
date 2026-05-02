@@ -1,0 +1,16 @@
+{
+  "name": "marquee-3d",
+  "description": "Perspective-tilted marquee. Multiple rows scroll horizontally on a 3D-tilted plane, alternating direction for a parallax-y effect. Pure CSS animation.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/marquee-3d/marquee-3d.tsx",
+      "target": "{{components}}/marquee-3d.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "marquee", "scroll", "perspective", "infinite"]
+}

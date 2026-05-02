@@ -1,0 +1,16 @@
+{
+  "name": "lens",
+  "description": "Circular magnifier that follows the cursor and zooms into the underlying content. Glass-dome shading gives it a tactile 3D feel.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/lens/lens.tsx",
+      "target": "{{components}}/lens.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "lens", "zoom", "magnifier", "hover"]
+}

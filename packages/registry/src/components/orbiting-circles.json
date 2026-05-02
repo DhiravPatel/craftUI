@@ -1,0 +1,16 @@
+{
+  "name": "orbiting-circles",
+  "description": "Items orbit around a center on a circular path. Each item counter-rotates so it stays upright. Stack multiple instances for concentric rings.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/orbiting-circles/orbiting-circles.tsx",
+      "target": "{{components}}/orbiting-circles.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "orbit", "circles", "ring", "rotate"]
+}

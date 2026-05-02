@@ -158,13 +158,23 @@ import {
   ToggleDemo,
 } from "@/components/demos/interactive-demos";
 import {
+  AuroraDemo,
   CardStackDemo,
   Carousel3DDemo,
   CoverflowDemo,
   CubeDemo,
+  DirectionAwareHoverDemo,
   FlipCardDemo,
+  GlowingStarsDemo,
   HoloCardDemo,
+  LensDemo,
+  Marquee3DDemo,
+  MeteorsDemo,
+  MovingBorderDemo,
+  OrbitingCirclesDemo,
   ParallaxDemo,
+  Pin3DDemo,
+  SpotlightDemo,
   TiltDemo,
 } from "@/components/demos/threed-demos";
 
@@ -3701,6 +3711,461 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
       },
     ],
     related: ["tilt", "holo-card"],
+  },
+
+  // ---------- Pin3D (3D) ----------
+  {
+    name: "pin-3d",
+    title: "Pin 3D",
+    description:
+      "Perspective pin reveal. The card tilts back on hover while a label badge pops above, connected by a vertical thread and pulsing halo.",
+    imports: `import { Pin3D } from "@/components/ui/pin-3d";`,
+    defaultExample: {
+      title: "Project card",
+      description:
+        "Hover the card. The label rises with a ping ring and a hairline connecting it to the card — the card itself tilts back on its X axis to sell the depth.",
+      code: `<Pin3D label="View on GitHub" pinOffset={72}>
+  <div className="h-[280px] w-[260px] rounded-2xl bg-slate-900 p-6 text-white">
+    {/* card content */}
+  </div>
+</Pin3D>`,
+      render: <Pin3DDemo />,
+    },
+    props: [
+      {
+        name: "label",
+        type: "ReactNode",
+        required: true,
+        description: "Label content for the pin badge.",
+      },
+      {
+        name: "href",
+        type: "string",
+        description: "Wraps the entire pin in an anchor tag.",
+      },
+      {
+        name: "pinOffset",
+        type: "number",
+        default: "64",
+        description: "Distance the pin lifts above the card in px.",
+      },
+      {
+        name: "tilt",
+        type: "number",
+        default: "30",
+        description: "Backward tilt of the card on hover, in degrees.",
+      },
+    ],
+    related: ["tilt", "holo-card"],
+  },
+
+  // ---------- Marquee3D (3D) ----------
+  {
+    name: "marquee-3d",
+    title: "Marquee 3D",
+    description:
+      "Perspective-tilted marquee. Multiple rows scroll horizontally on a 3D plane in alternating directions for a parallax-y, ticker-tape feel.",
+    imports: `import { Marquee3D } from "@/components/ui/marquee-3d";`,
+    defaultExample: {
+      title: "Brand grid",
+      description:
+        "Each row alternates direction; pause on hover. Tilt and Z-rotation give it that diagonal Aceternity-style stage look.",
+      code: `<Marquee3D
+  items={brandChips}
+  rows={4}
+  duration={28}
+  tiltX={45}
+  rotateZ={-12}
+/>`,
+      render: <Marquee3DDemo />,
+    },
+    props: [
+      { name: "items", type: "ReactNode[]", required: true },
+      {
+        name: "rows",
+        type: "number",
+        default: "3",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "30",
+        description: "Loop duration in seconds (lower = faster).",
+      },
+      {
+        name: "tiltX",
+        type: "number",
+        default: "50",
+        description: "X-axis tilt in degrees.",
+      },
+      {
+        name: "rotateZ",
+        type: "number",
+        default: "-15",
+        description: "Z-axis rotation in degrees.",
+      },
+      {
+        name: "pauseOnHover",
+        type: "boolean",
+        default: "true",
+      },
+      {
+        name: "gap",
+        type: "number",
+        default: "16",
+        description: "Spacing between items in px.",
+      },
+    ],
+    related: ["coverflow", "carousel-3d"],
+  },
+
+  // ---------- Spotlight (3D) ----------
+  {
+    name: "spotlight",
+    title: "Spotlight",
+    description:
+      "Cursor-following spotlight. Wraps any section to add a soft, depth-conveying light source that tracks the pointer.",
+    imports: `import { Spotlight } from "@/components/ui/spotlight";`,
+    defaultExample: {
+      title: "Hero panel",
+      description:
+        "Move your cursor over the panel — a radial spotlight follows the pointer. Tune size, color, and intensity to match the hero's tone.",
+      code: `<Spotlight
+  className="h-[280px] w-[480px] rounded-2xl bg-slate-950 text-white"
+  size={420}
+  intensity={0.22}
+>
+  {/* hero content */}
+</Spotlight>`,
+      render: <SpotlightDemo />,
+    },
+    props: [
+      {
+        name: "size",
+        type: "number",
+        default: "360",
+        description: "Spotlight radius in px.",
+      },
+      {
+        name: "color",
+        type: "string",
+        default: `"rgba(255,255,255,0.9)"`,
+        description: "CSS color for the spotlight center.",
+      },
+      {
+        name: "intensity",
+        type: "number",
+        default: "0.18",
+        description: "Spotlight strength (0–1).",
+      },
+      {
+        name: "ambient",
+        type: "boolean",
+        default: "false",
+        description: "Show a static dim glow even when not hovered.",
+      },
+    ],
+    related: ["tilt", "parallax"],
+  },
+
+  // ---------- Lens (3D) ----------
+  {
+    name: "lens",
+    title: "Lens",
+    description:
+      "Circular magnifier that follows the cursor and zooms into the underlying content. Glass-dome shading gives it a tactile, 3D-feel surface.",
+    imports: `import { Lens } from "@/components/ui/lens";`,
+    defaultExample: {
+      title: "Inspector",
+      description:
+        "Hover over the panel — the lens scales the children inside a circular clip so you can inspect detail. Set `alwaysVisible` for a permanent magnifier.",
+      code: `<Lens size={150} zoom={2}>
+  <img src="/artwork.jpg" alt="" />
+</Lens>`,
+      render: <LensDemo />,
+    },
+    props: [
+      {
+        name: "size",
+        type: "number",
+        default: "140",
+        description: "Diameter of the lens in px.",
+      },
+      {
+        name: "zoom",
+        type: "number",
+        default: "1.8",
+        description: "Magnification factor.",
+      },
+      {
+        name: "alwaysVisible",
+        type: "boolean",
+        default: "false",
+        description: "Keep the lens visible even when not hovered.",
+      },
+    ],
+    related: ["spotlight", "tilt"],
+  },
+
+  // ---------- DirectionAwareHover (3D) ----------
+  {
+    name: "direction-aware-hover",
+    title: "Direction-aware Hover",
+    description:
+      "Overlay slides in from the cursor's entry direction. Computes the nearest edge of the card on `mouseenter` and animates the overlay accordingly — top/right/bottom/left.",
+    imports: `import { DirectionAwareHover } from "@/components/ui/direction-aware-hover";`,
+    defaultExample: {
+      title: "Album tile",
+      description:
+        "Move into the card from any side — the overlay enters from that edge. Move out, and it leaves toward the exit edge.",
+      code: `<DirectionAwareHover
+  hoverContent={<NowPlayingPanel />}
+>
+  <AlbumArt />
+</DirectionAwareHover>`,
+      render: <DirectionAwareHoverDemo />,
+    },
+    props: [
+      {
+        name: "hoverContent",
+        type: "ReactNode",
+        required: true,
+        description: "Content shown on hover.",
+      },
+      {
+        name: "distance",
+        type: "number",
+        default: "24",
+        description: "Translation distance in px when entering or leaving.",
+      },
+    ],
+    related: ["tilt", "spotlight"],
+  },
+
+  // ---------- Meteors (3D) ----------
+  {
+    name: "meteors",
+    title: "Meteors",
+    description:
+      "Animated meteor shower overlay. Drop into any container to make it feel kinetic — meteors stream diagonally with randomized speed and delay.",
+    imports: `import { Meteors } from "@/components/ui/meteors";`,
+    defaultExample: {
+      title: "Hero panel",
+      description:
+        "The Meteors layer is absolutely positioned — wrap it inside any `relative` container and the streaks fill the available space.",
+      code: `<div className="relative h-[300px] w-[480px] overflow-hidden rounded-2xl bg-slate-950">
+  <Meteors count={24} speed={[3, 8]} />
+  {/* hero copy */}
+</div>`,
+      render: <MeteorsDemo />,
+    },
+    props: [
+      {
+        name: "count",
+        type: "number",
+        default: "20",
+        description: "Number of meteor streaks.",
+      },
+      {
+        name: "speed",
+        type: "[number, number]",
+        default: "[4, 10]",
+        description: "Min/max duration range in seconds.",
+      },
+      {
+        name: "maxDelay",
+        type: "number",
+        default: "6",
+        description: "Maximum random delay before each meteor starts.",
+      },
+    ],
+    related: ["glowing-stars", "spotlight"],
+  },
+
+  // ---------- Aurora (3D) ----------
+  {
+    name: "aurora",
+    title: "Aurora",
+    description:
+      "Animated aurora background. Multiple colored gradient blobs slowly drift and morph behind your content for a calming, premium feel.",
+    imports: `import { Aurora } from "@/components/ui/aurora";`,
+    defaultExample: {
+      title: "Hero with motion",
+      description:
+        "Pass children to render content above the aurora. Customize `colors`, `duration`, and `blur` for any palette.",
+      code: `<Aurora className="h-[300px] w-[480px] rounded-2xl bg-slate-950 text-white">
+  <div className="p-8">
+    {/* hero copy */}
+  </div>
+</Aurora>`,
+      render: <AuroraDemo />,
+    },
+    props: [
+      {
+        name: "colors",
+        type: "string[]",
+        description: "Override the gradient blob colors.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "18",
+        description: "Loop duration for the slowest blob in seconds.",
+      },
+      {
+        name: "blur",
+        type: "number",
+        default: "64",
+        description: "Strength of the blur in px.",
+      },
+    ],
+    related: ["spotlight", "glowing-stars"],
+  },
+
+  // ---------- MovingBorder (3D) ----------
+  {
+    name: "moving-border",
+    title: "Moving Border",
+    description:
+      "Animated conic-gradient border that traces the perimeter. Wrap any content — card, button, badge — to add a premium edge that pulls the eye.",
+    imports: `import { MovingBorder } from "@/components/ui/moving-border";`,
+    defaultExample: {
+      title: "Pricing card + CTA",
+      description:
+        "Works at any radius — including pills. The spinning ring sits behind the inner background, so only a hairline of the gradient is visible at any time.",
+      code: `<MovingBorder duration={4} radius={20}>
+  <div className="px-6 py-7">
+    {/* card content */}
+  </div>
+</MovingBorder>`,
+      render: <MovingBorderDemo />,
+    },
+    props: [
+      {
+        name: "borderWidth",
+        type: "number",
+        default: "1.5",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "4",
+        description: "Spin duration in seconds.",
+      },
+      {
+        name: "radius",
+        type: "number",
+        default: "16",
+      },
+      {
+        name: "innerBg",
+        type: "string",
+        description:
+          "Tailwind class for the inner content background. Default `bg-background`.",
+      },
+      {
+        name: "colors",
+        type: "string[]",
+        description:
+          "Conic-gradient color stops for the moving ring.",
+      },
+    ],
+    related: ["aurora", "spotlight"],
+  },
+
+  // ---------- OrbitingCircles (3D) ----------
+  {
+    name: "orbiting-circles",
+    title: "Orbiting Circles",
+    description:
+      "Items orbit around a center on a circular path with optional reverse direction. Each item counter-rotates so it stays upright. Stack instances for concentric rings — perfect for tech-stack hero panels.",
+    imports: `import { OrbitingCircles } from "@/components/ui/orbiting-circles";`,
+    defaultExample: {
+      title: "Two-ring tech stack",
+      description:
+        "Pass `center` to nest another OrbitingCircles for concentric rings. Toggle `reverse` so adjacent rings rotate in opposite directions.",
+      code: `<OrbitingCircles items={outerIcons} radius={150} duration={28}>
+  <OrbitingCircles items={innerIcons} radius={80} duration={18} reverse>
+    <Logo />
+  </OrbitingCircles>
+</OrbitingCircles>`,
+      render: <OrbitingCirclesDemo />,
+    },
+    props: [
+      {
+        name: "items",
+        type: "ReactNode[]",
+        required: true,
+      },
+      {
+        name: "center",
+        type: "ReactNode",
+        description: "Optional content rendered at the center of the orbit.",
+      },
+      {
+        name: "radius",
+        type: "number",
+        default: "120",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "20",
+        description: "Orbit duration in seconds.",
+      },
+      {
+        name: "reverse",
+        type: "boolean",
+        default: "false",
+      },
+      {
+        name: "showPath",
+        type: "boolean",
+        default: "true",
+        description: "Show a faint dashed orbit path.",
+      },
+    ],
+    related: ["carousel-3d", "cube"],
+  },
+
+  // ---------- GlowingStars (3D) ----------
+  {
+    name: "glowing-stars",
+    title: "Glowing Stars",
+    description:
+      "Twinkling star background. Hundreds of randomly placed dots fade in and out at different speeds; a subset emit a soft glow halo for that night-sky feel. Pure CSS — no canvas, no JS animation loop.",
+    imports: `import { GlowingStars } from "@/components/ui/glowing-stars";`,
+    defaultExample: {
+      title: "Night sky hero",
+      description:
+        "Wrap inside any dark `relative` container. Stars are absolutely positioned, so they fill whatever you give them.",
+      code: `<div className="relative h-[300px] w-[480px] rounded-2xl bg-slate-950">
+  <GlowingStars count={140} speed={[2, 5]} />
+  {/* hero copy */}
+</div>`,
+      render: <GlowingStarsDemo />,
+    },
+    props: [
+      {
+        name: "count",
+        type: "number",
+        default: "120",
+        description: "Number of stars in the grid.",
+      },
+      {
+        name: "color",
+        type: "string",
+        default: `"rgb(255,255,255)"`,
+        description: "Color of the glowing stars.",
+      },
+      {
+        name: "speed",
+        type: "[number, number]",
+        default: "[2, 5]",
+        description: "Min/max twinkle duration range in seconds.",
+      },
+    ],
+    related: ["meteors", "aurora"],
   },
 ];
 
