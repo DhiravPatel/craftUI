@@ -1,0 +1,16 @@
+{
+  "name": "magnet",
+  "description": "Element gravitates toward the cursor when nearby. Listens to window mousemove and translates within a configurable range. Snaps back when out of range.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/magnet/magnet.tsx",
+      "target": "{{components}}/magnet.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "magnet", "cursor", "interactive", "hover"]
+}

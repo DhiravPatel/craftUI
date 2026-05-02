@@ -1,0 +1,16 @@
+{
+  "name": "infinite-moving-cards",
+  "description": "Auto-scrolling row of cards that loops forever. Pause on hover, choose direction, fade the edges. Perfect for testimonials and logo walls.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/infinite-moving-cards/infinite-moving-cards.tsx",
+      "target": "{{components}}/infinite-moving-cards.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "marquee", "carousel", "testimonials", "logos"]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "hover-border-gradient",
+  "description": "Border that lights up where the cursor hovers over the edge. A radial highlight follows the pointer, creating a sweeping flashlight effect on the border.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/hover-border-gradient/hover-border-gradient.tsx",
+      "target": "{{components}}/hover-border-gradient.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "border", "hover", "gradient", "interactive"]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "background-beams",
+  "description": "Animated diagonal beams streaking across a hero panel. SVG + CSS — no canvas, no battery drain.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/background-beams/background-beams.tsx",
+      "target": "{{components}}/background-beams.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "background", "beams", "hero", "animation"]
+}

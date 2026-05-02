@@ -2,11 +2,18 @@
 
 import * as React from "react";
 import {
+  AnimatedText,
   Aurora,
+  Avatar,
+  AvatarFallback,
+  BackgroundBeams,
+  BackgroundBoxes,
   Badge,
   Button,
+  CardHoverEffect,
   CardStack,
   Carousel3D,
+  Compare,
   Coverflow,
   Cube,
   CubeFace,
@@ -14,18 +21,28 @@ import {
   FlipCard,
   FlipCardBack,
   FlipCardFront,
-  GlowingStars,
+  FollowingPointer,
   HoloCard,
+  HoverBorderGradient,
+  InfiniteMovingCards,
+  Lamp,
   Lens,
+  Magnet,
   Marquee3D,
   Meteors,
   MovingBorder,
+  MultiStepLoader,
+  NeonGlow,
+  NumberTicker,
   OrbitingCircles,
   Parallax,
   ParallaxLayer,
   Pin3D,
+  Sparkles as SparklesFx,
+  SparklesText,
   Spotlight,
   Tilt,
+  WavyBackground,
 } from "@craftui/ui";
 import {
   ArrowUpRight,
@@ -494,32 +511,34 @@ export function Carousel3DDemo() {
  * ------------------------------------------------------------------ */
 export function Pin3DDemo() {
   return (
-    <Pin3D
-      label={
-        <span className="inline-flex items-center gap-1">
-          View on GitHub <ArrowUpRight className="h-3 w-3" />
-        </span>
-      }
-      pinOffset={72}
-    >
-      <div className="relative h-[280px] w-[260px] overflow-hidden rounded-2xl border border-border/60 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-6 text-white shadow-[0_24px_48px_-24px_rgba(0,0,0,0.4)]">
-        <div className="flex items-start justify-between">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10">
-            <Github className="h-4 w-4" />
-          </div>
-          <span className="font-mono text-[10px] uppercase tracking-widest opacity-60">
-            v1.0
+    <div className="pt-28">
+      <Pin3D
+        label={
+          <span className="inline-flex items-center gap-1.5">
+            View on GitHub <ArrowUpRight className="h-3 w-3" />
           </span>
+        }
+        pinOffset={56}
+      >
+        <div className="relative h-[280px] w-[260px] overflow-hidden rounded-2xl border border-border/60 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-6 text-white shadow-[0_24px_48px_-24px_rgba(0,0,0,0.4)]">
+          <div className="flex items-start justify-between">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10">
+              <Github className="h-4 w-4" />
+            </div>
+            <span className="font-mono text-[10px] uppercase tracking-widest opacity-60">
+              v1.0
+            </span>
+          </div>
+          <div className="absolute bottom-6 left-6 right-6">
+            <p className="text-lg font-semibold tracking-tight">CraftUI</p>
+            <p className="mt-1 text-xs leading-relaxed opacity-70">
+              A modern, copy-paste component library. Open-source, themeable,
+              owned by you.
+            </p>
+          </div>
         </div>
-        <div className="absolute bottom-6 left-6 right-6">
-          <p className="text-lg font-semibold tracking-tight">CraftUI</p>
-          <p className="mt-1 text-xs leading-relaxed opacity-70">
-            A modern, copy-paste component library. Open-source, themeable,
-            owned by you.
-          </p>
-        </div>
-      </div>
-    </Pin3D>
+      </Pin3D>
+    </div>
   );
 }
 
@@ -735,24 +754,57 @@ export function MovingBorderDemo() {
 /* ------------------------------------------------------------------
  * OrbitingCircles — items orbiting a central logo on two rings.
  * ------------------------------------------------------------------ */
-function OrbitTile({ icon: Icon }: { icon: React.ComponentType<{ className?: string }> }) {
+function OrbitTile({
+  icon: Icon,
+  tone,
+}: {
+  icon: React.ComponentType<{ className?: string }>;
+  tone: string;
+}) {
   return (
-    <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-border/60 bg-card text-card-foreground shadow-[0_8px_24px_-8px_rgba(0,0,0,0.18)]">
+    <div
+      className="flex h-12 w-12 items-center justify-center rounded-xl border border-border/60 bg-gradient-to-b from-card to-card/85 shadow-[0_10px_24px_-12px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.6)] backdrop-blur-sm transition-transform duration-300 hover:scale-110"
+      style={{ color: tone }}
+    >
       <Icon className="h-5 w-5" />
     </div>
   );
 }
 
+const INNER_ITEMS = [
+  { icon: Github, tone: "#1f2937" },
+  { icon: Plane, tone: "#0ea5e9" },
+  { icon: Music, tone: "#ec4899" },
+  { icon: Globe, tone: "#10b981" },
+];
+const OUTER_ITEMS = [
+  { icon: Rocket, tone: "#f97316" },
+  { icon: Sparkles, tone: "#a855f7" },
+  { icon: Star, tone: "#f59e0b" },
+  { icon: Zap, tone: "#eab308" },
+  { icon: Disc3, tone: "#14b8a6" },
+  { icon: Crown, tone: "#8b5cf6" },
+];
+
 export function OrbitingCirclesDemo() {
-  const inner = [Github, Plane, Music, Globe].map((Icon, i) => (
-    <OrbitTile key={i} icon={Icon} />
+  const inner = INNER_ITEMS.map((it, i) => (
+    <OrbitTile key={i} icon={it.icon} tone={it.tone} />
   ));
-  const outer = [Rocket, Sparkles, Star, Zap, Disc3, Crown].map((Icon, i) => (
-    <OrbitTile key={i} icon={Icon} />
+  const outer = OUTER_ITEMS.map((it, i) => (
+    <OrbitTile key={i} icon={it.icon} tone={it.tone} />
   ));
 
   return (
-    <div className="relative">
+    <div className="relative flex items-center justify-center">
+      {/* Ambient backdrop glow so the rings feel alive */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute h-[360px] w-[360px] rounded-full opacity-70 blur-3xl"
+        style={{
+          background:
+            "radial-gradient(closest-side, rgba(99,102,241,0.18), rgba(168,85,247,0.10) 55%, transparent 75%)",
+        }}
+      />
       <OrbitingCircles
         items={outer}
         radius={150}
@@ -766,8 +818,17 @@ export function OrbitingCirclesDemo() {
             reverse
             showPath
             center={
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-foreground text-background shadow-[0_12px_28px_-12px_rgba(0,0,0,0.4)]">
-                <Sparkles className="h-7 w-7" />
+              <div className="relative">
+                <span
+                  aria-hidden
+                  className="absolute inset-0 -z-10 animate-ping rounded-2xl bg-foreground/10"
+                  style={{ animationDuration: "3s" }}
+                />
+                <div
+                  className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-foreground to-foreground/80 text-background shadow-[0_18px_36px_-12px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.18)]"
+                >
+                  <Sparkles className="h-7 w-7" />
+                </div>
               </div>
             }
           />
@@ -778,12 +839,18 @@ export function OrbitingCirclesDemo() {
 }
 
 /* ------------------------------------------------------------------
- * GlowingStars — twinkling night sky as a hero background.
+ * Sparkles — starfield demo using the new shape="dot" mode.
  * ------------------------------------------------------------------ */
-export function GlowingStarsDemo() {
+export function SparklesStarfieldDemo() {
   return (
     <div className="relative h-[300px] w-[480px] overflow-hidden rounded-2xl border border-border/60 bg-gradient-to-b from-[#070b1f] via-[#0a1338] to-[#1a1a4a] text-white">
-      <GlowingStars count={140} speed={[2, 5]} />
+      <SparklesFx
+        shape="dot"
+        count={150}
+        speed={[2, 5]}
+        color="rgb(255,255,255)"
+        glow
+      />
       <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent" />
       <div className="relative flex h-full flex-col justify-end p-8">
         <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/60">
@@ -793,10 +860,610 @@ export function GlowingStarsDemo() {
           Reach further than you thought.
         </p>
         <p className="mt-2 max-w-md text-sm leading-relaxed text-white/70">
-          A drop-in twinkling starfield. Pure CSS — no canvas, no JS animation
-          loop, no battery drain.
+          A drop-in twinkling starfield via{" "}
+          <code className="rounded bg-white/10 px-1 py-0.5 text-xs">
+            shape=&quot;dot&quot;
+          </code>
+          . Pure CSS, no canvas, no battery drain.
         </p>
       </div>
     </div>
   );
 }
+
+/* ------------------------------------------------------------------
+ * Sparkles — sparkle particles around a hero headline.
+ * ------------------------------------------------------------------ */
+export function SparklesDemo() {
+  return (
+    <div className="relative h-[260px] w-[480px] overflow-hidden rounded-2xl border border-border/60 bg-slate-950 text-white">
+      <SparklesFx
+        count={36}
+        size={[2, 4]}
+        speed={[1.5, 4]}
+        color="rgb(245, 208, 110)"
+      />
+      <div className="relative flex h-full flex-col items-center justify-center px-8 text-center">
+        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-amber-200/80">
+          The future of UI
+        </p>
+        <p className="mt-3 text-3xl font-semibold tracking-tight">
+          Built for{" "}
+          <AnimatedText variant="gradient" className="font-semibold">
+            designers
+          </AnimatedText>
+          .
+        </p>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * InfiniteMovingCards — auto-scrolling testimonial row.
+ * ------------------------------------------------------------------ */
+const TESTIMONIAL_QUOTES = [
+  {
+    author: "Sasha Lee",
+    role: "Eng Lead, Linear",
+    quote: "Replaced three component libraries. Bundle dropped 40 KB.",
+  },
+  {
+    author: "Diego Alvarez",
+    role: "Founder, Stack",
+    quote: "The CLI is what shadcn promised — but better.",
+  },
+  {
+    author: "Mira Patel",
+    role: "Staff Eng, Atlas",
+    quote: "Tiny PRs, zero version-bump anxiety. Changes how the team thinks.",
+  },
+  {
+    author: "Jonas Reyes",
+    role: "Designer, Portal",
+    quote: "Even the empty states feel premium. Defaults are the design.",
+  },
+  {
+    author: "Aiko Tanaka",
+    role: "Eng, Sequel",
+    quote: "Owning the source means I never wait on a maintainer.",
+  },
+];
+
+export function InfiniteMovingCardsDemo() {
+  const cards = TESTIMONIAL_QUOTES.map((t, i) => (
+    <div
+      key={i}
+      className="flex h-[140px] w-[300px] flex-col justify-between rounded-xl border border-border/60 bg-card p-5 text-card-foreground shadow-[0_8px_24px_-12px_rgba(0,0,0,0.18)]"
+    >
+      <Quote className="h-4 w-4 text-muted-foreground" />
+      <p className="text-sm font-medium leading-snug">&ldquo;{t.quote}&rdquo;</p>
+      <div className="flex items-center gap-2">
+        <Avatar className="h-7 w-7">
+          <AvatarFallback className="text-[10px]">
+            {t.author
+              .split(" ")
+              .map((s) => s[0])
+              .join("")}
+          </AvatarFallback>
+        </Avatar>
+        <div className="leading-tight">
+          <p className="text-xs font-semibold">{t.author}</p>
+          <p className="text-[11px] text-muted-foreground">{t.role}</p>
+        </div>
+      </div>
+    </div>
+  ));
+
+  return (
+    <InfiniteMovingCards
+      className="w-full max-w-2xl"
+      items={cards}
+      duration={28}
+      gap={20}
+    />
+  );
+}
+
+/* ------------------------------------------------------------------
+ * HoverBorderGradient — border lights up where the cursor hovers.
+ * ------------------------------------------------------------------ */
+export function HoverBorderGradientDemo() {
+  return (
+    <HoverBorderGradient
+      className="w-[320px]"
+      borderWidth={1.5}
+      radius={20}
+      color="rgba(168, 85, 247, 0.9)"
+    >
+      <div className="flex flex-col gap-3 p-7">
+        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-500 text-white">
+          <Sparkles className="h-4 w-4" />
+        </div>
+        <div>
+          <p className="text-base font-semibold tracking-tight">CraftUI Pro</p>
+          <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+            Move the cursor over the edges. The border lights up where the
+            pointer hovers — a flashlight-on-a-frame effect.
+          </p>
+        </div>
+        <Button size="sm" className="mt-1 w-full" variant="outline">
+          Learn more
+        </Button>
+      </div>
+    </HoverBorderGradient>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * Lamp — spotlight from above on a hero panel.
+ * ------------------------------------------------------------------ */
+export function LampDemo() {
+  return (
+    <Lamp
+      className="h-[300px] w-[480px] rounded-2xl bg-slate-950 text-white"
+      color="rgba(56, 189, 248, 0.9)"
+      beamWidth={460}
+      beamHeight={220}
+    >
+      <div className="flex h-[300px] flex-col items-center justify-end px-8 pb-10 text-center">
+        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-sky-200/70">
+          Built for builders
+        </p>
+        <p className="mt-3 max-w-md text-3xl font-semibold tracking-tight">
+          <AnimatedText
+            variant="shiny"
+            duration={3}
+            shineColor="rgb(255,255,255)"
+            baseColor="rgba(255,255,255,0.55)"
+          >
+            Light up your hero.
+          </AnimatedText>
+        </p>
+        <p className="mt-3 max-w-md text-sm text-white/65">
+          A drop-in lamp for that &ldquo;product launch&rdquo; vibe — set the
+          beam color, width, and height to match your brand.
+        </p>
+      </div>
+    </Lamp>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * Magnet — buttons gravitate toward the cursor.
+ * ------------------------------------------------------------------ */
+export function MagnetDemo() {
+  return (
+    <div className="flex flex-col items-center gap-8 py-8">
+      <p className="max-w-md text-center text-sm text-muted-foreground">
+        Move your cursor near these buttons — they&apos;ll lean toward you.
+      </p>
+      <div className="flex items-center gap-12">
+        <Magnet strength={20} range={120}>
+          <Button>Get started</Button>
+        </Magnet>
+        <Magnet strength={28} range={140}>
+          <Button variant="outline">Documentation</Button>
+        </Magnet>
+        <Magnet strength={20} range={120}>
+          <Button variant="ghost">Pricing</Button>
+        </Magnet>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * AnimatedText — single component, four variants in one panel.
+ * ------------------------------------------------------------------ */
+export function AnimatedTextDemo() {
+  return (
+    <div className="flex flex-col items-stretch gap-6 py-6">
+      <div className="rounded-2xl border border-border/60 bg-card p-7 text-center">
+        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+          variant=&quot;shiny&quot;
+        </p>
+        <p className="mt-3 text-3xl font-semibold tracking-tight">
+          <AnimatedText
+            variant="shiny"
+            shineColor="hsl(var(--foreground))"
+            baseColor="hsl(var(--foreground) / 0.4)"
+          >
+            Ship beautifully.
+          </AnimatedText>
+        </p>
+      </div>
+
+      <div className="rounded-2xl border border-border/60 bg-card p-7 text-center">
+        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+          variant=&quot;gradient&quot;
+        </p>
+        <p className="mt-3 text-3xl font-semibold tracking-tight">
+          Components that{" "}
+          <AnimatedText variant="gradient" className="font-semibold">
+            spark joy
+          </AnimatedText>
+          .
+        </p>
+      </div>
+
+      <div className="rounded-2xl border border-border/60 bg-card p-7 text-center">
+        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+          variant=&quot;typewriter&quot;
+        </p>
+        <p className="mt-3 text-3xl font-semibold tracking-tight">
+          Build for{" "}
+          <span className="text-violet-500">
+            <AnimatedText
+              variant="typewriter"
+              phrases={["designers", "founders", "engineers", "the team"]}
+              typeSpeed={80}
+              deleteSpeed={45}
+              pause={1400}
+            />
+          </span>
+          .
+        </p>
+      </div>
+
+      <div className="rounded-2xl border border-border/60 bg-card p-7 text-center">
+        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+          variant=&quot;reveal&quot;
+        </p>
+        <p className="mt-3 text-2xl font-semibold tracking-tight">
+          <AnimatedText variant="reveal" stagger={32} duration={600}>
+            Build interfaces that feel inevitable.
+          </AnimatedText>
+        </p>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * NumberTicker — animated stat counters.
+ * ------------------------------------------------------------------ */
+export function NumberTickerDemo() {
+  return (
+    <div className="grid grid-cols-3 gap-6 py-6">
+      {[
+        { label: "Components", value: 85 },
+        { label: "Downloads", value: 124000 },
+        { label: "Stars", value: 9482 },
+      ].map((s) => (
+        <div
+          key={s.label}
+          className="rounded-2xl border border-border/60 bg-card p-6 text-center shadow-[0_8px_24px_-12px_rgba(0,0,0,0.15)]"
+        >
+          <p className="text-4xl font-semibold tracking-tight tabular-nums">
+            <NumberTicker value={s.value} duration={1800} />
+          </p>
+          <p className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">
+            {s.label}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * NeonGlow — neon-sign style wrapper on a dark background.
+ * ------------------------------------------------------------------ */
+export function NeonGlowDemo() {
+  return (
+    <div className="flex h-[260px] w-[480px] items-center justify-center rounded-2xl bg-slate-950">
+      <div className="flex items-center gap-6">
+        <NeonGlow color="rgb(34, 211, 238)" radius={16} intensity={0.7}>
+          <div className="px-5 py-3 text-sm font-semibold tracking-tight text-cyan-100">
+            CYAN
+          </div>
+        </NeonGlow>
+        <NeonGlow color="rgb(236, 72, 153)" radius={999} intensity={0.7}>
+          <div className="px-5 py-3 text-sm font-semibold tracking-tight text-pink-100">
+            PINK
+          </div>
+        </NeonGlow>
+        <NeonGlow color="rgb(168, 85, 247)" radius={12} intensity={0.7}>
+          <div className="px-5 py-3 text-sm font-semibold tracking-tight text-violet-100">
+            VIOLET
+          </div>
+        </NeonGlow>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * BackgroundBeams — diagonal animated beams behind hero copy.
+ * ------------------------------------------------------------------ */
+export function BackgroundBeamsDemo() {
+  return (
+    <div className="relative h-[300px] w-[480px] overflow-hidden rounded-2xl border border-border/60 bg-slate-950 text-white">
+      <BackgroundBeams count={14} color="rgba(99,102,241,0.55)" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,rgba(99,102,241,0.4),transparent_60%)]" />
+      <div className="relative flex h-full flex-col justify-end p-8">
+        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/60">
+          Beams · v1
+        </p>
+        <p className="mt-2 text-2xl font-semibold tracking-tight">
+          Energy you can feel.
+        </p>
+        <p className="mt-2 max-w-md text-sm leading-relaxed text-white/65">
+          Diagonal SVG beams streak across the panel at randomized speeds.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * BackgroundBoxes — skewed grid that highlights on hover.
+ * ------------------------------------------------------------------ */
+export function BackgroundBoxesDemo() {
+  return (
+    <div className="relative h-[320px] w-[520px] overflow-hidden rounded-2xl border border-border/60 bg-slate-950 text-white">
+      <BackgroundBoxes
+        rows={9}
+        cols={18}
+        cellSize={36}
+        hoverColor="rgba(168, 85, 247, 0.85)"
+      />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_30%,rgba(2,6,23,0.85)_75%)]" />
+      <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center px-8 text-center">
+        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/60">
+          Hover anywhere
+        </p>
+        <p className="mt-2 text-2xl font-semibold tracking-tight">
+          Move the cursor across the grid.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * WavyBackground — drifting colored waves behind hero copy.
+ * ------------------------------------------------------------------ */
+export function WavyBackgroundDemo() {
+  return (
+    <WavyBackground
+      className="h-[300px] w-[480px] rounded-2xl bg-slate-950 text-white"
+      duration={14}
+      blur={10}
+    >
+      <div className="relative flex h-[300px] flex-col justify-end p-8">
+        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/65">
+          Atmosphere
+        </p>
+        <p className="mt-3 max-w-xs text-3xl font-semibold leading-tight tracking-tight">
+          Quietly alive.
+        </p>
+        <p className="mt-2 max-w-md text-sm leading-relaxed text-white/65">
+          Multi-color SVG waves drift behind your content with a soft blur.
+        </p>
+      </div>
+    </WavyBackground>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * FollowingPointer — custom cursor follower inside a wrapped panel.
+ * ------------------------------------------------------------------ */
+export function FollowingPointerDemo() {
+  return (
+    <FollowingPointer className="h-[260px] w-[480px] overflow-hidden rounded-2xl border border-border/60 bg-card">
+      <div className="flex h-full flex-col justify-center px-8">
+        <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+          Live preview
+        </p>
+        <p className="mt-2 text-2xl font-semibold tracking-tight">
+          Move the cursor over this panel.
+        </p>
+        <p className="mt-2 max-w-md text-sm text-muted-foreground">
+          The system cursor disappears; a branded indicator follows the
+          pointer. Replace the indicator with anything — avatar, icon, label.
+        </p>
+      </div>
+    </FollowingPointer>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * Compare — drag-to-compare for two code states (before / after).
+ * ------------------------------------------------------------------ */
+function CodePanel({
+  variant,
+}: {
+  variant: "before" | "after";
+}) {
+  // Same shape both sides — different content. Manually colored spans simulate
+  // syntax highlighting without bundling Shiki into the demo.
+  const k = (s: string) => (
+    <span className="text-fuchsia-400">{s}</span>
+  );
+  const fn = (s: string) => <span className="text-violet-300">{s}</span>;
+  const v = (s: string) => <span className="text-sky-300">{s}</span>;
+  const str = (s: string) => <span className="text-emerald-300">{s}</span>;
+  const num = (s: string) => <span className="text-amber-300">{s}</span>;
+  const cmt = (s: string) => (
+    <span className="italic text-slate-500">{s}</span>
+  );
+  const id = (s: string) => <span className="text-cyan-200">{s}</span>;
+
+  return (
+    <div className="relative h-full w-full overflow-hidden bg-[#0b1020]">
+      {/* Window chrome */}
+      <div className="flex items-center gap-1.5 px-4 py-3">
+        <span className="h-2.5 w-2.5 rounded-full bg-rose-500/90" />
+        <span className="h-2.5 w-2.5 rounded-full bg-amber-400/90" />
+        <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/90" />
+      </div>
+      <pre className="px-5 pb-5 font-mono text-[12px] leading-relaxed text-slate-200">
+        <code>
+          {k("const")} {id("handleEnd")} = {fn("useCallback")}(() {fn("=>")}{" "}
+          {`{`}
+          {"\n  "}
+          {variant === "before" ? (
+            cmt("// Implement this")
+          ) : (
+            <>
+              {k("if")} ({id("isDragging")}) {`{`}
+              {"\n    "}
+              {id("setIsDragging")}({v("false")});{"\n  "}
+              {`}`}
+            </>
+          )}
+          {"\n"}
+          {`}, []);`}
+          {"\n\n"}
+          {k("const")} {id("handleMove")} = {fn("useCallback")}(
+          {"\n  "}({id("e")}) {fn("=>")} {`{`}
+          {"\n    "}
+          {variant === "before" ? (
+            cmt("// Implement this")
+          ) : (
+            <>
+              {k("if")} (!{id("ref")}.{id("current")}) {k("return")};{"\n    "}
+              {k("const")} {id("rect")} = {id("ref")}.{id("current")}.
+              {fn("getBoundingClientRect")}();{"\n    "}
+              {k("const")} {id("x")} = {id("e")}.{id("clientX")} - {id("rect")}.
+              {id("left")};{"\n    "}
+              {k("const")} {id("p")} = ({id("x")} / {id("rect")}.{id("width")})
+              * {num("100")};{"\n    "}
+              {id("setPos")}({fn("Math")}.{fn("max")}({num("0")}, {fn("Math")}.
+              {fn("min")}({num("100")}, {id("p")})));
+            </>
+          )}
+          {"\n  "}
+          {`}`},{"\n  "}[{id("isDragging")}]{"\n"}
+          {`);`}
+          {"\n\n"}
+          {k("const")} {id("handleStart")} = {fn("useCallback")}(({id("x")})
+          {fn(" =>")} {`{`}
+          {"\n  "}
+          {variant === "before"
+            ? cmt("// Implement this")
+            : (
+              <>
+                {id("setIsDragging")}({v("true")});{"\n  "}
+                {id("handleMove")}({str(`{ clientX: x }`)} {k("as")} {id("any")});
+              </>
+            )}
+          {"\n"}
+          {`}, [`}
+          {id("handleMove")}
+          {`]);`}
+        </code>
+      </pre>
+    </div>
+  );
+}
+
+export function CompareDemo() {
+  return (
+    <Compare
+      className="h-[360px] w-[560px] border border-border/60 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.35)]"
+      defaultPosition={42}
+      before={<CodePanel variant="before" />}
+      after={<CodePanel variant="after" />}
+    />
+  );
+}
+
+/* ------------------------------------------------------------------
+ * CardHoverEffect — grid of feature cards with sliding hover bg.
+ * ------------------------------------------------------------------ */
+export function CardHoverEffectDemo() {
+  const items = [
+    {
+      id: 1,
+      title: "Composable",
+      description: "Every component is a single file you can edit, not a black box.",
+      icon: <Zap className="h-5 w-5 text-violet-500" />,
+    },
+    {
+      id: 2,
+      title: "Themeable",
+      description: "HSL CSS variables. Swap themes with a class.",
+      icon: <Sparkles className="h-5 w-5 text-fuchsia-500" />,
+    },
+    {
+      id: 3,
+      title: "Accessible",
+      description: "Built on Radix primitives. Keyboard and screen reader friendly.",
+      icon: <Star className="h-5 w-5 text-amber-500" />,
+    },
+    {
+      id: 4,
+      title: "Tiny",
+      description: "Tree-shakable. Pay for what you use, nothing more.",
+      icon: <Rocket className="h-5 w-5 text-orange-500" />,
+    },
+    {
+      id: 5,
+      title: "Open source",
+      description: "MIT-licensed. Fork it, ship it, make it yours.",
+      icon: <Github className="h-5 w-5 text-slate-700" />,
+    },
+    {
+      id: 6,
+      title: "Modern",
+      description: "Tailwind 3, React 18, Next.js 14, TypeScript everywhere.",
+      icon: <Globe className="h-5 w-5 text-emerald-500" />,
+    },
+  ];
+  return <CardHoverEffect items={items} columns={3} className="w-full max-w-4xl" />;
+}
+
+/* ------------------------------------------------------------------
+ * SparklesText — hero text with glowing beam + falling particles.
+ * ------------------------------------------------------------------ */
+export function SparklesTextDemo() {
+  return (
+    <div className="flex h-[460px] w-full max-w-3xl items-stretch justify-center overflow-hidden rounded-2xl bg-black">
+      <SparklesText
+        className="w-full px-10 pt-24"
+        beamColor="rgb(56, 189, 248)"
+        particleCount={220}
+        spread={82}
+        beamGap={12}
+      >
+        <h1 className="text-center text-6xl font-bold tracking-tight text-white md:text-7xl">
+          CraftUI
+        </h1>
+      </SparklesText>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * MultiStepLoader — click-to-open fullscreen step loader.
+ * ------------------------------------------------------------------ */
+const LOADER_STEPS = [
+  { text: "Buying a condo" },
+  { text: "Travelling in a flight" },
+  { text: "Meeting Tyler Durden" },
+  { text: "He makes soap" },
+  { text: "We goto a bar" },
+  { text: "Start a fight" },
+  { text: "We like it" },
+  { text: "Welcome to F**** C***" },
+];
+
+export function MultiStepLoaderDemo() {
+  const [loading, setLoading] = React.useState(false);
+  return (
+    <div className="flex h-[200px] w-full items-center justify-center">
+      <Button onClick={() => setLoading(true)}>Click to load</Button>
+      <MultiStepLoader
+        loading={loading}
+        steps={LOADER_STEPS}
+        duration={1800}
+        loop
+        onClose={() => setLoading(false)}
+      />
+    </div>
+  );
+}
+

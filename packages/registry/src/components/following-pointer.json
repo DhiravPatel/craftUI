@@ -1,0 +1,16 @@
+{
+  "name": "following-pointer",
+  "description": "Custom cursor that follows the pointer inside a wrapped area. Hide the system cursor and replace it with a branded indicator (or any React node).",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/following-pointer/following-pointer.tsx",
+      "target": "{{components}}/following-pointer.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "pointer", "cursor", "interactive", "hover"]
+}

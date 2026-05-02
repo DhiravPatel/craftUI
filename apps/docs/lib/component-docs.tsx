@@ -147,6 +147,7 @@ import {
 import { FullFormDemo, LoginFormDemo } from "@/components/demos/form-demo";
 import {
   ComboboxDemo,
+  FooterDemo,
   ModernNavbarDemo,
   MultiSelectDemo,
   RatingDemo,
@@ -158,24 +159,40 @@ import {
   ToggleDemo,
 } from "@/components/demos/interactive-demos";
 import {
+  AnimatedTextDemo,
   AuroraDemo,
+  BackgroundBeamsDemo,
+  BackgroundBoxesDemo,
+  CardHoverEffectDemo,
   CardStackDemo,
   Carousel3DDemo,
+  CompareDemo,
   CoverflowDemo,
   CubeDemo,
   DirectionAwareHoverDemo,
   FlipCardDemo,
-  GlowingStarsDemo,
+  FollowingPointerDemo,
   HoloCardDemo,
+  HoverBorderGradientDemo,
+  InfiniteMovingCardsDemo,
+  LampDemo,
   LensDemo,
+  MagnetDemo,
   Marquee3DDemo,
   MeteorsDemo,
   MovingBorderDemo,
+  MultiStepLoaderDemo,
+  NeonGlowDemo,
+  NumberTickerDemo,
   OrbitingCirclesDemo,
   ParallaxDemo,
   Pin3DDemo,
+  SparklesDemo,
+  SparklesStarfieldDemo,
+  SparklesTextDemo,
   SpotlightDemo,
   TiltDemo,
+  WavyBackgroundDemo,
 } from "@/components/demos/threed-demos";
 
 export interface PropDef {
@@ -2317,6 +2334,61 @@ toast({ title: "Copied", description: "Link copied to clipboard" });`,
     },
   },
 
+  // ---------- Footer ----------
+  {
+    name: "footer",
+    title: "Footer",
+    description:
+      "Site footer with a brand column, up to four link columns, and an optional giant watermark wordmark behind the content.",
+    imports: `import { Footer } from "@/components/ui/footer";`,
+    defaultExample: {
+      title: "Brand + four link columns + watermark",
+      description:
+        "Pass a brand mark, copyright line, and an array of `columns` (each with a title and links). Add a `watermark` for the giant decorative wordmark behind the content.",
+      code: `<Footer
+  brand={<><Logo /> <span>DevStudio</span></>}
+  copyright="© DevStudios 2024. All rights reserved."
+  watermark="DevStudio"
+  columns={[
+    { title: "Pages", links: [...] },
+    { title: "Socials", links: [...] },
+    { title: "Legal", links: [...] },
+    { title: "Register", links: [...] },
+  ]}
+/>`,
+      render: <FooterDemo />,
+    },
+    props: [
+      {
+        name: "brand",
+        type: "ReactNode",
+        description: "Brand mark — typically a logo and/or wordmark.",
+      },
+      {
+        name: "copyright",
+        type: "ReactNode",
+        description: "Copyright/notice rendered below the brand.",
+      },
+      {
+        name: "columns",
+        type: "{ title: ReactNode; links: { label: ReactNode; href: string }[] }[]",
+        description: "Up to four columns of navigation links.",
+      },
+      {
+        name: "watermark",
+        type: "ReactNode",
+        description: "Giant wordmark rendered behind the footer (decorative).",
+      },
+      {
+        name: "showDivider",
+        type: "boolean",
+        default: "true",
+        description: "Show a top divider rule above the content.",
+      },
+    ],
+    related: ["navbar", "layout"],
+  },
+
   // ---------- Form ----------
   {
     name: "form",
@@ -3746,14 +3818,27 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
       {
         name: "pinOffset",
         type: "number",
-        default: "64",
-        description: "Distance the pin lifts above the card in px.",
+        default: "56",
+        description: "Distance the pin label lifts above the top of the card, in px.",
+      },
+      {
+        name: "landingDepth",
+        type: "number",
+        default: "100",
+        description:
+          "How far the line continues into the card from its top edge, in px. The landing ripple sits at this depth.",
       },
       {
         name: "tilt",
         type: "number",
-        default: "30",
+        default: "22",
         description: "Backward tilt of the card on hover, in degrees.",
+      },
+      {
+        name: "lineColor",
+        type: "string",
+        default: `"rgb(34, 211, 238)"`,
+        description: "Color of the connecting line and landing ripple.",
       },
     ],
     related: ["tilt", "holo-card"],
@@ -3979,7 +4064,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
         description: "Maximum random delay before each meteor starts.",
       },
     ],
-    related: ["glowing-stars", "spotlight"],
+    related: ["sparkles", "spotlight"],
   },
 
   // ---------- Aurora (3D) ----------
@@ -4019,7 +4104,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
         description: "Strength of the blur in px.",
       },
     ],
-    related: ["spotlight", "glowing-stars"],
+    related: ["spotlight", "sparkles"],
   },
 
   // ---------- MovingBorder (3D) ----------
@@ -4128,44 +4213,734 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
     related: ["carousel-3d", "cube"],
   },
 
-  // ---------- GlowingStars (3D) ----------
+
+  // ---------- Sparkles (3D) ----------
   {
-    name: "glowing-stars",
-    title: "Glowing Stars",
+    name: "sparkles",
+    title: "Sparkles",
     description:
-      "Twinkling star background. Hundreds of randomly placed dots fade in and out at different speeds; a subset emit a soft glow halo for that night-sky feel. Pure CSS — no canvas, no JS animation loop.",
-    imports: `import { GlowingStars } from "@/components/ui/glowing-stars";`,
+      "Twinkling particle overlay with two visual modes — `shape=\"star\"` for 4-pointed sparkles and `shape=\"dot\"` for a starfield-style background of dots with optional glow halo.",
+    imports: `import { Sparkles } from "@/components/ui/sparkles";`,
     defaultExample: {
-      title: "Night sky hero",
+      title: "Decorated headline",
       description:
-        "Wrap inside any dark `relative` container. Stars are absolutely positioned, so they fill whatever you give them.",
-      code: `<div className="relative h-[300px] w-[480px] rounded-2xl bg-slate-950">
-  <GlowingStars count={140} speed={[2, 5]} />
+        "Sparkles is absolutely positioned — wrap it inside any `relative` container. Tune `count`, `size`, `speed`, and `color` to fit the surrounding scene.",
+      code: `<div className="relative h-[260px] w-[480px] rounded-2xl bg-slate-950">
+  <Sparkles count={36} size={[2, 4]} color="rgb(245, 208, 110)" />
   {/* hero copy */}
 </div>`,
-      render: <GlowingStarsDemo />,
+      render: <SparklesDemo />,
     },
+    examples: [
+      {
+        title: "Starfield (shape=\"dot\")",
+        description:
+          "Pass `shape=\"dot\"` to render a dense field of round stars with subtle glow halos — replaces the old `GlowingStars` component.",
+        code: `<Sparkles
+  shape="dot"
+  count={150}
+  speed={[2, 5]}
+  color="rgb(255,255,255)"
+  glow
+/>`,
+        render: <SparklesStarfieldDemo />,
+      },
+    ],
     props: [
+      {
+        name: "shape",
+        type: `"star" | "dot"`,
+        default: `"star"`,
+        description:
+          "Visual shape of each particle. `\"star\"` renders 4-pointed sparkles; `\"dot\"` renders round stars with optional glow.",
+      },
       {
         name: "count",
         type: "number",
-        default: "120",
-        description: "Number of stars in the grid.",
+        description: "Default 30 for stars, 120 for dots.",
       },
       {
-        name: "color",
-        type: "string",
-        default: `"rgb(255,255,255)"`,
-        description: "Color of the glowing stars.",
+        name: "size",
+        type: "[number, number]",
+        description: "Min/max size. Default `[2, 5]` for stars, `[1, 2.4]` for dots.",
       },
       {
         name: "speed",
         type: "[number, number]",
-        default: "[2, 5]",
-        description: "Min/max twinkle duration range in seconds.",
+        default: "[1.5, 4]",
+        description: "Min/max twinkle duration in seconds.",
+      },
+      { name: "color", type: "string", default: `"currentColor"` },
+      {
+        name: "glow",
+        type: "boolean",
+        default: "true",
+        description: "For `shape=\"dot\"`: a fraction of dots emit a soft halo.",
       },
     ],
     related: ["meteors", "aurora"],
+  },
+
+  // ---------- InfiniteMovingCards (3D) ----------
+  {
+    name: "infinite-moving-cards",
+    title: "Infinite Moving Cards",
+    description:
+      "Auto-scrolling row of cards that loops forever. Pause on hover, choose direction, fade the edges. Perfect for testimonials, logo walls, and 'Trusted by' sections.",
+    imports: `import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";`,
+    defaultExample: {
+      title: "Testimonials reel",
+      description:
+        "The list is duplicated internally for a seamless loop. The mask fades the edges so the cards visually slide off-screen.",
+      code: `<InfiniteMovingCards
+  items={cards}
+  duration={28}
+  gap={20}
+/>`,
+      render: <InfiniteMovingCardsDemo />,
+    },
+    props: [
+      { name: "items", type: "ReactNode[]", required: true },
+      {
+        name: "direction",
+        type: `"left" | "right"`,
+        default: `"left"`,
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "30",
+        description: "Scroll duration in seconds.",
+      },
+      { name: "pauseOnHover", type: "boolean", default: "true" },
+      { name: "gap", type: "number", default: "16" },
+      {
+        name: "fade",
+        type: "boolean",
+        default: "true",
+        description: "Fade the left/right edges with a mask.",
+      },
+    ],
+    related: ["marquee-3d", "coverflow"],
+  },
+
+  // ---------- HoverBorderGradient (3D) ----------
+  {
+    name: "hover-border-gradient",
+    title: "Hover Border Gradient",
+    description:
+      "Border that lights up where the cursor hovers. A radial highlight follows the pointer along the edge, creating a flashlight-on-a-frame effect.",
+    imports: `import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";`,
+    defaultExample: {
+      title: "Pricing card",
+      description:
+        "Move the cursor over the card edges. The highlight tracks the pointer; when the cursor leaves, the border fades back to neutral.",
+      code: `<HoverBorderGradient color="rgba(168, 85, 247, 0.9)" radius={20}>
+  <div className="p-7">
+    {/* card content */}
+  </div>
+</HoverBorderGradient>`,
+      render: <HoverBorderGradientDemo />,
+    },
+    props: [
+      { name: "borderWidth", type: "number", default: "1.5" },
+      { name: "radius", type: "number", default: "16" },
+      {
+        name: "innerBg",
+        type: "string",
+        description: "Tailwind class for the inner background. Default `bg-background`.",
+      },
+      {
+        name: "color",
+        type: "string",
+        description: "Color of the moving highlight.",
+      },
+    ],
+    related: ["moving-border", "spotlight"],
+  },
+
+  // ---------- Lamp (3D) ----------
+  {
+    name: "lamp",
+    title: "Lamp",
+    description:
+      "Spotlight from above. A bright bar at the top edge cones light down across the panel. Iconic Aceternity-style hero treatment for product launches.",
+    imports: `import { Lamp } from "@/components/ui/lamp";`,
+    defaultExample: {
+      title: "Launch hero",
+      description:
+        "Place the Lamp wrapper around any dark hero. Tune `color`, `beamWidth`, and `beamHeight` to match your brand.",
+      code: `<Lamp
+  className="rounded-2xl bg-slate-950 text-white"
+  color="rgba(56, 189, 248, 0.9)"
+  beamWidth={460}
+  beamHeight={220}
+>
+  {/* hero copy */}
+</Lamp>`,
+      render: <LampDemo />,
+    },
+    props: [
+      {
+        name: "color",
+        type: "string",
+        default: `"rgba(56, 189, 248, 0.8)"`,
+      },
+      { name: "beamWidth", type: "number", default: "480" },
+      { name: "beamHeight", type: "number", default: "200" },
+    ],
+    related: ["spotlight", "aurora"],
+  },
+
+  // ---------- Magnet (3D) ----------
+  {
+    name: "magnet",
+    title: "Magnet",
+    description:
+      "Element gravitates toward the cursor when nearby. Listens to window mousemove and translates within a configurable range; snaps back when out of range.",
+    imports: `import { Magnet } from "@/components/ui/magnet";`,
+    defaultExample: {
+      title: "Magnetic CTAs",
+      description:
+        "Wrap any button (or anything else) in `<Magnet>` to give it that pulled-toward-cursor feel.",
+      code: `<Magnet strength={20} range={120}>
+  <Button>Get started</Button>
+</Magnet>`,
+      render: <MagnetDemo />,
+    },
+    props: [
+      {
+        name: "strength",
+        type: "number",
+        default: "24",
+        description: "Maximum translation distance in px.",
+      },
+      {
+        name: "range",
+        type: "number",
+        default: "100",
+        description: "Distance from center in px where the pull starts.",
+      },
+      { name: "disabled", type: "boolean", default: "false" },
+    ],
+    related: ["tilt", "hover-border-gradient"],
+  },
+
+  // ---------- AnimatedText (3D) — combines shiny / gradient / typewriter / reveal ----------
+  {
+    name: "animated-text",
+    title: "Animated Text",
+    description:
+      "One component, four text effects. Switch via the `variant` prop: `shiny` (gradient sweep), `gradient` (animated rainbow), `typewriter` (cycling phrases), `reveal` (char/word stagger on scroll).",
+    imports: `import { AnimatedText } from "@/components/ui/animated-text";`,
+    defaultExample: {
+      title: "All four variants",
+      description:
+        "All effects share one API surface and one Tailwind keyframe set, so you can pick the feel without adding a new component each time.",
+      code: `<AnimatedText variant="shiny">Ship beautifully.</AnimatedText>
+<AnimatedText variant="gradient">spark joy</AnimatedText>
+<AnimatedText variant="typewriter" phrases={["designers", "founders"]} />
+<AnimatedText variant="reveal">Build interfaces that feel inevitable.</AnimatedText>`,
+      render: <AnimatedTextDemo />,
+    },
+    props: [
+      {
+        name: "variant",
+        type: `"shiny" | "gradient" | "typewriter" | "reveal"`,
+        default: `"shiny"`,
+      },
+      {
+        name: "children",
+        type: "ReactNode",
+        description: "Text content for `shiny`, `gradient`, and `reveal` variants.",
+      },
+      {
+        name: "phrases",
+        type: "string[]",
+        description: "Phrases to cycle through (`typewriter`).",
+      },
+      {
+        name: "duration",
+        type: "number",
+        description:
+          "Seconds for `shiny`/`gradient`; ms-per-character for `reveal`.",
+      },
+      {
+        name: "baseColor",
+        type: "string",
+        default: `"hsl(var(--foreground) / 0.5)"`,
+        description: "Base text color (`shiny`).",
+      },
+      {
+        name: "shineColor",
+        type: "string",
+        default: `"hsl(var(--foreground))"`,
+        description: "Highlight color of the sweep (`shiny`).",
+      },
+      {
+        name: "colors",
+        type: "string[]",
+        description: "Gradient color stops (`gradient`).",
+      },
+      {
+        name: "static",
+        type: "boolean",
+        default: "false",
+        description: "Lock the gradient in place (`gradient`).",
+      },
+      {
+        name: "typeSpeed",
+        type: "number",
+        default: "70",
+        description: "Typing speed in ms (`typewriter`).",
+      },
+      {
+        name: "deleteSpeed",
+        type: "number",
+        default: "40",
+        description: "Deletion speed in ms (`typewriter`).",
+      },
+      {
+        name: "pause",
+        type: "number",
+        default: "1500",
+        description: "Pause at end of each phrase (`typewriter`).",
+      },
+      { name: "loop", type: "boolean", default: "true" },
+      { name: "cursor", type: "boolean", default: "true" },
+      { name: "cursorChar", type: "string", default: `"|"` },
+      {
+        name: "stagger",
+        type: "number",
+        default: "30",
+        description: "Per-character/word delay in ms (`reveal`).",
+      },
+      {
+        name: "delay",
+        type: "number",
+        default: "0",
+        description: "Delay before the reveal starts (`reveal`).",
+      },
+      {
+        name: "whenInView",
+        type: "boolean",
+        default: "true",
+        description: "Trigger reveal only when scrolled into view (`reveal`).",
+      },
+      {
+        name: "byWord",
+        type: "boolean",
+        default: "false",
+        description: "Reveal by word instead of character (`reveal`).",
+      },
+    ],
+    related: ["sparkles", "number-ticker"],
+  },
+
+  // ---------- NumberTicker (3D) ----------
+  {
+    name: "number-ticker",
+    title: "Number Ticker",
+    description:
+      "Animated number counter that rolls from `from` to `value` with a cubic ease. Defaults to triggering when scrolled into view; supports custom formatting.",
+    imports: `import { NumberTicker } from "@/components/ui/number-ticker";`,
+    defaultExample: {
+      title: "Stat trio",
+      description:
+        "Each ticker uses an IntersectionObserver to start when scrolled into view. Pass `whenInView={false}` to start immediately on mount.",
+      code: `<NumberTicker value={124000} duration={1800} />`,
+      render: <NumberTickerDemo />,
+    },
+    props: [
+      {
+        name: "value",
+        type: "number",
+        required: true,
+        description: "Final value the counter animates to.",
+      },
+      { name: "from", type: "number", default: "0" },
+      {
+        name: "duration",
+        type: "number",
+        default: "1500",
+        description: "Animation duration in ms.",
+      },
+      { name: "decimals", type: "number", default: "0" },
+      {
+        name: "format",
+        type: "(value: number) => string",
+        description: "Custom number formatter.",
+      },
+      { name: "whenInView", type: "boolean", default: "true" },
+    ],
+    related: ["animated-text"],
+  },
+
+  // ---------- NeonGlow (3D) ----------
+  {
+    name: "neon-glow",
+    title: "Neon Glow",
+    description:
+      "Neon-sign style wrapper. Layers concentric box-shadows in a chosen color to make any element look like it's emitting light. Pops on dark backgrounds.",
+    imports: `import { NeonGlow } from "@/components/ui/neon-glow";`,
+    defaultExample: {
+      title: "Neon trio",
+      description:
+        "Wrap any block element. The glow uses outer + inset box-shadow combined with a thin colored border. Works at any radius — including pills.",
+      code: `<NeonGlow color="rgb(34, 211, 238)" intensity={0.7}>
+  <div className="px-5 py-3">CYAN</div>
+</NeonGlow>`,
+      render: <NeonGlowDemo />,
+    },
+    props: [
+      {
+        name: "color",
+        type: "string",
+        default: `"rgb(34, 211, 238)"`,
+        description:
+          "Glow color. Accepts `rgb(...)` for alpha derivation, or any CSS color.",
+      },
+      {
+        name: "intensity",
+        type: "number",
+        default: "0.7",
+        description: "Glow intensity (0–1).",
+      },
+      { name: "radius", type: "number", default: "16" },
+    ],
+    related: ["moving-border", "hover-border-gradient"],
+  },
+
+  // ---------- BackgroundBeams (3D) ----------
+  {
+    name: "background-beams",
+    title: "Background Beams",
+    description:
+      "Animated diagonal beams streaking across a hero panel. SVG + CSS — no canvas, no battery drain.",
+    imports: `import { BackgroundBeams } from "@/components/ui/background-beams";`,
+    defaultExample: {
+      title: "Hero backdrop",
+      description:
+        "Drop into any `relative` container — beams render absolutely. Tune `count`, `speed`, and `color` to match the surrounding scene.",
+      code: `<div className="relative h-[300px] w-[480px] rounded-2xl bg-slate-950">
+  <BackgroundBeams count={14} color="rgba(99,102,241,0.55)" />
+  {/* hero copy */}
+</div>`,
+      render: <BackgroundBeamsDemo />,
+    },
+    props: [
+      { name: "count", type: "number", default: "12" },
+      {
+        name: "speed",
+        type: "[number, number]",
+        default: "[6, 14]",
+        description: "Min/max travel duration in seconds.",
+      },
+      {
+        name: "color",
+        type: "string",
+        default: `"rgba(99,102,241,0.5)"`,
+      },
+    ],
+    related: ["meteors", "aurora"],
+  },
+
+  // ---------- BackgroundBoxes (3D) ----------
+  {
+    name: "background-boxes",
+    title: "Background Boxes",
+    description:
+      "Skewed grid of cells that highlight as the cursor passes over them. Iconic Aceternity-style hero backdrop.",
+    imports: `import { BackgroundBoxes } from "@/components/ui/background-boxes";`,
+    defaultExample: {
+      title: "Hover any cell",
+      description:
+        "The grid is positioned absolutely and skewed for that cinematic perspective. The hover color is fully customizable.",
+      code: `<div className="relative h-[320px] w-[520px] rounded-2xl bg-slate-950">
+  <BackgroundBoxes
+    rows={9}
+    cols={18}
+    cellSize={36}
+    hoverColor="rgba(168, 85, 247, 0.85)"
+  />
+  {/* hero copy */}
+</div>`,
+      render: <BackgroundBoxesDemo />,
+    },
+    props: [
+      { name: "rows", type: "number", default: "12" },
+      { name: "cols", type: "number", default: "24" },
+      { name: "cellSize", type: "number", default: "36" },
+      {
+        name: "hoverColor",
+        type: "string",
+        default: `"rgba(168, 85, 247, 0.85)"`,
+      },
+    ],
+    related: ["background-beams", "wavy-background"],
+  },
+
+  // ---------- WavyBackground (3D) ----------
+  {
+    name: "wavy-background",
+    title: "Wavy Background",
+    description:
+      "Animated wavy SVG lines that drift behind your content. Multiple colored waves with blur — perfect for atmospheric heroes.",
+    imports: `import { WavyBackground } from "@/components/ui/wavy-background";`,
+    defaultExample: {
+      title: "Atmospheric hero",
+      description:
+        "Wrap your hero copy directly inside `<WavyBackground>`. Customize `colors`, `duration`, `strokeWidth`, and `blur`.",
+      code: `<WavyBackground className="rounded-2xl bg-slate-950 text-white">
+  <div className="p-8">
+    {/* hero copy */}
+  </div>
+</WavyBackground>`,
+      render: <WavyBackgroundDemo />,
+    },
+    props: [
+      {
+        name: "colors",
+        type: "string[]",
+        description: "Wave colors (one path per color).",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "14",
+        description: "Animation duration in seconds.",
+      },
+      { name: "strokeWidth", type: "number", default: "3" },
+      { name: "blur", type: "number", default: "8" },
+    ],
+    related: ["aurora", "background-beams"],
+  },
+
+  // ---------- FollowingPointer (3D) ----------
+  {
+    name: "following-pointer",
+    title: "Following Pointer",
+    description:
+      "Custom cursor that follows the pointer inside a wrapped area. Hide the system cursor and replace it with a branded indicator (or any React node).",
+    imports: `import { FollowingPointer } from "@/components/ui/following-pointer";`,
+    defaultExample: {
+      title: "Live preview surface",
+      description:
+        "Wrap any area to take over the cursor inside it. Pass `indicator` to render a custom follower, or accept the default arrow + label.",
+      code: `<FollowingPointer className="rounded-2xl border bg-card">
+  <div className="p-8">
+    {/* content */}
+  </div>
+</FollowingPointer>`,
+      render: <FollowingPointerDemo />,
+    },
+    props: [
+      {
+        name: "indicator",
+        type: "ReactNode",
+        description: "Custom indicator. Default: arrow + label.",
+      },
+      {
+        name: "hideCursor",
+        type: "boolean",
+        default: "true",
+        description: "Hide the system cursor inside the wrapped area.",
+      },
+    ],
+    related: ["magnet", "spotlight"],
+  },
+
+  // ---------- Compare (3D) ----------
+  {
+    name: "compare",
+    title: "Compare",
+    description:
+      "Drag-to-compare slider that reveals two layers. Perfect for before/after code states, theme previews, or design comparisons.",
+    imports: `import { Compare } from "@/components/ui/compare";`,
+    defaultExample: {
+      title: "Stub vs. implementation",
+      description:
+        "Pass any React content as `before` and `after`. Here we compare two code states — drag the handle to wipe between the stub (with `// Implement this`) and the finished implementation.",
+      code: `<Compare
+  before={<CodePanel variant="before" />}
+  after={<CodePanel variant="after" />}
+/>`,
+      render: <CompareDemo />,
+    },
+    props: [
+      { name: "before", type: "ReactNode", required: true },
+      { name: "after", type: "ReactNode", required: true },
+      {
+        name: "defaultPosition",
+        type: "number",
+        default: "50",
+        description: "Initial divider position (0–100).",
+      },
+      {
+        name: "position",
+        type: "number",
+        description: "Controlled divider position (0–100).",
+      },
+      { name: "onPositionChange", type: "(position: number) => void" },
+      {
+        name: "followHover",
+        type: "boolean",
+        default: "false",
+        description: "Move the divider while hovering (no drag needed).",
+      },
+    ],
+    related: ["lens", "tilt"],
+  },
+
+  // ---------- CardHoverEffect (3D) ----------
+  {
+    name: "card-hover-effect",
+    title: "Card Hover Effect",
+    description:
+      "Grid of feature cards with a sliding background pill behind the hovered card. Smooth, distraction-free way to give a card grid life.",
+    imports: `import { CardHoverEffect } from "@/components/ui/card-hover-effect";`,
+    defaultExample: {
+      title: "Feature grid",
+      description:
+        "Pass an array of items with `title`, `description`, `icon`, and optional `href`. The hover pill slides between cards as the cursor moves.",
+      code: `<CardHoverEffect
+  items={features}
+  columns={3}
+/>`,
+      render: <CardHoverEffectDemo />,
+    },
+    props: [
+      {
+        name: "items",
+        type: "{ id, title, description?, icon?, href? }[]",
+        required: true,
+      },
+      { name: "columns", type: "number", default: "3" },
+    ],
+    related: ["tilt", "hover-border-gradient"],
+  },
+
+  // ---------- SparklesText (3D) ----------
+  {
+    name: "sparkles-text",
+    title: "Sparkles Text",
+    description:
+      "Hero text with a glowing horizontal beam below it and twinkling sparkle particles streaming downward — Aceternity-style 'Sparkles' headline. Pure CSS, no canvas.",
+    imports: `import { SparklesText } from "@/components/ui/sparkles-text";`,
+    defaultExample: {
+      title: "Headline with light + sparkles",
+      description:
+        "Wrap any inline text. The component renders the children, a horizontal gradient beam with glow, a soft halo, and a field of twinkling particles below.",
+      code: `<SparklesText beamColor="rgb(56, 189, 248)" particleCount={120}>
+  <h1 className="text-7xl font-bold text-white">CraftUI</h1>
+</SparklesText>`,
+      render: <SparklesTextDemo />,
+    },
+    props: [
+      {
+        name: "children",
+        type: "ReactNode",
+        required: true,
+        description: "Text content (or any inline node).",
+      },
+      {
+        name: "beamColor",
+        type: "string",
+        default: `"rgb(56, 189, 248)"`,
+        description: "Color of the horizontal beam and halo.",
+      },
+      {
+        name: "particleCount",
+        type: "number",
+        default: "180",
+        description: "Number of particles streaming below the beam.",
+      },
+      {
+        name: "spread",
+        type: "number",
+        default: "80",
+        description: "Spread of particles to either side of the beam, in % width.",
+      },
+      {
+        name: "beamGap",
+        type: "number",
+        default: "8",
+        description:
+          "Vertical gap (in px) between the bottom of the text and the beam.",
+      },
+    ],
+    related: ["sparkles", "animated-text"],
+  },
+
+  // ---------- MultiStepLoader (3D / feedback) ----------
+  {
+    name: "multi-step-loader",
+    title: "Multi Step Loader",
+    description:
+      "Fullscreen overlay that auto-advances through a list of steps. Completed steps stack above the active step; upcoming steps queue below. Optional close button.",
+    imports: `import { MultiStepLoader } from "@/components/ui/multi-step-loader";`,
+    defaultExample: {
+      title: "Click to load",
+      description:
+        "Pass `loading={true}` to show the overlay. The component cycles through `steps` every `duration` ms. Set `loop` to keep advancing forever, or use `onComplete` to handle the end.",
+      code: `const [loading, setLoading] = useState(false);
+
+<Button onClick={() => setLoading(true)}>Click to load</Button>
+<MultiStepLoader
+  loading={loading}
+  steps={[
+    { text: "Buying a condo" },
+    { text: "Travelling in a flight" },
+    { text: "Meeting Tyler Durden" },
+    // …
+  ]}
+  duration={1800}
+  loop
+  onClose={() => setLoading(false)}
+/>`,
+      render: <MultiStepLoaderDemo />,
+    },
+    props: [
+      {
+        name: "loading",
+        type: "boolean",
+        required: true,
+        description: "Whether the loader is visible.",
+      },
+      {
+        name: "steps",
+        type: "{ text: ReactNode }[]",
+        required: true,
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "2000",
+        description: "Time spent on each step in ms.",
+      },
+      {
+        name: "loop",
+        type: "boolean",
+        default: "false",
+        description: "Loop forever once the last step is reached.",
+      },
+      {
+        name: "onComplete",
+        type: "() => void",
+        description: "Called when the last step finishes (when `loop=false`).",
+      },
+      {
+        name: "closable",
+        type: "boolean",
+        default: "true",
+        description: "Show a close button in the corner.",
+      },
+      {
+        name: "onClose",
+        type: "() => void",
+      },
+    ],
+    related: ["stepper", "spinner"],
   },
 ];
 

@@ -1,0 +1,16 @@
+{
+  "name": "animated-text",
+  "description": "Single text-effect component with four variants — `shiny` (gradient sweep), `gradient` (animated rainbow), `typewriter` (cycling phrases), and `reveal` (char/word stagger on scroll).",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/animated-text/animated-text.tsx",
+      "target": "{{components}}/animated-text.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "text", "shimmer", "gradient", "typewriter", "reveal"]
+}

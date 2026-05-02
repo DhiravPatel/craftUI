@@ -1,0 +1,16 @@
+{
+  "name": "sparkles",
+  "description": "Sparkle particles overlay. Drop into any container — twinkling 4-pointed stars scatter across with randomized size, position, and timing.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/sparkles/sparkles.tsx",
+      "target": "{{components}}/sparkles.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "sparkles", "twinkle", "decoration", "background"]
+}

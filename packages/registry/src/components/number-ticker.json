@@ -1,0 +1,16 @@
+{
+  "name": "number-ticker",
+  "description": "Animated number counter that rolls from `from` to `value` with a cubic ease. Defaults to triggering when scrolled into view; supports custom formatting.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/number-ticker/number-ticker.tsx",
+      "target": "{{components}}/number-ticker.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "number", "counter", "stat", "animation"]
+}

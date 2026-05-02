@@ -33,6 +33,7 @@ export const navigation: NavSection[] = [
       { title: "Dialog", href: "/docs/components/dialog" },
       { title: "Dropdown Menu", href: "/docs/components/dropdown-menu" },
       { title: "Empty State", href: "/docs/components/empty-state" },
+      { title: "Footer", href: "/docs/components/footer" },
       { title: "Form", href: "/docs/components/form" },
       { title: "Hover Card", href: "/docs/components/hover-card" },
       { title: "Input", href: "/docs/components/input" },
@@ -88,7 +89,43 @@ export const navigation: NavSection[] = [
       { title: "Aurora", href: "/docs/components/aurora" },
       { title: "Moving Border", href: "/docs/components/moving-border" },
       { title: "Orbiting Circles", href: "/docs/components/orbiting-circles" },
-      { title: "Glowing Stars", href: "/docs/components/glowing-stars" },
+      { title: "Sparkles", href: "/docs/components/sparkles" },
+      {
+        title: "Infinite Moving Cards",
+        href: "/docs/components/infinite-moving-cards",
+      },
+      {
+        title: "Hover Border Gradient",
+        href: "/docs/components/hover-border-gradient",
+      },
+      { title: "Lamp", href: "/docs/components/lamp" },
+      { title: "Magnet", href: "/docs/components/magnet" },
+      { title: "Animated Text", href: "/docs/components/animated-text" },
+      { title: "Number Ticker", href: "/docs/components/number-ticker" },
+      { title: "Neon Glow", href: "/docs/components/neon-glow" },
+      {
+        title: "Background Beams",
+        href: "/docs/components/background-beams",
+      },
+      {
+        title: "Background Boxes",
+        href: "/docs/components/background-boxes",
+      },
+      { title: "Wavy Background", href: "/docs/components/wavy-background" },
+      {
+        title: "Following Pointer",
+        href: "/docs/components/following-pointer",
+      },
+      { title: "Compare", href: "/docs/components/compare" },
+      {
+        title: "Card Hover Effect",
+        href: "/docs/components/card-hover-effect",
+      },
+      { title: "Sparkles Text", href: "/docs/components/sparkles-text" },
+      {
+        title: "Multi Step Loader",
+        href: "/docs/components/multi-step-loader",
+      },
     ],
   },
 ];

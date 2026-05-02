@@ -39,6 +39,45 @@ const nextConfig = {
         destination: "/docs/components",
         permanent: false,
       },
+      // GlowingStars merged into Sparkles via the `shape="dot"` prop.
+      {
+        source: "/docs/components/glowing-stars",
+        destination: "/docs/components/sparkles",
+        permanent: false,
+      },
+      // Text effects merged into the single AnimatedText component (variants).
+      {
+        source: "/docs/components/shiny-text",
+        destination: "/docs/components/animated-text",
+        permanent: false,
+      },
+      {
+        source: "/docs/components/gradient-text",
+        destination: "/docs/components/animated-text",
+        permanent: false,
+      },
+      {
+        source: "/docs/components/typewriter",
+        destination: "/docs/components/animated-text",
+        permanent: false,
+      },
+      {
+        source: "/docs/components/text-reveal",
+        destination: "/docs/components/animated-text",
+        permanent: false,
+      },
+      // WobbleCard removed — Tilt covers the same use case.
+      {
+        source: "/docs/components/wobble-card",
+        destination: "/docs/components/tilt",
+        permanent: false,
+      },
+      // MacbookScroll removed.
+      {
+        source: "/docs/components/macbook-scroll",
+        destination: "/docs/components",
+        permanent: false,
+      },
     ];
   },
 };

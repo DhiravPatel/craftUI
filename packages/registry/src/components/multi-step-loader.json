@@ -1,0 +1,16 @@
+{
+  "name": "multi-step-loader",
+  "description": "Fullscreen overlay that auto-advances through a list of steps. Completed steps stack above the active one; upcoming steps queue below. Optional close button.",
+  "category": "feedback",
+  "files": [
+    {
+      "path": "components/multi-step-loader/multi-step-loader.tsx",
+      "target": "{{components}}/multi-step-loader.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["lucide-react"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["loader", "steps", "loading", "overlay", "fullscreen"]
+}

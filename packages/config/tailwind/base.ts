@@ -129,6 +129,18 @@ export const craftuiTailwindPreset: Partial<Config> = {
           "0%, 100%": { opacity: "0.25", transform: "scale(0.8)" },
           "50%": { opacity: "1", transform: "scale(1.2)" },
         },
+        shine: {
+          from: { backgroundPosition: "200% 0" },
+          to: { backgroundPosition: "-200% 0" },
+        },
+        "gradient-flow": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
+        "cursor-blink": {
+          "0%, 49%": { opacity: "1" },
+          "50%, 100%": { opacity: "0" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -146,6 +158,10 @@ export const craftuiTailwindPreset: Partial<Config> = {
         meteor: "meteor var(--meteor-duration, 5s) linear infinite",
         aurora: "aurora var(--aurora-duration, 18s) ease-in-out infinite",
         twinkle: "twinkle var(--twinkle-duration, 3s) ease-in-out infinite",
+        shine: "shine var(--shine-duration, 3s) linear infinite",
+        "gradient-flow":
+          "gradient-flow var(--gradient-duration, 6s) ease infinite",
+        "cursor-blink": "cursor-blink 1s step-end infinite",
       },
     },
   },

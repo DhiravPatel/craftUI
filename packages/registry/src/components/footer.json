@@ -1,0 +1,16 @@
+{
+  "name": "footer",
+  "description": "Site footer with a brand column, up to four link columns, and an optional giant watermark wordmark behind the content.",
+  "category": "layout",
+  "files": [
+    {
+      "path": "components/footer/footer.tsx",
+      "target": "{{components}}/footer.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["footer", "layout", "links", "brand"]
+}

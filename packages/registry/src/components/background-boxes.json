@@ -1,0 +1,16 @@
+{
+  "name": "background-boxes",
+  "description": "Skewed grid of cells that highlight as the cursor passes over them. Iconic Aceternity-style hero backdrop.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/background-boxes/background-boxes.tsx",
+      "target": "{{components}}/background-boxes.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "background", "boxes", "grid", "hover"]
+}

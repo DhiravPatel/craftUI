@@ -1,0 +1,16 @@
+{
+  "name": "neon-glow",
+  "description": "Neon glow wrapper. Layers concentric box-shadows in a chosen color to make any element look like a neon sign — dark backgrounds make it pop.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/neon-glow/neon-glow.tsx",
+      "target": "{{components}}/neon-glow.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "neon", "glow", "border", "premium"]
+}

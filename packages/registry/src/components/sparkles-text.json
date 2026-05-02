@@ -1,0 +1,16 @@
+{
+  "name": "sparkles-text",
+  "description": "Hero text with a glowing horizontal beam and twinkling sparkle particles falling below — Aceternity-style 'Sparkles' headline.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/sparkles-text/sparkles-text.tsx",
+      "target": "{{components}}/sparkles-text.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "text", "sparkles", "beam", "hero"]
+}

@@ -20,6 +20,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  Footer,
   Input,
   Label,
   Popover,
@@ -595,4 +596,85 @@ export function RatingDemo() {
 /* Avoid the unused Input import warning */
 export function _SilenceUnusedInput() {
   return <Input className="hidden" aria-hidden />;
+}
+
+/* ------------------------------------------------------------------
+ * Footer — brand + 4 link columns + giant watermark.
+ * ------------------------------------------------------------------ */
+function DevStudioMark() {
+  return (
+    <span className="flex h-7 w-7 items-center justify-center rounded-md bg-foreground text-background">
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        aria-hidden
+      >
+        <path
+          d="M12 3l9 16H3l9-16z"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinejoin="round"
+          fill="none"
+        />
+      </svg>
+    </span>
+  );
+}
+
+export function FooterDemo() {
+  return (
+    <div className="-mx-6 overflow-hidden rounded-xl border border-border/60 bg-background">
+      <Footer
+        brand={
+          <>
+            <DevStudioMark />
+            <span className="text-base font-semibold tracking-tight">
+              DevStudio
+            </span>
+          </>
+        }
+        copyright="© DevStudios 2024. All rights reserved."
+        watermark="DevStudio"
+        columns={[
+          {
+            title: "Pages",
+            links: [
+              { label: "All Products", href: "#" },
+              { label: "Studio", href: "#" },
+              { label: "Clients", href: "#" },
+              { label: "Pricing", href: "#" },
+              { label: "Blog", href: "#" },
+            ],
+          },
+          {
+            title: "Socials",
+            links: [
+              { label: "Facebook", href: "#" },
+              { label: "Instagram", href: "#" },
+              { label: "Twitter", href: "#" },
+              { label: "LinkedIn", href: "#" },
+            ],
+          },
+          {
+            title: "Legal",
+            links: [
+              { label: "Privacy Policy", href: "#" },
+              { label: "Terms of Service", href: "#" },
+              { label: "Cookie Policy", href: "#" },
+            ],
+          },
+          {
+            title: "Register",
+            links: [
+              { label: "Sign Up", href: "#" },
+              { label: "Login", href: "#" },
+              { label: "Forgot Password", href: "#" },
+            ],
+          },
+        ]}
+      />
+    </div>
+  );
 }

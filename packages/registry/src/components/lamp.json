@@ -1,0 +1,16 @@
+{
+  "name": "lamp",
+  "description": "Spotlight lamp from above. A bright bar at the top edge cones light down across the panel. Iconic Aceternity-style hero treatment.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/lamp/lamp.tsx",
+      "target": "{{components}}/lamp.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "lamp", "spotlight", "hero", "light"]
+}

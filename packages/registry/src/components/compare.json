@@ -1,0 +1,16 @@
+{
+  "name": "compare",
+  "description": "Drag-to-compare slider that reveals two layers — perfect for before/after image comparisons or theme previews.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/compare/compare.tsx",
+      "target": "{{components}}/compare.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "compare", "slider", "before-after", "image"]
+}

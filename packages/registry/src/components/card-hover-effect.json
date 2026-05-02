@@ -1,0 +1,16 @@
+{
+  "name": "card-hover-effect",
+  "description": "Grid of feature cards with a sliding background pill behind the hovered card. Smooth, distraction-free way to give a card grid life.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/card-hover-effect/card-hover-effect.tsx",
+      "target": "{{components}}/card-hover-effect.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "card", "grid", "hover", "feature"]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "wavy-background",
+  "description": "Animated wavy SVG lines that drift behind your content. Multiple colored waves with blur — perfect for atmospheric heroes.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/wavy-background/wavy-background.tsx",
+      "target": "{{components}}/wavy-background.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "background", "wavy", "lines", "hero"]
+}
