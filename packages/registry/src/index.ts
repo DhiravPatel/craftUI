@@ -36,12 +36,15 @@ import fileUpload from "./components/file-upload.json";
 import flipCard from "./components/flip-card.json";
 import flipWords from "./components/flip-words.json";
 import floatingDock from "./components/floating-dock.json";
+import fluxPanels from "./components/flux-panels.json";
 import focusCards from "./components/focus-cards.json";
 import followingPointer from "./components/following-pointer.json";
 import footer from "./components/footer.json";
 import form from "./components/form.json";
 import globe from "./components/globe.json";
+import gravityWell from "./components/gravity-well.json";
 import holoCard from "./components/holo-card.json";
+import holoSlices from "./components/holo-slices.json";
 import hoverBorderGradient from "./components/hover-border-gradient.json";
 import hoverCard from "./components/hover-card.json";
 import infiniteMovingCards from "./components/infinite-moving-cards.json";
@@ -59,13 +62,18 @@ import movingBorder from "./components/moving-border.json";
 import multiStepLoader from "./components/multi-step-loader.json";
 import navbar from "./components/navbar.json";
 import neonGlow from "./components/neon-glow.json";
+import neonPortal from "./components/neon-portal.json";
 import numberTicker from "./components/number-ticker.json";
+import orbitStack from "./components/orbit-stack.json";
 import orbitingCircles from "./components/orbiting-circles.json";
 import pagination from "./components/pagination.json";
 import parallax from "./components/parallax.json";
 import pin3d from "./components/pin-3d.json";
+import plasmaField from "./components/plasma-field.json";
+import prismOrb from "./components/prism-orb.json";
 import popover from "./components/popover.json";
 import progress from "./components/progress.json";
+import quantumGrid from "./components/quantum-grid.json";
 import radioGroup from "./components/radio-group.json";
 import rating from "./components/rating.json";
 import ripple from "./components/ripple.json";
@@ -90,12 +98,14 @@ import textScramble from "./components/text-scramble.json";
 import textarea from "./components/textarea.json";
 import themeProvider from "./components/theme-provider.json";
 import tilt from "./components/tilt.json";
+import tiltTiles from "./components/tilt-tiles.json";
 import timeline from "./components/timeline.json";
 import toast from "./components/toast.json";
 import toggle from "./components/toggle.json";
 import toggleGroup from "./components/toggle-group.json";
 import tooltip from "./components/tooltip.json";
 import tracingBeam from "./components/tracing-beam.json";
+import vortexRings from "./components/vortex-rings.json";
 import wavyBackground from "./components/wavy-background.json";
 import wavyText from "./components/wavy-text.json";
 import worldMap from "./components/world-map.json";
@@ -137,12 +147,15 @@ export const registry: Registry = [
   flipCard,
   flipWords,
   floatingDock,
+  fluxPanels,
   focusCards,
   followingPointer,
   footer,
   form,
   globe,
+  gravityWell,
   holoCard,
+  holoSlices,
   hoverBorderGradient,
   hoverCard,
   infiniteMovingCards,
@@ -160,13 +173,18 @@ export const registry: Registry = [
   multiStepLoader,
   navbar,
   neonGlow,
+  neonPortal,
   numberTicker,
+  orbitStack,
   orbitingCircles,
   pagination,
   parallax,
   pin3d,
+  plasmaField,
+  prismOrb,
   popover,
   progress,
+  quantumGrid,
   radioGroup,
   rating,
   ripple,
@@ -191,12 +209,14 @@ export const registry: Registry = [
   textarea,
   themeProvider,
   tilt,
+  tiltTiles,
   timeline,
   toast,
   toggle,
   toggleGroup,
   tooltip,
   tracingBeam,
+  vortexRings,
   wavyBackground,
   wavyText,
   worldMap,

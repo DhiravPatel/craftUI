@@ -175,13 +175,16 @@ import {
   DirectionAwareHoverDemo,
   DotPatternDemo,
   EvervaultCardDemo,
+  FluxPanelsDemo,
   FlipCardDemo,
   FlipWordsDemo,
   FloatingDockDemo,
   FocusCardsDemo,
   FollowingPointerDemo,
   GlobeDemo,
+  GravityWellDemo,
   HoloCardDemo,
+  HoloSlicesDemo,
   HoverBorderGradientDemo,
   InfiniteMovingCardsDemo,
   LampDemo,
@@ -192,10 +195,15 @@ import {
   MovingBorderDemo,
   MultiStepLoaderDemo,
   NeonGlowDemo,
+  NeonPortalDemo,
   NumberTickerDemo,
+  OrbitStackDemo,
   OrbitingCirclesDemo,
   ParallaxDemo,
   Pin3DDemo,
+  PlasmaFieldDemo,
+  PrismOrbDemo,
+  QuantumGridDemo,
   RippleDemo,
   SparklesDemo,
   SparklesStarfieldDemo,
@@ -204,7 +212,9 @@ import {
   TextGenerateEffectDemo,
   TextScrambleDemo,
   TiltDemo,
+  TiltTilesDemo,
   TracingBeamDemo,
+  VortexRingsDemo,
   WavyBackgroundDemo,
   WavyTextDemo,
   WorldMapDemo,
@@ -5724,6 +5734,220 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
       },
     ],
     related: ["animated-text", "typewriter"],
+  },
+
+  // ---------- PrismOrb ----------
+  {
+    name: "prism-orb",
+    title: "Prism Orb",
+    description:
+      "A spectral 3D orb with rotating conic highlights and a soft glow.",
+    imports: `import { PrismOrb } from "@/components/ui/prism-orb";`,
+    defaultExample: {
+      title: "Spectral core",
+      code: `<PrismOrb size={220} />`,
+      render: <PrismOrbDemo />,
+    },
+    props: [
+      { name: "size", type: "number", default: "240" },
+      { name: "colors", type: "string[]" },
+      { name: "glow", type: "number", default: "28" },
+      { name: "duration", type: "number", default: "10" },
+    ],
+    related: ["neon-portal", "plasma-field"],
+  },
+
+  // ---------- VortexRings ----------
+  {
+    name: "vortex-rings",
+    title: "Vortex Rings",
+    description:
+      "Concentric 3D rings rotating in a vortex formation with neon glow.",
+    imports: `import { VortexRings } from "@/components/ui/vortex-rings";`,
+    defaultExample: {
+      title: "Rotating rings",
+      code: `<VortexRings size={260} ringCount={6} />`,
+      render: <VortexRingsDemo />,
+    },
+    props: [
+      { name: "size", type: "number", default: "320" },
+      { name: "ringCount", type: "number", default: "6" },
+      { name: "duration", type: "number", default: "14" },
+      { name: "perspective", type: "number", default: "900" },
+      { name: "colors", type: "string[]" },
+    ],
+    related: ["orbit-stack", "gravity-well"],
+  },
+
+  // ---------- GravityWell ----------
+  {
+    name: "gravity-well",
+    title: "Gravity Well",
+    description:
+      "A layered 3D gravity well made from pulsating depth rings.",
+    imports: `import { GravityWell } from "@/components/ui/gravity-well";`,
+    defaultExample: {
+      title: "Depth well",
+      code: `<GravityWell size={240} depth={8} />`,
+      render: <GravityWellDemo />,
+    },
+    props: [
+      { name: "size", type: "number", default: "280" },
+      { name: "depth", type: "number", default: "8" },
+      { name: "duration", type: "number", default: "12" },
+      { name: "perspective", type: "number", default: "900" },
+      { name: "colors", type: "string[]" },
+    ],
+    related: ["vortex-rings", "orbiting-circles"],
+  },
+
+  // ---------- HoloSlices ----------
+  {
+    name: "holo-slices",
+    title: "Holo Slices",
+    description: "Floating holographic slices stacked in 3D space.",
+    imports: `import { HoloSlices } from "@/components/ui/holo-slices";`,
+    defaultExample: {
+      title: "Holographic stack",
+      code: `<HoloSlices width={300} height={200} slices={6} />`,
+      render: <HoloSlicesDemo />,
+    },
+    props: [
+      { name: "width", type: "number", default: "320" },
+      { name: "height", type: "number", default: "220" },
+      { name: "slices", type: "number", default: "6" },
+      { name: "duration", type: "number", default: "9" },
+      { name: "colors", type: "string[]" },
+      { name: "perspective", type: "number", default: "1000" },
+    ],
+    related: ["holo-card", "flux-panels"],
+  },
+
+  // ---------- NeonPortal ----------
+  {
+    name: "neon-portal",
+    title: "Neon Portal",
+    description: "A rotating neon portal ring with pulsing core.",
+    imports: `import { NeonPortal } from "@/components/ui/neon-portal";`,
+    defaultExample: {
+      title: "Portal ring",
+      code: `<NeonPortal size={220} />`,
+      render: <NeonPortalDemo />,
+    },
+    props: [
+      { name: "size", type: "number", default: "280" },
+      { name: "thickness", type: "number", default: "22" },
+      { name: "duration", type: "number", default: "8" },
+      { name: "colors", type: "string[]" },
+    ],
+    related: ["prism-orb", "neon-glow"],
+  },
+
+  // ---------- QuantumGrid ----------
+  {
+    name: "quantum-grid",
+    title: "Quantum Grid",
+    description: "A 3D pulsing grid that ripples like a quantum field.",
+    imports: `import { QuantumGrid } from "@/components/ui/quantum-grid";`,
+    defaultExample: {
+      title: "Pulse grid",
+      code: `<QuantumGrid size={260} columns={6} />`,
+      render: <QuantumGridDemo />,
+    },
+    props: [
+      { name: "size", type: "number", default: "280" },
+      { name: "columns", type: "number", default: "6" },
+      { name: "gap", type: "number", default: "6" },
+      { name: "duration", type: "number", default: "6" },
+      { name: "colors", type: "string[]" },
+      { name: "perspective", type: "number", default: "800" },
+    ],
+    related: ["tilt-tiles", "plasma-field"],
+  },
+
+  // ---------- OrbitStack ----------
+  {
+    name: "orbit-stack",
+    title: "Orbit Stack",
+    description: "Stacked orbiting orbs spinning in 3D depth.",
+    imports: `import { OrbitStack } from "@/components/ui/orbit-stack";`,
+    defaultExample: {
+      title: "Orbital stack",
+      code: `<OrbitStack size={240} count={5} />`,
+      render: <OrbitStackDemo />,
+    },
+    props: [
+      { name: "size", type: "number", default: "260" },
+      { name: "count", type: "number", default: "4" },
+      { name: "radius", type: "number", default: "90" },
+      { name: "duration", type: "number", default: "10" },
+      { name: "colors", type: "string[]" },
+    ],
+    related: ["orbiting-circles", "vortex-rings"],
+  },
+
+  // ---------- PlasmaField ----------
+  {
+    name: "plasma-field",
+    title: "Plasma Field",
+    description: "Animated plasma blobs with soft neon diffusion.",
+    imports: `import { PlasmaField } from "@/components/ui/plasma-field";`,
+    defaultExample: {
+      title: "Plasma bloom",
+      code: `<PlasmaField size={260} />`,
+      render: <PlasmaFieldDemo />,
+    },
+    props: [
+      { name: "size", type: "number", default: "320" },
+      { name: "duration", type: "number", default: "14" },
+      { name: "colors", type: "string[]" },
+      { name: "blur", type: "number", default: "40" },
+    ],
+    related: ["prism-orb", "neon-portal"],
+  },
+
+  // ---------- TiltTiles ----------
+  {
+    name: "tilt-tiles",
+    title: "Tilt Tiles",
+    description:
+      "Interactive 3D tiles that tilt toward the pointer and float on hover.",
+    imports: `import { TiltTiles } from "@/components/ui/tilt-tiles";`,
+    defaultExample: {
+      title: "Interactive tiles",
+      code: `<TiltTiles size={260} columns={3} />`,
+      render: <TiltTilesDemo />,
+    },
+    props: [
+      { name: "size", type: "number", default: "300" },
+      { name: "columns", type: "number", default: "3" },
+      { name: "gap", type: "number", default: "10" },
+      { name: "tilt", type: "number", default: "10" },
+      { name: "colors", type: "string[]" },
+    ],
+    related: ["tilt", "quantum-grid"],
+  },
+
+  // ---------- FluxPanels ----------
+  {
+    name: "flux-panels",
+    title: "Flux Panels",
+    description: "Layered translucent panels oscillating through 3D space.",
+    imports: `import { FluxPanels } from "@/components/ui/flux-panels";`,
+    defaultExample: {
+      title: "Layered panels",
+      code: `<FluxPanels width={300} height={200} panels={5} />`,
+      render: <FluxPanelsDemo />,
+    },
+    props: [
+      { name: "width", type: "number", default: "340" },
+      { name: "height", type: "number", default: "220" },
+      { name: "panels", type: "number", default: "5" },
+      { name: "duration", type: "number", default: "8" },
+      { name: "colors", type: "string[]" },
+      { name: "perspective", type: "number", default: "900" },
+    ],
+    related: ["holo-slices", "holo-card"],
   },
 ];
 

@@ -1,0 +1,16 @@
+{
+  "name": "quantum-grid",
+  "description": "A 3D pulsing grid that ripples like a quantum field.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/quantum-grid/quantum-grid.tsx",
+      "target": "{{components}}/quantum-grid.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "grid", "tiles", "pulse", "animated"]
+}

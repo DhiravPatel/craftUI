@@ -23,6 +23,7 @@ import {
   DirectionAwareHover,
   DotPattern,
   EvervaultCard,
+  FluxPanels,
   FlipCard,
   FocusCards,
   FlipCardBack,
@@ -31,7 +32,9 @@ import {
   FloatingDock,
   FollowingPointer,
   Globe,
+  GravityWell,
   HoloCard,
+  HoloSlices,
   HoverBorderGradient,
   InfiniteMovingCards,
   Lamp,
@@ -42,11 +45,16 @@ import {
   MovingBorder,
   MultiStepLoader,
   NeonGlow,
+  NeonPortal,
   NumberTicker,
+  OrbitStack,
   OrbitingCircles,
   Parallax,
   ParallaxLayer,
   Pin3D,
+  PlasmaField,
+  PrismOrb,
+  QuantumGrid,
   Ripple,
   Sparkles as SparklesFx,
   SparklesText,
@@ -54,7 +62,9 @@ import {
   TextGenerateEffect,
   TextScramble,
   Tilt,
+  TiltTiles,
   TracingBeam,
+  VortexRings,
   WavyBackground,
   WavyText,
   WorldMap,
@@ -2000,6 +2010,175 @@ export function TextScrambleDemo() {
           whenInView={false}
         />
       </span>
+    </div>
+  );
+}
+
+// Per-demo photo backdrops — Picsum seeds give stable, varied images that
+// upgrade the previously flat SVG-color background to something with real
+// light, depth, and atmosphere.
+const photoBackdrop = (seed: string): React.CSSProperties => ({
+  backgroundImage: `linear-gradient(rgba(2,6,18,0.82), rgba(2,6,18,0.92)), url("https://picsum.photos/seed/${seed}/1200/720")`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+});
+
+const STAGE_CLASS =
+  "relative flex h-[320px] w-full items-center justify-center overflow-hidden rounded-2xl border border-border/60";
+
+// 9 portrait photos used by the image-supporting components below.
+const PHOTO_GALLERY = [
+  "https://picsum.photos/seed/aurora-tile-1/520/520",
+  "https://picsum.photos/seed/aurora-tile-2/520/520",
+  "https://picsum.photos/seed/aurora-tile-3/520/520",
+  "https://picsum.photos/seed/aurora-tile-4/520/520",
+  "https://picsum.photos/seed/aurora-tile-5/520/520",
+  "https://picsum.photos/seed/aurora-tile-6/520/520",
+  "https://picsum.photos/seed/aurora-tile-7/520/520",
+  "https://picsum.photos/seed/aurora-tile-8/520/520",
+  "https://picsum.photos/seed/aurora-tile-9/520/520",
+];
+
+/* ------------------------------------------------------------------
+ * PrismOrb — spectral orb with rotating conic highlights.
+ * ------------------------------------------------------------------ */
+export function PrismOrbDemo() {
+  return (
+    <div className={STAGE_CLASS} style={photoBackdrop("prism-orb-bg")}>
+      <PrismOrb size={220}>
+        <div className="flex h-full w-full items-center justify-center">
+          <div className="h-10 w-10 rounded-full bg-white/15 shadow-[0_0_30px_rgba(255,255,255,0.45)] backdrop-blur" />
+        </div>
+      </PrismOrb>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * VortexRings — concentric rotating rings in 3D space.
+ * ------------------------------------------------------------------ */
+export function VortexRingsDemo() {
+  return (
+    <div className={STAGE_CLASS} style={photoBackdrop("vortex-rings-bg")}>
+      <VortexRings size={260} ringCount={6} />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * GravityWell — layered depth rings with pulsing motion.
+ * ------------------------------------------------------------------ */
+export function GravityWellDemo() {
+  return (
+    <div className={STAGE_CLASS} style={photoBackdrop("gravity-well-bg")}>
+      <GravityWell size={240} depth={8} />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * HoloSlices — translucent slices in 3D space, now backed by real photos.
+ * ------------------------------------------------------------------ */
+export function HoloSlicesDemo() {
+  return (
+    <div className={STAGE_CLASS} style={photoBackdrop("holo-slices-bg")}>
+      <HoloSlices
+        width={320}
+        height={210}
+        slices={5}
+        radius={20}
+        images={PHOTO_GALLERY.slice(0, 5)}
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * NeonPortal — rotating neon ring with pulsing core.
+ * ------------------------------------------------------------------ */
+export function NeonPortalDemo() {
+  return (
+    <div className={STAGE_CLASS} style={photoBackdrop("neon-portal-bg")}>
+      <NeonPortal size={220} />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * QuantumGrid — 3D pulsing tile grid.
+ * ------------------------------------------------------------------ */
+export function QuantumGridDemo() {
+  return (
+    <div className={STAGE_CLASS} style={photoBackdrop("quantum-grid-bg")}>
+      <QuantumGrid size={260} columns={6} />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * OrbitStack — stacked orbiting orbs in depth, now showing avatar bubbles.
+ * ------------------------------------------------------------------ */
+export function OrbitStackDemo() {
+  return (
+    <div className={STAGE_CLASS} style={photoBackdrop("orbit-stack-bg")}>
+      <OrbitStack
+        size={260}
+        count={5}
+        radius={100}
+        orbSize={42}
+        images={[
+          "https://i.pravatar.cc/120?img=12",
+          "https://i.pravatar.cc/120?img=33",
+          "https://i.pravatar.cc/120?img=44",
+          "https://i.pravatar.cc/120?img=47",
+          "https://i.pravatar.cc/120?img=68",
+        ]}
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * PlasmaField — diffused plasma blobs.
+ * ------------------------------------------------------------------ */
+export function PlasmaFieldDemo() {
+  return (
+    <div className={STAGE_CLASS} style={photoBackdrop("plasma-field-bg")}>
+      <PlasmaField size={260} />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * TiltTiles — interactive 3D tiles, now backed by real photos.
+ * ------------------------------------------------------------------ */
+export function TiltTilesDemo() {
+  return (
+    <div className={STAGE_CLASS} style={photoBackdrop("tilt-tiles-bg")}>
+      <TiltTiles
+        size={280}
+        columns={3}
+        gap={10}
+        radius={14}
+        images={PHOTO_GALLERY}
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * FluxPanels — layered translucent panels in 3D space, now real photos.
+ * ------------------------------------------------------------------ */
+export function FluxPanelsDemo() {
+  return (
+    <div className={STAGE_CLASS} style={photoBackdrop("flux-panels-bg")}>
+      <FluxPanels
+        width={320}
+        height={210}
+        panels={5}
+        radius={18}
+        images={PHOTO_GALLERY.slice(2, 7)}
+      />
     </div>
   );
 }

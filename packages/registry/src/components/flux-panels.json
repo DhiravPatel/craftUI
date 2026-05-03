@@ -1,0 +1,16 @@
+{
+  "name": "flux-panels",
+  "description": "Layered translucent panels oscillating through 3D space.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/flux-panels/flux-panels.tsx",
+      "target": "{{components}}/flux-panels.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "panels", "glass", "animated", "layers"]
+}

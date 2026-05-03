@@ -1,0 +1,16 @@
+{
+  "name": "plasma-field",
+  "description": "Animated plasma blobs with soft neon diffusion.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/plasma-field/plasma-field.tsx",
+      "target": "{{components}}/plasma-field.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["plasma", "blobs", "glow", "animated", "3d"]
+}

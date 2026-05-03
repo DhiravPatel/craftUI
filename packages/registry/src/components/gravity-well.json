@@ -1,0 +1,16 @@
+{
+  "name": "gravity-well",
+  "description": "A layered 3D gravity well made from pulsating depth rings.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/gravity-well/gravity-well.tsx",
+      "target": "{{components}}/gravity-well.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "depth", "rings", "well", "animated"]
+}
