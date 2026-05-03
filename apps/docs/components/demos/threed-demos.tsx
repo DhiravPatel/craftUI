@@ -3,12 +3,15 @@
 import * as React from "react";
 import {
   AnimatedText,
+  AnimatedTooltip,
   Aurora,
   Avatar,
   AvatarFallback,
   BackgroundBeams,
   BackgroundBoxes,
   Badge,
+  BentoGrid,
+  BentoGridItem,
   Button,
   CardHoverEffect,
   CardStack,
@@ -18,10 +21,13 @@ import {
   Cube,
   CubeFace,
   DirectionAwareHover,
+  EvervaultCard,
   FlipCard,
   FlipCardBack,
   FlipCardFront,
+  FloatingDock,
   FollowingPointer,
+  Globe,
   HoloCard,
   HoverBorderGradient,
   InfiniteMovingCards,
@@ -42,7 +48,10 @@ import {
   SparklesText,
   Spotlight,
   Tilt,
+  TracingBeam,
   WavyBackground,
+  WavyText,
+  WorldMap,
 } from "@craftui/ui";
 import {
   ArrowUpRight,
@@ -50,7 +59,7 @@ import {
   Crown,
   Disc3,
   Github,
-  Globe,
+  Globe as GlobeIcon,
   Mountain,
   Music,
   Plane,
@@ -550,7 +559,7 @@ const BRAND_ITEMS = [
   { name: "Stripe", icon: Sparkles },
   { name: "Vercel", icon: Plane },
   { name: "Figma", icon: Star },
-  { name: "Notion", icon: Globe },
+  { name: "Notion", icon: GlobeIcon },
   { name: "Spotify", icon: Music },
   { name: "GitHub", icon: Github },
   { name: "Atlas", icon: Zap },
@@ -775,7 +784,7 @@ const INNER_ITEMS = [
   { icon: Github, tone: "#1f2937" },
   { icon: Plane, tone: "#0ea5e9" },
   { icon: Music, tone: "#ec4899" },
-  { icon: Globe, tone: "#10b981" },
+  { icon: GlobeIcon, tone: "#10b981" },
 ];
 const OUTER_ITEMS = [
   { icon: Rocket, tone: "#f97316" },
@@ -1410,7 +1419,7 @@ export function CardHoverEffectDemo() {
       id: 6,
       title: "Modern",
       description: "Tailwind 3, React 18, Next.js 14, TypeScript everywhere.",
-      icon: <Globe className="h-5 w-5 text-emerald-500" />,
+      icon: <GlobeIcon className="h-5 w-5 text-emerald-500" />,
     },
   ];
   return <CardHoverEffect items={items} columns={3} className="w-full max-w-4xl" />;
@@ -1467,3 +1476,318 @@ export function MultiStepLoaderDemo() {
   );
 }
 
+/* ------------------------------------------------------------------
+ * WorldMap — dotted continents + animated cyan arcs.
+ * ------------------------------------------------------------------ */
+const ROUTES = [
+  // NYC → London → Delhi → Tokyo → Sydney + a couple of cross-Atlantic legs.
+  { start: { lat: 40.71, lng: -74.0 }, end: { lat: 51.5, lng: -0.12 } },
+  { start: { lat: 51.5, lng: -0.12 }, end: { lat: 28.61, lng: 77.21 } },
+  { start: { lat: 28.61, lng: 77.21 }, end: { lat: 35.68, lng: 139.65 } },
+  { start: { lat: 35.68, lng: 139.65 }, end: { lat: -33.86, lng: 151.21 } },
+  { start: { lat: 40.71, lng: -74.0 }, end: { lat: -23.55, lng: -46.63 } },
+  { start: { lat: 51.5, lng: -0.12 }, end: { lat: 30.04, lng: 31.23 } },
+  { start: { lat: 37.77, lng: -122.42 }, end: { lat: 35.68, lng: 139.65 } },
+];
+
+export function WorldMapDemo() {
+  return (
+    <div className="flex w-full max-w-4xl flex-col items-center gap-6 rounded-2xl bg-[#04060d] p-10 text-white">
+      <div className="text-center">
+        <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
+          Remote <span className="text-white/50">Connectivity</span>
+        </h2>
+        <p className="mx-auto mt-2 max-w-md text-sm text-white/60">
+          Break free from traditional boundaries. Work from anywhere, at the
+          comfort of your own studio apartment.
+        </p>
+      </div>
+      <WorldMap
+        className="aspect-[2/1] w-full"
+        connections={ROUTES}
+        lineColor="rgb(56, 189, 248)"
+        duration={4}
+        stagger={0.55}
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * Globe — drag-to-rotate 3D dotted sphere with city markers.
+ * ------------------------------------------------------------------ */
+// Tailwind cyan-500 / blue-500 / indigo-500 — a "data-flowing" trio.
+const ARC_PALETTE = ["#06b6d4", "#3b82f6", "#6366f1"];
+const pickColor = (i: number) => ARC_PALETTE[i % ARC_PALETTE.length]!;
+
+// City lat/lng pairs (factual geographic data).
+const CITIES = {
+  NYC: { lat: 40.7128, lng: -74.006 },
+  LON: { lat: 51.5072, lng: -0.1276 },
+  TYO: { lat: 35.6762, lng: 139.6503 },
+  SYD: { lat: -33.8688, lng: 151.2093 },
+  BOM: { lat: 19.076, lng: 72.8777 },
+  GRU: { lat: -23.5505, lng: -46.6333 },
+  HKG: { lat: 22.3193, lng: 114.1694 },
+  SIN: { lat: 1.3521, lng: 103.8198 },
+  CDG: { lat: 48.8566, lng: 2.3522 },
+  BER: { lat: 52.52, lng: 13.405 },
+  LAX: { lat: 34.0522, lng: -118.2437 },
+  SFO: { lat: 37.7749, lng: -122.4194 },
+  ICN: { lat: 37.5665, lng: 126.978 },
+  DXB: { lat: 25.2048, lng: 55.2708 },
+  DEL: { lat: 28.6139, lng: 77.209 },
+  CPT: { lat: -33.9249, lng: 18.4241 },
+  NBO: { lat: -1.2921, lng: 36.8219 },
+  CAI: { lat: 30.0444, lng: 31.2357 },
+} as const;
+
+const GLOBE_MARKERS = [
+  { ...CITIES.NYC, color: "#38bdf8", size: 8 },
+  { ...CITIES.LON, color: "#60a5fa", size: 8 },
+  { ...CITIES.TYO, color: "#3b82f6", size: 8 },
+  { ...CITIES.SYD, color: "#38bdf8", size: 7 },
+  { ...CITIES.BOM, color: "#6366f1", size: 7 },
+  { ...CITIES.GRU, color: "#3b82f6", size: 7 },
+  { ...CITIES.HKG, color: "#22d3ee", size: 7 },
+  { ...CITIES.SIN, color: "#6366f1", size: 6 },
+  { ...CITIES.CDG, color: "#22d3ee", size: 6 },
+  { ...CITIES.LAX, color: "#3b82f6", size: 6 },
+];
+
+// 18 routes that span every continent so arcs are always coming and going.
+const RAW_ROUTES: Array<[keyof typeof CITIES, keyof typeof CITIES, number]> = [
+  ["NYC", "LON", 0.18],
+  ["LON", "TYO", 0.32],
+  ["TYO", "SYD", 0.22],
+  ["LON", "DEL", 0.24],
+  ["DEL", "SIN", 0.18],
+  ["BOM", "LON", 0.26],
+  ["GRU", "NYC", 0.22],
+  ["GRU", "CPT", 0.4],
+  ["NBO", "DXB", 0.16],
+  ["CAI", "BER", 0.16],
+  ["HKG", "SYD", 0.28],
+  ["SIN", "TYO", 0.18],
+  ["LAX", "TYO", 0.28],
+  ["LAX", "ICN", 0.3],
+  ["SFO", "CDG", 0.34],
+  ["BER", "LAX", 0.34],
+  ["CDG", "NYC", 0.18],
+  ["DXB", "GRU", 0.5],
+];
+
+const GLOBE_CONNECTIONS = RAW_ROUTES.map(([from, to, alt], i) => ({
+  start: CITIES[from],
+  end: CITIES[to],
+  color: pickColor(i),
+  altitude: alt,
+}));
+
+export function GlobeDemo() {
+  return (
+    <div className="flex w-full max-w-4xl flex-col items-center gap-6 rounded-2xl bg-black p-10 text-white">
+      <div className="text-center">
+        <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
+          We sell soap worldwide
+        </h2>
+        <p className="mx-auto mt-2 max-w-md text-sm text-white/60">
+          This globe is interactive. Click + drag to rotate; let go and it
+          auto-spins.
+        </p>
+      </div>
+      <Globe
+        size={520}
+        dotCount={5200}
+        dotColor="rgba(255, 255, 255, 0.78)"
+        atmosphereColor="rgba(59, 130, 246, 0.45)"
+        markers={GLOBE_MARKERS}
+        connections={GLOBE_CONNECTIONS}
+        arcDuration={2.8}
+        arcStagger={0.35}
+        arcDotSize={3.2}
+        arcGlow={10}
+        autoRotate
+        autoRotateSpeed={4.5}
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * TracingBeam — scroll-driven vertical progress line.
+ * ------------------------------------------------------------------ */
+export function TracingBeamDemo() {
+  return (
+    <div className="w-full max-w-2xl">
+      <TracingBeam color="rgb(56, 189, 248)" contentPadding={36}>
+        <div className="space-y-8 py-2">
+          {[
+            {
+              kicker: "Chapter 1",
+              title: "The Beam follows your reading",
+              body: "Scroll the page and a glowing dot travels down the left rail. The portion above the dot lights up; the portion below stays dim — a quiet way to show progress through long-form content.",
+            },
+            {
+              kicker: "Chapter 2",
+              title: "Pure scroll math, no libraries",
+              body: "The component computes its own bounding rect, subtracts the viewport, and maps to 0–1 via rAF. Drop it around any block of content — articles, changelogs, docs.",
+            },
+            {
+              kicker: "Chapter 3",
+              title: "Customizable everywhere",
+              body: "Tune the line color, thickness, and inner padding. The dot inherits the color and adds a glow box-shadow automatically.",
+            },
+          ].map((s) => (
+            <article
+              key={s.kicker}
+              className="rounded-xl border border-border/60 bg-card p-5 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.18)]"
+            >
+              <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+                {s.kicker}
+              </p>
+              <h3 className="mt-2 text-lg font-semibold tracking-tight">
+                {s.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {s.body}
+              </p>
+            </article>
+          ))}
+        </div>
+      </TracingBeam>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * AnimatedTooltip — hover an avatar to lift it and reveal a tooltip.
+ * ------------------------------------------------------------------ */
+export function AnimatedTooltipDemo() {
+  const team = [
+    { id: 1, name: "Sasha Lee", designation: "Eng Lead" },
+    { id: 2, name: "Diego Alvarez", designation: "Founder" },
+    { id: 3, name: "Mira Patel", designation: "Staff Eng" },
+    { id: 4, name: "Jonas Reyes", designation: "Designer" },
+    { id: 5, name: "Aiko Tanaka", designation: "Eng" },
+    { id: 6, name: "Sam Okafor", designation: "PM" },
+  ];
+  return (
+    <div className="flex w-full flex-col items-center gap-4 py-12">
+      <p className="text-sm text-muted-foreground">Hover the avatars below.</p>
+      <AnimatedTooltip items={team} size={56} />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * BentoGrid — multi-size feature grid.
+ * ------------------------------------------------------------------ */
+export function BentoGridDemo() {
+  return (
+    <BentoGrid columns={3} rowHeight="11rem" className="w-full max-w-4xl">
+      <BentoGridItem
+        span="2x2"
+        icon={
+          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-violet-500/15 text-violet-500">
+            <Zap className="h-4 w-4" />
+          </span>
+        }
+        title="Composable by default"
+        description="Every component is a single file you own. Edit, fork, theme — without touching node_modules."
+        background={
+          <div className="absolute inset-0 bg-gradient-to-br from-violet-500/15 via-transparent to-transparent" />
+        }
+      />
+      <BentoGridItem
+        icon={<Star className="h-5 w-5 text-amber-500" />}
+        title="Themeable"
+        description="HSL CSS variables. Swap themes with a class."
+      />
+      <BentoGridItem
+        icon={<Rocket className="h-5 w-5 text-rose-500" />}
+        title="Tiny"
+        description="Tree-shakable. Pay for what you use."
+      />
+      <BentoGridItem
+        span="2x1"
+        icon={<Sparkles className="h-5 w-5 text-fuchsia-500" />}
+        title="Modern animations"
+        description="3D effects, magnify docks, scroll beams — no Three.js, no framer-motion required."
+      />
+      <BentoGridItem
+        icon={<Github className="h-5 w-5 text-foreground/80" />}
+        title="MIT-licensed"
+        description="Fork it, ship it."
+      />
+    </BentoGrid>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * FloatingDock — macOS-style magnify-on-hover dock.
+ * ------------------------------------------------------------------ */
+export function FloatingDockDemo() {
+  const items = [
+    { icon: <GlobeIcon className="h-5 w-5 text-sky-500" />, label: "Browse" },
+    { icon: <Music className="h-5 w-5 text-fuchsia-500" />, label: "Music" },
+    { icon: <Github className="h-5 w-5 text-foreground" />, label: "GitHub" },
+    { icon: <Disc3 className="h-5 w-5 text-emerald-500" />, label: "Records" },
+    { icon: <Sparkles className="h-5 w-5 text-amber-500" />, label: "Spark" },
+    { icon: <Plane className="h-5 w-5 text-cyan-500" />, label: "Travel" },
+    { icon: <Crown className="h-5 w-5 text-violet-500" />, label: "Pro" },
+  ];
+  return (
+    <div className="flex w-full items-end justify-center py-16">
+      <FloatingDock items={items} baseSize={44} magnifySize={72} range={130} />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * WavyText — per-character vertical wave.
+ * ------------------------------------------------------------------ */
+export function WavyTextDemo() {
+  return (
+    <div className="flex w-full flex-col items-center gap-6 py-14 text-center">
+      <p className="text-5xl font-semibold tracking-tight text-violet-500">
+        <WavyText text="CraftUI" amplitude={10} duration={2.2} stagger={0.08} />
+      </p>
+      <p className="text-base text-muted-foreground">
+        <WavyText
+          text="Components that breathe, character by character."
+          amplitude={4}
+          duration={2.4}
+          stagger={0.04}
+        />
+      </p>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * EvervaultCard — random character grid + cursor-tracked gradient.
+ * ------------------------------------------------------------------ */
+export function EvervaultCardDemo() {
+  return (
+    <div className="flex w-full justify-center py-6">
+      <EvervaultCard
+        className="h-[300px] w-[280px]"
+        cursorColor="rgb(34, 211, 238)"
+        radius={20}
+      >
+        <div className="px-6 text-center">
+          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+            Encrypted vault
+          </p>
+          <p className="mt-3 flex h-16 w-16 items-center justify-center rounded-full border border-border/60 bg-background/80 text-2xl font-bold backdrop-blur mx-auto">
+            CU
+          </p>
+          <p className="mt-3 max-w-[14rem] text-xs text-muted-foreground mx-auto">
+            Hover to decrypt — characters fade in behind the cursor.
+          </p>
+        </div>
+      </EvervaultCard>
+    </div>
+  );
+}

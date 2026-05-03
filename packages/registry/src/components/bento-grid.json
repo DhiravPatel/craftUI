@@ -1,0 +1,16 @@
+{
+  "name": "bento-grid",
+  "description": "Multi-size feature grid layout (compound: BentoGrid + BentoGridItem). Items can span multiple columns or rows for the Apple/Vercel-style 'bento' presentation.",
+  "category": "layout",
+  "files": [
+    {
+      "path": "components/bento-grid/bento-grid.tsx",
+      "target": "{{components}}/bento-grid.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["layout", "grid", "bento", "feature"]
+}

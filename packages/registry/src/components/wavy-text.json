@@ -1,0 +1,16 @@
+{
+  "name": "wavy-text",
+  "description": "Text whose characters oscillate vertically on a sine wave with a per-character delay, so the wave travels through the word.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/wavy-text/wavy-text.tsx",
+      "target": "{{components}}/wavy-text.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "text", "wave", "animation"]
+}

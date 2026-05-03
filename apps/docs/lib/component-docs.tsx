@@ -160,9 +160,11 @@ import {
 } from "@/components/demos/interactive-demos";
 import {
   AnimatedTextDemo,
+  AnimatedTooltipDemo,
   AuroraDemo,
   BackgroundBeamsDemo,
   BackgroundBoxesDemo,
+  BentoGridDemo,
   CardHoverEffectDemo,
   CardStackDemo,
   Carousel3DDemo,
@@ -170,8 +172,11 @@ import {
   CoverflowDemo,
   CubeDemo,
   DirectionAwareHoverDemo,
+  EvervaultCardDemo,
   FlipCardDemo,
+  FloatingDockDemo,
   FollowingPointerDemo,
+  GlobeDemo,
   HoloCardDemo,
   HoverBorderGradientDemo,
   InfiniteMovingCardsDemo,
@@ -192,7 +197,10 @@ import {
   SparklesTextDemo,
   SpotlightDemo,
   TiltDemo,
+  TracingBeamDemo,
   WavyBackgroundDemo,
+  WavyTextDemo,
+  WorldMapDemo,
 } from "@/components/demos/threed-demos";
 
 export interface PropDef {
@@ -4941,6 +4949,430 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
       },
     ],
     related: ["stepper", "spinner"],
+  },
+
+  // ---------- WorldMap (3D) ----------
+  {
+    name: "world-map",
+    title: "World Map",
+    description:
+      "Dotted world map with animated cyan arcs that draw, hold, and erase between lat/lng coordinates — perfect for 'remote connectivity' or 'global reach' hero sections.",
+    imports: `import { WorldMap } from "@/components/ui/world-map";`,
+    defaultExample: {
+      title: "Routes between continents",
+      description:
+        "Pass an array of `connections`, each with a `start` and `end` lat/lng. Each arc cycles: draws from start → end, holds, then erases off the end. Routes are staggered so they fire one at a time.",
+      code: `<WorldMap
+  connections={[
+    { start: { lat: 40.71, lng: -74.00 }, end: { lat: 51.50, lng: -0.12 } },
+    { start: { lat: 51.50, lng: -0.12 }, end: { lat: 35.68, lng: 139.65 } },
+    // …
+  ]}
+  duration={4}
+  stagger={0.55}
+/>`,
+      render: <WorldMapDemo />,
+    },
+    props: [
+      {
+        name: "connections",
+        type: "{ start: { lat: number; lng: number }; end: { lat: number; lng: number } }[]",
+        description: "Routes to animate.",
+      },
+      {
+        name: "lineColor",
+        type: "string",
+        default: `"rgb(56, 189, 248)"`,
+        description: "Color of the arcs and endpoint dots.",
+      },
+      {
+        name: "dotColor",
+        type: "string",
+        default: `"rgba(255, 255, 255, 0.18)"`,
+        description: "Color of the underlying dotted continents.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "4",
+        description: "Single arc cycle duration in seconds.",
+      },
+      {
+        name: "stagger",
+        type: "number",
+        default: "0.6",
+        description: "Stagger between arcs in seconds.",
+      },
+    ],
+    related: ["globe", "background-beams"],
+  },
+
+  // ---------- Globe (3D) ----------
+  {
+    name: "globe",
+    title: "Globe",
+    description:
+      "Drag-to-rotate 3D dotted globe with continent-shaped dots and animated arcs between cities. Auto-rotates when idle; click + drag to spin in any direction. Pure CSS 3D — no Three.js dependency.",
+    imports: `import { Globe } from "@/components/ui/globe";`,
+    defaultExample: {
+      title: "Interactive earth with arcs",
+      description:
+        "Surface dots are filtered by a continent polygon mask, so they cluster on land instead of evenly across the sphere. `connections` are sampled along great-circle paths and rendered as a wave of small dots that animate sequentially — like signal traveling between cities.",
+      code: `<Globe
+  size={420}
+  dotCount={3500}
+  markers={[
+    { lat: 40.71, lng: -74.00, label: "NYC" },
+    { lat: 51.50, lng: -0.12, label: "London" },
+    { lat: 35.68, lng: 139.65, label: "Tokyo" },
+  ]}
+  connections={[
+    { start: { lat: 40.71, lng: -74 }, end: { lat: 51.5, lng: -0.12 } },
+    { start: { lat: 51.5, lng: -0.12 }, end: { lat: 35.68, lng: 139.65 } },
+  ]}
+  autoRotate
+  autoRotateSpeed={6}
+/>`,
+      render: <GlobeDemo />,
+    },
+    props: [
+      {
+        name: "size",
+        type: "number",
+        default: "420",
+        description: "Globe diameter in px.",
+      },
+      {
+        name: "dotCount",
+        type: "number",
+        default: "3500",
+        description:
+          "Candidate Fibonacci samples before filtering by the land mask. Higher = denser continents.",
+      },
+      {
+        name: "dotColor",
+        type: "string",
+        default: `"rgba(125, 211, 252, 0.7)"`,
+      },
+      {
+        name: "atmosphereColor",
+        type: "string",
+        default: `"rgba(56, 189, 248, 0.55)"`,
+        description: "Atmosphere/halo color.",
+      },
+      {
+        name: "autoRotate",
+        type: "boolean",
+        default: "true",
+      },
+      {
+        name: "autoRotateSpeed",
+        type: "number",
+        default: "8",
+        description: "Auto-rotate speed in deg/s.",
+      },
+      {
+        name: "markers",
+        type: "{ lat: number; lng: number; color?: string; size?: number; label?: ReactNode }[]",
+        description: "City markers to highlight on the surface.",
+      },
+      {
+        name: "connections",
+        type: "{ start: { lat, lng }; end: { lat, lng } }[]",
+        description: "Animated arcs drawn between two lat/lng points.",
+      },
+      {
+        name: "arcColor",
+        type: "string",
+        default: `"rgb(125, 211, 252)"`,
+      },
+      {
+        name: "arcDuration",
+        type: "number",
+        default: "4",
+        description: "Single arc cycle duration in seconds.",
+      },
+      {
+        name: "arcStagger",
+        type: "number",
+        default: "0.7",
+        description: "Stagger between arcs in seconds.",
+      },
+      {
+        name: "arcSegments",
+        type: "number",
+        default: "32",
+        description: "Number of dot segments per arc.",
+      },
+    ],
+    related: ["world-map", "cube"],
+  },
+
+  // ---------- TracingBeam ----------
+  {
+    name: "tracing-beam",
+    title: "Tracing Beam",
+    description:
+      "Scroll-driven vertical progress line with a glowing dot that travels down as the user reads through the wrapped content.",
+    imports: `import { TracingBeam } from "@/components/ui/tracing-beam";`,
+    defaultExample: {
+      title: "Article rail",
+      description:
+        "Wrap any block of long-form content. The component listens to window scroll, computes how much of itself is in view via `getBoundingClientRect`, and maps that to 0–1 progress. The portion of the line above the dot brightens; below stays dim.",
+      code: `<TracingBeam color="rgb(56, 189, 248)">
+  {/* article content */}
+</TracingBeam>`,
+      render: <TracingBeamDemo />,
+    },
+    props: [
+      {
+        name: "color",
+        type: "string",
+        default: `"rgb(56, 189, 248)"`,
+        description: "Color of the progress line + glowing dot.",
+      },
+      {
+        name: "thickness",
+        type: "number",
+        default: "1.5",
+        description: "Line thickness in px.",
+      },
+      {
+        name: "contentPadding",
+        type: "number",
+        default: "32",
+        description:
+          "Inner padding-left applied so content doesn't sit on top of the beam.",
+      },
+    ],
+    related: ["timeline", "stepper"],
+  },
+
+  // ---------- AnimatedTooltip ----------
+  {
+    name: "animated-tooltip",
+    title: "Animated Tooltip",
+    description:
+      "Overlapping avatar group where hovering an avatar lifts and tilts it while a tooltip with name + role rises above. Useful for team rosters and 'people on this project'.",
+    imports: `import { AnimatedTooltip } from "@/components/ui/animated-tooltip";`,
+    defaultExample: {
+      title: "Team avatars",
+      description:
+        "Pass an array of items with `id`, `name`, and an optional `designation` and `image`. Hover any avatar — it lifts, tilts, and reveals a tooltip card.",
+      code: `<AnimatedTooltip
+  items={[
+    { id: 1, name: "Sasha Lee", designation: "Eng Lead" },
+    { id: 2, name: "Diego Alvarez", designation: "Founder" },
+    // …
+  ]}
+  size={56}
+/>`,
+      render: <AnimatedTooltipDemo />,
+    },
+    props: [
+      {
+        name: "items",
+        type: "{ id: string | number; name: string; designation?: string; image?: string }[]",
+        required: true,
+      },
+      {
+        name: "size",
+        type: "number",
+        default: "48",
+        description: "Avatar diameter in px.",
+      },
+    ],
+    related: ["avatar", "hover-card"],
+  },
+
+  // ---------- BentoGrid ----------
+  {
+    name: "bento-grid",
+    title: "Bento Grid",
+    description:
+      "Multi-size feature grid layout (compound: BentoGrid + BentoGridItem). Items can span multiple columns or rows for the Apple/Vercel-style 'bento' presentation.",
+    imports: `import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";`,
+    defaultExample: {
+      title: "Feature grid",
+      description:
+        "Use `span` on each item (e.g. `\"2x2\"`, `\"2x1\"`) to let cells spread across the grid. Pass `icon`, `title`, `description`, and an optional `background` node for decoration.",
+      code: `<BentoGrid columns={3} rowHeight="11rem">
+  <BentoGridItem
+    span="2x2"
+    icon={<Zap />}
+    title="Composable"
+    description="Every component is a single file you own."
+  />
+  <BentoGridItem
+    icon={<Star />}
+    title="Themeable"
+    description="HSL CSS variables."
+  />
+  {/* … */}
+</BentoGrid>`,
+      render: <BentoGridDemo />,
+    },
+    props: [
+      {
+        name: "columns",
+        type: "number",
+        default: "3",
+        description: "BentoGrid: number of columns.",
+      },
+      {
+        name: "rowHeight",
+        type: "string",
+        default: `"18rem"`,
+        description: "BentoGrid: row height in CSS units.",
+      },
+      {
+        name: "span",
+        type: `"1x1" | "1x2" | "2x1" | "2x2" | "3x1" | "1x3"`,
+        default: `"1x1"`,
+        description: "BentoGridItem: cell span as <cols>x<rows>.",
+      },
+      { name: "title", type: "ReactNode" },
+      { name: "description", type: "ReactNode" },
+      { name: "icon", type: "ReactNode" },
+      {
+        name: "background",
+        type: "ReactNode",
+        description: "Optional decorative background.",
+      },
+    ],
+    related: ["card-hover-effect", "card"],
+  },
+
+  // ---------- FloatingDock ----------
+  {
+    name: "floating-dock",
+    title: "Floating Dock",
+    description:
+      "macOS-style dock with magnify-on-hover. Tiles closest to the cursor scale up smoothly via cosine falloff; tooltip labels rise above the active tile.",
+    imports: `import { FloatingDock } from "@/components/ui/floating-dock";`,
+    defaultExample: {
+      title: "App dock",
+      description:
+        "Each tile measures its distance to the cursor (window-level mousemove) and interpolates between `baseSize` and `magnifySize` using a cosine falloff inside `range` px.",
+      code: `<FloatingDock
+  items={[
+    { icon: <Globe />, label: "Browse", href: "/" },
+    { icon: <Music />, label: "Music" },
+    // …
+  ]}
+  baseSize={44}
+  magnifySize={72}
+  range={130}
+/>`,
+      render: <FloatingDockDemo />,
+    },
+    props: [
+      {
+        name: "items",
+        type: "{ icon: ReactNode; label?: string; href?: string; onClick?: () => void }[]",
+        required: true,
+      },
+      {
+        name: "baseSize",
+        type: "number",
+        default: "44",
+        description: "Resting tile size in px.",
+      },
+      {
+        name: "magnifySize",
+        type: "number",
+        default: "68",
+        description: "Maximum hover size in px.",
+      },
+      {
+        name: "range",
+        type: "number",
+        default: "110",
+        description: "Magnify radius from cursor in px.",
+      },
+    ],
+    related: ["navbar", "tooltip"],
+  },
+
+  // ---------- WavyText ----------
+  {
+    name: "wavy-text",
+    title: "Wavy Text",
+    description:
+      "Text whose characters oscillate vertically on a sine wave with a per-character delay, so the wave travels through the word.",
+    imports: `import { WavyText } from "@/components/ui/wavy-text";`,
+    defaultExample: {
+      title: "Bouncing headline",
+      description:
+        "Pass `text` plus optional `amplitude` (max vertical travel), `duration` (one full oscillation), and `stagger` (delay between characters).",
+      code: `<WavyText text="CraftUI" amplitude={10} duration={2.2} stagger={0.08} />`,
+      render: <WavyTextDemo />,
+    },
+    props: [
+      { name: "text", type: "string", required: true },
+      {
+        name: "amplitude",
+        type: "number",
+        default: "8",
+        description: "Vertical wave amplitude in px.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "2",
+        description: "Single oscillation duration in seconds.",
+      },
+      {
+        name: "stagger",
+        type: "number",
+        default: "0.08",
+        description: "Per-character delay in seconds.",
+      },
+    ],
+    related: ["animated-text", "sparkles-text"],
+  },
+
+  // ---------- EvervaultCard ----------
+  {
+    name: "evervault-card",
+    title: "Evervault Card",
+    description:
+      "Card whose background fills with random characters that become visible behind a cursor-tracked colored gradient on hover. Inspired by the encrypted-storage-vault aesthetic.",
+    imports: `import { EvervaultCard } from "@/components/ui/evervault-card";`,
+    defaultExample: {
+      title: "Encrypted vault",
+      description:
+        "On hover, a radial gradient follows the cursor (`mix-blend: screen`) and fades in a grid of random characters underneath, giving the card a 'decrypting' feel.",
+      code: `<EvervaultCard cursorColor="rgb(34, 211, 238)" radius={20}>
+  <div>{/* card content */}</div>
+</EvervaultCard>`,
+      render: <EvervaultCardDemo />,
+    },
+    props: [
+      {
+        name: "charSet",
+        type: "string",
+        default: `"0123456789ABCDEF"`,
+        description: "Characters used to fill the background grid.",
+      },
+      {
+        name: "charCount",
+        type: "number",
+        default: "800",
+      },
+      {
+        name: "cursorColor",
+        type: "string",
+        default: `"rgb(34, 211, 238)"`,
+        description: "Color of the cursor-following gradient.",
+      },
+      {
+        name: "radius",
+        type: "number",
+        default: "16",
+      },
+    ],
+    related: ["holo-card", "hover-border-gradient"],
   },
 ];
 

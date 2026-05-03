@@ -1,0 +1,16 @@
+{
+  "name": "globe",
+  "description": "Drag-to-rotate 3D dotted globe. Auto-rotates when idle; click + drag to spin in any direction. Place markers at lat/lng to highlight cities. Pure CSS 3D — no Three.js.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/globe/globe.tsx",
+      "target": "{{components}}/globe.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "globe", "earth", "rotate", "interactive"]
+}

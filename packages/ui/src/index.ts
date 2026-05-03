@@ -1,17 +1,20 @@
 // Lib
 export * from "./lib/cn";
 export * from "./lib/utils";
+export * from "./lib/world-data";
 
 // Components
 export * from "./components/accordion";
 export * from "./components/alert";
 export * from "./components/alert-dialog";
 export * from "./components/animated-text";
+export * from "./components/animated-tooltip";
 export * from "./components/aurora";
 export * from "./components/avatar";
 export * from "./components/background-beams";
 export * from "./components/background-boxes";
 export * from "./components/badge";
+export * from "./components/bento-grid";
 export * from "./components/breadcrumb";
 export * from "./components/button";
 export * from "./components/calendar";
@@ -31,10 +34,13 @@ export * from "./components/direction-aware-hover";
 export * from "./components/drawer";
 export * from "./components/dropdown-menu";
 export * from "./components/empty-state";
+export * from "./components/evervault-card";
 export * from "./components/flip-card";
+export * from "./components/floating-dock";
 export * from "./components/following-pointer";
 export * from "./components/footer";
 export * from "./components/form";
+export * from "./components/globe";
 export * from "./components/holo-card";
 export * from "./components/hover-border-gradient";
 export * from "./components/hover-card";
@@ -86,7 +92,10 @@ export * from "./components/toast";
 export * from "./components/toggle";
 export * from "./components/toggle-group";
 export * from "./components/tooltip";
+export * from "./components/tracing-beam";
 export * from "./components/wavy-background";
+export * from "./components/wavy-text";
+export * from "./components/world-map";
 
 // Hooks
 export * from "./hooks";

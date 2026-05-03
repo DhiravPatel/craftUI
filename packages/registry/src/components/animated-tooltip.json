@@ -1,0 +1,16 @@
+{
+  "name": "animated-tooltip",
+  "description": "Overlapping avatar group where hovering an avatar lifts and tilts it while a tooltip with name + role rises above. Useful for team rosters and 'people on this project'.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/animated-tooltip/animated-tooltip.tsx",
+      "target": "{{components}}/animated-tooltip.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "tooltip", "avatar", "team", "hover"]
+}

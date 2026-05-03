@@ -1,0 +1,16 @@
+{
+  "name": "world-map",
+  "description": "Dotted world map with animated cyan arcs that draw, hold, and erase between lat/lng coordinates — perfect for 'remote connectivity' or 'global reach' hero sections.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/world-map/world-map.tsx",
+      "target": "{{components}}/world-map.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "map", "world", "globe", "connectivity", "arcs"]
+}

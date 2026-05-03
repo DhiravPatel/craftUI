@@ -141,6 +141,27 @@ export const craftuiTailwindPreset: Partial<Config> = {
           "0%, 49%": { opacity: "1" },
           "50%, 100%": { opacity: "0" },
         },
+        "world-arc": {
+          "0%, 100%": { strokeDashoffset: "1000", opacity: "0" },
+          "10%": { opacity: "1" },
+          "55%": { strokeDashoffset: "0", opacity: "1" },
+          "90%": { strokeDashoffset: "-1000", opacity: "0" },
+        },
+        "world-arc-dot": {
+          "0%, 100%": { opacity: "0", transform: "scale(0.7)" },
+          "10%": { opacity: "0" },
+          "22%": { opacity: "0.7", transform: "scale(1)" },
+          "55%": { opacity: "1", transform: "scale(1)" },
+          "85%": { opacity: "0.15", transform: "scale(0.85)" },
+        },
+        "world-pulse": {
+          "0%, 100%": { transform: "scale(1)", opacity: "0.6" },
+          "50%": { transform: "scale(2)", opacity: "0" },
+        },
+        wavy: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(calc(var(--wavy-amplitude, 8px) * -1))" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -162,6 +183,13 @@ export const craftuiTailwindPreset: Partial<Config> = {
         "gradient-flow":
           "gradient-flow var(--gradient-duration, 6s) ease infinite",
         "cursor-blink": "cursor-blink 1s step-end infinite",
+        "world-arc":
+          "world-arc var(--world-arc-duration, 4s) ease-in-out infinite",
+        "world-arc-dot":
+          "world-arc-dot var(--world-arc-duration, 4s) ease-in-out infinite",
+        "world-pulse":
+          "world-pulse var(--world-pulse-duration, 2s) ease-out infinite",
+        wavy: "wavy var(--wavy-duration, 2s) ease-in-out infinite",
       },
     },
   },

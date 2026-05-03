@@ -4,11 +4,13 @@ import accordion from "./components/accordion.json";
 import alert from "./components/alert.json";
 import alertDialog from "./components/alert-dialog.json";
 import animatedText from "./components/animated-text.json";
+import animatedTooltip from "./components/animated-tooltip.json";
 import aurora from "./components/aurora.json";
 import avatar from "./components/avatar.json";
 import backgroundBeams from "./components/background-beams.json";
 import backgroundBoxes from "./components/background-boxes.json";
 import badge from "./components/badge.json";
+import bentoGrid from "./components/bento-grid.json";
 import breadcrumb from "./components/breadcrumb.json";
 import button from "./components/button.json";
 import calendar from "./components/calendar.json";
@@ -28,10 +30,13 @@ import directionAwareHover from "./components/direction-aware-hover.json";
 import drawer from "./components/drawer.json";
 import dropdownMenu from "./components/dropdown-menu.json";
 import emptyState from "./components/empty-state.json";
+import evervaultCard from "./components/evervault-card.json";
 import flipCard from "./components/flip-card.json";
+import floatingDock from "./components/floating-dock.json";
 import followingPointer from "./components/following-pointer.json";
 import footer from "./components/footer.json";
 import form from "./components/form.json";
+import globe from "./components/globe.json";
 import holoCard from "./components/holo-card.json";
 import hoverBorderGradient from "./components/hover-border-gradient.json";
 import hoverCard from "./components/hover-card.json";
@@ -83,18 +88,23 @@ import toast from "./components/toast.json";
 import toggle from "./components/toggle.json";
 import toggleGroup from "./components/toggle-group.json";
 import tooltip from "./components/tooltip.json";
+import tracingBeam from "./components/tracing-beam.json";
 import wavyBackground from "./components/wavy-background.json";
+import wavyText from "./components/wavy-text.json";
+import worldMap from "./components/world-map.json";
 
 export const registry: Registry = [
   accordion,
   alert,
   alertDialog,
   animatedText,
+  animatedTooltip,
   aurora,
   avatar,
   backgroundBeams,
   backgroundBoxes,
   badge,
+  bentoGrid,
   breadcrumb,
   button,
   calendar,
@@ -114,10 +124,13 @@ export const registry: Registry = [
   drawer,
   dropdownMenu,
   emptyState,
+  evervaultCard,
   flipCard,
+  floatingDock,
   followingPointer,
   footer,
   form,
+  globe,
   holoCard,
   hoverBorderGradient,
   hoverCard,
@@ -169,7 +182,10 @@ export const registry: Registry = [
   toggle,
   toggleGroup,
   tooltip,
+  tracingBeam,
   wavyBackground,
+  wavyText,
+  worldMap,
 ] as Registry;
 
 export function getRegistryEntry(name: string): RegistryEntry | undefined {

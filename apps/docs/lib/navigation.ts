@@ -126,6 +126,17 @@ export const navigation: NavSection[] = [
         title: "Multi Step Loader",
         href: "/docs/components/multi-step-loader",
       },
+      { title: "World Map", href: "/docs/components/world-map" },
+      { title: "Globe", href: "/docs/components/globe" },
+      { title: "Tracing Beam", href: "/docs/components/tracing-beam" },
+      {
+        title: "Animated Tooltip",
+        href: "/docs/components/animated-tooltip",
+      },
+      { title: "Bento Grid", href: "/docs/components/bento-grid" },
+      { title: "Floating Dock", href: "/docs/components/floating-dock" },
+      { title: "Wavy Text", href: "/docs/components/wavy-text" },
+      { title: "Evervault Card", href: "/docs/components/evervault-card" },
     ],
   },
 ];

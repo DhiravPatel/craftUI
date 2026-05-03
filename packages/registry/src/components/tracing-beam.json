@@ -1,0 +1,16 @@
+{
+  "name": "tracing-beam",
+  "description": "Scroll-driven vertical progress line with a glowing dot that travels down as the user reads through the wrapped content.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/tracing-beam/tracing-beam.tsx",
+      "target": "{{components}}/tracing-beam.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "scroll", "progress", "beam", "article"]
+}

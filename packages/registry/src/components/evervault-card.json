@@ -1,0 +1,16 @@
+{
+  "name": "evervault-card",
+  "description": "Card whose background fills with random characters that become visible behind a cursor-tracked colored gradient on hover. Inspired by the encrypted-storage-vault aesthetic.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/evervault-card/evervault-card.tsx",
+      "target": "{{components}}/evervault-card.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "card", "hover", "matrix", "decrypt"]
+}

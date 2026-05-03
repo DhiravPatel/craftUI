@@ -1,0 +1,16 @@
+{
+  "name": "floating-dock",
+  "description": "macOS-style dock with magnify-on-hover. Tiles closest to the cursor scale up smoothly via cosine falloff; tooltip labels rise above the active tile.",
+  "category": "navigation",
+  "files": [
+    {
+      "path": "components/floating-dock/floating-dock.tsx",
+      "target": "{{components}}/floating-dock.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["dock", "navigation", "magnify", "macos", "hover"]
+}
