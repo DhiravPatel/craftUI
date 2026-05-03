@@ -27,12 +27,14 @@ import cube from "./components/cube.json";
 import datePicker from "./components/date-picker.json";
 import dialog from "./components/dialog.json";
 import directionAwareHover from "./components/direction-aware-hover.json";
+import dotPattern from "./components/dot-pattern.json";
 import drawer from "./components/drawer.json";
 import dropdownMenu from "./components/dropdown-menu.json";
 import emptyState from "./components/empty-state.json";
 import evervaultCard from "./components/evervault-card.json";
 import fileUpload from "./components/file-upload.json";
 import flipCard from "./components/flip-card.json";
+import flipWords from "./components/flip-words.json";
 import floatingDock from "./components/floating-dock.json";
 import focusCards from "./components/focus-cards.json";
 import followingPointer from "./components/following-pointer.json";
@@ -66,6 +68,7 @@ import popover from "./components/popover.json";
 import progress from "./components/progress.json";
 import radioGroup from "./components/radio-group.json";
 import rating from "./components/rating.json";
+import ripple from "./components/ripple.json";
 import scrollArea from "./components/scroll-area.json";
 import select from "./components/select.json";
 import separator from "./components/separator.json";
@@ -82,6 +85,8 @@ import stepper from "./components/stepper.json";
 import switchEntry from "./components/switch.json";
 import table from "./components/table.json";
 import tabs from "./components/tabs.json";
+import textGenerateEffect from "./components/text-generate-effect.json";
+import textScramble from "./components/text-scramble.json";
 import textarea from "./components/textarea.json";
 import themeProvider from "./components/theme-provider.json";
 import tilt from "./components/tilt.json";
@@ -123,12 +128,14 @@ export const registry: Registry = [
   datePicker,
   dialog,
   directionAwareHover,
+  dotPattern,
   drawer,
   dropdownMenu,
   emptyState,
   evervaultCard,
   fileUpload,
   flipCard,
+  flipWords,
   floatingDock,
   focusCards,
   followingPointer,
@@ -162,6 +169,7 @@ export const registry: Registry = [
   progress,
   radioGroup,
   rating,
+  ripple,
   scrollArea,
   select,
   separator,
@@ -178,6 +186,8 @@ export const registry: Registry = [
   switchEntry,
   table,
   tabs,
+  textGenerateEffect,
+  textScramble,
   textarea,
   themeProvider,
   tilt,

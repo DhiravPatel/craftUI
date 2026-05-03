@@ -1,0 +1,16 @@
+{
+  "name": "ripple",
+  "description": "Concentric rings that scale from 0 to full size and fade out, staggered so a new ring starts as the outer one disappears. Sonar / radar pulse — useful for 'live', 'loading', or 'waiting' indicators.",
+  "category": "feedback",
+  "files": [
+    {
+      "path": "components/ripple/ripple.tsx",
+      "target": "{{components}}/ripple.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "ripple", "pulse", "loading", "live"]
+}

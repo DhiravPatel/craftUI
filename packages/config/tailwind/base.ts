@@ -162,6 +162,22 @@ export const craftuiTailwindPreset: Partial<Config> = {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(calc(var(--wavy-amplitude, 8px) * -1))" },
         },
+        "flip-word": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(8px) rotateX(-30deg)",
+            filter: "blur(8px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0) rotateX(0)",
+            filter: "blur(0)",
+          },
+        },
+        ripple: {
+          "0%": { transform: "scale(0)", opacity: "1" },
+          "100%": { transform: "scale(1)", opacity: "0" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -190,6 +206,9 @@ export const craftuiTailwindPreset: Partial<Config> = {
         "world-pulse":
           "world-pulse var(--world-pulse-duration, 2s) ease-out infinite",
         wavy: "wavy var(--wavy-duration, 2s) ease-in-out infinite",
+        "flip-word":
+          "flip-word 0.55s cubic-bezier(0.22,1,0.36,1) forwards",
+        ripple: "ripple var(--ripple-duration, 3s) cubic-bezier(0,0,0.2,1) infinite",
       },
     },
   },

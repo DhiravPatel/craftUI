@@ -1,0 +1,16 @@
+{
+  "name": "text-generate-effect",
+  "description": "Words appear from a blurred-out state to focus, staggered left-to-right. Reads as if the text is being 'generated' with a soft camera focus instead of plain typing.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/text-generate-effect/text-generate-effect.tsx",
+      "target": "{{components}}/text-generate-effect.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "text", "blur", "reveal", "generate"]
+}

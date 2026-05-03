@@ -1,0 +1,16 @@
+{
+  "name": "text-scramble",
+  "description": "Letters cycle through random characters, then settle on the target text from left to right. Like a terminal 'decoding' effect. Optional hover-trigger and loop modes.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/text-scramble/text-scramble.tsx",
+      "target": "{{components}}/text-scramble.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "text", "scramble", "decode", "terminal"]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "flip-words",
+  "description": "Drop into a sentence to cycle one word with a 3D rotateX flip and soft blur. Each word stays for `duration` ms, then the next slides in.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/flip-words/flip-words.tsx",
+      "target": "{{components}}/flip-words.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "text", "flip", "rotate", "cycle"]
+}

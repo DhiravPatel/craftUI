@@ -21,11 +21,13 @@ import {
   Cube,
   CubeFace,
   DirectionAwareHover,
+  DotPattern,
   EvervaultCard,
   FlipCard,
   FocusCards,
   FlipCardBack,
   FlipCardFront,
+  FlipWords,
   FloatingDock,
   FollowingPointer,
   Globe,
@@ -45,9 +47,12 @@ import {
   Parallax,
   ParallaxLayer,
   Pin3D,
+  Ripple,
   Sparkles as SparklesFx,
   SparklesText,
   Spotlight,
+  TextGenerateEffect,
+  TextScramble,
   Tilt,
   TracingBeam,
   WavyBackground,
@@ -1882,6 +1887,119 @@ export function FocusCardsDemo() {
   return (
     <div className="w-full overflow-hidden rounded-2xl border border-border/60 bg-black p-6">
       <FocusCards items={FOCUS_GALLERY} columns={3} />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * DotPattern — dot grid background with cursor spotlight.
+ * ------------------------------------------------------------------ */
+export function DotPatternDemo() {
+  return (
+    <div className="relative h-[300px] w-full overflow-hidden rounded-2xl border border-border/60 bg-slate-950 text-white">
+      <DotPattern
+        className="absolute inset-0"
+        spacing={22}
+        dotSize={1.2}
+        dotColor="rgba(255,255,255,0.16)"
+        glowColor="rgba(56, 189, 248, 0.95)"
+        glowRadius={160}
+      />
+      <div className="relative flex h-full flex-col items-center justify-center px-8 text-center">
+        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/60">
+          Move the cursor
+        </p>
+        <p className="mt-2 max-w-md text-2xl font-semibold tracking-tight">
+          Dots that come alive where you point.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * TextGenerateEffect — words appear from blurred to focused.
+ * ------------------------------------------------------------------ */
+export function TextGenerateEffectDemo() {
+  return (
+    <div className="flex w-full max-w-2xl flex-col items-center gap-3 py-12 text-center">
+      <p className="text-3xl font-semibold tracking-tight md:text-4xl">
+        <TextGenerateEffect
+          words="Build interfaces that feel inevitable."
+          stagger={90}
+          duration={650}
+          blur={10}
+        />
+      </p>
+      <p className="text-sm text-muted-foreground">
+        <TextGenerateEffect
+          words="Each word resolves from a soft blur, left to right, on scroll into view."
+          stagger={50}
+          duration={500}
+          blur={6}
+        />
+      </p>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * FlipWords — single word cycles through a list with a 3D flip.
+ * ------------------------------------------------------------------ */
+export function FlipWordsDemo() {
+  return (
+    <div className="flex w-full flex-col items-center gap-3 py-14 text-center">
+      <p className="text-3xl font-semibold tracking-tight md:text-4xl">
+        Build something{" "}
+        <FlipWords
+          className="font-semibold text-violet-500"
+          words={["beautiful", "fast", "modern", "yours"]}
+          duration={2200}
+        />
+      </p>
+      <p className="text-sm text-muted-foreground">
+        One word, infinite vibes.
+      </p>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * Ripple — concentric pulsing rings around a center dot.
+ * ------------------------------------------------------------------ */
+export function RippleDemo() {
+  return (
+    <div className="flex h-[320px] w-full items-center justify-center rounded-2xl border border-border/60 bg-slate-950">
+      <Ripple
+        size={260}
+        color="rgb(56, 189, 248)"
+        count={4}
+        duration={3.2}
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * TextScramble — letters cycle then settle on the target text.
+ * ------------------------------------------------------------------ */
+export function TextScrambleDemo() {
+  return (
+    <div className="flex w-full flex-col items-center gap-6 py-12 text-center">
+      <p className="text-3xl font-semibold tracking-tight md:text-4xl">
+        <TextScramble text="DECRYPTING SIGNAL" speed={45} loop />
+      </p>
+      <p className="text-sm text-muted-foreground">
+        Hover the badge to re-scramble it.
+      </p>
+      <span className="rounded-full border border-border/60 bg-card px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.25em]">
+        <TextScramble
+          text="ACCESS GRANTED"
+          speed={30}
+          triggerOnHover
+          whenInView={false}
+        />
+      </span>
     </div>
   );
 }

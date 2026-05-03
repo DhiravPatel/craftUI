@@ -1,0 +1,16 @@
+{
+  "name": "dot-pattern",
+  "description": "CSS-only dotted background that brightens dots near the cursor via a masked second layer. Pure background-image — no DOM dots, scales to any container.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/dot-pattern/dot-pattern.tsx",
+      "target": "{{components}}/dot-pattern.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "background", "dots", "pattern", "spotlight"]
+}

@@ -173,8 +173,10 @@ import {
   CoverflowDemo,
   CubeDemo,
   DirectionAwareHoverDemo,
+  DotPatternDemo,
   EvervaultCardDemo,
   FlipCardDemo,
+  FlipWordsDemo,
   FloatingDockDemo,
   FocusCardsDemo,
   FollowingPointerDemo,
@@ -194,10 +196,13 @@ import {
   OrbitingCirclesDemo,
   ParallaxDemo,
   Pin3DDemo,
+  RippleDemo,
   SparklesDemo,
   SparklesStarfieldDemo,
   SparklesTextDemo,
   SpotlightDemo,
+  TextGenerateEffectDemo,
+  TextScrambleDemo,
   TiltDemo,
   TracingBeamDemo,
   WavyBackgroundDemo,
@@ -5490,6 +5495,235 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
       },
     ],
     related: ["card-hover-effect", "lens"],
+  },
+
+  // ---------- DotPattern ----------
+  {
+    name: "dot-pattern",
+    title: "Dot Pattern",
+    description:
+      "CSS-only dotted background that brightens dots near the cursor via a masked second layer. Pure background-image — no DOM dots, scales to any container size for free.",
+    imports: `import { DotPattern } from "@/components/ui/dot-pattern";`,
+    defaultExample: {
+      title: "Cursor spotlight",
+      description:
+        "Two stacked layers: a dim dot grid for full coverage, plus a bright dot grid masked by a radial gradient at the cursor position so only nearby dots light up.",
+      code: `<DotPattern
+  spacing={22}
+  dotSize={1.2}
+  glowRadius={160}
+  glowColor="rgba(56, 189, 248, 0.95)"
+/>`,
+      render: <DotPatternDemo />,
+    },
+    props: [
+      { name: "spacing", type: "number", default: "22" },
+      { name: "dotSize", type: "number", default: "1" },
+      {
+        name: "dotColor",
+        type: "string",
+        default: `"rgba(255, 255, 255, 0.16)"`,
+      },
+      {
+        name: "glowOnHover",
+        type: "boolean",
+        default: "true",
+      },
+      {
+        name: "glowRadius",
+        type: "number",
+        default: "140",
+        description: "Radius of the cursor spotlight in px.",
+      },
+      {
+        name: "glowColor",
+        type: "string",
+        default: `"rgba(56, 189, 248, 0.85)"`,
+      },
+    ],
+    related: ["background-boxes", "background-beams"],
+  },
+
+  // ---------- TextGenerateEffect ----------
+  {
+    name: "text-generate-effect",
+    title: "Text Generate Effect",
+    description:
+      "Words appear from a blurred-out state to focus, staggered left-to-right. Reads as if the text is being 'generated' with a soft camera focus instead of plain typing.",
+    imports: `import { TextGenerateEffect } from "@/components/ui/text-generate-effect";`,
+    defaultExample: {
+      title: "Hero headline reveal",
+      description:
+        "Splits the input on whitespace and animates each word from `opacity: 0` + `blur(10px)` to focus, with a per-word `stagger` delay. Triggers on scroll-into-view by default.",
+      code: `<TextGenerateEffect
+  words="Build interfaces that feel inevitable."
+  stagger={90}
+  duration={650}
+  blur={10}
+/>`,
+      render: <TextGenerateEffectDemo />,
+    },
+    props: [
+      { name: "words", type: "string", required: true },
+      {
+        name: "blur",
+        type: "number",
+        default: "10",
+        description: "Initial blur in px.",
+      },
+      {
+        name: "stagger",
+        type: "number",
+        default: "90",
+        description: "Delay between words in ms.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "600",
+        description: "Per-word transition duration in ms.",
+      },
+      { name: "whenInView", type: "boolean", default: "true" },
+    ],
+    related: ["animated-text", "wavy-text"],
+  },
+
+  // ---------- FlipWords ----------
+  {
+    name: "flip-words",
+    title: "Flip Words",
+    description:
+      "Drop into a sentence to cycle one word with a 3D rotateX flip and soft blur. Each word stays for `duration` ms, then the next slides in.",
+    imports: `import { FlipWords } from "@/components/ui/flip-words";`,
+    defaultExample: {
+      title: "Cycling word",
+      description:
+        "Pass an array of words. The component remounts the inner span on each tick (via React `key`), which replays the `flip-word` keyframe (translateY + rotateX + blur).",
+      code: `<FlipWords
+  words={["beautiful", "fast", "modern", "yours"]}
+  duration={2200}
+/>`,
+      render: <FlipWordsDemo />,
+    },
+    props: [
+      { name: "words", type: "string[]", required: true },
+      {
+        name: "duration",
+        type: "number",
+        default: "3000",
+        description: "Time on each word in ms before flipping.",
+      },
+      {
+        name: "loop",
+        type: "boolean",
+        default: "true",
+      },
+    ],
+    related: ["animated-text", "text-generate-effect"],
+  },
+
+  // ---------- Ripple ----------
+  {
+    name: "ripple",
+    title: "Ripple",
+    description:
+      "Concentric rings that scale from 0 to full size and fade out, staggered so a new ring starts as the outer one disappears. Sonar / radar pulse — useful for 'live', 'loading', or 'waiting' indicators.",
+    imports: `import { Ripple } from "@/components/ui/ripple";`,
+    defaultExample: {
+      title: "Pulse indicator",
+      description:
+        "Renders `count` rings, each with `animationDelay = (i / count) × duration`. Combined with the looping `ripple` keyframe, you get one ring leaving as another arrives.",
+      code: `<Ripple
+  size={260}
+  color="rgb(56, 189, 248)"
+  count={4}
+  duration={3.2}
+/>`,
+      render: <RippleDemo />,
+    },
+    props: [
+      {
+        name: "size",
+        type: "number",
+        default: "240",
+        description: "Final ring diameter in px.",
+      },
+      {
+        name: "color",
+        type: "string",
+        default: `"rgb(56, 189, 248)"`,
+      },
+      {
+        name: "count",
+        type: "number",
+        default: "4",
+        description: "Number of concurrent rings.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "3",
+        description: "Single ring cycle duration in seconds.",
+      },
+      {
+        name: "centerDot",
+        type: "boolean",
+        default: "true",
+      },
+    ],
+    related: ["spinner", "neon-glow"],
+  },
+
+  // ---------- TextScramble ----------
+  {
+    name: "text-scramble",
+    title: "Text Scramble",
+    description:
+      "Letters cycle through random characters, then settle on the target text from left to right. Like a terminal 'decoding' effect. Optional hover-trigger and loop modes.",
+    imports: `import { TextScramble } from "@/components/ui/text-scramble";`,
+    defaultExample: {
+      title: "Decoder + hover re-trigger",
+      description:
+        "Each character has a random `start` and `end` frame. Before `start` it shows whitespace; between `start` and `end` it cycles through the `alphabet`; after `end` it locks to the target letter. The container reserves `text.length × 1ch` so layout doesn't shift.",
+      code: `<TextScramble text="DECRYPTING SIGNAL" speed={45} loop />
+
+<TextScramble
+  text="ACCESS GRANTED"
+  speed={30}
+  triggerOnHover
+  whenInView={false}
+/>`,
+      render: <TextScrambleDemo />,
+    },
+    props: [
+      { name: "text", type: "string", required: true },
+      {
+        name: "alphabet",
+        type: "string",
+        description: "Pool of characters to draw from while scrambling.",
+      },
+      {
+        name: "speed",
+        type: "number",
+        default: "40",
+        description: "Frame interval in ms. Lower = faster.",
+      },
+      { name: "whenInView", type: "boolean", default: "true" },
+      { name: "loop", type: "boolean", default: "false" },
+      {
+        name: "pause",
+        type: "number",
+        default: "2500",
+        description: "Pause between loops in ms.",
+      },
+      {
+        name: "triggerOnHover",
+        type: "boolean",
+        default: "false",
+        description: "Trigger the scramble on hover instead of automatically.",
+      },
+    ],
+    related: ["animated-text", "typewriter"],
   },
 ];
 

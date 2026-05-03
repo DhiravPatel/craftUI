@@ -139,6 +139,14 @@ export const navigation: NavSection[] = [
       { title: "Evervault Card", href: "/docs/components/evervault-card" },
       { title: "File Upload", href: "/docs/components/file-upload" },
       { title: "Focus Cards", href: "/docs/components/focus-cards" },
+      { title: "Dot Pattern", href: "/docs/components/dot-pattern" },
+      {
+        title: "Text Generate Effect",
+        href: "/docs/components/text-generate-effect",
+      },
+      { title: "Flip Words", href: "/docs/components/flip-words" },
+      { title: "Ripple", href: "/docs/components/ripple" },
+      { title: "Text Scramble", href: "/docs/components/text-scramble" },
     ],
   },
 ];
