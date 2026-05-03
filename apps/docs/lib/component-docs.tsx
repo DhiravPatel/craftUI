@@ -147,6 +147,7 @@ import {
 import { FullFormDemo, LoginFormDemo } from "@/components/demos/form-demo";
 import {
   ComboboxDemo,
+  FileUploadDemo,
   FooterDemo,
   ModernNavbarDemo,
   MultiSelectDemo,
@@ -175,6 +176,7 @@ import {
   EvervaultCardDemo,
   FlipCardDemo,
   FloatingDockDemo,
+  FocusCardsDemo,
   FollowingPointerDemo,
   GlobeDemo,
   HoloCardDemo,
@@ -2340,6 +2342,67 @@ toast({ title: "Copied", description: "Link copied to clipboard" });`,
 </Button>`,
       render: <ToastDemo />,
     },
+  },
+
+  // ---------- FileUpload ----------
+  {
+    name: "file-upload",
+    title: "File Upload",
+    description:
+      "Drop / click upload zone with an animated grid backdrop, a central upload tile, and a dashed accent ring that smoothly fades in on hover or drag-over. Selected files appear as removable chips below the zone.",
+    imports: `import { FileUpload } from "@/components/ui/file-upload";`,
+    defaultExample: {
+      title: "Drag, drop, or click",
+      description:
+        "Hover the zone to see the dashed accent ring fade in and the central tile lift. Drop files (or click to open the picker) and they appear as removable chips. The component manages its own state but emits the selected files via `onChange`.",
+      code: `const [files, setFiles] = useState<File[]>([]);
+
+<FileUpload
+  onChange={setFiles}
+  accept="image/*,application/pdf"
+/>`,
+      render: <FileUploadDemo />,
+    },
+    props: [
+      {
+        name: "onChange",
+        type: "(files: File[]) => void",
+        description: "Fired when files are selected via drop or the file picker.",
+      },
+      {
+        name: "multiple",
+        type: "boolean",
+        default: "true",
+        description: "Allow multiple files.",
+      },
+      {
+        name: "accept",
+        type: "string",
+        description: "`accept` attribute for the underlying file input.",
+      },
+      {
+        name: "title",
+        type: "ReactNode",
+        default: `"Upload file"`,
+      },
+      {
+        name: "description",
+        type: "ReactNode",
+        default: `"Drag or drop your files here or click to upload"`,
+      },
+      {
+        name: "accentColor",
+        type: "string",
+        default: `"rgb(56, 189, 248)"`,
+        description: "Color of the dashed ring + icon glow.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false",
+      },
+    ],
+    related: ["input", "form"],
   },
 
   // ---------- Footer ----------
@@ -5373,6 +5436,60 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
       },
     ],
     related: ["holo-card", "hover-border-gradient"],
+  },
+
+  // ---------- FocusCards ----------
+  {
+    name: "focus-cards",
+    title: "Focus Cards",
+    description:
+      "Image gallery grid where hovering one card keeps it sharp while the rest blur and dim. The focused card surfaces an optional caption overlay with a smooth fade.",
+    imports: `import { FocusCards } from "@/components/ui/focus-cards";`,
+    defaultExample: {
+      title: "Hover any tile to focus it",
+      description:
+        "Hovering a card sets it as the focused one — every other card transitions blur, opacity, and a slight scale-down on a `cubic-bezier(0.22,1,0.36,1)` curve. The focused card fades in a caption overlay from a bottom gradient.",
+      code: `<FocusCards
+  items={[
+    { id: 1, src: "/forest.jpg", title: "Quiet places to think." },
+    { id: 2, src: "/canyon.jpg", title: "Carved by patience." },
+    // …
+  ]}
+  columns={3}
+/>`,
+      render: <FocusCardsDemo />,
+    },
+    props: [
+      {
+        name: "items",
+        type: "{ id: string | number; src: string; alt?: string; title?: ReactNode; href?: string }[]",
+        required: true,
+      },
+      {
+        name: "columns",
+        type: "number",
+        default: "3",
+      },
+      {
+        name: "aspectRatio",
+        type: "number",
+        default: "0.78",
+        description: "Width / height ratio for each card. Default ~4:5 portrait.",
+      },
+      {
+        name: "blurAmount",
+        type: "number",
+        default: "6",
+        description: "Blur (px) applied to non-focused cards.",
+      },
+      {
+        name: "dimOpacity",
+        type: "number",
+        default: "0.45",
+        description: "Opacity (0–1) of non-focused cards.",
+      },
+    ],
+    related: ["card-hover-effect", "lens"],
   },
 ];
 

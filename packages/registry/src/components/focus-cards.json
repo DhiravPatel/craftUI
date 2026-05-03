@@ -1,0 +1,16 @@
+{
+  "name": "focus-cards",
+  "description": "Image gallery grid where hovering one card keeps it sharp while the rest blur and dim. The focused card surfaces an optional caption overlay with a smooth fade.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/focus-cards/focus-cards.tsx",
+      "target": "{{components}}/focus-cards.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "gallery", "focus", "hover", "blur", "image"]
+}

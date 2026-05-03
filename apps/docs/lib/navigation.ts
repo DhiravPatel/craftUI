@@ -137,6 +137,8 @@ export const navigation: NavSection[] = [
       { title: "Floating Dock", href: "/docs/components/floating-dock" },
       { title: "Wavy Text", href: "/docs/components/wavy-text" },
       { title: "Evervault Card", href: "/docs/components/evervault-card" },
+      { title: "File Upload", href: "/docs/components/file-upload" },
+      { title: "Focus Cards", href: "/docs/components/focus-cards" },
     ],
   },
 ];

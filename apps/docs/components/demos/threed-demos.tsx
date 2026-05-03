@@ -23,6 +23,7 @@ import {
   DirectionAwareHover,
   EvervaultCard,
   FlipCard,
+  FocusCards,
   FlipCardBack,
   FlipCardFront,
   FloatingDock,
@@ -1664,13 +1665,44 @@ export function TracingBeamDemo() {
  * AnimatedTooltip — hover an avatar to lift it and reveal a tooltip.
  * ------------------------------------------------------------------ */
 export function AnimatedTooltipDemo() {
+  // pravatar.cc returns consistent portrait-style avatars per ?img= id.
   const team = [
-    { id: 1, name: "Sasha Lee", designation: "Eng Lead" },
-    { id: 2, name: "Diego Alvarez", designation: "Founder" },
-    { id: 3, name: "Mira Patel", designation: "Staff Eng" },
-    { id: 4, name: "Jonas Reyes", designation: "Designer" },
-    { id: 5, name: "Aiko Tanaka", designation: "Eng" },
-    { id: 6, name: "Sam Okafor", designation: "PM" },
+    {
+      id: 1,
+      name: "Sasha Lee",
+      designation: "Eng Lead",
+      image: "https://i.pravatar.cc/120?img=47",
+    },
+    {
+      id: 2,
+      name: "Diego Alvarez",
+      designation: "Founder",
+      image: "https://i.pravatar.cc/120?img=12",
+    },
+    {
+      id: 3,
+      name: "Mira Patel",
+      designation: "Staff Eng",
+      image: "https://i.pravatar.cc/120?img=49",
+    },
+    {
+      id: 4,
+      name: "Jonas Reyes",
+      designation: "Designer",
+      image: "https://i.pravatar.cc/120?img=33",
+    },
+    {
+      id: 5,
+      name: "Aiko Tanaka",
+      designation: "Eng",
+      image: "https://i.pravatar.cc/120?img=44",
+    },
+    {
+      id: 6,
+      name: "Sam Okafor",
+      designation: "PM",
+      image: "https://i.pravatar.cc/120?img=68",
+    },
   ];
   return (
     <div className="flex w-full flex-col items-center gap-4 py-12">
@@ -1772,22 +1804,84 @@ export function EvervaultCardDemo() {
   return (
     <div className="flex w-full justify-center py-6">
       <EvervaultCard
-        className="h-[300px] w-[280px]"
-        cursorColor="rgb(34, 211, 238)"
-        radius={20}
+        className="h-[320px] w-[300px] text-white"
+        colors={[
+          "rgb(34, 211, 238)", // cyan
+          "rgb(168, 85, 247)", // violet
+          "rgb(236, 72, 153)", // pink
+          "rgb(251, 146, 60)", // orange
+        ]}
+        radius={22}
+        borderDuration={6}
+        style={{
+          // Inner card surface — dark so the cursor gradient sings.
+          background: "transparent",
+        }}
       >
+        <div className="absolute inset-0 -z-10 rounded-[20px] bg-gradient-to-br from-slate-950 via-[#0b0d20] to-slate-950" />
         <div className="px-6 text-center">
-          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/55">
             Encrypted vault
           </p>
-          <p className="mt-3 flex h-16 w-16 items-center justify-center rounded-full border border-border/60 bg-background/80 text-2xl font-bold backdrop-blur mx-auto">
+          <p className="mx-auto mt-3 flex h-16 w-16 items-center justify-center rounded-full border border-white/15 bg-white/5 text-2xl font-bold text-white shadow-[0_8px_24px_-8px_rgba(168,85,247,0.45)] backdrop-blur">
             CU
           </p>
-          <p className="mt-3 max-w-[14rem] text-xs text-muted-foreground mx-auto">
-            Hover to decrypt — characters fade in behind the cursor.
+          <p className="mx-auto mt-3 max-w-[14rem] text-xs text-white/70">
+            Hover to decrypt — characters fade in behind the cursor while a
+            cyan → violet → pink → orange gradient sweeps with the pointer.
           </p>
         </div>
       </EvervaultCard>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * FocusCards — image grid where hovering one card focuses it.
+ * ------------------------------------------------------------------ */
+const FOCUS_GALLERY = [
+  {
+    id: 1,
+    src: "https://picsum.photos/seed/forest-fog/600/780",
+    alt: "Foggy forest",
+    title: "Quiet places to think.",
+  },
+  {
+    id: 2,
+    src: "https://picsum.photos/seed/canyon-river/600/780",
+    alt: "Canyon",
+    title: "Carved by patience.",
+  },
+  {
+    id: 3,
+    src: "https://picsum.photos/seed/aerial-coast/600/780",
+    alt: "Coast from above",
+    title: "Sala behta hi jayega.",
+  },
+  {
+    id: 4,
+    src: "https://picsum.photos/seed/campfire-sparks/600/780",
+    alt: "Campfire",
+    title: "Warm hands, cold air.",
+  },
+  {
+    id: 5,
+    src: "https://picsum.photos/seed/pine-trail/600/780",
+    alt: "Pine trail",
+    title: "Walks that fix things.",
+  },
+  {
+    id: 6,
+    src: "https://picsum.photos/seed/late-night-coding/600/780",
+    alt: "Late night coding",
+    title: "Late nights, ship days.",
+  },
+];
+
+export function FocusCardsDemo() {
+  return (
+    <div className="w-full overflow-hidden rounded-2xl border border-border/60 bg-black p-6">
+      <FocusCards items={FOCUS_GALLERY} columns={3} />
     </div>
   );
 }

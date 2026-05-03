@@ -1,0 +1,16 @@
+{
+  "name": "file-upload",
+  "description": "Drop / click upload zone with an animated grid backdrop, a central upload tile, and a dashed accent ring that smoothly fades in on hover or drag-over. Selected files appear as removable chips below.",
+  "category": "input",
+  "files": [
+    {
+      "path": "components/file-upload/file-upload.tsx",
+      "target": "{{components}}/file-upload.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": ["lucide-react"],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["file", "upload", "drag", "drop", "input"]
+}

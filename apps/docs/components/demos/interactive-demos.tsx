@@ -20,6 +20,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  FileUpload,
   Footer,
   Input,
   Label,
@@ -675,6 +676,27 @@ export function FooterDemo() {
           },
         ]}
       />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * FileUpload — drag/drop or click upload with animated grid backdrop.
+ * ------------------------------------------------------------------ */
+export function FileUploadDemo() {
+  const [files, setFiles] = React.useState<File[]>([]);
+  return (
+    <div className="w-full max-w-2xl">
+      <FileUpload
+        className="h-[280px]"
+        onChange={setFiles}
+        accept="image/*,application/pdf"
+      />
+      {files.length > 0 ? (
+        <p className="mt-3 text-center text-xs text-muted-foreground">
+          {files.length} file{files.length === 1 ? "" : "s"} selected
+        </p>
+      ) : null}
     </div>
   );
 }

@@ -31,8 +31,10 @@ import drawer from "./components/drawer.json";
 import dropdownMenu from "./components/dropdown-menu.json";
 import emptyState from "./components/empty-state.json";
 import evervaultCard from "./components/evervault-card.json";
+import fileUpload from "./components/file-upload.json";
 import flipCard from "./components/flip-card.json";
 import floatingDock from "./components/floating-dock.json";
+import focusCards from "./components/focus-cards.json";
 import followingPointer from "./components/following-pointer.json";
 import footer from "./components/footer.json";
 import form from "./components/form.json";
@@ -125,8 +127,10 @@ export const registry: Registry = [
   dropdownMenu,
   emptyState,
   evervaultCard,
+  fileUpload,
   flipCard,
   floatingDock,
+  focusCards,
   followingPointer,
   footer,
   form,
