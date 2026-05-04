@@ -1,0 +1,16 @@
+{
+  "name": "prism-orb",
+  "description": "A spectral 3D orb with rotating conic highlights and glow.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/prism-orb/prism-orb.tsx",
+      "target": "{{components}}/prism-orb.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "orb", "glow", "gradient", "animated"]
+}

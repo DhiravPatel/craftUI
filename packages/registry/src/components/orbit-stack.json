@@ -1,0 +1,16 @@
+{
+  "name": "orbit-stack",
+  "description": "Stacked orbiting orbs spinning in 3D depth.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/orbit-stack/orbit-stack.tsx",
+      "target": "{{components}}/orbit-stack.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "orbit", "orbs", "spin", "animated"]
+}

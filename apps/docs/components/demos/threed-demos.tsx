@@ -20,9 +20,11 @@ import {
   Coverflow,
   Cube,
   CubeFace,
+  CursorTrail,
   DirectionAwareHover,
   DotPattern,
   EvervaultCard,
+  FluxPanels,
   FlipCard,
   FocusCards,
   FlipCardBack,
@@ -31,29 +33,41 @@ import {
   FloatingDock,
   FollowingPointer,
   Globe,
+  GravityWell,
+  Helix,
   HoloCard,
+  HoloSlices,
   HoverBorderGradient,
   InfiniteMovingCards,
   Lamp,
   Lens,
   Magnet,
+  MagneticButton,
   Marquee3D,
   Meteors,
   MovingBorder,
   MultiStepLoader,
   NeonGlow,
+  NeonPortal,
   NumberTicker,
+  OrbitStack,
   OrbitingCircles,
+  PageCurl,
   Parallax,
   ParallaxLayer,
   Pin3D,
+  PlasmaField,
+  PrismOrb,
+  QuantumGrid,
   Ripple,
   Sparkles as SparklesFx,
   SparklesText,
   Spotlight,
+  SwipeStack,
   TextGenerateEffect,
   TextScramble,
   Tilt,
+  TiltTiles,
   TracingBeam,
   WavyBackground,
   WavyText,
@@ -66,6 +80,7 @@ import {
   Disc3,
   Github,
   Globe as GlobeIcon,
+  Heart,
   Mountain,
   Music,
   Plane,
@@ -2001,5 +2016,321 @@ export function TextScrambleDemo() {
         />
       </span>
     </div>
+  );
+}
+
+// Per-demo photo backdrops — Picsum seeds give stable, varied images that
+// upgrade the previously flat SVG-color background to something with real
+// light, depth, and atmosphere.
+const photoBackdrop = (seed: string): React.CSSProperties => ({
+  backgroundImage: `linear-gradient(rgba(2,6,18,0.82), rgba(2,6,18,0.92)), url("https://picsum.photos/seed/${seed}/1200/720")`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+});
+
+const STAGE_CLASS =
+  "relative flex h-[320px] w-full items-center justify-center overflow-hidden rounded-2xl border border-border/60";
+
+// 9 portrait photos used by the image-supporting components below.
+const PHOTO_GALLERY = [
+  "https://picsum.photos/seed/aurora-tile-1/520/520",
+  "https://picsum.photos/seed/aurora-tile-2/520/520",
+  "https://picsum.photos/seed/aurora-tile-3/520/520",
+  "https://picsum.photos/seed/aurora-tile-4/520/520",
+  "https://picsum.photos/seed/aurora-tile-5/520/520",
+  "https://picsum.photos/seed/aurora-tile-6/520/520",
+  "https://picsum.photos/seed/aurora-tile-7/520/520",
+  "https://picsum.photos/seed/aurora-tile-8/520/520",
+  "https://picsum.photos/seed/aurora-tile-9/520/520",
+];
+
+/* ------------------------------------------------------------------
+ * PrismOrb — spectral orb with rotating conic highlights.
+ * ------------------------------------------------------------------ */
+export function PrismOrbDemo() {
+  return (
+    <div className={STAGE_CLASS} style={photoBackdrop("prism-orb-bg")}>
+      <PrismOrb size={220}>
+        <div className="flex h-full w-full items-center justify-center">
+          <div className="h-10 w-10 rounded-full bg-white/15 shadow-[0_0_30px_rgba(255,255,255,0.45)] backdrop-blur" />
+        </div>
+      </PrismOrb>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * GravityWell — layered depth rings with pulsing motion.
+ * ------------------------------------------------------------------ */
+export function GravityWellDemo() {
+  return (
+    <div className={STAGE_CLASS} style={photoBackdrop("gravity-well-bg")}>
+      <GravityWell size={240} depth={8} />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * HoloSlices — translucent slices in 3D space, now backed by real photos.
+ * ------------------------------------------------------------------ */
+export function HoloSlicesDemo() {
+  return (
+    <div className={STAGE_CLASS} style={photoBackdrop("holo-slices-bg")}>
+      <HoloSlices
+        width={320}
+        height={210}
+        slices={5}
+        radius={20}
+        images={PHOTO_GALLERY.slice(0, 5)}
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * NeonPortal — rotating neon ring with pulsing core.
+ * ------------------------------------------------------------------ */
+export function NeonPortalDemo() {
+  return (
+    <div className={STAGE_CLASS} style={photoBackdrop("neon-portal-bg")}>
+      <NeonPortal size={220} />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * QuantumGrid — 3D pulsing tile grid.
+ * ------------------------------------------------------------------ */
+export function QuantumGridDemo() {
+  return (
+    <div className={STAGE_CLASS} style={photoBackdrop("quantum-grid-bg")}>
+      <QuantumGrid size={260} columns={6} />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * OrbitStack — stacked orbiting orbs in depth, now showing avatar bubbles.
+ * ------------------------------------------------------------------ */
+export function OrbitStackDemo() {
+  return (
+    <div className={STAGE_CLASS} style={photoBackdrop("orbit-stack-bg")}>
+      <OrbitStack
+        size={260}
+        count={5}
+        radius={100}
+        orbSize={42}
+        images={[
+          "https://i.pravatar.cc/120?img=12",
+          "https://i.pravatar.cc/120?img=33",
+          "https://i.pravatar.cc/120?img=44",
+          "https://i.pravatar.cc/120?img=47",
+          "https://i.pravatar.cc/120?img=68",
+        ]}
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * PlasmaField — diffused plasma blobs.
+ * ------------------------------------------------------------------ */
+export function PlasmaFieldDemo() {
+  return (
+    <div className={STAGE_CLASS} style={photoBackdrop("plasma-field-bg")}>
+      <PlasmaField size={260} />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * TiltTiles — interactive 3D tiles, now backed by real photos.
+ * ------------------------------------------------------------------ */
+export function TiltTilesDemo() {
+  return (
+    <div className={STAGE_CLASS} style={photoBackdrop("tilt-tiles-bg")}>
+      <TiltTiles
+        size={280}
+        columns={3}
+        gap={10}
+        radius={14}
+        images={PHOTO_GALLERY}
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * FluxPanels — layered translucent panels in 3D space, now real photos.
+ * ------------------------------------------------------------------ */
+export function FluxPanelsDemo() {
+  return (
+    <div className={STAGE_CLASS} style={photoBackdrop("flux-panels-bg")}>
+      <FluxPanels
+        width={320}
+        height={210}
+        panels={5}
+        radius={18}
+        images={PHOTO_GALLERY.slice(2, 7)}
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * Helix — two-strand DNA helix rotating around its vertical axis.
+ * ------------------------------------------------------------------ */
+export function HelixDemo() {
+  return (
+    <div
+      className={STAGE_CLASS}
+      style={{
+        background:
+          "radial-gradient(ellipse at center, rgb(13,18,38) 0%, rgb(3,5,14) 75%)",
+      }}
+    >
+      <Helix
+        height={300}
+        radius={72}
+        dotsPerStrand={26}
+        twists={2.2}
+        duration={9}
+        strandColors={["rgb(125, 211, 252)", "rgb(244, 114, 182)"]}
+        glow
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * PageCurl — wraps a card whose corner peels up on hover.
+ * ------------------------------------------------------------------ */
+export function PageCurlDemo() {
+  return (
+    <div className={STAGE_CLASS} style={photoBackdrop("page-curl-bg")}>
+      <PageCurl
+        curlSize={28}
+        hoverCurlSize={108}
+        radius={18}
+        className="h-[260px] w-[380px] border border-white/10 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6)]"
+      >
+        <div className="relative h-full w-full overflow-hidden">
+          <div
+            aria-hidden
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url("https://picsum.photos/seed/page-curl-card/640/440")`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+          <div
+            aria-hidden
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.7) 100%)",
+            }}
+          />
+          <div className="absolute inset-x-0 bottom-0 p-5 text-white">
+            <p className="text-[10px] uppercase tracking-[0.2em] opacity-75">
+              Field notes
+            </p>
+            <p className="mt-1 text-lg font-semibold leading-tight">
+              The cliffs at sunrise
+            </p>
+            <p className="mt-1 text-sm text-white/80">
+              Hover the corner to peel
+            </p>
+          </div>
+        </div>
+      </PageCurl>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * SwipeStack — drag the top card left or right to dismiss.
+ * ------------------------------------------------------------------ */
+export function SwipeStackDemo() {
+  const items = React.useMemo(
+    () => [
+      {
+        id: 1,
+        image: "https://picsum.photos/seed/swipe-1/640/840",
+        title: "Aiko Tanaka",
+        subtitle: "Photographer · Tokyo",
+      },
+      {
+        id: 2,
+        image: "https://picsum.photos/seed/swipe-2/640/840",
+        title: "Marcus Lee",
+        subtitle: "Architect · Seoul",
+      },
+      {
+        id: 3,
+        image: "https://picsum.photos/seed/swipe-3/640/840",
+        title: "Sofia Reyes",
+        subtitle: "Designer · Lisbon",
+      },
+      {
+        id: 4,
+        image: "https://picsum.photos/seed/swipe-4/640/840",
+        title: "Noor Hassan",
+        subtitle: "Writer · Cairo",
+      },
+    ],
+    []
+  );
+  return (
+    <div className={STAGE_CLASS} style={photoBackdrop("swipe-stack-bg")}>
+      <SwipeStack items={items} width={300} height={400} visibleDepth={3} />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * MagneticButton — button content tracks the cursor with a soft glow.
+ * ------------------------------------------------------------------ */
+export function MagneticButtonDemo() {
+  return (
+    <div className={STAGE_CLASS} style={photoBackdrop("magnetic-button-bg")}>
+      <div className="flex items-center gap-4">
+        <MagneticButton strength={0.45} maxOffset={20}>
+          <Heart className="h-4 w-4" />
+          Follow
+        </MagneticButton>
+        <MagneticButton
+          strength={0.35}
+          maxOffset={14}
+          className="bg-white text-neutral-900 hover:shadow-[0_22px_44px_-12px_rgba(0,0,0,0.45)]"
+        >
+          <ArrowUpRight className="h-4 w-4" />
+          Get started
+        </MagneticButton>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * CursorTrail — wrap an area to leave a fading dot trail behind the cursor.
+ * ------------------------------------------------------------------ */
+export function CursorTrailDemo() {
+  return (
+    <CursorTrail
+      maxDots={26}
+      size={22}
+      color="rgba(125, 211, 252, 0.85)"
+      className={STAGE_CLASS}
+      style={photoBackdrop("cursor-trail-bg")}
+    >
+      <div className="flex flex-col items-center gap-2 text-center">
+        <p className="text-xs font-medium uppercase tracking-[0.25em] text-white/70">
+          Move your cursor
+        </p>
+        <p className="text-2xl font-semibold text-white">Leave a trace.</p>
+      </div>
+    </CursorTrail>
   );
 }

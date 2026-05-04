@@ -172,38 +172,52 @@ import {
   CompareDemo,
   CoverflowDemo,
   CubeDemo,
+  CursorTrailDemo,
   DirectionAwareHoverDemo,
   DotPatternDemo,
   EvervaultCardDemo,
+  FluxPanelsDemo,
   FlipCardDemo,
   FlipWordsDemo,
   FloatingDockDemo,
   FocusCardsDemo,
   FollowingPointerDemo,
   GlobeDemo,
+  GravityWellDemo,
+  HelixDemo,
   HoloCardDemo,
+  HoloSlicesDemo,
   HoverBorderGradientDemo,
   InfiniteMovingCardsDemo,
   LampDemo,
   LensDemo,
   MagnetDemo,
+  MagneticButtonDemo,
   Marquee3DDemo,
   MeteorsDemo,
   MovingBorderDemo,
   MultiStepLoaderDemo,
   NeonGlowDemo,
+  NeonPortalDemo,
   NumberTickerDemo,
+  OrbitStackDemo,
   OrbitingCirclesDemo,
+  PageCurlDemo,
   ParallaxDemo,
   Pin3DDemo,
+  PlasmaFieldDemo,
+  PrismOrbDemo,
+  QuantumGridDemo,
   RippleDemo,
   SparklesDemo,
   SparklesStarfieldDemo,
   SparklesTextDemo,
   SpotlightDemo,
+  SwipeStackDemo,
   TextGenerateEffectDemo,
   TextScrambleDemo,
   TiltDemo,
+  TiltTilesDemo,
   TracingBeamDemo,
   WavyBackgroundDemo,
   WavyTextDemo,
@@ -5724,6 +5738,459 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
       },
     ],
     related: ["animated-text", "typewriter"],
+  },
+
+  // ---------- PrismOrb ----------
+  {
+    name: "prism-orb",
+    title: "Prism Orb",
+    description:
+      "A spectral 3D orb with rotating conic highlights and a soft glow.",
+    imports: `import { PrismOrb } from "@/components/ui/prism-orb";`,
+    defaultExample: {
+      title: "Spectral core",
+      code: `<PrismOrb size={220} />`,
+      render: <PrismOrbDemo />,
+    },
+    props: [
+      { name: "size", type: "number", default: "240" },
+      { name: "colors", type: "string[]" },
+      { name: "glow", type: "number", default: "28" },
+      { name: "duration", type: "number", default: "10" },
+    ],
+    related: ["neon-portal", "plasma-field"],
+  },
+
+  // ---------- GravityWell ----------
+  {
+    name: "gravity-well",
+    title: "Gravity Well",
+    description:
+      "A layered 3D gravity well made from pulsating depth rings.",
+    imports: `import { GravityWell } from "@/components/ui/gravity-well";`,
+    defaultExample: {
+      title: "Depth well",
+      code: `<GravityWell size={240} depth={8} />`,
+      render: <GravityWellDemo />,
+    },
+    props: [
+      { name: "size", type: "number", default: "280" },
+      { name: "depth", type: "number", default: "8" },
+      { name: "duration", type: "number", default: "12" },
+      { name: "perspective", type: "number", default: "900" },
+      { name: "colors", type: "string[]" },
+    ],
+    related: ["orbiting-circles", "plasma-field"],
+  },
+
+  // ---------- HoloSlices ----------
+  {
+    name: "holo-slices",
+    title: "Holo Slices",
+    description: "Floating holographic slices stacked in 3D space.",
+    imports: `import { HoloSlices } from "@/components/ui/holo-slices";`,
+    defaultExample: {
+      title: "Holographic stack",
+      code: `<HoloSlices width={300} height={200} slices={6} />`,
+      render: <HoloSlicesDemo />,
+    },
+    props: [
+      { name: "width", type: "number", default: "320" },
+      { name: "height", type: "number", default: "220" },
+      { name: "slices", type: "number", default: "6" },
+      { name: "duration", type: "number", default: "9" },
+      { name: "colors", type: "string[]" },
+      { name: "perspective", type: "number", default: "1000" },
+    ],
+    related: ["holo-card", "flux-panels"],
+  },
+
+  // ---------- NeonPortal ----------
+  {
+    name: "neon-portal",
+    title: "Neon Portal",
+    description: "A rotating neon portal ring with pulsing core.",
+    imports: `import { NeonPortal } from "@/components/ui/neon-portal";`,
+    defaultExample: {
+      title: "Portal ring",
+      code: `<NeonPortal size={220} />`,
+      render: <NeonPortalDemo />,
+    },
+    props: [
+      { name: "size", type: "number", default: "280" },
+      { name: "thickness", type: "number", default: "22" },
+      { name: "duration", type: "number", default: "8" },
+      { name: "colors", type: "string[]" },
+    ],
+    related: ["prism-orb", "neon-glow"],
+  },
+
+  // ---------- QuantumGrid ----------
+  {
+    name: "quantum-grid",
+    title: "Quantum Grid",
+    description: "A 3D pulsing grid that ripples like a quantum field.",
+    imports: `import { QuantumGrid } from "@/components/ui/quantum-grid";`,
+    defaultExample: {
+      title: "Pulse grid",
+      code: `<QuantumGrid size={260} columns={6} />`,
+      render: <QuantumGridDemo />,
+    },
+    props: [
+      { name: "size", type: "number", default: "280" },
+      { name: "columns", type: "number", default: "6" },
+      { name: "gap", type: "number", default: "6" },
+      { name: "duration", type: "number", default: "6" },
+      { name: "colors", type: "string[]" },
+      { name: "perspective", type: "number", default: "800" },
+    ],
+    related: ["tilt-tiles", "plasma-field"],
+  },
+
+  // ---------- OrbitStack ----------
+  {
+    name: "orbit-stack",
+    title: "Orbit Stack",
+    description: "Stacked orbiting orbs spinning in 3D depth.",
+    imports: `import { OrbitStack } from "@/components/ui/orbit-stack";`,
+    defaultExample: {
+      title: "Orbital stack",
+      code: `<OrbitStack size={240} count={5} />`,
+      render: <OrbitStackDemo />,
+    },
+    props: [
+      { name: "size", type: "number", default: "260" },
+      { name: "count", type: "number", default: "4" },
+      { name: "radius", type: "number", default: "90" },
+      { name: "duration", type: "number", default: "10" },
+      { name: "colors", type: "string[]" },
+    ],
+    related: ["orbiting-circles", "orbit-stack"],
+  },
+
+  // ---------- PlasmaField ----------
+  {
+    name: "plasma-field",
+    title: "Plasma Field",
+    description: "Animated plasma blobs with soft neon diffusion.",
+    imports: `import { PlasmaField } from "@/components/ui/plasma-field";`,
+    defaultExample: {
+      title: "Plasma bloom",
+      code: `<PlasmaField size={260} />`,
+      render: <PlasmaFieldDemo />,
+    },
+    props: [
+      { name: "size", type: "number", default: "320" },
+      { name: "duration", type: "number", default: "14" },
+      { name: "colors", type: "string[]" },
+      { name: "blur", type: "number", default: "40" },
+    ],
+    related: ["prism-orb", "neon-portal"],
+  },
+
+  // ---------- TiltTiles ----------
+  {
+    name: "tilt-tiles",
+    title: "Tilt Tiles",
+    description:
+      "Interactive 3D tiles that tilt toward the pointer and float on hover.",
+    imports: `import { TiltTiles } from "@/components/ui/tilt-tiles";`,
+    defaultExample: {
+      title: "Interactive tiles",
+      code: `<TiltTiles size={260} columns={3} />`,
+      render: <TiltTilesDemo />,
+    },
+    props: [
+      { name: "size", type: "number", default: "300" },
+      { name: "columns", type: "number", default: "3" },
+      { name: "gap", type: "number", default: "10" },
+      { name: "tilt", type: "number", default: "10" },
+      { name: "colors", type: "string[]" },
+    ],
+    related: ["tilt", "quantum-grid"],
+  },
+
+  // ---------- FluxPanels ----------
+  {
+    name: "flux-panels",
+    title: "Flux Panels",
+    description: "Layered translucent panels oscillating through 3D space.",
+    imports: `import { FluxPanels } from "@/components/ui/flux-panels";`,
+    defaultExample: {
+      title: "Layered panels",
+      code: `<FluxPanels width={300} height={200} panels={5} />`,
+      render: <FluxPanelsDemo />,
+    },
+    props: [
+      { name: "width", type: "number", default: "340" },
+      { name: "height", type: "number", default: "220" },
+      { name: "panels", type: "number", default: "5" },
+      { name: "duration", type: "number", default: "8" },
+      { name: "colors", type: "string[]" },
+      { name: "perspective", type: "number", default: "900" },
+    ],
+    related: ["holo-slices", "holo-card"],
+  },
+
+  // ---------- Helix ----------
+  {
+    name: "helix",
+    title: "Helix",
+    description:
+      "Two-strand rotating DNA helix built with pure CSS 3D transforms.",
+    imports: `import { Helix } from "@/components/ui/helix";`,
+    defaultExample: {
+      title: "Rotating helix",
+      code: `<Helix height={300} radius={70} dotsPerStrand={28} />`,
+      render: <HelixDemo />,
+    },
+    props: [
+      {
+        name: "height",
+        type: "number",
+        default: "360",
+        description: "Total vertical extent of the helix in px.",
+      },
+      {
+        name: "radius",
+        type: "number",
+        default: "70",
+        description: "Distance of each strand from the center axis.",
+      },
+      {
+        name: "dotsPerStrand",
+        type: "number",
+        default: "32",
+        description: "How many dots make up each strand.",
+      },
+      {
+        name: "twists",
+        type: "number",
+        default: "2.5",
+        description: "Number of full twists across the height.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "12",
+        description: "Seconds per full rotation.",
+      },
+      {
+        name: "dotSize",
+        type: "number",
+        default: "9",
+        description: "Diameter of each dot in px.",
+      },
+      {
+        name: "strandColors",
+        type: "[string, string]",
+        default: '["rgb(125, 211, 252)", "rgb(244, 114, 182)"]',
+        description:
+          "One color per strand. Rungs interpolate between the two.",
+      },
+      {
+        name: "color",
+        type: "string",
+        description:
+          "Shorthand: paint both strands with the same color. Overrides strandColors when set.",
+      },
+      {
+        name: "rungs",
+        type: "boolean",
+        default: "true",
+        description: "Whether to draw thin connectors between strands.",
+      },
+      {
+        name: "glow",
+        type: "boolean",
+        default: "true",
+        description: "Render an ambient halo behind the helix.",
+      },
+    ],
+    related: ["orbiting-circles", "orbit-stack"],
+  },
+
+  // ---------- PageCurl ----------
+  {
+    name: "page-curl",
+    title: "Page Curl",
+    description:
+      "Wraps any card; the bottom-right corner peels up on hover, revealing a soft underside.",
+    imports: `import { PageCurl } from "@/components/ui/page-curl";`,
+    defaultExample: {
+      title: "Hover to peel",
+      code: `<PageCurl curlSize={28} hoverCurlSize={108}>{children}</PageCurl>`,
+      render: <PageCurlDemo />,
+    },
+    props: [
+      {
+        name: "curlSize",
+        type: "number",
+        default: "26",
+        description: "Curl size at rest in px.",
+      },
+      {
+        name: "hoverCurlSize",
+        type: "number",
+        default: "96",
+        description: "Curl size on hover in px.",
+      },
+      {
+        name: "curlBack",
+        type: "string",
+        default:
+          '"linear-gradient(135deg, rgba(245,247,255,0.95), rgba(150,160,180,0.85))"',
+        description: "Background painted on the underside of the peeled corner.",
+      },
+      {
+        name: "radius",
+        type: "number",
+        default: "16",
+        description: "Border radius of the card in px.",
+      },
+    ],
+    related: ["flip-card", "tilt"],
+  },
+
+  // ---------- SwipeStack ----------
+  {
+    name: "swipe-stack",
+    title: "Swipe Stack",
+    description:
+      "Draggable Tinder-style card stack with rotation, dismiss threshold, and Like/Nope hint badges.",
+    imports: `import { SwipeStack } from "@/components/ui/swipe-stack";`,
+    defaultExample: {
+      title: "Drag to swipe",
+      code: `<SwipeStack items={items} width={300} height={400} />`,
+      render: <SwipeStackDemo />,
+    },
+    props: [
+      {
+        name: "items",
+        type: "SwipeStackItem[]",
+        required: true,
+        description:
+          "Items to render in the stack. Each takes { id, image?, title?, subtitle?, content? }.",
+      },
+      {
+        name: "width",
+        type: "number",
+        default: "320",
+        description: "Stack width in px.",
+      },
+      {
+        name: "height",
+        type: "number",
+        default: "420",
+        description: "Stack height in px.",
+      },
+      {
+        name: "visibleDepth",
+        type: "number",
+        default: "3",
+        description: "How many cards behind the top card are visible.",
+      },
+      {
+        name: "dismissThreshold",
+        type: "number",
+        default: "110",
+        description: "Pixels of horizontal drag required to dismiss the top card.",
+      },
+      {
+        name: "onSwipe",
+        type: '(direction: "left" | "right", item: SwipeStackItem) => void',
+        description: "Fired when a card is dismissed.",
+      },
+      {
+        name: "onChange",
+        type: "(index: number) => void",
+        description: "Fired with the new top index after a swipe.",
+      },
+    ],
+    related: ["card-stack", "coverflow"],
+  },
+
+  // ---------- MagneticButton ----------
+  {
+    name: "magnetic-button",
+    title: "Magnetic Button",
+    description:
+      "Button whose inner content magnetically tracks the cursor, with an optional cursor-following glow.",
+    imports: `import { MagneticButton } from "@/components/ui/magnetic-button";`,
+    defaultExample: {
+      title: "Magnetic pull",
+      code: `<MagneticButton strength={0.4}>Follow</MagneticButton>`,
+      render: <MagneticButtonDemo />,
+    },
+    props: [
+      {
+        name: "strength",
+        type: "number",
+        default: "0.4",
+        description:
+          "How strongly the inner content tracks the cursor (0..1).",
+      },
+      {
+        name: "maxOffset",
+        type: "number",
+        default: "18",
+        description: "Maximum displacement (px) the inner content can move.",
+      },
+      {
+        name: "glow",
+        type: "boolean",
+        default: "true",
+        description: "Render a soft glow that follows the cursor.",
+      },
+    ],
+    related: ["moving-border", "hover-border-gradient"],
+  },
+
+  // ---------- CursorTrail ----------
+  {
+    name: "cursor-trail",
+    title: "Cursor Trail",
+    description:
+      "Wraps an area and renders a fading dot trail behind the cursor as it moves.",
+    imports: `import { CursorTrail } from "@/components/ui/cursor-trail";`,
+    defaultExample: {
+      title: "Trailing dots",
+      code: `<CursorTrail maxDots={26}>{children}</CursorTrail>`,
+      render: <CursorTrailDemo />,
+    },
+    props: [
+      {
+        name: "maxDots",
+        type: "number",
+        default: "22",
+        description: "Maximum number of trail dots kept in the buffer.",
+      },
+      {
+        name: "size",
+        type: "number",
+        default: "18",
+        description: "Diameter of the leading dot in px.",
+      },
+      {
+        name: "color",
+        type: "string",
+        default: '"rgba(125, 211, 252, 0.85)"',
+        description: "Trail color.",
+      },
+      {
+        name: "hideCursor",
+        type: "boolean",
+        default: "false",
+        description: "Hide the native cursor inside the area.",
+      },
+      {
+        name: "enableTouch",
+        type: "boolean",
+        default: "true",
+        description: "Whether the trail also reacts to touch input.",
+      },
+    ],
+    related: ["following-pointer", "spotlight"],
   },
 ];
 

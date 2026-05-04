@@ -1,0 +1,16 @@
+{
+  "name": "tilt-tiles",
+  "description": "Interactive 3D tiles that tilt toward the pointer and float.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/tilt-tiles/tilt-tiles.tsx",
+      "target": "{{components}}/tilt-tiles.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "tiles", "tilt", "interactive", "animated"]
+}

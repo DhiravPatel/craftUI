@@ -1,0 +1,16 @@
+{
+  "name": "holo-slices",
+  "description": "Floating holographic slices stacked in 3D space.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/holo-slices/holo-slices.tsx",
+      "target": "{{components}}/holo-slices.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "hologram", "layers", "glass", "animated"]
+}

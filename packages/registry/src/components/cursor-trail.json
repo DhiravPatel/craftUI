@@ -1,0 +1,16 @@
+{
+  "name": "cursor-trail",
+  "description": "Wraps an area and renders a fading dot trail behind the cursor as it moves.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/cursor-trail/cursor-trail.tsx",
+      "target": "{{components}}/cursor-trail.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["cursor", "trail", "pointer", "interactive", "animated"]
+}

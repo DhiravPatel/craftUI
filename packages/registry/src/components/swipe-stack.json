@@ -1,0 +1,16 @@
+{
+  "name": "swipe-stack",
+  "description": "Draggable Tinder-style card stack with rotation, dismiss threshold, and Like/Nope hint badges.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/swipe-stack/swipe-stack.tsx",
+      "target": "{{components}}/swipe-stack.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "swipe", "drag", "card", "tinder", "stack", "interactive"]
+}

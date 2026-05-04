@@ -1,0 +1,16 @@
+{
+  "name": "neon-portal",
+  "description": "A rotating neon portal ring with pulsing core.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/neon-portal/neon-portal.tsx",
+      "target": "{{components}}/neon-portal.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "portal", "neon", "ring", "animated"]
+}
