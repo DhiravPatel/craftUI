@@ -24,6 +24,7 @@ import command from "./components/command.json";
 import compare from "./components/compare.json";
 import coverflow from "./components/coverflow.json";
 import cube from "./components/cube.json";
+import cursorTrail from "./components/cursor-trail.json";
 import datePicker from "./components/date-picker.json";
 import dialog from "./components/dialog.json";
 import directionAwareHover from "./components/direction-aware-hover.json";
@@ -43,6 +44,7 @@ import footer from "./components/footer.json";
 import form from "./components/form.json";
 import globe from "./components/globe.json";
 import gravityWell from "./components/gravity-well.json";
+import helix from "./components/helix.json";
 import holoCard from "./components/holo-card.json";
 import holoSlices from "./components/holo-slices.json";
 import hoverBorderGradient from "./components/hover-border-gradient.json";
@@ -56,6 +58,7 @@ import lamp from "./components/lamp.json";
 import layout from "./components/layout.json";
 import lens from "./components/lens.json";
 import magnet from "./components/magnet.json";
+import magneticButton from "./components/magnetic-button.json";
 import marquee3d from "./components/marquee-3d.json";
 import meteors from "./components/meteors.json";
 import movingBorder from "./components/moving-border.json";
@@ -66,6 +69,7 @@ import neonPortal from "./components/neon-portal.json";
 import numberTicker from "./components/number-ticker.json";
 import orbitStack from "./components/orbit-stack.json";
 import orbitingCircles from "./components/orbiting-circles.json";
+import pageCurl from "./components/page-curl.json";
 import pagination from "./components/pagination.json";
 import parallax from "./components/parallax.json";
 import pin3d from "./components/pin-3d.json";
@@ -90,6 +94,7 @@ import spinner from "./components/spinner.json";
 import spotlight from "./components/spotlight.json";
 import stat from "./components/stat.json";
 import stepper from "./components/stepper.json";
+import swipeStack from "./components/swipe-stack.json";
 import switchEntry from "./components/switch.json";
 import table from "./components/table.json";
 import tabs from "./components/tabs.json";
@@ -105,7 +110,6 @@ import toggle from "./components/toggle.json";
 import toggleGroup from "./components/toggle-group.json";
 import tooltip from "./components/tooltip.json";
 import tracingBeam from "./components/tracing-beam.json";
-import vortexRings from "./components/vortex-rings.json";
 import wavyBackground from "./components/wavy-background.json";
 import wavyText from "./components/wavy-text.json";
 import worldMap from "./components/world-map.json";
@@ -135,6 +139,7 @@ export const registry: Registry = [
   compare,
   coverflow,
   cube,
+  cursorTrail,
   datePicker,
   dialog,
   directionAwareHover,
@@ -154,6 +159,7 @@ export const registry: Registry = [
   form,
   globe,
   gravityWell,
+  helix,
   holoCard,
   holoSlices,
   hoverBorderGradient,
@@ -167,6 +173,7 @@ export const registry: Registry = [
   layout,
   lens,
   magnet,
+  magneticButton,
   marquee3d,
   meteors,
   movingBorder,
@@ -177,6 +184,7 @@ export const registry: Registry = [
   numberTicker,
   orbitStack,
   orbitingCircles,
+  pageCurl,
   pagination,
   parallax,
   pin3d,
@@ -201,6 +209,7 @@ export const registry: Registry = [
   spotlight,
   stat,
   stepper,
+  swipeStack,
   switchEntry,
   table,
   tabs,
@@ -216,7 +225,6 @@ export const registry: Registry = [
   toggleGroup,
   tooltip,
   tracingBeam,
-  vortexRings,
   wavyBackground,
   wavyText,
   worldMap,

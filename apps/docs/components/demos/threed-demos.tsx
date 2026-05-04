@@ -20,6 +20,7 @@ import {
   Coverflow,
   Cube,
   CubeFace,
+  CursorTrail,
   DirectionAwareHover,
   DotPattern,
   EvervaultCard,
@@ -33,6 +34,7 @@ import {
   FollowingPointer,
   Globe,
   GravityWell,
+  Helix,
   HoloCard,
   HoloSlices,
   HoverBorderGradient,
@@ -40,6 +42,7 @@ import {
   Lamp,
   Lens,
   Magnet,
+  MagneticButton,
   Marquee3D,
   Meteors,
   MovingBorder,
@@ -49,6 +52,7 @@ import {
   NumberTicker,
   OrbitStack,
   OrbitingCircles,
+  PageCurl,
   Parallax,
   ParallaxLayer,
   Pin3D,
@@ -59,12 +63,12 @@ import {
   Sparkles as SparklesFx,
   SparklesText,
   Spotlight,
+  SwipeStack,
   TextGenerateEffect,
   TextScramble,
   Tilt,
   TiltTiles,
   TracingBeam,
-  VortexRings,
   WavyBackground,
   WavyText,
   WorldMap,
@@ -76,6 +80,7 @@ import {
   Disc3,
   Github,
   Globe as GlobeIcon,
+  Heart,
   Mountain,
   Music,
   Plane,
@@ -2055,17 +2060,6 @@ export function PrismOrbDemo() {
 }
 
 /* ------------------------------------------------------------------
- * VortexRings — concentric rotating rings in 3D space.
- * ------------------------------------------------------------------ */
-export function VortexRingsDemo() {
-  return (
-    <div className={STAGE_CLASS} style={photoBackdrop("vortex-rings-bg")}>
-      <VortexRings size={260} ringCount={6} />
-    </div>
-  );
-}
-
-/* ------------------------------------------------------------------
  * GravityWell — layered depth rings with pulsing motion.
  * ------------------------------------------------------------------ */
 export function GravityWellDemo() {
@@ -2180,5 +2174,163 @@ export function FluxPanelsDemo() {
         images={PHOTO_GALLERY.slice(2, 7)}
       />
     </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * Helix — two-strand DNA helix rotating around its vertical axis.
+ * ------------------------------------------------------------------ */
+export function HelixDemo() {
+  return (
+    <div
+      className={STAGE_CLASS}
+      style={{
+        background:
+          "radial-gradient(ellipse at center, rgb(13,18,38) 0%, rgb(3,5,14) 75%)",
+      }}
+    >
+      <Helix
+        height={300}
+        radius={72}
+        dotsPerStrand={26}
+        twists={2.2}
+        duration={9}
+        strandColors={["rgb(125, 211, 252)", "rgb(244, 114, 182)"]}
+        glow
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * PageCurl — wraps a card whose corner peels up on hover.
+ * ------------------------------------------------------------------ */
+export function PageCurlDemo() {
+  return (
+    <div className={STAGE_CLASS} style={photoBackdrop("page-curl-bg")}>
+      <PageCurl
+        curlSize={28}
+        hoverCurlSize={108}
+        radius={18}
+        className="h-[260px] w-[380px] border border-white/10 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6)]"
+      >
+        <div className="relative h-full w-full overflow-hidden">
+          <div
+            aria-hidden
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url("https://picsum.photos/seed/page-curl-card/640/440")`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+          <div
+            aria-hidden
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.7) 100%)",
+            }}
+          />
+          <div className="absolute inset-x-0 bottom-0 p-5 text-white">
+            <p className="text-[10px] uppercase tracking-[0.2em] opacity-75">
+              Field notes
+            </p>
+            <p className="mt-1 text-lg font-semibold leading-tight">
+              The cliffs at sunrise
+            </p>
+            <p className="mt-1 text-sm text-white/80">
+              Hover the corner to peel
+            </p>
+          </div>
+        </div>
+      </PageCurl>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * SwipeStack — drag the top card left or right to dismiss.
+ * ------------------------------------------------------------------ */
+export function SwipeStackDemo() {
+  const items = React.useMemo(
+    () => [
+      {
+        id: 1,
+        image: "https://picsum.photos/seed/swipe-1/640/840",
+        title: "Aiko Tanaka",
+        subtitle: "Photographer · Tokyo",
+      },
+      {
+        id: 2,
+        image: "https://picsum.photos/seed/swipe-2/640/840",
+        title: "Marcus Lee",
+        subtitle: "Architect · Seoul",
+      },
+      {
+        id: 3,
+        image: "https://picsum.photos/seed/swipe-3/640/840",
+        title: "Sofia Reyes",
+        subtitle: "Designer · Lisbon",
+      },
+      {
+        id: 4,
+        image: "https://picsum.photos/seed/swipe-4/640/840",
+        title: "Noor Hassan",
+        subtitle: "Writer · Cairo",
+      },
+    ],
+    []
+  );
+  return (
+    <div className={STAGE_CLASS} style={photoBackdrop("swipe-stack-bg")}>
+      <SwipeStack items={items} width={300} height={400} visibleDepth={3} />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * MagneticButton — button content tracks the cursor with a soft glow.
+ * ------------------------------------------------------------------ */
+export function MagneticButtonDemo() {
+  return (
+    <div className={STAGE_CLASS} style={photoBackdrop("magnetic-button-bg")}>
+      <div className="flex items-center gap-4">
+        <MagneticButton strength={0.45} maxOffset={20}>
+          <Heart className="h-4 w-4" />
+          Follow
+        </MagneticButton>
+        <MagneticButton
+          strength={0.35}
+          maxOffset={14}
+          className="bg-white text-neutral-900 hover:shadow-[0_22px_44px_-12px_rgba(0,0,0,0.45)]"
+        >
+          <ArrowUpRight className="h-4 w-4" />
+          Get started
+        </MagneticButton>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * CursorTrail — wrap an area to leave a fading dot trail behind the cursor.
+ * ------------------------------------------------------------------ */
+export function CursorTrailDemo() {
+  return (
+    <CursorTrail
+      maxDots={26}
+      size={22}
+      color="rgba(125, 211, 252, 0.85)"
+      className={STAGE_CLASS}
+      style={photoBackdrop("cursor-trail-bg")}
+    >
+      <div className="flex flex-col items-center gap-2 text-center">
+        <p className="text-xs font-medium uppercase tracking-[0.25em] text-white/70">
+          Move your cursor
+        </p>
+        <p className="text-2xl font-semibold text-white">Leave a trace.</p>
+      </div>
+    </CursorTrail>
   );
 }

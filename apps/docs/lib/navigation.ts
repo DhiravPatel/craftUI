@@ -156,7 +156,11 @@ export const navigation: NavSection[] = [
       { title: "Ripple", href: "/docs/components/ripple" },
       { title: "Text Scramble", href: "/docs/components/text-scramble" },
       { title: "Tilt Tiles", href: "/docs/components/tilt-tiles" },
-      { title: "Vortex Rings", href: "/docs/components/vortex-rings" },
+      { title: "Helix", href: "/docs/components/helix" },
+      { title: "Page Curl", href: "/docs/components/page-curl" },
+      { title: "Swipe Stack", href: "/docs/components/swipe-stack" },
+      { title: "Magnetic Button", href: "/docs/components/magnetic-button" },
+      { title: "Cursor Trail", href: "/docs/components/cursor-trail" },
     ],
   },
 ];

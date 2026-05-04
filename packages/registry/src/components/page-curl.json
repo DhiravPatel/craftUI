@@ -1,0 +1,16 @@
+{
+  "name": "page-curl",
+  "description": "Wraps any card so its bottom-right corner peels up on hover, revealing a soft underside.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/page-curl/page-curl.tsx",
+      "target": "{{components}}/page-curl.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "curl", "peel", "hover", "card", "animated"]
+}

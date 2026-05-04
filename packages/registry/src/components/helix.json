@@ -1,0 +1,16 @@
+{
+  "name": "helix",
+  "description": "Two-strand rotating DNA helix built with pure CSS 3D transforms.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/helix/helix.tsx",
+      "target": "{{components}}/helix.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "helix", "dna", "rotate", "animated"]
+}

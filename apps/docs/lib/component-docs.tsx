@@ -172,6 +172,7 @@ import {
   CompareDemo,
   CoverflowDemo,
   CubeDemo,
+  CursorTrailDemo,
   DirectionAwareHoverDemo,
   DotPatternDemo,
   EvervaultCardDemo,
@@ -183,6 +184,7 @@ import {
   FollowingPointerDemo,
   GlobeDemo,
   GravityWellDemo,
+  HelixDemo,
   HoloCardDemo,
   HoloSlicesDemo,
   HoverBorderGradientDemo,
@@ -190,6 +192,7 @@ import {
   LampDemo,
   LensDemo,
   MagnetDemo,
+  MagneticButtonDemo,
   Marquee3DDemo,
   MeteorsDemo,
   MovingBorderDemo,
@@ -199,6 +202,7 @@ import {
   NumberTickerDemo,
   OrbitStackDemo,
   OrbitingCirclesDemo,
+  PageCurlDemo,
   ParallaxDemo,
   Pin3DDemo,
   PlasmaFieldDemo,
@@ -209,12 +213,12 @@ import {
   SparklesStarfieldDemo,
   SparklesTextDemo,
   SpotlightDemo,
+  SwipeStackDemo,
   TextGenerateEffectDemo,
   TextScrambleDemo,
   TiltDemo,
   TiltTilesDemo,
   TracingBeamDemo,
-  VortexRingsDemo,
   WavyBackgroundDemo,
   WavyTextDemo,
   WorldMapDemo,
@@ -5757,28 +5761,6 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
     related: ["neon-portal", "plasma-field"],
   },
 
-  // ---------- VortexRings ----------
-  {
-    name: "vortex-rings",
-    title: "Vortex Rings",
-    description:
-      "Concentric 3D rings rotating in a vortex formation with neon glow.",
-    imports: `import { VortexRings } from "@/components/ui/vortex-rings";`,
-    defaultExample: {
-      title: "Rotating rings",
-      code: `<VortexRings size={260} ringCount={6} />`,
-      render: <VortexRingsDemo />,
-    },
-    props: [
-      { name: "size", type: "number", default: "320" },
-      { name: "ringCount", type: "number", default: "6" },
-      { name: "duration", type: "number", default: "14" },
-      { name: "perspective", type: "number", default: "900" },
-      { name: "colors", type: "string[]" },
-    ],
-    related: ["orbit-stack", "gravity-well"],
-  },
-
   // ---------- GravityWell ----------
   {
     name: "gravity-well",
@@ -5798,7 +5780,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
       { name: "perspective", type: "number", default: "900" },
       { name: "colors", type: "string[]" },
     ],
-    related: ["vortex-rings", "orbiting-circles"],
+    related: ["orbiting-circles", "plasma-field"],
   },
 
   // ---------- HoloSlices ----------
@@ -5883,7 +5865,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
       { name: "duration", type: "number", default: "10" },
       { name: "colors", type: "string[]" },
     ],
-    related: ["orbiting-circles", "vortex-rings"],
+    related: ["orbiting-circles", "orbit-stack"],
   },
 
   // ---------- PlasmaField ----------
@@ -5948,6 +5930,267 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
       { name: "perspective", type: "number", default: "900" },
     ],
     related: ["holo-slices", "holo-card"],
+  },
+
+  // ---------- Helix ----------
+  {
+    name: "helix",
+    title: "Helix",
+    description:
+      "Two-strand rotating DNA helix built with pure CSS 3D transforms.",
+    imports: `import { Helix } from "@/components/ui/helix";`,
+    defaultExample: {
+      title: "Rotating helix",
+      code: `<Helix height={300} radius={70} dotsPerStrand={28} />`,
+      render: <HelixDemo />,
+    },
+    props: [
+      {
+        name: "height",
+        type: "number",
+        default: "360",
+        description: "Total vertical extent of the helix in px.",
+      },
+      {
+        name: "radius",
+        type: "number",
+        default: "70",
+        description: "Distance of each strand from the center axis.",
+      },
+      {
+        name: "dotsPerStrand",
+        type: "number",
+        default: "32",
+        description: "How many dots make up each strand.",
+      },
+      {
+        name: "twists",
+        type: "number",
+        default: "2.5",
+        description: "Number of full twists across the height.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "12",
+        description: "Seconds per full rotation.",
+      },
+      {
+        name: "dotSize",
+        type: "number",
+        default: "9",
+        description: "Diameter of each dot in px.",
+      },
+      {
+        name: "strandColors",
+        type: "[string, string]",
+        default: '["rgb(125, 211, 252)", "rgb(244, 114, 182)"]',
+        description:
+          "One color per strand. Rungs interpolate between the two.",
+      },
+      {
+        name: "color",
+        type: "string",
+        description:
+          "Shorthand: paint both strands with the same color. Overrides strandColors when set.",
+      },
+      {
+        name: "rungs",
+        type: "boolean",
+        default: "true",
+        description: "Whether to draw thin connectors between strands.",
+      },
+      {
+        name: "glow",
+        type: "boolean",
+        default: "true",
+        description: "Render an ambient halo behind the helix.",
+      },
+    ],
+    related: ["orbiting-circles", "orbit-stack"],
+  },
+
+  // ---------- PageCurl ----------
+  {
+    name: "page-curl",
+    title: "Page Curl",
+    description:
+      "Wraps any card; the bottom-right corner peels up on hover, revealing a soft underside.",
+    imports: `import { PageCurl } from "@/components/ui/page-curl";`,
+    defaultExample: {
+      title: "Hover to peel",
+      code: `<PageCurl curlSize={28} hoverCurlSize={108}>{children}</PageCurl>`,
+      render: <PageCurlDemo />,
+    },
+    props: [
+      {
+        name: "curlSize",
+        type: "number",
+        default: "26",
+        description: "Curl size at rest in px.",
+      },
+      {
+        name: "hoverCurlSize",
+        type: "number",
+        default: "96",
+        description: "Curl size on hover in px.",
+      },
+      {
+        name: "curlBack",
+        type: "string",
+        default:
+          '"linear-gradient(135deg, rgba(245,247,255,0.95), rgba(150,160,180,0.85))"',
+        description: "Background painted on the underside of the peeled corner.",
+      },
+      {
+        name: "radius",
+        type: "number",
+        default: "16",
+        description: "Border radius of the card in px.",
+      },
+    ],
+    related: ["flip-card", "tilt"],
+  },
+
+  // ---------- SwipeStack ----------
+  {
+    name: "swipe-stack",
+    title: "Swipe Stack",
+    description:
+      "Draggable Tinder-style card stack with rotation, dismiss threshold, and Like/Nope hint badges.",
+    imports: `import { SwipeStack } from "@/components/ui/swipe-stack";`,
+    defaultExample: {
+      title: "Drag to swipe",
+      code: `<SwipeStack items={items} width={300} height={400} />`,
+      render: <SwipeStackDemo />,
+    },
+    props: [
+      {
+        name: "items",
+        type: "SwipeStackItem[]",
+        required: true,
+        description:
+          "Items to render in the stack. Each takes { id, image?, title?, subtitle?, content? }.",
+      },
+      {
+        name: "width",
+        type: "number",
+        default: "320",
+        description: "Stack width in px.",
+      },
+      {
+        name: "height",
+        type: "number",
+        default: "420",
+        description: "Stack height in px.",
+      },
+      {
+        name: "visibleDepth",
+        type: "number",
+        default: "3",
+        description: "How many cards behind the top card are visible.",
+      },
+      {
+        name: "dismissThreshold",
+        type: "number",
+        default: "110",
+        description: "Pixels of horizontal drag required to dismiss the top card.",
+      },
+      {
+        name: "onSwipe",
+        type: '(direction: "left" | "right", item: SwipeStackItem) => void',
+        description: "Fired when a card is dismissed.",
+      },
+      {
+        name: "onChange",
+        type: "(index: number) => void",
+        description: "Fired with the new top index after a swipe.",
+      },
+    ],
+    related: ["card-stack", "coverflow"],
+  },
+
+  // ---------- MagneticButton ----------
+  {
+    name: "magnetic-button",
+    title: "Magnetic Button",
+    description:
+      "Button whose inner content magnetically tracks the cursor, with an optional cursor-following glow.",
+    imports: `import { MagneticButton } from "@/components/ui/magnetic-button";`,
+    defaultExample: {
+      title: "Magnetic pull",
+      code: `<MagneticButton strength={0.4}>Follow</MagneticButton>`,
+      render: <MagneticButtonDemo />,
+    },
+    props: [
+      {
+        name: "strength",
+        type: "number",
+        default: "0.4",
+        description:
+          "How strongly the inner content tracks the cursor (0..1).",
+      },
+      {
+        name: "maxOffset",
+        type: "number",
+        default: "18",
+        description: "Maximum displacement (px) the inner content can move.",
+      },
+      {
+        name: "glow",
+        type: "boolean",
+        default: "true",
+        description: "Render a soft glow that follows the cursor.",
+      },
+    ],
+    related: ["moving-border", "hover-border-gradient"],
+  },
+
+  // ---------- CursorTrail ----------
+  {
+    name: "cursor-trail",
+    title: "Cursor Trail",
+    description:
+      "Wraps an area and renders a fading dot trail behind the cursor as it moves.",
+    imports: `import { CursorTrail } from "@/components/ui/cursor-trail";`,
+    defaultExample: {
+      title: "Trailing dots",
+      code: `<CursorTrail maxDots={26}>{children}</CursorTrail>`,
+      render: <CursorTrailDemo />,
+    },
+    props: [
+      {
+        name: "maxDots",
+        type: "number",
+        default: "22",
+        description: "Maximum number of trail dots kept in the buffer.",
+      },
+      {
+        name: "size",
+        type: "number",
+        default: "18",
+        description: "Diameter of the leading dot in px.",
+      },
+      {
+        name: "color",
+        type: "string",
+        default: '"rgba(125, 211, 252, 0.85)"',
+        description: "Trail color.",
+      },
+      {
+        name: "hideCursor",
+        type: "boolean",
+        default: "false",
+        description: "Hide the native cursor inside the area.",
+      },
+      {
+        name: "enableTouch",
+        type: "boolean",
+        default: "true",
+        description: "Whether the trail also reacts to touch input.",
+      },
+    ],
+    related: ["following-pointer", "spotlight"],
   },
 ];
 

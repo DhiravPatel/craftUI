@@ -1,0 +1,16 @@
+{
+  "name": "magnetic-button",
+  "description": "Button whose inner content magnetically tracks the cursor, with an optional cursor-following glow.",
+  "category": "input",
+  "files": [
+    {
+      "path": "components/magnetic-button/magnetic-button.tsx",
+      "target": "{{components}}/magnetic-button.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["button", "magnetic", "cursor", "hover", "interactive"]
+}
