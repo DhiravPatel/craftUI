@@ -1,0 +1,16 @@
+{
+  "name": "animated-chart",
+  "description": "SVG line / area / bar chart that draws itself when scrolled into view, using stroke-dashoffset for line drawing and stagger for bars.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/animated-chart/animated-chart.tsx",
+      "target": "{{components}}/animated-chart.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["chart", "svg", "metrics", "saas", "animated"]
+}

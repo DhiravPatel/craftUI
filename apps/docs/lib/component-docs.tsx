@@ -160,6 +160,7 @@ import {
   ToggleDemo,
 } from "@/components/demos/interactive-demos";
 import {
+  AnimatedChartDemo,
   AnimatedTextDemo,
   AnimatedTooltipDemo,
   AuroraDemo,
@@ -177,6 +178,7 @@ import {
   DirectionAwareHoverDemo,
   DotPatternDemo,
   EvervaultCardDemo,
+  FeatureCardDemo,
   FluxPanelsDemo,
   FlipCardDemo,
   FlipWordsDemo,
@@ -204,6 +206,7 @@ import {
   MultiStepLoaderDemo,
   NeonGlowDemo,
   NeonPortalDemo,
+  NotificationStackDemo,
   NumberTickerDemo,
   OrbitStackDemo,
   OrbitalMenuDemo,
@@ -223,6 +226,7 @@ import {
   SparklesStarfieldDemo,
   SparklesTextDemo,
   SpotlightDemo,
+  StatCardDemo,
   SwipeStackDemo,
   TestimonialQuoteDemo,
   TextGenerateEffectDemo,
@@ -6916,6 +6920,254 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
       },
     ],
     related: ["card-hover-effect", "tilt"],
+  },
+
+  // ---------- StatCard ----------
+  {
+    name: "stat-card",
+    title: "Stat Card",
+    description:
+      "Polished metric card for landing-page hero / stats sections. Animates the value on view, shows an optional trend indicator, and renders an optional inline sparkline.",
+    imports: `import { StatCard } from "@/components/ui/stat-card";`,
+    defaultExample: {
+      title: "Three metrics",
+      code: `<StatCard label="Active users" value={48200} suffix="+" change={12.4} sparkline={[...]} />`,
+      render: <StatCardDemo />,
+    },
+    props: [
+      {
+        name: "label",
+        type: "string",
+        required: true,
+        description: "Short label shown above the value.",
+      },
+      {
+        name: "value",
+        type: "number",
+        required: true,
+        description: "Numeric value to display. Counts up on view.",
+      },
+      {
+        name: "prefix",
+        type: "string",
+        description: 'Prefix shown before the value, e.g. "$".',
+      },
+      {
+        name: "suffix",
+        type: "string",
+        description: 'Suffix shown after the value, e.g. "k", "%".',
+      },
+      {
+        name: "decimals",
+        type: "number",
+        default: "0",
+        description: "Number of decimal places to render.",
+      },
+      {
+        name: "change",
+        type: "number",
+        description:
+          "Period-over-period change in percent. Negative values render in red.",
+      },
+      {
+        name: "sparkline",
+        type: "number[]",
+        description: "Optional inline sparkline data series.",
+      },
+      {
+        name: "accent",
+        type: "string",
+        default: '"rgb(125, 211, 252)"',
+        description:
+          "Color used for the sparkline + cursor-tracking glow.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "1100",
+        description: "Total milliseconds for the count-up animation.",
+      },
+    ],
+    related: ["number-ticker", "stat"],
+  },
+
+  // ---------- AnimatedChart ----------
+  {
+    name: "animated-chart",
+    title: "Animated Chart",
+    description:
+      "SVG line / area / bar chart that draws itself when scrolled into view. Uses stroke-dashoffset for the line/area variants and a stagger for bars.",
+    imports: `import { AnimatedChart } from "@/components/ui/animated-chart";`,
+    defaultExample: {
+      title: "Area chart",
+      code: `<AnimatedChart data={[12, 18, 16, 22, 26, 24, 32, 30, ...]} variant="area" />`,
+      render: <AnimatedChartDemo />,
+    },
+    props: [
+      {
+        name: "data",
+        type: "number[]",
+        required: true,
+        description: "Numeric series to plot.",
+      },
+      {
+        name: "variant",
+        type: '"line" | "area" | "bar"',
+        default: '"area"',
+        description: "Render style.",
+      },
+      {
+        name: "color",
+        type: "string",
+        default: '"rgb(125, 211, 252)"',
+        description: "Stroke / bar color.",
+      },
+      {
+        name: "width",
+        type: "number",
+        default: "480",
+        description: "Width in px.",
+      },
+      {
+        name: "height",
+        type: "number",
+        default: "220",
+        description: "Height in px.",
+      },
+      {
+        name: "strokeWidth",
+        type: "number",
+        default: "2",
+        description: "Stroke width for the line / area variants.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "1500",
+        description: "Total milliseconds for the entrance animation.",
+      },
+      {
+        name: "animateOnView",
+        type: "boolean",
+        default: "true",
+        description:
+          "Wait until the chart scrolls into view before animating.",
+      },
+      {
+        name: "grid",
+        type: "boolean",
+        default: "true",
+        description: "Render subtle horizontal grid lines.",
+      },
+    ],
+    related: ["stat-card", "number-ticker"],
+  },
+
+  // ---------- FeatureCard ----------
+  {
+    name: "feature-card",
+    title: "Feature Card",
+    description:
+      "Tidy feature block for landing-page feature grids. Has a gradient icon tile, heading, description, hover lift, and a cursor-tracking glow.",
+    imports: `import { FeatureCard } from "@/components/ui/feature-card";`,
+    defaultExample: {
+      title: "Three feature blocks",
+      code: `<FeatureCard icon={<Zap />} title="..." description="..." />`,
+      render: <FeatureCardDemo />,
+    },
+    props: [
+      {
+        name: "icon",
+        type: "ReactNode",
+        required: true,
+        description: "Icon shown in the colored tile at the top of the card.",
+      },
+      {
+        name: "title",
+        type: "ReactNode",
+        required: true,
+        description: "Card title.",
+      },
+      {
+        name: "description",
+        type: "ReactNode",
+        required: true,
+        description: "Card body.",
+      },
+      {
+        name: "iconBackground",
+        type: "string",
+        description:
+          "CSS background for the icon tile. Default a sky→indigo gradient.",
+      },
+      {
+        name: "iconColor",
+        type: "string",
+        default: '"white"',
+        description: "Color of the icon glyph itself.",
+      },
+      {
+        name: "iconSize",
+        type: "number",
+        default: "48",
+        description: "Diameter of the icon tile in px.",
+      },
+      {
+        name: "radius",
+        type: "number",
+        default: "18",
+        description: "Border radius of the card in px.",
+      },
+      {
+        name: "glow",
+        type: "boolean",
+        default: "true",
+        description: "Render a cursor-tracking glow on hover.",
+      },
+    ],
+    related: ["bento-grid", "card-hover-effect"],
+  },
+
+  // ---------- NotificationStack ----------
+  {
+    name: "notification-stack",
+    title: "Notification Stack",
+    description:
+      "Auto-cycling stack of iOS-style push notifications. Each new alert slides in at the top while older ones translate down with a slight scale and opacity falloff.",
+    imports: `import { NotificationStack } from "@/components/ui/notification-stack";`,
+    defaultExample: {
+      title: "Notification stream",
+      code: `<NotificationStack notifications={items} interval={2.4} />`,
+      render: <NotificationStackDemo />,
+    },
+    props: [
+      {
+        name: "notifications",
+        type: "NotificationItem[]",
+        required: true,
+        description:
+          "Items to cycle through. Each takes { id, icon, source, message, time?, iconBackground? }.",
+      },
+      {
+        name: "width",
+        type: "number",
+        default: "340",
+        description: "Width of the stack in px.",
+      },
+      {
+        name: "visible",
+        type: "number",
+        default: "3",
+        description: "How many notifications are visible at once.",
+      },
+      {
+        name: "interval",
+        type: "number",
+        default: "2.4",
+        description: "Time between each new notification, in seconds.",
+      },
+    ],
+    related: ["card-stack", "swipe-stack"],
   },
 ];
 

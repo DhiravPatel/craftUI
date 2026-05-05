@@ -3,6 +3,7 @@ import type { Registry, RegistryEntry } from "./types";
 import accordion from "./components/accordion.json";
 import alert from "./components/alert.json";
 import alertDialog from "./components/alert-dialog.json";
+import animatedChart from "./components/animated-chart.json";
 import animatedText from "./components/animated-text.json";
 import animatedTooltip from "./components/animated-tooltip.json";
 import aurora from "./components/aurora.json";
@@ -34,6 +35,7 @@ import drawer from "./components/drawer.json";
 import dropdownMenu from "./components/dropdown-menu.json";
 import emptyState from "./components/empty-state.json";
 import evervaultCard from "./components/evervault-card.json";
+import featureCard from "./components/feature-card.json";
 import fileUpload from "./components/file-upload.json";
 import flipCard from "./components/flip-card.json";
 import flipWords from "./components/flip-words.json";
@@ -71,6 +73,7 @@ import multiStepLoader from "./components/multi-step-loader.json";
 import navbar from "./components/navbar.json";
 import neonGlow from "./components/neon-glow.json";
 import neonPortal from "./components/neon-portal.json";
+import notificationStack from "./components/notification-stack.json";
 import numberTicker from "./components/number-ticker.json";
 import orbitStack from "./components/orbit-stack.json";
 import orbitalMenu from "./components/orbital-menu.json";
@@ -103,6 +106,7 @@ import sparklesText from "./components/sparkles-text.json";
 import spinner from "./components/spinner.json";
 import spotlight from "./components/spotlight.json";
 import stat from "./components/stat.json";
+import statCard from "./components/stat-card.json";
 import stepper from "./components/stepper.json";
 import swipeStack from "./components/swipe-stack.json";
 import switchEntry from "./components/switch.json";
@@ -130,6 +134,7 @@ export const registry: Registry = [
   accordion,
   alert,
   alertDialog,
+  animatedChart,
   animatedText,
   animatedTooltip,
   aurora,
@@ -161,6 +166,7 @@ export const registry: Registry = [
   dropdownMenu,
   emptyState,
   evervaultCard,
+  featureCard,
   fileUpload,
   flipCard,
   flipWords,
@@ -198,6 +204,7 @@ export const registry: Registry = [
   navbar,
   neonGlow,
   neonPortal,
+  notificationStack,
   numberTicker,
   orbitStack,
   orbitalMenu,
@@ -230,6 +237,7 @@ export const registry: Registry = [
   spinner,
   spotlight,
   stat,
+  statCard,
   stepper,
   swipeStack,
   switchEntry,

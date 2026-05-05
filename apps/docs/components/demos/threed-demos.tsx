@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import {
+  AnimatedChart,
   AnimatedText,
   AnimatedTooltip,
   Aurora,
@@ -25,6 +26,7 @@ import {
   DirectionAwareHover,
   DotPattern,
   EvervaultCard,
+  FeatureCard,
   FluxPanels,
   FlipCard,
   FocusCards,
@@ -54,6 +56,7 @@ import {
   MultiStepLoader,
   NeonGlow,
   NeonPortal,
+  NotificationStack,
   NumberTicker,
   OrbitStack,
   OrbitalMenu,
@@ -72,6 +75,7 @@ import {
   Ripple,
   Sparkles as SparklesFx,
   SparklesText,
+  StatCard,
   Spotlight,
   SwipeStack,
   TestimonialQuote,
@@ -3121,3 +3125,191 @@ export function TestimonialQuoteDemo() {
   );
 }
 
+/* ------------------------------------------------------------------
+ * StatCard — three metric cards with count-up + trend + sparkline.
+ * ------------------------------------------------------------------ */
+export function StatCardDemo() {
+  return (
+    <div className="relative flex w-full items-center justify-center px-6 py-10">
+      <div className="grid w-full max-w-[820px] grid-cols-1 gap-4 sm:grid-cols-3">
+        <StatCard
+          label="Monthly active users"
+          value={48200}
+          suffix="+"
+          change={12.4}
+          accent="rgb(125, 211, 252)"
+          sparkline={[8, 12, 10, 16, 14, 22, 26, 24, 32, 38, 34, 48]}
+        />
+        <StatCard
+          label="Annual revenue"
+          value={1.42}
+          prefix="$"
+          suffix="M"
+          decimals={2}
+          change={28.7}
+          accent="rgb(74, 222, 128)"
+          sparkline={[1.0, 1.05, 1.08, 1.04, 1.12, 1.22, 1.28, 1.35, 1.4, 1.42]}
+        />
+        <StatCard
+          label="Churn rate"
+          value={1.8}
+          suffix="%"
+          decimals={1}
+          change={-3.2}
+          accent="rgb(244, 114, 182)"
+          sparkline={[3.4, 3.1, 2.9, 3.0, 2.6, 2.4, 2.2, 2.1, 1.9, 1.8]}
+        />
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * AnimatedChart — area chart that draws itself on view.
+ * ------------------------------------------------------------------ */
+export function AnimatedChartDemo() {
+  const series = [
+    12, 18, 16, 22, 26, 24, 32, 30, 36, 42, 38, 46, 50, 48, 56, 60, 58, 66, 72,
+    78,
+  ];
+  return (
+    <div className="relative flex w-full items-center justify-center px-6 py-10">
+      <div className="w-full max-w-[520px] rounded-2xl border border-white/10 bg-neutral-950 p-5 text-white shadow-[0_18px_36px_-18px_rgba(0,0,0,0.55)]">
+        <div className="mb-3 flex items-baseline justify-between">
+          <div>
+            <p className="text-xs font-medium uppercase tracking-wider text-white/55">
+              Active sessions
+            </p>
+            <p className="mt-1 text-2xl font-bold tracking-tight">
+              12,840
+              <span className="ml-2 text-sm font-medium text-emerald-400">
+                +18%
+              </span>
+            </p>
+          </div>
+          <div className="flex gap-1.5">
+            <span className="rounded-md bg-white/5 px-2 py-1 text-[10px] font-medium text-white/70">
+              7d
+            </span>
+            <span className="rounded-md bg-white/15 px-2 py-1 text-[10px] font-semibold">
+              30d
+            </span>
+          </div>
+        </div>
+        <AnimatedChart
+          data={series}
+          variant="area"
+          color="rgb(125, 211, 252)"
+          width={460}
+          height={180}
+          className="!w-full"
+        />
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * FeatureCard — three feature blocks with gradient icon tiles.
+ * ------------------------------------------------------------------ */
+export function FeatureCardDemo() {
+  const features = [
+    {
+      title: "Lightning-fast deploys",
+      description:
+        "Push to main and ship to global edge in under 30 seconds. Zero config.",
+      icon: <Zap className="h-5 w-5" />,
+      bg: "linear-gradient(135deg, rgb(250, 204, 21) 0%, rgb(234, 88, 12) 100%)",
+    },
+    {
+      title: "End-to-end encryption",
+      description:
+        "All data is encrypted at rest and in transit with rotating keys.",
+      icon: <Sparkles className="h-5 w-5" />,
+      bg: "linear-gradient(135deg, rgb(125, 211, 252) 0%, rgb(99, 102, 241) 100%)",
+    },
+    {
+      title: "Built for teams",
+      description:
+        "SSO, audit log, and granular permissions out of the box.",
+      icon: <Crown className="h-5 w-5" />,
+      bg: "linear-gradient(135deg, rgb(244, 114, 182) 0%, rgb(168, 85, 247) 100%)",
+    },
+  ];
+  return (
+    <div className="relative flex w-full items-center justify-center px-6 py-10">
+      <div className="grid w-full max-w-[640px] grid-cols-1 gap-3 sm:grid-cols-3">
+        {features.map((f) => (
+          <FeatureCard
+            key={f.title}
+            icon={f.icon}
+            title={f.title}
+            description={f.description}
+            iconBackground={f.bg}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+
+/* ------------------------------------------------------------------
+ * NotificationStack — auto-cycling iOS-style push notifications.
+ * ------------------------------------------------------------------ */
+export function NotificationStackDemo() {
+  const notifications = [
+    {
+      id: 1,
+      icon: <MessageCircle className="h-4 w-4" fill="white" />,
+      iconBackground:
+        "linear-gradient(135deg, rgb(74, 222, 128), rgb(22, 163, 74))",
+      source: "Messages",
+      message: "Aiko: Sent the new design over",
+      time: "now",
+    },
+    {
+      id: 2,
+      icon: <Heart className="h-4 w-4" fill="white" />,
+      iconBackground:
+        "linear-gradient(135deg, rgb(244, 114, 182), rgb(225, 29, 72))",
+      source: "Health",
+      message: "You hit your daily move goal.",
+      time: "2m",
+    },
+    {
+      id: 3,
+      icon: <Mail className="h-4 w-4" />,
+      iconBackground:
+        "linear-gradient(135deg, rgb(125, 211, 252), rgb(37, 99, 235))",
+      source: "Mail",
+      message: "Stripe — Payout sent: $12,840.00",
+      time: "5m",
+    },
+    {
+      id: 4,
+      icon: <Sparkles className="h-4 w-4" />,
+      iconBackground:
+        "linear-gradient(135deg, rgb(250, 204, 21), rgb(234, 88, 12))",
+      source: "CraftUI",
+      message: "New release v0.9.0 — 24 components added.",
+      time: "8m",
+    },
+  ];
+  return (
+    <div
+      className="relative flex w-full items-center justify-center overflow-hidden rounded-2xl border border-border/60 px-6 py-10"
+      style={{
+        background:
+          "radial-gradient(ellipse at center, rgb(13,18,38) 0%, rgb(3,5,14) 75%)",
+      }}
+    >
+      <NotificationStack
+        notifications={notifications}
+        width={340}
+        visible={3}
+        interval={2.4}
+      />
+    </div>
+  );
+}

@@ -1,0 +1,16 @@
+{
+  "name": "notification-stack",
+  "description": "Auto-cycling stack of iOS-style push notifications. Each new alert slides in at the top while older ones translate down with a slight scale and opacity falloff.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/notification-stack/notification-stack.tsx",
+      "target": "{{components}}/notification-stack.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["notifications", "stack", "saas", "landing", "animated"]
+}

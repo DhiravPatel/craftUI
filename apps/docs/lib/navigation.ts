@@ -173,6 +173,10 @@ export const navigation: NavSection[] = [
       { title: "Pricing Cards", href: "/docs/components/pricing-cards" },
       { title: "Logo Cloud", href: "/docs/components/logo-cloud" },
       { title: "Testimonial Quote", href: "/docs/components/testimonial-quote" },
+      { title: "Stat Card", href: "/docs/components/stat-card" },
+      { title: "Animated Chart", href: "/docs/components/animated-chart" },
+      { title: "Feature Card", href: "/docs/components/feature-card" },
+      { title: "Notification Stack", href: "/docs/components/notification-stack" },
     ],
   },
 ];
