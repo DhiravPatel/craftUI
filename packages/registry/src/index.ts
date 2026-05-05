@@ -60,6 +60,7 @@ import label from "./components/label.json";
 import lamp from "./components/lamp.json";
 import layout from "./components/layout.json";
 import lens from "./components/lens.json";
+import logoCloud from "./components/logo-cloud.json";
 import magicLayer from "./components/magic-layer.json";
 import magnet from "./components/magnet.json";
 import magneticButton from "./components/magnetic-button.json";
@@ -78,11 +79,13 @@ import pageCurl from "./components/page-curl.json";
 import pagination from "./components/pagination.json";
 import paperPlane from "./components/paper-plane.json";
 import parallax from "./components/parallax.json";
+import phoneMockup from "./components/phone-mockup.json";
 import pin3d from "./components/pin-3d.json";
 import pinBoard from "./components/pin-board.json";
 import plasmaField from "./components/plasma-field.json";
 import prismOrb from "./components/prism-orb.json";
 import popover from "./components/popover.json";
+import pricingCards from "./components/pricing-cards.json";
 import progress from "./components/progress.json";
 import quantumGrid from "./components/quantum-grid.json";
 import radioGroup from "./components/radio-group.json";
@@ -105,6 +108,7 @@ import swipeStack from "./components/swipe-stack.json";
 import switchEntry from "./components/switch.json";
 import table from "./components/table.json";
 import tabs from "./components/tabs.json";
+import testimonialQuote from "./components/testimonial-quote.json";
 import textGenerateEffect from "./components/text-generate-effect.json";
 import textScramble from "./components/text-scramble.json";
 import textarea from "./components/textarea.json";
@@ -183,6 +187,7 @@ export const registry: Registry = [
   lamp,
   layout,
   lens,
+  logoCloud,
   magicLayer,
   magnet,
   magneticButton,
@@ -201,11 +206,13 @@ export const registry: Registry = [
   pagination,
   paperPlane,
   parallax,
+  phoneMockup,
   pin3d,
   pinBoard,
   plasmaField,
   prismOrb,
   popover,
+  pricingCards,
   progress,
   quantumGrid,
   radioGroup,
@@ -228,6 +235,7 @@ export const registry: Registry = [
   switchEntry,
   table,
   tabs,
+  testimonialQuote,
   textGenerateEffect,
   textScramble,
   textarea,

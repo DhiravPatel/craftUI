@@ -194,6 +194,7 @@ import {
   InfiniteMovingCardsDemo,
   LampDemo,
   LensDemo,
+  LogoCloudDemo,
   MagicLayerDemo,
   MagnetDemo,
   MagneticButtonDemo,
@@ -210,9 +211,11 @@ import {
   PageCurlDemo,
   PaperPlaneDemo,
   ParallaxDemo,
+  PhoneMockupDemo,
   Pin3DDemo,
   PinBoardDemo,
   PlasmaFieldDemo,
+  PricingCardsDemo,
   PrismOrbDemo,
   QuantumGridDemo,
   RippleDemo,
@@ -221,6 +224,7 @@ import {
   SparklesTextDemo,
   SpotlightDemo,
   SwipeStackDemo,
+  TestimonialQuoteDemo,
   TextGenerateEffectDemo,
   TextScrambleDemo,
   TiltDemo,
@@ -6700,6 +6704,218 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
       },
     ],
     related: ["wavy-text", "ripple"],
+  },
+
+  // ---------- PhoneMockup ----------
+  {
+    name: "phone-mockup",
+    title: "Phone Mockup",
+    description:
+      "Phone frame mockup with notch, hardware buttons, and a screen slot for children. Optional 3D tilt on cursor.",
+    imports: `import { PhoneMockup } from "@/components/ui/phone-mockup";`,
+    defaultExample: {
+      title: "App preview",
+      code: `<PhoneMockup width={170}>{children}</PhoneMockup>`,
+      render: <PhoneMockupDemo />,
+    },
+    props: [
+      {
+        name: "width",
+        type: "number",
+        default: "280",
+        description:
+          "Phone width in px. Height is derived from a 19.5:9 ratio.",
+      },
+      {
+        name: "frameColor",
+        type: "string",
+        description:
+          "CSS color or gradient painted on the phone body.",
+      },
+      {
+        name: "bezelColor",
+        type: "string",
+        default: '"rgb(8, 10, 12)"',
+        description:
+          "Color of the bezel surrounding the screen content area.",
+      },
+      {
+        name: "notch",
+        type: "boolean",
+        default: "true",
+        description: "Show a centered notch / dynamic island over the screen.",
+      },
+      {
+        name: "tilt",
+        type: "boolean",
+        default: "true",
+        description: "Tilt toward the cursor on hover.",
+      },
+      {
+        name: "tiltStrength",
+        type: "number",
+        default: "8",
+        description: "Maximum tilt in degrees.",
+      },
+    ],
+    related: ["tilt", "parallax"],
+  },
+
+  // ---------- PricingCards ----------
+  {
+    name: "pricing-cards",
+    title: "Pricing Cards",
+    description:
+      "Tiered pricing cards with one tier visually elevated as featured, plus hover lift and check-list features. Drop directly into any landing-page pricing section.",
+    imports: `import { PricingCards } from "@/components/ui/pricing-cards";`,
+    defaultExample: {
+      title: "Three tiers",
+      code: `<PricingCards tiers={tiers} />`,
+      render: <PricingCardsDemo />,
+    },
+    props: [
+      {
+        name: "tiers",
+        type: "PricingTier[]",
+        required: true,
+        description:
+          "Tiers to render. Each takes { id, name, tagline?, price, features[], featured?, badge?, ctaLabel?, onCtaClick? }.",
+      },
+      {
+        name: "currency",
+        type: "string",
+        default: '"$"',
+        description:
+          "Currency prefix applied to tiers that don't override it.",
+      },
+      {
+        name: "period",
+        type: "string",
+        default: '"/mo"',
+        description: "Period label applied to tiers that don't override it.",
+      },
+      {
+        name: "cardWidth",
+        type: "number",
+        default: "280",
+        description: "Width of each card in px.",
+      },
+    ],
+    related: ["bento-grid", "stat"],
+  },
+
+  // ---------- LogoCloud ----------
+  {
+    name: "logo-cloud",
+    title: "Logo Cloud",
+    description:
+      "Infinite auto-scrolling marquee of logos with soft edge fades and pause-on-hover. Perfect as a trust-signal strip on a landing page.",
+    imports: `import { LogoCloud } from "@/components/ui/logo-cloud";`,
+    defaultExample: {
+      title: "Trusted by…",
+      code: `<LogoCloud logos={[<Logo1/>, <Logo2/>, …]} />`,
+      render: <LogoCloudDemo />,
+    },
+    props: [
+      {
+        name: "logos",
+        type: "ReactNode[]",
+        required: true,
+        description:
+          "Logo nodes rendered as the slides of the marquee.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "30",
+        description: "Time in seconds for one full pass.",
+      },
+      {
+        name: "direction",
+        type: '"left" | "right"',
+        default: '"left"',
+        description: "Direction the strip travels.",
+      },
+      {
+        name: "gap",
+        type: "number",
+        default: "56",
+        description: "Gap between logos in px.",
+      },
+      {
+        name: "pauseOnHover",
+        type: "boolean",
+        default: "true",
+        description: "Pause the marquee while the user is hovering.",
+      },
+      {
+        name: "fade",
+        type: "boolean",
+        default: "true",
+        description: "Soft fade at the left + right edges.",
+      },
+      {
+        name: "background",
+        type: "string",
+        description:
+          "Background color for the strip. Defaults to transparent.",
+      },
+    ],
+    related: ["marquee-3d", "infinite-moving-cards"],
+  },
+
+  // ---------- TestimonialQuote ----------
+  {
+    name: "testimonial-quote",
+    title: "Testimonial Quote",
+    description:
+      "Testimonial card with a decorative quotation mark, the quote, and an author block (avatar, name, role, optional logo). Tilts toward the cursor with a parallax glow.",
+    imports: `import { TestimonialQuote } from "@/components/ui/testimonial-quote";`,
+    defaultExample: {
+      title: "Customer quote",
+      code: `<TestimonialQuote quote={...} author={{ name, role, avatar }} />`,
+      render: <TestimonialQuoteDemo />,
+    },
+    props: [
+      {
+        name: "quote",
+        type: "ReactNode",
+        required: true,
+        description: "The body of the testimonial.",
+      },
+      {
+        name: "author",
+        type: "TestimonialAuthor",
+        required: true,
+        description:
+          "Author block: { name, role?, avatar?, logo? }. avatar is an image URL; logo is a small ReactNode.",
+      },
+      {
+        name: "width",
+        type: "number",
+        default: "380",
+        description: "Card width in px.",
+      },
+      {
+        name: "tilt",
+        type: "boolean",
+        default: "true",
+        description: "Tilt the card toward the cursor on hover.",
+      },
+      {
+        name: "tiltStrength",
+        type: "number",
+        default: "6",
+        description: "Maximum tilt in degrees.",
+      },
+      {
+        name: "decorative",
+        type: "boolean",
+        default: "true",
+        description: "Render a large background quotation mark.",
+      },
+    ],
+    related: ["card-hover-effect", "tilt"],
   },
 ];
 

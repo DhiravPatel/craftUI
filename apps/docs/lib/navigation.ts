@@ -169,6 +169,10 @@ export const navigation: NavSection[] = [
       { title: "Fold Out", href: "/docs/components/fold-out" },
       { title: "Pin Board", href: "/docs/components/pin-board" },
       { title: "Glitch Clip", href: "/docs/components/glitch-clip" },
+      { title: "Phone Mockup", href: "/docs/components/phone-mockup" },
+      { title: "Pricing Cards", href: "/docs/components/pricing-cards" },
+      { title: "Logo Cloud", href: "/docs/components/logo-cloud" },
+      { title: "Testimonial Quote", href: "/docs/components/testimonial-quote" },
     ],
   },
 ];

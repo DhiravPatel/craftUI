@@ -1,0 +1,16 @@
+{
+  "name": "testimonial-quote",
+  "description": "Testimonial card with a decorative quotation mark, the quote, and an author block (avatar + name + role + optional logo). Tilts toward the cursor.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/testimonial-quote/testimonial-quote.tsx",
+      "target": "{{components}}/testimonial-quote.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["testimonial", "quote", "tilt", "saas", "landing"]
+}

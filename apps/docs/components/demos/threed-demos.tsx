@@ -44,6 +44,7 @@ import {
   InfiniteMovingCards,
   Lamp,
   Lens,
+  LogoCloud,
   MagicLayer,
   Magnet,
   MagneticButton,
@@ -61,9 +62,11 @@ import {
   PaperPlane,
   Parallax,
   ParallaxLayer,
+  PhoneMockup,
   Pin3D,
   PinBoard,
   PlasmaField,
+  PricingCards,
   PrismOrb,
   QuantumGrid,
   Ripple,
@@ -71,6 +74,7 @@ import {
   SparklesText,
   Spotlight,
   SwipeStack,
+  TestimonialQuote,
   TextGenerateEffect,
   TextScramble,
   Tilt,
@@ -83,23 +87,38 @@ import {
 } from "@craftui/ui";
 import {
   ArrowUpRight,
+  Bell,
+  Camera,
+  Clock as ClockIcon,
   Cloud,
+  Compass,
+  CreditCard,
   Crown,
   Disc3,
+  FileText,
   Github,
   Globe as GlobeIcon,
+  Headphones,
   Heart,
   Image as ImageIcon,
+  Mail,
+  Map as MapIcon,
+  MessageCircle,
   Mountain,
   Music,
+  Phone,
   Plane,
   Plus,
   Quote,
   Send,
+  Settings,
   Share2,
+  ShoppingBag,
   Rocket,
   Sparkles,
   Star,
+  Sun,
+  TrendingUp,
   Zap,
 } from "lucide-react";
 
@@ -2736,6 +2755,368 @@ export function GlitchClipDemo() {
           </p>
         </div>
       </GlitchClip>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * PhoneMockup — phone frame mockup with a fake mobile-app screen.
+ * ------------------------------------------------------------------ */
+export function PhoneMockupDemo() {
+  const ICON = 22; // px size of the lucide glyph inside each app tile
+  // Apple-style colors (lifted from real iOS app icons) so the home screen
+  // reads as authentic at first glance.
+  const apps: Array<{
+    name: string;
+    bg: string;
+    icon?: React.ReactNode;
+    custom?: React.ReactNode;
+  }> = [
+    {
+      name: "Calendar",
+      bg: "white",
+      custom: (
+        <div className="flex h-full w-full flex-col overflow-hidden">
+          <div className="h-1.5 bg-rose-600" />
+          <div className="flex flex-1 items-center justify-center text-[18px] font-bold leading-none text-black">
+            4
+          </div>
+        </div>
+      ),
+    },
+    {
+      name: "Camera",
+      bg: "linear-gradient(180deg, rgb(60,60,60), rgb(20,20,20))",
+      icon: <Camera size={ICON} color="white" strokeWidth={2.2} />,
+    },
+    {
+      name: "Photos",
+      bg: "conic-gradient(from 90deg at 50% 50%, rgb(245,158,11), rgb(34,197,94), rgb(56,189,248), rgb(168,85,247), rgb(244,63,94), rgb(245,158,11))",
+      custom: (
+        <div className="flex h-full w-full items-center justify-center">
+          <span
+            className="block h-6 w-6 rounded-full bg-white"
+            aria-hidden
+          />
+        </div>
+      ),
+    },
+    {
+      name: "Maps",
+      bg: "linear-gradient(180deg, rgb(228, 232, 220), rgb(195, 215, 195))",
+      icon: <MapIcon size={ICON} color="rgb(220,38,38)" strokeWidth={2} />,
+    },
+    {
+      name: "Notes",
+      bg: "linear-gradient(180deg, rgb(255, 255, 255), rgb(254, 240, 138))",
+      icon: <FileText size={ICON} color="rgb(202,138,4)" strokeWidth={2} />,
+    },
+    {
+      name: "Reminders",
+      bg: "white",
+      icon: <Bell size={ICON} color="rgb(244,63,94)" strokeWidth={2.2} />,
+    },
+    {
+      name: "Music",
+      bg: "linear-gradient(180deg, rgb(252,165,165), rgb(225, 29, 72))",
+      icon: <Music size={ICON} color="white" strokeWidth={2.4} />,
+    },
+    {
+      name: "Podcasts",
+      bg: "linear-gradient(180deg, rgb(216,180,254), rgb(124,58,237))",
+      icon: <Headphones size={ICON} color="white" strokeWidth={2.2} />,
+    },
+    {
+      name: "Weather",
+      bg: "linear-gradient(180deg, rgb(56,189,248), rgb(37,99,235))",
+      icon: <Sun size={ICON} color="white" strokeWidth={2.2} />,
+    },
+    {
+      name: "Clock",
+      bg: "rgb(0,0,0)",
+      custom: (
+        <div className="flex h-full w-full items-center justify-center">
+          <ClockIcon size={ICON + 6} color="white" strokeWidth={1.6} />
+        </div>
+      ),
+    },
+    {
+      name: "Wallet",
+      bg: "linear-gradient(180deg, rgb(38,38,38), rgb(0,0,0))",
+      icon: <CreditCard size={ICON} color="white" strokeWidth={2} />,
+    },
+    {
+      name: "Health",
+      bg: "white",
+      icon: <Heart size={ICON} color="rgb(239,68,68)" fill="rgb(239,68,68)" />,
+    },
+    {
+      name: "Stocks",
+      bg: "rgb(0,0,0)",
+      icon: <TrendingUp size={ICON} color="rgb(34,197,94)" strokeWidth={2.4} />,
+    },
+    {
+      name: "Settings",
+      bg: "linear-gradient(180deg, rgb(229,231,235), rgb(156,163,175))",
+      icon: <Settings size={ICON} color="rgb(75,85,99)" strokeWidth={2} />,
+    },
+    {
+      name: "Find My",
+      bg: "linear-gradient(180deg, rgb(167,243,208), rgb(34,197,94))",
+      icon: <Compass size={ICON} color="white" strokeWidth={2.2} />,
+    },
+    {
+      name: "App Store",
+      bg: "linear-gradient(180deg, rgb(125,211,252), rgb(37,99,235))",
+      icon: <ShoppingBag size={ICON} color="white" strokeWidth={2.2} />,
+    },
+  ];
+
+  const dock = [
+    {
+      name: "Phone",
+      bg: "linear-gradient(180deg, rgb(74,222,128), rgb(22,163,74))",
+      icon: <Phone size={22} color="white" strokeWidth={2.4} fill="white" />,
+    },
+    {
+      name: "Safari",
+      bg: "linear-gradient(180deg, rgb(255,255,255), rgb(186,230,253))",
+      icon: <Compass size={24} color="rgb(37,99,235)" strokeWidth={2} />,
+    },
+    {
+      name: "Messages",
+      bg: "linear-gradient(180deg, rgb(74,222,128), rgb(22,163,74))",
+      icon: (
+        <MessageCircle
+          size={22}
+          color="white"
+          strokeWidth={2.2}
+          fill="white"
+        />
+      ),
+    },
+    {
+      name: "Mail",
+      bg: "linear-gradient(180deg, rgb(125,211,252), rgb(37,99,235))",
+      icon: <Mail size={22} color="white" strokeWidth={2.4} />,
+    },
+  ];
+
+  return (
+    <div className="flex w-full items-center justify-center py-10">
+      <PhoneMockup width={300} tilt={false}>
+        {/* Wallpaper — abstract iOS-style bokeh gradient */}
+        <div
+          className="relative h-full w-full overflow-hidden text-white"
+          style={{
+            background:
+              "radial-gradient(circle at 30% 20%, rgb(56,72,180) 0%, transparent 55%), radial-gradient(circle at 80% 75%, rgb(199,77,151) 0%, transparent 55%), radial-gradient(circle at 50% 100%, rgb(255,140,80) 0%, transparent 50%), linear-gradient(180deg, rgb(11,15,40) 0%, rgb(2,4,18) 100%)",
+          }}
+        >
+          {/* Status bar — flanks the dynamic island */}
+          <div className="absolute inset-x-0 top-0 z-30 flex items-center justify-between px-5 pt-2 text-[11px] font-semibold">
+            <span>9:41</span>
+            <div className="flex items-center gap-1.5">
+              <span className="flex items-end gap-[1.5px]">
+                {[3, 5, 7, 9].map((h) => (
+                  <span
+                    key={h}
+                    className="block w-[2.5px] rounded-sm bg-white"
+                    style={{ height: h }}
+                  />
+                ))}
+              </span>
+              <svg
+                aria-hidden
+                viewBox="0 0 24 24"
+                width={12}
+                height={12}
+                fill="white"
+              >
+                <path d="M12 5c4.4 0 8.4 1.6 11.5 4.3l-2.1 2.6C18.6 9.5 15.4 8 12 8s-6.6 1.5-9.4 3.9L0.5 9.3C3.6 6.6 7.6 5 12 5zm0 5c2.7 0 5.2 1 7.1 2.7l-2.1 2.6c-1.4-1.2-3.1-1.9-5-1.9s-3.6.7-5 1.9l-2.1-2.6C6.8 11 9.3 10 12 10zm0 5c1.1 0 2.1.4 2.9 1.1L12 19l-2.9-2.9C9.9 15.4 10.9 15 12 15z" />
+              </svg>
+              <span className="relative flex items-center">
+                <span className="block h-[10px] w-[18px] rounded-[3px] border border-white/85">
+                  <span className="block h-full w-[80%] rounded-[1.5px] bg-white" />
+                </span>
+                <span className="absolute -right-[2px] top-[3.5px] block h-[3px] w-[1.5px] rounded-r-sm bg-white/85" />
+              </span>
+            </div>
+          </div>
+
+          {/* App grid — 4 columns × 4 rows */}
+          <div className="grid grid-cols-4 gap-x-3 gap-y-4 px-5 pt-12">
+            {apps.map((app) => (
+              <div
+                key={app.name}
+                className="flex flex-col items-center gap-1"
+              >
+                <div
+                  className="flex h-12 w-12 items-center justify-center overflow-hidden shadow-[0_4px_8px_-2px_rgba(0,0,0,0.35)]"
+                  style={{
+                    background: app.bg,
+                    borderRadius: 12,
+                  }}
+                >
+                  {app.custom ?? app.icon}
+                </div>
+                <span className="truncate text-[9.5px] font-medium leading-tight text-white drop-shadow-sm">
+                  {app.name}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {/* Page indicator dots */}
+          <div className="absolute inset-x-0 bottom-[68px] flex justify-center gap-1.5">
+            <span className="block h-[5px] w-[5px] rounded-full bg-white" />
+            <span className="block h-[5px] w-[5px] rounded-full bg-white/40" />
+            <span className="block h-[5px] w-[5px] rounded-full bg-white/40" />
+          </div>
+
+          {/* Dock — translucent rounded capsule with 4 pinned apps */}
+          <div className="absolute inset-x-3 bottom-5 flex items-center justify-around rounded-[26px] bg-white/15 px-3 py-2.5 backdrop-blur-md">
+            {dock.map((app) => (
+              <div
+                key={app.name}
+                className="flex h-12 w-12 items-center justify-center overflow-hidden shadow-[0_4px_10px_-2px_rgba(0,0,0,0.45)]"
+                style={{
+                  background: app.bg,
+                  borderRadius: 12,
+                }}
+              >
+                {app.icon}
+              </div>
+            ))}
+          </div>
+
+          {/* Home indicator */}
+          <span
+            aria-hidden
+            className="absolute inset-x-0 bottom-1.5 mx-auto block h-1 w-28 rounded-full bg-white/85"
+          />
+        </div>
+      </PhoneMockup>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * PricingCards — three tiers with the middle one elevated as featured.
+ * ------------------------------------------------------------------ */
+export function PricingCardsDemo() {
+  return (
+    <div
+      className="relative flex h-[520px] w-full items-center justify-center overflow-hidden rounded-2xl border border-border/60 px-4"
+      style={{
+        background:
+          "radial-gradient(ellipse at top, rgb(13,18,38) 0%, rgb(3,5,14) 75%)",
+      }}
+    >
+      <PricingCards
+        cardWidth={200}
+        className="!flex-nowrap !gap-3"
+        tiers={[
+          {
+            id: "starter",
+            name: "Starter",
+            tagline: "For side projects",
+            price: 0,
+            features: ["1 project", "100 MB storage", "Community support"],
+            ctaLabel: "Start free",
+          },
+          {
+            id: "pro",
+            name: "Pro",
+            tagline: "For growing teams",
+            price: 19,
+            features: [
+              "Unlimited projects",
+              "10 GB storage",
+              "Priority support",
+              "Custom domain",
+            ],
+            featured: true,
+            badge: "Popular",
+            ctaLabel: "Upgrade to Pro",
+          },
+          {
+            id: "scale",
+            name: "Scale",
+            tagline: "For larger orgs",
+            price: null,
+            features: [
+              "SSO & SAML",
+              "Audit log",
+              "Dedicated success manager",
+              "99.99% SLA",
+            ],
+          },
+        ]}
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * LogoCloud — auto-scrolling marquee of fake brand wordmarks.
+ * ------------------------------------------------------------------ */
+export function LogoCloudDemo() {
+  const wordmarks = [
+    "Acme Corp",
+    "Northwind",
+    "Globex",
+    "Initech",
+    "Soylent",
+    "Umbrella",
+    "Wayne",
+    "Stark",
+  ];
+  return (
+    <div className={STAGE_CLASS}>
+      <LogoCloud
+        duration={26}
+        gap={48}
+        className="py-8"
+        logos={wordmarks.map((name) => (
+          <span
+            key={name}
+            className="select-none whitespace-nowrap font-serif text-2xl font-semibold tracking-tight text-foreground/80"
+          >
+            {name}
+          </span>
+        ))}
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * TestimonialQuote — quote card with avatar, name, role, and source logo.
+ * ------------------------------------------------------------------ */
+export function TestimonialQuoteDemo() {
+  return (
+    <div className={STAGE_CLASS}>
+      <TestimonialQuote
+        width={400}
+        quote={
+          <>
+            CraftUI shipped us a dashboard our customers actually use. The
+            components feel tactile in a way most libraries don&apos;t —
+            we&apos;ve had three users specifically call out the polish.
+          </>
+        }
+        author={{
+          name: "Aiko Tanaka",
+          role: "Head of Design, Northwind",
+          avatar: "https://i.pravatar.cc/120?img=47",
+          logo: (
+            <span className="text-xs font-semibold tracking-tight">
+              Northwind
+            </span>
+          ),
+        }}
+      />
     </div>
   );
 }

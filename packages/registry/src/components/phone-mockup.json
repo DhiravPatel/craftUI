@@ -1,0 +1,16 @@
+{
+  "name": "phone-mockup",
+  "description": "Phone frame mockup with notch, hardware buttons, and a content slot, with optional 3D cursor tilt.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/phone-mockup/phone-mockup.tsx",
+      "target": "{{components}}/phone-mockup.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "phone", "mockup", "saas", "hero"]
+}

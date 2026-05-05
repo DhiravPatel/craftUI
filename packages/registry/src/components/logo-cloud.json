@@ -1,0 +1,16 @@
+{
+  "name": "logo-cloud",
+  "description": "Infinite auto-scrolling logo marquee with soft edge fades and pause-on-hover. Perfect as a trust-signal strip.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/logo-cloud/logo-cloud.tsx",
+      "target": "{{components}}/logo-cloud.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["marquee", "logos", "trust", "saas", "landing", "animated"]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "pricing-cards",
+  "description": "Tiered pricing cards with one tier visually elevated, hover lift, and check-list features.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/pricing-cards/pricing-cards.tsx",
+      "target": "{{components}}/pricing-cards.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["pricing", "saas", "tiers", "card", "landing"]
+}
