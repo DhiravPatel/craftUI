@@ -191,6 +191,7 @@ import {
   InfiniteMovingCardsDemo,
   LampDemo,
   LensDemo,
+  MagicLayerDemo,
   MagnetDemo,
   MagneticButtonDemo,
   Marquee3DDemo,
@@ -201,8 +202,10 @@ import {
   NeonPortalDemo,
   NumberTickerDemo,
   OrbitStackDemo,
+  OrbitalMenuDemo,
   OrbitingCirclesDemo,
   PageCurlDemo,
+  PaperPlaneDemo,
   ParallaxDemo,
   Pin3DDemo,
   PlasmaFieldDemo,
@@ -219,6 +222,7 @@ import {
   TiltDemo,
   TiltTilesDemo,
   TracingBeamDemo,
+  WaveGridDemo,
   WavyBackgroundDemo,
   WavyTextDemo,
   WorldMapDemo,
@@ -6192,6 +6196,273 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
     ],
     related: ["following-pointer", "spotlight"],
   },
+
+  // ---------- OrbitalMenu ----------
+  {
+    name: "orbital-menu",
+    title: "Orbital Menu",
+    description:
+      "Floating action button whose satellite buttons fan out along a configurable arc when toggled.",
+    imports: `import { OrbitalMenu } from "@/components/ui/orbital-menu";`,
+    defaultExample: {
+      title: "Half arc, blooming up",
+      code: `<OrbitalMenu items={items} arc={180} centerAngle={270} trigger={<Plus />} />`,
+      render: <OrbitalMenuDemo />,
+    },
+    props: [
+      {
+        name: "items",
+        type: "OrbitalMenuItem[]",
+        required: true,
+        description:
+          "Satellite buttons. Each takes { id, icon, label?, onClick? }.",
+      },
+      {
+        name: "radius",
+        type: "number",
+        default: "92",
+        description: "Distance of satellites from center, in px.",
+      },
+      {
+        name: "arc",
+        type: "number",
+        default: "180",
+        description: "Total arc the satellites span, in degrees.",
+      },
+      {
+        name: "centerAngle",
+        type: "number",
+        default: "270",
+        description:
+          "Center of the arc in degrees (0=right, 90=down, 180=left, 270=up).",
+      },
+      {
+        name: "size",
+        type: "number",
+        default: "56",
+        description: "Center FAB size in px.",
+      },
+      {
+        name: "satelliteSize",
+        type: "number",
+        default: "44",
+        description: "Each satellite button size in px.",
+      },
+      {
+        name: "stagger",
+        type: "number",
+        default: "0.04",
+        description: "Stagger between satellites on open/close (s).",
+      },
+      {
+        name: "trigger",
+        type: "ReactNode",
+        description: "Center button content when closed.",
+      },
+      {
+        name: "triggerOpen",
+        type: "ReactNode",
+        description:
+          "Center button content when open. Defaults to a 135deg-rotated trigger.",
+      },
+      {
+        name: "open",
+        type: "boolean",
+        description: "Controlled open state.",
+      },
+      {
+        name: "onOpenChange",
+        type: "(open: boolean) => void",
+        description: "Notified when the open state changes.",
+      },
+    ],
+    related: ["floating-dock", "magnetic-button"],
+  },
+
+  // ---------- WaveGrid ----------
+  {
+    name: "wave-grid",
+    title: "Wave Grid",
+    description:
+      "A grid of dots that ripple in 3D when clicked. Multiple ripples sum and decay independently.",
+    imports: `import { WaveGrid } from "@/components/ui/wave-grid";`,
+    defaultExample: {
+      title: "Click to ripple",
+      code: `<WaveGrid columns={28} rows={16} amplitude={32} />`,
+      render: <WaveGridDemo />,
+    },
+    props: [
+      {
+        name: "columns",
+        type: "number",
+        default: "22",
+        description: "Number of columns of dots.",
+      },
+      {
+        name: "rows",
+        type: "number",
+        default: "14",
+        description: "Number of rows of dots.",
+      },
+      {
+        name: "dotSize",
+        type: "number",
+        default: "5",
+        description: "Diameter of each dot in px.",
+      },
+      {
+        name: "dotColor",
+        type: "string",
+        default: '"rgb(125, 211, 252)"',
+        description: "Color of each dot (and the surrounding glow).",
+      },
+      {
+        name: "amplitude",
+        type: "number",
+        default: "28",
+        description: "Peak vertical lift each dot can reach in px.",
+      },
+      {
+        name: "speed",
+        type: "number",
+        default: "360",
+        description: "Wave radius growth speed in px/sec.",
+      },
+      {
+        name: "decay",
+        type: "number",
+        default: "200",
+        description: "How fast the ripple decays with distance.",
+      },
+      {
+        name: "auto",
+        type: "boolean",
+        default: "false",
+        description: "Auto-fire ripples at random points on an interval.",
+      },
+      {
+        name: "autoInterval",
+        type: "number",
+        default: "3",
+        description: "Auto ripple interval in seconds.",
+      },
+    ],
+    related: ["dot-pattern", "ripple"],
+  },
+
+  // ---------- MagicLayer ----------
+  {
+    name: "magic-layer",
+    title: "Magic Layer",
+    description:
+      "Stack of layers that lives flat by default, then on hover separates into discrete Z-depths for an X-ray reveal effect.",
+    imports: `import { MagicLayer } from "@/components/ui/magic-layer";`,
+    defaultExample: {
+      title: "Hover to separate",
+      code: `<MagicLayer layers={[bg, mid, fg]} spacing={48} />`,
+      render: <MagicLayerDemo />,
+    },
+    props: [
+      {
+        name: "layers",
+        type: "ReactNode[]",
+        required: true,
+        description:
+          "Layers to render. Index 0 is back-most; the last is closest to the viewer.",
+      },
+      {
+        name: "width",
+        type: "number",
+        default: "360",
+        description: "Box width in px.",
+      },
+      {
+        name: "height",
+        type: "number",
+        default: "240",
+        description: "Box height in px.",
+      },
+      {
+        name: "spacing",
+        type: "number",
+        default: "60",
+        description: "Z-spacing between layers when expanded, in px.",
+      },
+      {
+        name: "tilt",
+        type: "number",
+        default: "14",
+        description: "Max tilt in degrees applied while hovering.",
+      },
+      {
+        name: "radius",
+        type: "number",
+        default: "18",
+        description: "Border radius applied to each layer in px.",
+      },
+    ],
+    related: ["tilt", "parallax"],
+  },
+
+  // ---------- PaperPlane ----------
+  {
+    name: "paper-plane",
+    title: "Paper Plane",
+    description:
+      "An SVG paper plane that loops along a CSS offset-path with a soft dashed trail beneath it.",
+    imports: `import { PaperPlane } from "@/components/ui/paper-plane";`,
+    defaultExample: {
+      title: "Looping flight",
+      code: `<PaperPlane width={460} height={250} duration={8} />`,
+      render: <PaperPlaneDemo />,
+    },
+    props: [
+      {
+        name: "width",
+        type: "number",
+        default: "480",
+        description: "Stage width in px.",
+      },
+      {
+        name: "height",
+        type: "number",
+        default: "280",
+        description: "Stage height in px.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "9",
+        description: "Time in seconds for one full path traversal.",
+      },
+      {
+        name: "size",
+        type: "number",
+        default: "28",
+        description: "Plane size in px.",
+      },
+      {
+        name: "color",
+        type: "string",
+        default: '"rgb(56, 189, 248)"',
+        description: "Plane color (and trail color base).",
+      },
+      {
+        name: "path",
+        type: "string",
+        description:
+          "Optional override for the SVG path used by both the plane and the trail. Should match the stage viewBox.",
+      },
+      {
+        name: "trail",
+        type: "boolean",
+        default: "true",
+        description: "Show the dashed trail along the path.",
+      },
+    ],
+    related: ["meteors", "background-beams"],
+  },
+
 ];
 
 const byName = new Map(catalog.map((d) => [d.name, d]));

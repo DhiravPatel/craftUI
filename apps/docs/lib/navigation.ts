@@ -161,6 +161,10 @@ export const navigation: NavSection[] = [
       { title: "Swipe Stack", href: "/docs/components/swipe-stack" },
       { title: "Magnetic Button", href: "/docs/components/magnetic-button" },
       { title: "Cursor Trail", href: "/docs/components/cursor-trail" },
+      { title: "Orbital Menu", href: "/docs/components/orbital-menu" },
+      { title: "Wave Grid", href: "/docs/components/wave-grid" },
+      { title: "Magic Layer", href: "/docs/components/magic-layer" },
+      { title: "Paper Plane", href: "/docs/components/paper-plane" },
     ],
   },
 ];

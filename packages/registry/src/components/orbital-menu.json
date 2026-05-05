@@ -1,0 +1,16 @@
+{
+  "name": "orbital-menu",
+  "description": "Floating action button whose satellites fan out along a configurable arc when toggled.",
+  "category": "navigation",
+  "files": [
+    {
+      "path": "components/orbital-menu/orbital-menu.tsx",
+      "target": "{{components}}/orbital-menu.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["fab", "menu", "radial", "arc", "interactive"]
+}

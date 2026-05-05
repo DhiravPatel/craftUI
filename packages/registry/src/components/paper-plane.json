@@ -1,0 +1,16 @@
+{
+  "name": "paper-plane",
+  "description": "An SVG paper plane that loops along a CSS offset-path with a dashed trail beneath it.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/paper-plane/paper-plane.tsx",
+      "target": "{{components}}/paper-plane.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["plane", "path", "offset-path", "decorative", "animated"]
+}
