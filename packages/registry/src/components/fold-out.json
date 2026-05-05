@@ -1,0 +1,16 @@
+{
+  "name": "fold-out",
+  "description": "A double-door card whose left and right halves swing open to reveal content behind them.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/fold-out/fold-out.tsx",
+      "target": "{{components}}/fold-out.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "fold", "origami", "doors", "reveal", "interactive"]
+}

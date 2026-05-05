@@ -1,0 +1,16 @@
+{
+  "name": "glitch-clip",
+  "description": "Wrapper that splits its content into horizontal slices on hover, each shifted by a small random offset for a digital-glitch effect.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/glitch-clip/glitch-clip.tsx",
+      "target": "{{components}}/glitch-clip.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["glitch", "clip-path", "hover", "slices", "animated"]
+}

@@ -169,6 +169,7 @@ import {
   CardHoverEffectDemo,
   CardStackDemo,
   Carousel3DDemo,
+  CoinFlipDemo,
   CompareDemo,
   CoverflowDemo,
   CubeDemo,
@@ -181,7 +182,9 @@ import {
   FlipWordsDemo,
   FloatingDockDemo,
   FocusCardsDemo,
+  FoldOutDemo,
   FollowingPointerDemo,
+  GlitchClipDemo,
   GlobeDemo,
   GravityWellDemo,
   HelixDemo,
@@ -208,6 +211,7 @@ import {
   PaperPlaneDemo,
   ParallaxDemo,
   Pin3DDemo,
+  PinBoardDemo,
   PlasmaFieldDemo,
   PrismOrbDemo,
   QuantumGridDemo,
@@ -6463,6 +6467,240 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
     related: ["meteors", "background-beams"],
   },
 
+  // ---------- CoinFlip ----------
+  {
+    name: "coin-flip",
+    title: "Coin Flip",
+    description:
+      "A 3D flipping coin with custom heads and tails faces and a real edge band visible at angles.",
+    imports: `import { CoinFlip } from "@/components/ui/coin-flip";`,
+    defaultExample: {
+      title: "Click to flip",
+      code: `<CoinFlip heads={...} tails={...} size={150} />`,
+      render: <CoinFlipDemo />,
+    },
+    props: [
+      {
+        name: "heads",
+        type: "ReactNode",
+        required: true,
+        description: "Heads face content. Centered inside the coin.",
+      },
+      {
+        name: "tails",
+        type: "ReactNode",
+        required: true,
+        description: "Tails face content. Centered inside the coin.",
+      },
+      {
+        name: "size",
+        type: "number",
+        default: "140",
+        description: "Coin diameter in px.",
+      },
+      {
+        name: "thickness",
+        type: "number",
+        default: "10",
+        description: "Coin edge thickness in px.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "0.7",
+        description: "Time in seconds for one flip.",
+      },
+      {
+        name: "trigger",
+        type: '"click" | "hover" | "auto"',
+        default: '"click"',
+        description: "How the flip is started.",
+      },
+      {
+        name: "autoInterval",
+        type: "number",
+        default: "1.6",
+        description: "Auto-flip interval (s) when trigger is auto.",
+      },
+      {
+        name: "edgeColor",
+        type: "string",
+        description:
+          "CSS gradient or color painted on the coin's edge band.",
+      },
+      {
+        name: "onChange",
+        type: '(face: "heads" | "tails") => void',
+        description: "Notified after each flip with the new visible face.",
+      },
+    ],
+    related: ["flip-card", "cube"],
+  },
+
+  // ---------- FoldOut ----------
+  {
+    name: "fold-out",
+    title: "Fold Out",
+    description:
+      "A double-door card whose left and right halves swing open to reveal content behind them.",
+    imports: `import { FoldOut } from "@/components/ui/fold-out";`,
+    defaultExample: {
+      title: "Click to open",
+      code: `<FoldOut cover={cover} reveal={inside} />`,
+      render: <FoldOutDemo />,
+    },
+    props: [
+      {
+        name: "cover",
+        type: "ReactNode",
+        required: true,
+        description: "The cover face — visible when folded shut.",
+      },
+      {
+        name: "reveal",
+        type: "ReactNode",
+        required: true,
+        description: "The reveal face — visible when fully unfolded.",
+      },
+      {
+        name: "width",
+        type: "number",
+        default: "360",
+        description: "Width of the unfolded card in px.",
+      },
+      {
+        name: "height",
+        type: "number",
+        default: "220",
+        description: "Height of the card in px.",
+      },
+      {
+        name: "radius",
+        type: "number",
+        default: "18",
+        description: "Border radius in px.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "0.55",
+        description: "Time (s) for one fold/unfold transition.",
+      },
+      {
+        name: "trigger",
+        type: '"click" | "hover"',
+        default: '"click"',
+        description: "How the doors open.",
+      },
+      {
+        name: "open",
+        type: "boolean",
+        description: "Force open/closed externally (controlled mode).",
+      },
+      {
+        name: "onChange",
+        type: "(open: boolean) => void",
+        description: "Notified when the open state changes.",
+      },
+    ],
+    related: ["page-curl", "flip-card"],
+  },
+
+  // ---------- PinBoard ----------
+  {
+    name: "pin-board",
+    title: "Pin Board",
+    description:
+      "A canvas of draggable cards pinned at the top, each rendered with a visible pin head, a slight tilt, and a tactile lift on grab.",
+    imports: `import { PinBoard } from "@/components/ui/pin-board";`,
+    defaultExample: {
+      title: "Drag the cards",
+      code: `<PinBoard items={items} width={620} height={300} />`,
+      render: <PinBoardDemo />,
+    },
+    props: [
+      {
+        name: "items",
+        type: "PinBoardItem[]",
+        required: true,
+        description:
+          "Cards to render. Each takes { id, x, y, rotate?, width?, content }.",
+      },
+      {
+        name: "width",
+        type: "number",
+        default: "560",
+        description: "Board width in px.",
+      },
+      {
+        name: "height",
+        type: "number",
+        default: "360",
+        description: "Board height in px.",
+      },
+      {
+        name: "draggable",
+        type: "boolean",
+        default: "true",
+        description: "When false, cards display but cannot be moved.",
+      },
+      {
+        name: "pinColor",
+        type: "string",
+        default: '"rgb(244, 114, 182)"',
+        description: "Color of each pin head.",
+      },
+      {
+        name: "onChange",
+        type: "(id, x, y) => void",
+        description: "Notified after a card is released at its new position.",
+      },
+    ],
+    related: ["card-stack", "swipe-stack"],
+  },
+
+  // ---------- GlitchClip ----------
+  {
+    name: "glitch-clip",
+    title: "Glitch Clip",
+    description:
+      "Wrapper that splits its content into horizontal slices on hover, each shifted by a small random offset for a digital-glitch effect — pure clip-path, no filters.",
+    imports: `import { GlitchClip } from "@/components/ui/glitch-clip";`,
+    defaultExample: {
+      title: "Hover to glitch",
+      code: `<GlitchClip slices={14} intensity={16}>{children}</GlitchClip>`,
+      render: <GlitchClipDemo />,
+    },
+    props: [
+      {
+        name: "slices",
+        type: "number",
+        default: "12",
+        description: "Number of horizontal slices to split the content into.",
+      },
+      {
+        name: "intensity",
+        type: "number",
+        default: "14",
+        description: "Maximum horizontal jitter per slice on hover, in px.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "0.18",
+        description:
+          "Time (s) for one slice to settle into its glitched offset.",
+      },
+      {
+        name: "always",
+        type: "boolean",
+        default: "false",
+        description:
+          "When true, glitches continuously without needing a hover.",
+      },
+    ],
+    related: ["wavy-text", "ripple"],
+  },
 ];
 
 const byName = new Map(catalog.map((d) => [d.name, d]));

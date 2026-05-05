@@ -1,0 +1,16 @@
+{
+  "name": "coin-flip",
+  "description": "A 3D flipping coin with custom heads and tails faces and a real edge band visible at angles.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/coin-flip/coin-flip.tsx",
+      "target": "{{components}}/coin-flip.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "coin", "flip", "interactive", "animated"]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "pin-board",
+  "description": "A canvas of draggable cards pinned at the top with a visible pin head and a tactile lift on grab.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/pin-board/pin-board.tsx",
+      "target": "{{components}}/pin-board.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["pinboard", "drag", "canvas", "card", "interactive"]
+}

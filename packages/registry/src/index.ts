@@ -19,6 +19,7 @@ import cardHoverEffect from "./components/card-hover-effect.json";
 import cardStack from "./components/card-stack.json";
 import carousel3d from "./components/carousel-3d.json";
 import checkbox from "./components/checkbox.json";
+import coinFlip from "./components/coin-flip.json";
 import combobox from "./components/combobox.json";
 import command from "./components/command.json";
 import compare from "./components/compare.json";
@@ -39,9 +40,11 @@ import flipWords from "./components/flip-words.json";
 import floatingDock from "./components/floating-dock.json";
 import fluxPanels from "./components/flux-panels.json";
 import focusCards from "./components/focus-cards.json";
+import foldOut from "./components/fold-out.json";
 import followingPointer from "./components/following-pointer.json";
 import footer from "./components/footer.json";
 import form from "./components/form.json";
+import glitchClip from "./components/glitch-clip.json";
 import globe from "./components/globe.json";
 import gravityWell from "./components/gravity-well.json";
 import helix from "./components/helix.json";
@@ -76,6 +79,7 @@ import pagination from "./components/pagination.json";
 import paperPlane from "./components/paper-plane.json";
 import parallax from "./components/parallax.json";
 import pin3d from "./components/pin-3d.json";
+import pinBoard from "./components/pin-board.json";
 import plasmaField from "./components/plasma-field.json";
 import prismOrb from "./components/prism-orb.json";
 import popover from "./components/popover.json";
@@ -138,6 +142,7 @@ export const registry: Registry = [
   cardStack,
   carousel3d,
   checkbox,
+  coinFlip,
   combobox,
   command,
   compare,
@@ -158,9 +163,11 @@ export const registry: Registry = [
   floatingDock,
   fluxPanels,
   focusCards,
+  foldOut,
   followingPointer,
   footer,
   form,
+  glitchClip,
   globe,
   gravityWell,
   helix,
@@ -195,6 +202,7 @@ export const registry: Registry = [
   paperPlane,
   parallax,
   pin3d,
+  pinBoard,
   plasmaField,
   prismOrb,
   popover,

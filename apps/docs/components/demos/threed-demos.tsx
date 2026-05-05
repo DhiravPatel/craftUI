@@ -16,6 +16,7 @@ import {
   CardHoverEffect,
   CardStack,
   Carousel3D,
+  CoinFlip,
   Compare,
   Coverflow,
   Cube,
@@ -31,7 +32,9 @@ import {
   FlipCardFront,
   FlipWords,
   FloatingDock,
+  FoldOut,
   FollowingPointer,
+  GlitchClip,
   Globe,
   GravityWell,
   Helix,
@@ -59,6 +62,7 @@ import {
   Parallax,
   ParallaxLayer,
   Pin3D,
+  PinBoard,
   PlasmaField,
   PrismOrb,
   QuantumGrid,
@@ -2488,6 +2492,250 @@ export function PaperPlaneDemo() {
         size={30}
         color="rgb(125, 211, 252)"
       />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * CoinFlip — click the coin to flip it; heads/tails shown on either face.
+ * ------------------------------------------------------------------ */
+export function CoinFlipDemo() {
+  // Shared metallic gold gradient used as the "metal" of the coin face.
+  const goldFace =
+    "radial-gradient(circle at 32% 28%, rgb(254,243,199) 0%, rgb(234,179,8) 38%, rgb(161,98,7) 78%, rgb(101,67,8) 100%)";
+  // Embossed text style: stacked text-shadows give the look of the letters
+  // being struck into the metal — bright top edge + dark drop below.
+  const emboss: React.CSSProperties = {
+    color: "rgba(101, 67, 8, 0.85)",
+    textShadow:
+      "0 1px 0 rgba(255,240,180,0.85), 0 -1px 0 rgba(80,50,8,0.6), 0 2px 4px rgba(0,0,0,0.45)",
+  };
+  return (
+    <div className={STAGE_CLASS}>
+      <CoinFlip
+        size={170}
+        thickness={10}
+        duration={0.8}
+        heads={
+          <div
+            className="relative flex h-full w-full items-center justify-center"
+            style={{ background: goldFace }}
+          >
+            {/* Inner concentric ring — looks like the milled border on a coin */}
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-3 rounded-full"
+              style={{
+                boxShadow:
+                  "inset 0 0 0 1px rgba(101,67,8,0.4), inset 0 0 0 2px rgba(255,240,180,0.25)",
+              }}
+            />
+            <span
+              className="font-serif text-[44px] font-black leading-none tracking-tight"
+              style={emboss}
+            >
+              C
+            </span>
+          </div>
+        }
+        tails={
+          <div
+            className="relative flex h-full w-full items-center justify-center"
+            style={{ background: goldFace }}
+          >
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-3 rounded-full"
+              style={{
+                boxShadow:
+                  "inset 0 0 0 1px rgba(101,67,8,0.4), inset 0 0 0 2px rgba(255,240,180,0.25)",
+              }}
+            />
+            <span className="text-[44px] leading-none" style={emboss}>
+              ★
+            </span>
+          </div>
+        }
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * FoldOut — click the cover to swing the doors open.
+ * ------------------------------------------------------------------ */
+export function FoldOutDemo() {
+  return (
+    <div className={STAGE_CLASS}>
+      <FoldOut
+        width={360}
+        height={220}
+        radius={20}
+        cover={
+          <div
+            className="relative h-full w-full overflow-hidden"
+            style={{
+              backgroundImage: `url("https://picsum.photos/seed/fold-cover/720/440")`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.65) 100%)",
+              }}
+            />
+            <div className="absolute inset-x-0 bottom-0 p-5 text-white">
+              <p className="text-[10px] uppercase tracking-[0.22em] opacity-80">
+                Field journal
+              </p>
+              <p className="mt-1 text-lg font-semibold leading-tight">
+                Open me
+              </p>
+            </div>
+          </div>
+        }
+        reveal={
+          <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-neutral-900 to-neutral-800 p-6 text-center text-white">
+            <p className="text-xs font-medium uppercase tracking-[0.22em] text-white/60">
+              Inside
+            </p>
+            <p className="mt-2 text-2xl font-semibold leading-tight">
+              Welcome.
+            </p>
+            <p className="mt-2 max-w-[260px] text-sm text-white/70">
+              Click the cover again to fold it shut.
+            </p>
+          </div>
+        }
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * PinBoard — drag the cards anywhere within the canvas.
+ * ------------------------------------------------------------------ */
+export function PinBoardDemo() {
+  const items = React.useMemo(
+    () => [
+      {
+        id: "todo",
+        x: 30,
+        y: 32,
+        width: 168,
+        rotate: -3,
+        content: (
+          <div className="p-4">
+            <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/60">
+              Today
+            </p>
+            <p className="mt-1 text-sm font-semibold">Ship 3D drop</p>
+            <p className="mt-2 text-xs text-white/70">
+              Wire up new components end to end.
+            </p>
+          </div>
+        ),
+      },
+      {
+        id: "photo",
+        x: 220,
+        y: 24,
+        width: 156,
+        rotate: 4,
+        content: (
+          <div className="overflow-hidden rounded-xl">
+            <div
+              className="h-24 w-full"
+              style={{
+                backgroundImage: `url("https://picsum.photos/seed/pin-photo/520/320")`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            />
+            <p className="px-3 py-2 text-xs text-white/80">Tokyo, last spring</p>
+          </div>
+        ),
+      },
+      {
+        id: "quote",
+        x: 60,
+        y: 200,
+        width: 200,
+        rotate: 2,
+        content: (
+          <div className="p-4">
+            <p className="text-sm italic text-white/85">
+              &quot;Make it tactile, then make it fast.&quot;
+            </p>
+            <p className="mt-2 text-[10px] uppercase tracking-[0.18em] text-white/50">
+              Note to self
+            </p>
+          </div>
+        ),
+      },
+      {
+        id: "track",
+        x: 380,
+        y: 180,
+        width: 168,
+        rotate: -5,
+        content: (
+          <div className="flex items-center gap-3 p-3">
+            <div
+              className="h-10 w-10 shrink-0 rounded-md bg-gradient-to-br from-fuchsia-500 to-sky-500"
+              aria-hidden
+            />
+            <div className="min-w-0">
+              <p className="truncate text-sm font-semibold">Sundance</p>
+              <p className="truncate text-[11px] text-white/60">
+                Winter Tapes
+              </p>
+            </div>
+          </div>
+        ),
+      },
+    ],
+    []
+  );
+  return (
+    <div className={STAGE_CLASS} style={{ background: "rgb(13,15,24)" }}>
+      <PinBoard
+        items={items}
+        width={620}
+        height={300}
+        pinColor="rgb(244, 114, 182)"
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * GlitchClip — hover the headline to split it into glitched slices.
+ * ------------------------------------------------------------------ */
+export function GlitchClipDemo() {
+  return (
+    <div
+      className={STAGE_CLASS}
+      style={{
+        background:
+          "radial-gradient(ellipse at center, rgb(13,16,28) 0%, rgb(3,5,14) 75%)",
+      }}
+    >
+      <GlitchClip slices={14} intensity={16}>
+        <div className="flex flex-col items-center gap-2 px-10 py-8 text-white">
+          <p className="text-[10px] font-medium uppercase tracking-[0.32em] text-white/60">
+            Hover to glitch
+          </p>
+          <p className="text-5xl font-bold tracking-tight">SIGNAL</p>
+          <p className="text-xs text-white/55">
+            Pure clip-path, no filters.
+          </p>
+        </div>
+      </GlitchClip>
     </div>
   );
 }

@@ -165,6 +165,10 @@ export const navigation: NavSection[] = [
       { title: "Wave Grid", href: "/docs/components/wave-grid" },
       { title: "Magic Layer", href: "/docs/components/magic-layer" },
       { title: "Paper Plane", href: "/docs/components/paper-plane" },
+      { title: "Coin Flip", href: "/docs/components/coin-flip" },
+      { title: "Fold Out", href: "/docs/components/fold-out" },
+      { title: "Pin Board", href: "/docs/components/pin-board" },
+      { title: "Glitch Clip", href: "/docs/components/glitch-clip" },
     ],
   },
 ];
