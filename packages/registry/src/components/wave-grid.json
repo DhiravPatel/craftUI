@@ -1,0 +1,16 @@
+{
+  "name": "wave-grid",
+  "description": "A grid of dots that ripple in 3D when clicked. Multiple ripples sum and decay independently.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/wave-grid/wave-grid.tsx",
+      "target": "{{components}}/wave-grid.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "wave", "ripple", "grid", "physics", "interactive", "animated"]
+}

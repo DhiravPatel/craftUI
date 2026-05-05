@@ -1,0 +1,16 @@
+{
+  "name": "magic-layer",
+  "description": "Stack of layers that separates into discrete Z-depths on hover for an X-ray reveal effect.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/magic-layer/magic-layer.tsx",
+      "target": "{{components}}/magic-layer.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "layers", "depth", "xray", "hover", "tilt"]
+}

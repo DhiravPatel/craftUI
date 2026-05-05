@@ -57,6 +57,7 @@ import label from "./components/label.json";
 import lamp from "./components/lamp.json";
 import layout from "./components/layout.json";
 import lens from "./components/lens.json";
+import magicLayer from "./components/magic-layer.json";
 import magnet from "./components/magnet.json";
 import magneticButton from "./components/magnetic-button.json";
 import marquee3d from "./components/marquee-3d.json";
@@ -68,9 +69,11 @@ import neonGlow from "./components/neon-glow.json";
 import neonPortal from "./components/neon-portal.json";
 import numberTicker from "./components/number-ticker.json";
 import orbitStack from "./components/orbit-stack.json";
+import orbitalMenu from "./components/orbital-menu.json";
 import orbitingCircles from "./components/orbiting-circles.json";
 import pageCurl from "./components/page-curl.json";
 import pagination from "./components/pagination.json";
+import paperPlane from "./components/paper-plane.json";
 import parallax from "./components/parallax.json";
 import pin3d from "./components/pin-3d.json";
 import plasmaField from "./components/plasma-field.json";
@@ -110,6 +113,7 @@ import toggle from "./components/toggle.json";
 import toggleGroup from "./components/toggle-group.json";
 import tooltip from "./components/tooltip.json";
 import tracingBeam from "./components/tracing-beam.json";
+import waveGrid from "./components/wave-grid.json";
 import wavyBackground from "./components/wavy-background.json";
 import wavyText from "./components/wavy-text.json";
 import worldMap from "./components/world-map.json";
@@ -172,6 +176,7 @@ export const registry: Registry = [
   lamp,
   layout,
   lens,
+  magicLayer,
   magnet,
   magneticButton,
   marquee3d,
@@ -183,9 +188,11 @@ export const registry: Registry = [
   neonPortal,
   numberTicker,
   orbitStack,
+  orbitalMenu,
   orbitingCircles,
   pageCurl,
   pagination,
+  paperPlane,
   parallax,
   pin3d,
   plasmaField,
@@ -225,6 +232,7 @@ export const registry: Registry = [
   toggleGroup,
   tooltip,
   tracingBeam,
+  waveGrid,
   wavyBackground,
   wavyText,
   worldMap,

@@ -41,6 +41,7 @@ import {
   InfiniteMovingCards,
   Lamp,
   Lens,
+  MagicLayer,
   Magnet,
   MagneticButton,
   Marquee3D,
@@ -51,8 +52,10 @@ import {
   NeonPortal,
   NumberTicker,
   OrbitStack,
+  OrbitalMenu,
   OrbitingCircles,
   PageCurl,
+  PaperPlane,
   Parallax,
   ParallaxLayer,
   Pin3D,
@@ -69,6 +72,7 @@ import {
   Tilt,
   TiltTiles,
   TracingBeam,
+  WaveGrid,
   WavyBackground,
   WavyText,
   WorldMap,
@@ -81,10 +85,14 @@ import {
   Github,
   Globe as GlobeIcon,
   Heart,
+  Image as ImageIcon,
   Mountain,
   Music,
   Plane,
+  Plus,
   Quote,
+  Send,
+  Share2,
   Rocket,
   Sparkles,
   Star,
@@ -2334,3 +2342,153 @@ export function CursorTrailDemo() {
     </CursorTrail>
   );
 }
+
+/* ------------------------------------------------------------------
+ * OrbitalMenu — center FAB whose satellites fan out along a half arc.
+ * ------------------------------------------------------------------ */
+export function OrbitalMenuDemo() {
+  return (
+    <div className={STAGE_CLASS}>
+      <OrbitalMenu
+        radius={84}
+        arc={180}
+        centerAngle={270}
+        size={56}
+        satelliteSize={42}
+        trigger={<Plus className="h-5 w-5" />}
+        items={[
+          {
+            id: "share",
+            label: "Share",
+            icon: <Share2 className="h-4 w-4" />,
+          },
+          {
+            id: "send",
+            label: "Send",
+            icon: <Send className="h-4 w-4" />,
+          },
+          {
+            id: "image",
+            label: "Add image",
+            icon: <ImageIcon className="h-4 w-4" />,
+          },
+          {
+            id: "music",
+            label: "Add audio",
+            icon: <Music className="h-4 w-4" />,
+          },
+          {
+            id: "love",
+            label: "Like",
+            icon: <Heart className="h-4 w-4" />,
+          },
+        ]}
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * WaveGrid — click anywhere on the grid to fire a 3D ripple.
+ * ------------------------------------------------------------------ */
+export function WaveGridDemo() {
+  return (
+    <div
+      className={STAGE_CLASS}
+      style={{
+        background:
+          "radial-gradient(ellipse at center, rgb(8,12,28) 0%, rgb(2,4,12) 80%)",
+      }}
+    >
+      <WaveGrid
+        columns={28}
+        rows={16}
+        dotSize={5}
+        dotColor="rgb(125, 211, 252)"
+        amplitude={32}
+        className="absolute inset-0"
+      />
+      <div className="pointer-events-none relative flex flex-col items-center text-center">
+        <p className="text-xs font-medium uppercase tracking-[0.22em] text-white/70">
+          Click anywhere
+        </p>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * MagicLayer — hover to separate a stack of photo layers in 3D space.
+ * ------------------------------------------------------------------ */
+export function MagicLayerDemo() {
+  const layers = [
+    "https://picsum.photos/seed/magic-bg/720/480",
+    "https://picsum.photos/seed/magic-mid/720/480",
+    "https://picsum.photos/seed/magic-fg/720/480",
+  ];
+  return (
+    <div className={STAGE_CLASS}>
+      <MagicLayer
+        width={360}
+        height={230}
+        spacing={48}
+        tilt={12}
+        radius={20}
+        layers={layers.map((src, i) => (
+          <div
+            key={i}
+            className="relative h-full w-full"
+            style={{
+              backgroundImage: `url("${src}")`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{
+                background:
+                  i === layers.length - 1
+                    ? "linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.6) 100%)"
+                    : "linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.35) 100%)",
+              }}
+            />
+            {i === layers.length - 1 ? (
+              <div className="absolute inset-x-0 bottom-0 p-4 text-white">
+                <p className="text-[10px] uppercase tracking-[0.2em] opacity-75">
+                  Layer
+                </p>
+                <p className="text-base font-semibold">Hover to peek</p>
+              </div>
+            ) : null}
+          </div>
+        ))}
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * PaperPlane — a paper plane looping along a curved offset-path.
+ * ------------------------------------------------------------------ */
+export function PaperPlaneDemo() {
+  return (
+    <div
+      className={STAGE_CLASS}
+      style={{
+        background:
+          "linear-gradient(180deg, rgb(11,18,40) 0%, rgb(3,6,18) 100%)",
+      }}
+    >
+      <PaperPlane
+        width={460}
+        height={250}
+        duration={8}
+        size={30}
+        color="rgb(125, 211, 252)"
+      />
+    </div>
+  );
+}
+
