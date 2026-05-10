@@ -1,0 +1,16 @@
+{
+  "name": "stat-card",
+  "description": "Polished metric card with animated count-up on view, optional trend indicator, and optional inline sparkline.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/stat-card/stat-card.tsx",
+      "target": "{{components}}/stat-card.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["stat", "metric", "saas", "landing", "animated"]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "feature-card",
+  "description": "Feature block with a gradient icon tile, heading, description, hover lift, and a cursor-tracking glow.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/feature-card/feature-card.tsx",
+      "target": "{{components}}/feature-card.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["feature", "card", "saas", "landing"]
+}

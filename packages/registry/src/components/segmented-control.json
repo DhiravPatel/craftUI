@@ -1,0 +1,16 @@
+{
+  "name": "segmented-control",
+  "description": "iOS-style segmented switcher with a single sliding pill that animates between segments when the selection changes. Supports icons, sizes, and full-width layouts.",
+  "category": "input",
+  "files": [
+    {
+      "path": "components/segmented-control/segmented-control.tsx",
+      "target": "{{components}}/segmented-control.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["tabs", "segments", "switcher", "ios", "animated"]
+}

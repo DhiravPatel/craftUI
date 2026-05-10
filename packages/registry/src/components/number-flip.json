@@ -1,0 +1,16 @@
+{
+  "name": "number-flip",
+  "description": "Odometer / split-flap-style numeric display. Each digit is a window into a stack of 0-9 glyphs that translates vertically when the value changes, so only the digit places that actually change animate.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/number-flip/number-flip.tsx",
+      "target": "{{components}}/number-flip.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["number", "odometer", "flip", "counter", "animated"]
+}

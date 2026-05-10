@@ -3,6 +3,7 @@ import type { Registry, RegistryEntry } from "./types";
 import accordion from "./components/accordion.json";
 import alert from "./components/alert.json";
 import alertDialog from "./components/alert-dialog.json";
+import animatedChart from "./components/animated-chart.json";
 import animatedText from "./components/animated-text.json";
 import animatedTooltip from "./components/animated-tooltip.json";
 import aurora from "./components/aurora.json";
@@ -23,6 +24,8 @@ import coinFlip from "./components/coin-flip.json";
 import combobox from "./components/combobox.json";
 import command from "./components/command.json";
 import compare from "./components/compare.json";
+import copyButton from "./components/copy-button.json";
+import countUpRing from "./components/count-up-ring.json";
 import coverflow from "./components/coverflow.json";
 import cube from "./components/cube.json";
 import cursorTrail from "./components/cursor-trail.json";
@@ -30,10 +33,12 @@ import datePicker from "./components/date-picker.json";
 import dialog from "./components/dialog.json";
 import directionAwareHover from "./components/direction-aware-hover.json";
 import dotPattern from "./components/dot-pattern.json";
+import dotProgress from "./components/dot-progress.json";
 import drawer from "./components/drawer.json";
 import dropdownMenu from "./components/dropdown-menu.json";
 import emptyState from "./components/empty-state.json";
 import evervaultCard from "./components/evervault-card.json";
+import featureCard from "./components/feature-card.json";
 import fileUpload from "./components/file-upload.json";
 import flipCard from "./components/flip-card.json";
 import flipWords from "./components/flip-words.json";
@@ -48,6 +53,7 @@ import glitchClip from "./components/glitch-clip.json";
 import globe from "./components/globe.json";
 import gravityWell from "./components/gravity-well.json";
 import helix from "./components/helix.json";
+import holdToConfirm from "./components/hold-to-confirm.json";
 import holoCard from "./components/holo-card.json";
 import holoSlices from "./components/holo-slices.json";
 import hoverBorderGradient from "./components/hover-border-gradient.json";
@@ -71,6 +77,8 @@ import multiStepLoader from "./components/multi-step-loader.json";
 import navbar from "./components/navbar.json";
 import neonGlow from "./components/neon-glow.json";
 import neonPortal from "./components/neon-portal.json";
+import notificationStack from "./components/notification-stack.json";
+import numberFlip from "./components/number-flip.json";
 import numberTicker from "./components/number-ticker.json";
 import orbitStack from "./components/orbit-stack.json";
 import orbitalMenu from "./components/orbital-menu.json";
@@ -92,6 +100,7 @@ import radioGroup from "./components/radio-group.json";
 import rating from "./components/rating.json";
 import ripple from "./components/ripple.json";
 import scrollArea from "./components/scroll-area.json";
+import segmentedControl from "./components/segmented-control.json";
 import select from "./components/select.json";
 import separator from "./components/separator.json";
 import sheet from "./components/sheet.json";
@@ -103,6 +112,7 @@ import sparklesText from "./components/sparkles-text.json";
 import spinner from "./components/spinner.json";
 import spotlight from "./components/spotlight.json";
 import stat from "./components/stat.json";
+import statCard from "./components/stat-card.json";
 import stepper from "./components/stepper.json";
 import swipeStack from "./components/swipe-stack.json";
 import switchEntry from "./components/switch.json";
@@ -113,6 +123,7 @@ import textGenerateEffect from "./components/text-generate-effect.json";
 import textScramble from "./components/text-scramble.json";
 import textarea from "./components/textarea.json";
 import themeProvider from "./components/theme-provider.json";
+import themeToggle from "./components/theme-toggle.json";
 import tilt from "./components/tilt.json";
 import tiltTiles from "./components/tilt-tiles.json";
 import timeline from "./components/timeline.json";
@@ -121,6 +132,7 @@ import toggle from "./components/toggle.json";
 import toggleGroup from "./components/toggle-group.json";
 import tooltip from "./components/tooltip.json";
 import tracingBeam from "./components/tracing-beam.json";
+import voteWidget from "./components/vote-widget.json";
 import waveGrid from "./components/wave-grid.json";
 import wavyBackground from "./components/wavy-background.json";
 import wavyText from "./components/wavy-text.json";
@@ -130,6 +142,7 @@ export const registry: Registry = [
   accordion,
   alert,
   alertDialog,
+  animatedChart,
   animatedText,
   animatedTooltip,
   aurora,
@@ -150,6 +163,8 @@ export const registry: Registry = [
   combobox,
   command,
   compare,
+  copyButton,
+  countUpRing,
   coverflow,
   cube,
   cursorTrail,
@@ -157,10 +172,12 @@ export const registry: Registry = [
   dialog,
   directionAwareHover,
   dotPattern,
+  dotProgress,
   drawer,
   dropdownMenu,
   emptyState,
   evervaultCard,
+  featureCard,
   fileUpload,
   flipCard,
   flipWords,
@@ -175,6 +192,7 @@ export const registry: Registry = [
   globe,
   gravityWell,
   helix,
+  holdToConfirm,
   holoCard,
   holoSlices,
   hoverBorderGradient,
@@ -198,6 +216,8 @@ export const registry: Registry = [
   navbar,
   neonGlow,
   neonPortal,
+  notificationStack,
+  numberFlip,
   numberTicker,
   orbitStack,
   orbitalMenu,
@@ -219,6 +239,7 @@ export const registry: Registry = [
   rating,
   ripple,
   scrollArea,
+  segmentedControl,
   select,
   separator,
   sheet,
@@ -230,6 +251,7 @@ export const registry: Registry = [
   spinner,
   spotlight,
   stat,
+  statCard,
   stepper,
   swipeStack,
   switchEntry,
@@ -240,6 +262,7 @@ export const registry: Registry = [
   textScramble,
   textarea,
   themeProvider,
+  themeToggle,
   tilt,
   tiltTiles,
   timeline,
@@ -248,6 +271,7 @@ export const registry: Registry = [
   toggleGroup,
   tooltip,
   tracingBeam,
+  voteWidget,
   waveGrid,
   wavyBackground,
   wavyText,

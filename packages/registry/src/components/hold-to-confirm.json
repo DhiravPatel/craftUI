@@ -1,0 +1,16 @@
+{
+  "name": "hold-to-confirm",
+  "description": "Tactile safety button: the user must press AND hold for a duration while a circular progress ring fills. Releasing early cancels and drains the ring back to zero.",
+  "category": "input",
+  "files": [
+    {
+      "path": "components/hold-to-confirm/hold-to-confirm.tsx",
+      "target": "{{components}}/hold-to-confirm.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["button", "confirm", "hold", "destructive", "animated"]
+}

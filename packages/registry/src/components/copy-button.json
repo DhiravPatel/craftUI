@@ -1,0 +1,16 @@
+{
+  "name": "copy-button",
+  "description": "Icon button that copies a value to the clipboard, then cross-fades from a clipboard glyph to a check on success and resets after a delay.",
+  "category": "input",
+  "files": [
+    {
+      "path": "components/copy-button/copy-button.tsx",
+      "target": "{{components}}/copy-button.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["copy", "clipboard", "button", "icon", "animated"]
+}

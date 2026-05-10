@@ -1,0 +1,16 @@
+{
+  "name": "vote-widget",
+  "description": "Up / down voting with an animated count that slides into place when the score changes. Supports controlled and uncontrolled state, and vertical or horizontal layouts.",
+  "category": "input",
+  "files": [
+    {
+      "path": "components/vote-widget/vote-widget.tsx",
+      "target": "{{components}}/vote-widget.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["vote", "upvote", "downvote", "count", "animated"]
+}
