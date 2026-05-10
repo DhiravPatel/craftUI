@@ -1,0 +1,16 @@
+{
+  "name": "dot-progress",
+  "description": "Stepped dot indicator with the active step rendered as a stretched pill. Useful for onboarding flows, multi-page forms, and carousels.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/dot-progress/dot-progress.tsx",
+      "target": "{{components}}/dot-progress.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["progress", "dots", "steps", "onboarding", "carousel"]
+}

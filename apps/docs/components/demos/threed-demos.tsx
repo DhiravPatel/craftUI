@@ -19,12 +19,15 @@ import {
   Carousel3D,
   CoinFlip,
   Compare,
+  CopyButton,
+  CountUpRing,
   Coverflow,
   Cube,
   CubeFace,
   CursorTrail,
   DirectionAwareHover,
   DotPattern,
+  DotProgress,
   EvervaultCard,
   FeatureCard,
   FluxPanels,
@@ -40,6 +43,7 @@ import {
   Globe,
   GravityWell,
   Helix,
+  HoldToConfirm,
   HoloCard,
   HoloSlices,
   HoverBorderGradient,
@@ -57,6 +61,7 @@ import {
   NeonGlow,
   NeonPortal,
   NotificationStack,
+  NumberFlip,
   NumberTicker,
   OrbitStack,
   OrbitalMenu,
@@ -73,6 +78,7 @@ import {
   PrismOrb,
   QuantumGrid,
   Ripple,
+  SegmentedControl,
   Sparkles as SparklesFx,
   SparklesText,
   StatCard,
@@ -81,9 +87,11 @@ import {
   TestimonialQuote,
   TextGenerateEffect,
   TextScramble,
+  ThemeToggle,
   Tilt,
   TiltTiles,
   TracingBeam,
+  VoteWidget,
   WaveGrid,
   WavyBackground,
   WavyText,
@@ -3309,6 +3317,361 @@ export function NotificationStackDemo() {
         width={340}
         visible={3}
         interval={2.4}
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * CopyButton — three variants: icon-only, with label, larger.
+ * ------------------------------------------------------------------ */
+export function CopyButtonDemo() {
+  return (
+    <div className="flex w-full items-center justify-center gap-4 px-6 py-12">
+      <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-neutral-950 px-4 py-3 font-mono text-xs text-white/85">
+        <span className="opacity-70">$</span>
+        <span>npx craftui add button</span>
+        <CopyButton value="npx craftui add button" />
+      </div>
+      <CopyButton value="hello@craftui.dev" label="Email" />
+      <CopyButton value="0xC0FFEE..." size={44} />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * CountUpRing — three rings with different fills.
+ * ------------------------------------------------------------------ */
+export function CountUpRingDemo() {
+  return (
+    <div className="flex w-full flex-wrap items-center justify-center gap-12 px-6 py-12">
+      <div className="flex flex-col items-center gap-2">
+        <CountUpRing
+          value={87}
+          suffix="%"
+          color="rgb(125, 211, 252)"
+          size={140}
+        />
+        <p className="text-xs font-medium uppercase tracking-wider text-foreground/60">
+          Storage used
+        </p>
+      </div>
+      <div className="flex flex-col items-center gap-2">
+        <CountUpRing
+          value={4.9}
+          max={5}
+          decimals={1}
+          color="rgb(74, 222, 128)"
+          size={140}
+        />
+        <p className="text-xs font-medium uppercase tracking-wider text-foreground/60">
+          Avg rating
+        </p>
+      </div>
+      <div className="flex flex-col items-center gap-2">
+        <CountUpRing
+          value={42}
+          max={60}
+          color="rgb(244, 114, 182)"
+          size={140}
+          label={
+            <div className="text-center">
+              <p className="text-2xl font-bold leading-none tabular-nums text-foreground">
+                42
+              </p>
+              <p className="text-[10px] font-medium uppercase tracking-wider text-foreground/55">
+                of 60
+              </p>
+            </div>
+          }
+        />
+        <p className="text-xs font-medium uppercase tracking-wider text-foreground/60">
+          Tasks done
+        </p>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * DotProgress — interactive stepped indicator.
+ * ------------------------------------------------------------------ */
+export function DotProgressDemo() {
+  const [step, setStep] = React.useState(2);
+  return (
+    <div className="flex w-full flex-col items-center justify-center gap-6 px-6 py-12">
+      <div className="rounded-2xl border border-white/10 bg-neutral-950 px-8 py-6 text-center text-white">
+        <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/55">
+          Step {step + 1} of 5
+        </p>
+        <p className="mt-1.5 text-base font-semibold leading-tight">
+          {[
+            "Welcome to CraftUI",
+            "Install the CLI",
+            "Add your first component",
+            "Customize the theme",
+            "You're all set.",
+          ][step]}
+        </p>
+        <div className="mt-5 flex items-center justify-center gap-3">
+          <button
+            type="button"
+            onClick={() => setStep((s) => Math.max(0, s - 1))}
+            className="rounded-md border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-white/10 disabled:opacity-40"
+            disabled={step === 0}
+          >
+            Back
+          </button>
+          <DotProgress
+            steps={5}
+            current={step}
+            color="rgb(125, 211, 252)"
+            onStepClick={setStep}
+          />
+          <button
+            type="button"
+            onClick={() => setStep((s) => Math.min(4, s + 1))}
+            className="rounded-md bg-sky-400 px-3 py-1.5 text-xs font-semibold text-neutral-950 transition-shadow hover:shadow-[0_12px_28px_-10px_rgba(56,189,248,0.6)] disabled:opacity-40"
+            disabled={step === 4}
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * ThemeToggle — sun/moon morph button at three sizes.
+ * ------------------------------------------------------------------ */
+export function ThemeToggleDemo() {
+  const [theme, setTheme] = React.useState<"light" | "dark">("light");
+  return (
+    <div className="flex w-full flex-col items-center justify-center gap-6 px-6 py-12">
+      <div className="flex items-center gap-6">
+        <ThemeToggle size={32} theme={theme} onChange={setTheme} />
+        <ThemeToggle size={44} theme={theme} onChange={setTheme} />
+        <ThemeToggle size={64} theme={theme} onChange={setTheme} />
+      </div>
+      <p className="text-xs font-medium uppercase tracking-wider text-foreground/55">
+        Currently: {theme}
+      </p>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * NumberFlip — odometer-style display. Increment to see digits flip.
+ * ------------------------------------------------------------------ */
+export function NumberFlipDemo() {
+  const [value, setValue] = React.useState(48267);
+  return (
+    <div className="flex w-full flex-col items-center justify-center gap-6 px-6 py-12">
+      <NumberFlip value={value} digits={6} size={56} />
+      <div className="flex items-center gap-2">
+        <button
+          type="button"
+          onClick={() =>
+            setValue((v) => Math.max(0, v - Math.floor(Math.random() * 50 + 10)))
+          }
+          className="inline-flex h-9 items-center rounded-md border border-foreground/15 bg-foreground/5 px-3.5 text-xs font-medium text-foreground transition-colors hover:bg-foreground/10"
+        >
+          − Decrement
+        </button>
+        <button
+          type="button"
+          onClick={() =>
+            setValue((v) => v + Math.floor(Math.random() * 50 + 10))
+          }
+          className="inline-flex h-9 items-center rounded-md bg-sky-400 px-3.5 text-xs font-semibold text-neutral-950 transition-shadow hover:shadow-[0_12px_28px_-10px_rgba(56,189,248,0.6)]"
+        >
+          + Increment
+        </button>
+        <button
+          type="button"
+          onClick={() => setValue(Math.floor(Math.random() * 999999))}
+          className="inline-flex h-9 items-center rounded-md border border-foreground/15 bg-foreground/5 px-3.5 text-xs font-medium text-foreground transition-colors hover:bg-foreground/10"
+        >
+          Randomize
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * HoldToConfirm — three variants for safety-critical actions.
+ * ------------------------------------------------------------------ */
+export function HoldToConfirmDemo() {
+  const [confirmed, setConfirmed] = React.useState<string | null>(null);
+  return (
+    <div className="flex w-full flex-col items-center justify-center gap-6 px-6 py-12">
+      <div className="flex flex-wrap items-center justify-center gap-4">
+        <HoldToConfirm
+          variant="danger"
+          duration={1200}
+          onConfirm={() => setConfirmed("Account deleted")}
+        >
+          Delete account
+        </HoldToConfirm>
+        <HoldToConfirm
+          variant="primary"
+          duration={900}
+          color="rgb(56, 189, 248)"
+          onConfirm={() => setConfirmed("Deployment shipped")}
+        >
+          Deploy to production
+        </HoldToConfirm>
+        <HoldToConfirm
+          variant="subtle"
+          duration={1400}
+          color="rgb(168, 85, 247)"
+          onConfirm={() => setConfirmed("Workspace archived")}
+        >
+          Archive workspace
+        </HoldToConfirm>
+      </div>
+      <p className="h-4 text-xs font-medium uppercase tracking-wider text-foreground/55">
+        {confirmed ?? "Hold any button to confirm"}
+      </p>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * VoteWidget — vertical (Reddit-style) and horizontal (HN-style).
+ * ------------------------------------------------------------------ */
+export function VoteWidgetDemo() {
+  return (
+    <div className="flex w-full flex-wrap items-stretch justify-center gap-6 px-6 py-12">
+      {/* Vertical card */}
+      <div className="flex w-[320px] gap-3 rounded-xl border border-foreground/10 bg-foreground/[0.02] p-4">
+        <VoteWidget count={1284} />
+        <div className="min-w-0 flex-1">
+          <p className="truncate text-sm font-semibold text-foreground">
+            Show HN: We rebuilt our docs in a weekend
+          </p>
+          <p className="mt-1 line-clamp-2 text-xs text-foreground/65">
+            Hot take — the bottleneck was content, not the framework. Here&apos;s
+            what we ripped out and what stuck.
+          </p>
+          <p className="mt-2 text-[11px] text-foreground/50">
+            Posted by craftui · 4 hours ago
+          </p>
+        </div>
+      </div>
+      {/* Horizontal */}
+      <div className="flex w-[320px] flex-col gap-2 rounded-xl border border-foreground/10 bg-foreground/[0.02] p-4">
+        <p className="text-sm font-semibold text-foreground">
+          Add a roadmap section
+        </p>
+        <p className="text-xs text-foreground/65">
+          Help users see what&apos;s shipping next.
+        </p>
+        <div className="mt-1 flex items-center justify-between">
+          <span className="text-[11px] text-foreground/50">12 comments</span>
+          <VoteWidget count={42} orientation="horizontal" defaultVote="up" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * SegmentedControl — three variants: view mode, time range, size demo.
+ * ------------------------------------------------------------------ */
+export function SegmentedControlDemo() {
+  const [view, setView] = React.useState<"grid" | "list" | "kanban">("grid");
+  const [range, setRange] = React.useState<"7d" | "30d" | "90d" | "1y">("30d");
+  const [size, setSize] = React.useState<"sm" | "md" | "lg">("md");
+  return (
+    <div className="flex w-full flex-col items-center justify-center gap-5 px-6 py-12">
+      <SegmentedControl
+        size="md"
+        value={view}
+        onChange={setView}
+        segments={[
+          {
+            value: "grid",
+            label: "Grid",
+            icon: (
+              <svg
+                viewBox="0 0 24 24"
+                width={14}
+                height={14}
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <rect x="3" y="3" width="7" height="7" rx="1" />
+                <rect x="14" y="3" width="7" height="7" rx="1" />
+                <rect x="3" y="14" width="7" height="7" rx="1" />
+                <rect x="14" y="14" width="7" height="7" rx="1" />
+              </svg>
+            ),
+          },
+          {
+            value: "list",
+            label: "List",
+            icon: (
+              <svg
+                viewBox="0 0 24 24"
+                width={14}
+                height={14}
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <line x1="8" y1="6" x2="21" y2="6" />
+                <line x1="8" y1="12" x2="21" y2="12" />
+                <line x1="8" y1="18" x2="21" y2="18" />
+                <circle cx="4" cy="6" r="1" />
+                <circle cx="4" cy="12" r="1" />
+                <circle cx="4" cy="18" r="1" />
+              </svg>
+            ),
+          },
+          {
+            value: "kanban",
+            label: "Kanban",
+            icon: (
+              <svg
+                viewBox="0 0 24 24"
+                width={14}
+                height={14}
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <rect x="3" y="4" width="5" height="16" rx="1" />
+                <rect x="9.5" y="4" width="5" height="11" rx="1" />
+                <rect x="16" y="4" width="5" height="14" rx="1" />
+              </svg>
+            ),
+          },
+        ]}
+      />
+      <SegmentedControl
+        size="sm"
+        value={range}
+        onChange={setRange}
+        segments={[
+          { value: "7d", label: "7d" },
+          { value: "30d", label: "30d" },
+          { value: "90d", label: "90d" },
+          { value: "1y", label: "1y" },
+        ]}
+      />
+      <SegmentedControl
+        size={size}
+        value={size}
+        onChange={setSize}
+        segments={[
+          { value: "sm", label: "Small" },
+          { value: "md", label: "Medium" },
+          { value: "lg", label: "Large" },
+        ]}
       />
     </div>
   );

@@ -1,0 +1,16 @@
+{
+  "name": "count-up-ring",
+  "description": "Circular SVG progress ring that animates its fill from 0 to value/max on viewport entry, with a synchronized count-up label at the center.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/count-up-ring/count-up-ring.tsx",
+      "target": "{{components}}/count-up-ring.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["progress", "ring", "metric", "svg", "animated"]
+}

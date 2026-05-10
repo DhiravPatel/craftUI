@@ -172,11 +172,14 @@ import {
   Carousel3DDemo,
   CoinFlipDemo,
   CompareDemo,
+  CopyButtonDemo,
+  CountUpRingDemo,
   CoverflowDemo,
   CubeDemo,
   CursorTrailDemo,
   DirectionAwareHoverDemo,
   DotPatternDemo,
+  DotProgressDemo,
   EvervaultCardDemo,
   FeatureCardDemo,
   FluxPanelsDemo,
@@ -190,6 +193,7 @@ import {
   GlobeDemo,
   GravityWellDemo,
   HelixDemo,
+  HoldToConfirmDemo,
   HoloCardDemo,
   HoloSlicesDemo,
   HoverBorderGradientDemo,
@@ -207,6 +211,7 @@ import {
   NeonGlowDemo,
   NeonPortalDemo,
   NotificationStackDemo,
+  NumberFlipDemo,
   NumberTickerDemo,
   OrbitStackDemo,
   OrbitalMenuDemo,
@@ -222,6 +227,7 @@ import {
   PrismOrbDemo,
   QuantumGridDemo,
   RippleDemo,
+  SegmentedControlDemo,
   SparklesDemo,
   SparklesStarfieldDemo,
   SparklesTextDemo,
@@ -231,9 +237,11 @@ import {
   TestimonialQuoteDemo,
   TextGenerateEffectDemo,
   TextScrambleDemo,
+  ThemeToggleDemo,
   TiltDemo,
   TiltTilesDemo,
   TracingBeamDemo,
+  VoteWidgetDemo,
   WaveGridDemo,
   WavyBackgroundDemo,
   WavyTextDemo,
@@ -7168,6 +7176,458 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
       },
     ],
     related: ["card-stack", "swipe-stack"],
+  },
+
+  // ---------- CopyButton ----------
+  {
+    name: "copy-button",
+    title: "Copy Button",
+    description:
+      "Icon button that copies a value to the clipboard, then cross-fades from a clipboard glyph to a check on success and resets after a delay.",
+    imports: `import { CopyButton } from "@/components/ui/copy-button";`,
+    defaultExample: {
+      title: "Three variants",
+      code: `<CopyButton value="hello" />`,
+      render: <CopyButtonDemo />,
+    },
+    props: [
+      {
+        name: "value",
+        type: "string",
+        required: true,
+        description: "The string written to the clipboard on click.",
+      },
+      {
+        name: "size",
+        type: "number",
+        default: "36",
+        description: "Button size in px (icon scales with this).",
+      },
+      {
+        name: "resetAfter",
+        type: "number",
+        default: "1600",
+        description: "Time in ms the success state stays before reverting.",
+      },
+      {
+        name: "label",
+        type: "ReactNode",
+        description:
+          "Optional label rendered to the right of the icon. Replaces with 'Copied' on success.",
+      },
+      {
+        name: "onCopy",
+        type: "(value: string) => void",
+        description: "Notified after a successful copy.",
+      },
+    ],
+    related: ["kbd", "button"],
+  },
+
+  // ---------- CountUpRing ----------
+  {
+    name: "count-up-ring",
+    title: "Count Up Ring",
+    description:
+      "Circular SVG progress ring that animates its fill from 0 to value/max on viewport entry, with a synchronized count-up label at the center.",
+    imports: `import { CountUpRing } from "@/components/ui/count-up-ring";`,
+    defaultExample: {
+      title: "Three rings",
+      code: `<CountUpRing value={87} suffix="%" />`,
+      render: <CountUpRingDemo />,
+    },
+    props: [
+      {
+        name: "value",
+        type: "number",
+        required: true,
+        description:
+          "Current value. Drives the ring fill and the live count-up label.",
+      },
+      {
+        name: "max",
+        type: "number",
+        default: "100",
+        description: "Maximum value the ring fills at 100%.",
+      },
+      {
+        name: "size",
+        type: "number",
+        default: "140",
+        description: "Outer diameter of the ring in px.",
+      },
+      {
+        name: "thickness",
+        type: "number",
+        default: "10",
+        description: "Stroke thickness in px.",
+      },
+      {
+        name: "color",
+        type: "string",
+        default: '"rgb(125, 211, 252)"',
+        description: "Stroke color of the filled arc.",
+      },
+      {
+        name: "trackColor",
+        type: "string",
+        default: '"rgba(255,255,255,0.12)"',
+        description: "Color of the unfilled track.",
+      },
+      {
+        name: "label",
+        type: "ReactNode",
+        description:
+          "Optional content rendered at the center. Defaults to the live numeric value.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "1300",
+        description: "Total ms for the entrance animation.",
+      },
+      {
+        name: "animateOnView",
+        type: "boolean",
+        default: "true",
+        description:
+          "Wait until the ring scrolls into view before animating.",
+      },
+      {
+        name: "suffix",
+        type: "string",
+        description:
+          'Suffix appended to the live numeric label, e.g. "%". Ignored when label is set.',
+      },
+      {
+        name: "decimals",
+        type: "number",
+        default: "0",
+        description:
+          "Decimal places for the live numeric label. Ignored when label is set.",
+      },
+    ],
+    related: ["stat-card", "number-ticker"],
+  },
+
+  // ---------- DotProgress ----------
+  {
+    name: "dot-progress",
+    title: "Dot Progress",
+    description:
+      "Stepped dot indicator with the active step rendered as a stretched pill. Past steps dim and future steps stay neutral. Useful in onboarding flows, multi-page forms, and carousels.",
+    imports: `import { DotProgress } from "@/components/ui/dot-progress";`,
+    defaultExample: {
+      title: "Onboarding stepper",
+      code: `<DotProgress steps={5} current={step} onStepClick={setStep} />`,
+      render: <DotProgressDemo />,
+    },
+    props: [
+      {
+        name: "steps",
+        type: "number",
+        required: true,
+        description: "Total number of steps.",
+      },
+      {
+        name: "current",
+        type: "number",
+        required: true,
+        description: "Zero-based index of the current step.",
+      },
+      {
+        name: "size",
+        type: "number",
+        default: "8",
+        description: "Diameter of an inactive dot in px.",
+      },
+      {
+        name: "activeSize",
+        type: "number",
+        default: "24",
+        description:
+          "Length of the active dot pill in px. Gives the active step a stretched-pill look.",
+      },
+      {
+        name: "gap",
+        type: "number",
+        default: "8",
+        description: "Gap between dots in px.",
+      },
+      {
+        name: "color",
+        type: "string",
+        default: '"currentColor"',
+        description: "Color of the active dot.",
+      },
+      {
+        name: "trackColor",
+        type: "string",
+        default: '"rgba(255,255,255,0.25)"',
+        description: "Color of inactive dots.",
+      },
+      {
+        name: "onStepClick",
+        type: "(index: number) => void",
+        description: "When set, dots are clickable and jump to that step.",
+      },
+    ],
+    related: ["stepper", "pagination"],
+  },
+
+  // ---------- ThemeToggle ----------
+  {
+    name: "theme-toggle",
+    title: "Theme Toggle",
+    description:
+      "Sun-to-moon morph button for toggling light / dark themes. Sun rays retract into the disc and a shadow disc shifts in to complete the crescent.",
+    imports: `import { ThemeToggle } from "@/components/ui/theme-toggle";`,
+    defaultExample: {
+      title: "Three sizes",
+      code: `<ThemeToggle theme={theme} onChange={setTheme} />`,
+      render: <ThemeToggleDemo />,
+    },
+    props: [
+      {
+        name: "theme",
+        type: '"light" | "dark"',
+        description: "Controlled theme.",
+      },
+      {
+        name: "defaultTheme",
+        type: '"light" | "dark"',
+        default: '"light"',
+        description: "Initial theme for uncontrolled use.",
+      },
+      {
+        name: "onChange",
+        type: '(theme: "light" | "dark") => void',
+        description: "Notified when the theme toggles.",
+      },
+      {
+        name: "size",
+        type: "number",
+        default: "36",
+        description: "Button diameter in px.",
+      },
+    ],
+    related: ["theme-provider", "toggle"],
+  },
+
+  // ---------- NumberFlip ----------
+  {
+    name: "number-flip",
+    title: "Number Flip",
+    description:
+      "Odometer / split-flap-style numeric display. Each digit is a window into a stack of 0–9 glyphs that translates vertically when the value changes, so only the digit places that actually change animate.",
+    imports: `import { NumberFlip } from "@/components/ui/number-flip";`,
+    defaultExample: {
+      title: "Live counter",
+      code: `<NumberFlip value={value} digits={6} />`,
+      render: <NumberFlipDemo />,
+    },
+    props: [
+      {
+        name: "value",
+        type: "number",
+        required: true,
+        description: "Numeric value to display.",
+      },
+      {
+        name: "digits",
+        type: "number",
+        description: "Pad the value to this many digits (with leading zeros).",
+      },
+      {
+        name: "size",
+        type: "number",
+        default: "56",
+        description: "Font size for the digits in px.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "700",
+        description: "Animation duration in ms when the value changes.",
+      },
+      {
+        name: "separators",
+        type: "boolean",
+        default: "true",
+        description: "Show locale-aware thousands separators.",
+      },
+      {
+        name: "color",
+        type: "string",
+        description: "Color of the digits. Defaults to currentColor.",
+      },
+      {
+        name: "cellBackground",
+        type: "string",
+        description: "Background painted on each digit cell.",
+      },
+      {
+        name: "asTime",
+        type: "boolean",
+        default: "false",
+        description: "Render as a <time> element. Useful for countdowns.",
+      },
+    ],
+    related: ["number-ticker", "stat-card"],
+  },
+
+  // ---------- HoldToConfirm ----------
+  {
+    name: "hold-to-confirm",
+    title: "Hold to Confirm",
+    description:
+      "Tactile safety button: the user must press AND hold for a duration while a circular progress ring fills. Releasing early cancels and drains the ring back to zero.",
+    imports: `import { HoldToConfirm } from "@/components/ui/hold-to-confirm";`,
+    defaultExample: {
+      title: "Three variants",
+      code: `<HoldToConfirm onConfirm={...}>Delete account</HoldToConfirm>`,
+      render: <HoldToConfirmDemo />,
+    },
+    props: [
+      {
+        name: "onConfirm",
+        type: "() => void",
+        required: true,
+        description: "Fired when the user has held for the full duration.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "1100",
+        description: "How long the user must hold, in ms.",
+      },
+      {
+        name: "children",
+        type: "ReactNode",
+        default: '"Hold to confirm"',
+        description: "Button label / content.",
+      },
+      {
+        name: "color",
+        type: "string",
+        default: '"rgb(239, 68, 68)"',
+        description: "Color of the progress ring.",
+      },
+      {
+        name: "variant",
+        type: '"danger" | "primary" | "subtle"',
+        default: '"danger"',
+        description: "Resting visual style.",
+      },
+    ],
+    related: ["button", "alert-dialog"],
+  },
+
+  // ---------- VoteWidget ----------
+  {
+    name: "vote-widget",
+    title: "Vote Widget",
+    description:
+      "Up / down voting with an animated count that slides into place when the score changes. Supports controlled and uncontrolled state, and vertical or horizontal layouts.",
+    imports: `import { VoteWidget } from "@/components/ui/vote-widget";`,
+    defaultExample: {
+      title: "Reddit + HN style",
+      code: `<VoteWidget count={1284} />`,
+      render: <VoteWidgetDemo />,
+    },
+    props: [
+      {
+        name: "count",
+        type: "number",
+        required: true,
+        description: "Base count BEFORE the user's own vote is added.",
+      },
+      {
+        name: "vote",
+        type: '"up" | "down" | null',
+        description: "Controlled current vote.",
+      },
+      {
+        name: "defaultVote",
+        type: '"up" | "down" | null',
+        default: "null",
+        description: "Initial vote for uncontrolled use.",
+      },
+      {
+        name: "onChange",
+        type: "(vote) => void",
+        description: "Notified when the vote changes.",
+      },
+      {
+        name: "orientation",
+        type: '"vertical" | "horizontal"',
+        default: '"vertical"',
+        description:
+          'Layout: "vertical" stacks the arrows around the count (Reddit-style); "horizontal" puts the count to the side (HN-style).',
+      },
+      {
+        name: "upColor",
+        type: "string",
+        default: '"rgb(249, 115, 22)"',
+        description: "Color of the active up vote.",
+      },
+      {
+        name: "downColor",
+        type: "string",
+        default: '"rgb(96, 165, 250)"',
+        description: "Color of the active down vote.",
+      },
+    ],
+    related: ["heart-like", "rating"],
+  },
+
+  // ---------- SegmentedControl ----------
+  {
+    name: "segmented-control",
+    title: "Segmented Control",
+    description:
+      "iOS-style segmented switcher with a single sliding pill that animates between segments when the selection changes. Supports icons, sizes, and full-width layouts.",
+    imports: `import { SegmentedControl } from "@/components/ui/segmented-control";`,
+    defaultExample: {
+      title: "View / range / size",
+      code: `<SegmentedControl value={view} onChange={setView} segments={...} />`,
+      render: <SegmentedControlDemo />,
+    },
+    props: [
+      {
+        name: "segments",
+        type: "SegmentedControlSegment[]",
+        required: true,
+        description:
+          "Segments to render. Each takes { value, label, icon? }.",
+      },
+      {
+        name: "value",
+        type: "string",
+        required: true,
+        description: "Currently selected segment value.",
+      },
+      {
+        name: "onChange",
+        type: "(value) => void",
+        required: true,
+        description: "Notified when a different segment is selected.",
+      },
+      {
+        name: "size",
+        type: '"sm" | "md" | "lg"',
+        default: '"md"',
+        description: "Visual size.",
+      },
+      {
+        name: "fullWidth",
+        type: "boolean",
+        default: "false",
+        description:
+          "Stretch each segment to share equal width. Default uses intrinsic widths.",
+      },
+    ],
+    related: ["tabs", "toggle-group"],
   },
 ];
 

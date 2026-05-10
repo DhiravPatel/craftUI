@@ -1,0 +1,16 @@
+{
+  "name": "theme-toggle",
+  "description": "Sun-to-moon morph button for toggling light / dark themes. Sun rays retract into the disc and a shadow disc shifts in to complete the crescent.",
+  "category": "input",
+  "files": [
+    {
+      "path": "components/theme-toggle/theme-toggle.tsx",
+      "target": "{{components}}/theme-toggle.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["theme", "toggle", "dark-mode", "morph", "animated"]
+}
