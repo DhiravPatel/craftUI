@@ -168,6 +168,7 @@ import {
   AvatarStackDemo,
   BackgroundBeamsDemo,
   BackgroundBoxesDemo,
+  BannerDemo,
   BentoGridDemo,
   CardHoverEffectDemo,
   CardStackDemo,
@@ -217,6 +218,7 @@ import {
   NeonPortalDemo,
   NotificationStackDemo,
   NumberFlipDemo,
+  NumberInputDemo,
   NumberTickerDemo,
   OrbitStackDemo,
   OrbitalMenuDemo,
@@ -232,6 +234,7 @@ import {
   PrismOrbDemo,
   QuantumGridDemo,
   RippleDemo,
+  ScrollProgressDemo,
   SegmentedControlDemo,
   SparklesDemo,
   SparklesStarfieldDemo,
@@ -239,6 +242,7 @@ import {
   SpotlightDemo,
   StatCardDemo,
   SwipeStackDemo,
+  TagInputDemo,
   TestimonialQuoteDemo,
   TextGenerateEffectDemo,
   TextScrambleDemo,
@@ -7999,6 +8003,259 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
       },
     ],
     related: ["pricing-cards", "table"],
+  },
+
+  // ---------- TagInput ----------
+  {
+    name: "tag-input",
+    title: "Tag Input",
+    description:
+      "A token field that turns typed text into removable chips. Commit a tag with Enter or comma, remove the last with Backspace on an empty field, or paste a delimited list to add many at once. Supports controlled / uncontrolled use, a max, dedup, and a custom validator.",
+    imports: `import { TagInput } from "@/components/ui/tag-input";`,
+    usage: `const [tags, setTags] = React.useState<string[]>(["design", "react"]);
+
+<TagInput value={tags} onChange={setTags} placeholder="Add a topic…" />`,
+    defaultExample: {
+      title: "Tags & validated emails",
+      code: `<TagInput
+  value={tags}
+  onChange={setTags}
+  validate={(t) => /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(t)}
+  placeholder="name@company.com"
+/>`,
+      render: <TagInputDemo />,
+    },
+    props: [
+      {
+        name: "value",
+        type: "string[]",
+        description: "Controlled list of tags.",
+      },
+      {
+        name: "defaultValue",
+        type: "string[]",
+        description: "Initial tags when uncontrolled.",
+      },
+      {
+        name: "onChange",
+        type: "(tags: string[]) => void",
+        description: "Fired with the full tag list whenever it changes.",
+      },
+      {
+        name: "max",
+        type: "number",
+        description: "Maximum number of tags. Further input is ignored.",
+      },
+      {
+        name: "allowDuplicates",
+        type: "boolean",
+        default: "false",
+        description: "Allow the same tag more than once.",
+      },
+      {
+        name: "validate",
+        type: "(tag: string) => boolean",
+        description: "Return false to reject a tag before it is added.",
+      },
+      {
+        name: "delimiters",
+        type: "string[]",
+        default: '["Enter", ","]',
+        description: "Keys that commit the current text into a tag.",
+      },
+      {
+        name: "error",
+        type: "boolean",
+        description: "Render in an error state (red border + ring).",
+      },
+    ],
+    related: ["input", "combobox", "command"],
+  },
+
+  // ---------- NumberInput ----------
+  {
+    name: "number-input",
+    title: "Number Input",
+    description:
+      "A numeric field with increment / decrement steppers. Holding a stepper repeats with acceleration; ArrowUp / ArrowDown nudge by step (×10 with Shift); values clamp to [min, max] and round to precision on blur. Optional prefix / suffix for currency or units.",
+    imports: `import { NumberInput } from "@/components/ui/number-input";`,
+    defaultExample: {
+      title: "Quantity, price & weight",
+      code: `<NumberInput value={qty} onChange={setQty} min={0} max={99} />
+<NumberInput value={price} onChange={setPrice} min={0} step={0.01} prefix="$" />
+<NumberInput defaultValue={5} min={0} step={0.5} suffix="kg" />`,
+      render: <NumberInputDemo />,
+    },
+    props: [
+      {
+        name: "value",
+        type: "number | null",
+        description: "Controlled value. Use null for an empty field.",
+      },
+      {
+        name: "defaultValue",
+        type: "number",
+        description: "Initial value when uncontrolled.",
+      },
+      {
+        name: "onChange",
+        type: "(value: number | null) => void",
+        description: "Fired with the parsed number (or null when cleared).",
+      },
+      {
+        name: "min",
+        type: "number",
+        description: "Minimum allowed value. Clamped on blur and via steppers.",
+      },
+      {
+        name: "max",
+        type: "number",
+        description: "Maximum allowed value.",
+      },
+      {
+        name: "step",
+        type: "number",
+        default: "1",
+        description: "Amount added / removed per step.",
+      },
+      {
+        name: "precision",
+        type: "number",
+        default: "derived from step",
+        description: "Decimal places to round to.",
+      },
+      {
+        name: "prefix",
+        type: "string",
+        description: 'Text shown before the number, e.g. "$".',
+      },
+      {
+        name: "suffix",
+        type: "string",
+        description: 'Text shown after the number, e.g. "kg", "%".',
+      },
+    ],
+    related: ["input", "slider", "number-flip"],
+  },
+
+  // ---------- ScrollProgress ----------
+  {
+    name: "scroll-progress",
+    title: "Scroll Progress",
+    description:
+      "A thin bar that fills as the page — or a given scroll container — is scrolled. Reads scroll position on a requestAnimationFrame loop so it stays smooth, and reacts to content / viewport resizing. Drop it in once at the top of a layout for a reading-progress indicator.",
+    imports: `import { ScrollProgress } from "@/components/ui/scroll-progress";`,
+    usage: `// Whole page (fixed to the top of the viewport):
+<ScrollProgress />
+
+// A specific scroll container (mark it position: relative):
+const ref = React.useRef<HTMLDivElement>(null);
+<div ref={ref} className="relative overflow-y-auto">
+  <ScrollProgress target={ref} />
+  {/* … */}
+</div>`,
+    defaultExample: {
+      title: "Tracking a container",
+      code: `<ScrollProgress target={ref} height={4} showLabel />`,
+      render: <ScrollProgressDemo />,
+    },
+    props: [
+      {
+        name: "target",
+        type: "React.RefObject<HTMLElement>",
+        description:
+          "Element whose scroll drives the bar. Omit to track the whole page (fixed).",
+      },
+      {
+        name: "position",
+        type: '"top" | "bottom"',
+        default: '"top"',
+        description: "Which edge to pin the bar to.",
+      },
+      {
+        name: "height",
+        type: "number",
+        default: "3",
+        description: "Bar thickness in px.",
+      },
+      {
+        name: "color",
+        type: "string",
+        default: "sky→indigo gradient",
+        description: "CSS color or gradient for the filled bar.",
+      },
+      {
+        name: "showLabel",
+        type: "boolean",
+        default: "false",
+        description: "Show the numeric percentage in a small pill.",
+      },
+    ],
+    related: ["progress", "tracing-beam"],
+  },
+
+  // ---------- Banner ----------
+  {
+    name: "banner",
+    title: "Banner",
+    description:
+      "A full-width announcement bar for product updates, promos, or status notices. Five tones, an optional leading icon and trailing CTA, an optional sticky position, and a dismiss button. Works controlled (via open) or uncontrolled, calling onDismiss when closed.",
+    imports: `import { Banner } from "@/components/ui/banner";`,
+    defaultExample: {
+      title: "Tones & actions",
+      code: `<Banner variant="promo" action={<Button size="sm" variant="secondary">Upgrade</Button>}>
+  CraftUI Pro is here — unlock 40+ premium blocks.
+</Banner>
+<Banner variant="success">Your changes were published.</Banner>
+<Banner variant="warning">Your trial ends in 3 days.</Banner>`,
+      render: <BannerDemo />,
+    },
+    props: [
+      {
+        name: "variant",
+        type: '"info" | "success" | "warning" | "danger" | "promo"',
+        default: '"info"',
+        description: 'Visual tone. "promo" uses a gradient for announcements.',
+      },
+      {
+        name: "children",
+        type: "ReactNode",
+        description: "The banner message.",
+      },
+      {
+        name: "icon",
+        type: "ReactNode | false",
+        description: "Override the leading icon, or pass false to hide it.",
+      },
+      {
+        name: "action",
+        type: "ReactNode",
+        description: "Trailing call-to-action (a link or button).",
+      },
+      {
+        name: "dismissible",
+        type: "boolean",
+        default: "true",
+        description: "Show the dismiss (×) button.",
+      },
+      {
+        name: "open",
+        type: "boolean",
+        description: "Controlled visibility.",
+      },
+      {
+        name: "onDismiss",
+        type: "() => void",
+        description: "Fired when the banner is dismissed.",
+      },
+      {
+        name: "sticky",
+        type: "boolean",
+        default: "false",
+        description: "Stick to the top of the viewport while scrolling.",
+      },
+    ],
+    related: ["alert", "toast", "callout"],
   },
 ];
 

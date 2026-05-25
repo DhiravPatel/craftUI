@@ -1,0 +1,16 @@
+{
+  "name": "banner",
+  "description": "Full-width announcement bar for product updates, promos, or status notices. Five tones, an optional leading icon and trailing CTA, optional sticky position, and a dismiss button. Controlled or uncontrolled.",
+  "category": "feedback",
+  "files": [
+    {
+      "path": "components/banner/banner.tsx",
+      "target": "{{components}}/banner.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["banner", "announcement", "notice", "alert", "promo", "feedback"]
+}

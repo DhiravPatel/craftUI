@@ -190,6 +190,10 @@ export const navigation: NavSection[] = [
       { title: "Gauge Meter", href: "/docs/components/gauge-meter" },
       { title: "Chat Bubble", href: "/docs/components/chat-bubble" },
       { title: "Comparison Table", href: "/docs/components/comparison-table" },
+      { title: "Tag Input", href: "/docs/components/tag-input" },
+      { title: "Number Input", href: "/docs/components/number-input" },
+      { title: "Scroll Progress", href: "/docs/components/scroll-progress" },
+      { title: "Banner", href: "/docs/components/banner" },
     ],
   },
 ];

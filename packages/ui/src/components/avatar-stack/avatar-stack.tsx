@@ -47,8 +47,7 @@ function hueFor(name: string) {
  * AvatarStack — overlapping avatars used to show a team, project members, or
  * "people viewing this". Collapses to a "+N" chip past the `max` threshold,
  * and on hover spreads out a little to reveal the names.
-const visible = items.slice(0, max);
-// Implement virtualized list or more efficient rendering strategy
+ */
 const AvatarStack = React.forwardRef<HTMLDivElement, AvatarStackProps>(
   (
     {

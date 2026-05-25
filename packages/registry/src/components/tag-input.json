@@ -1,0 +1,16 @@
+{
+  "name": "tag-input",
+  "description": "Token field that turns typed text into removable chips. Commit with Enter or comma, remove the last with Backspace, or paste a delimited list. Supports controlled / uncontrolled use, a max, dedup, and a custom validator.",
+  "category": "forms",
+  "files": [
+    {
+      "path": "components/tag-input/tag-input.tsx",
+      "target": "{{components}}/tag-input.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["tag", "input", "tags", "chips", "tokens", "multi", "form"]
+}

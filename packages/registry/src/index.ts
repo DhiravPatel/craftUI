@@ -13,6 +13,7 @@ import avatarStack from "./components/avatar-stack.json";
 import backgroundBeams from "./components/background-beams.json";
 import backgroundBoxes from "./components/background-boxes.json";
 import badge from "./components/badge.json";
+import banner from "./components/banner.json";
 import bentoGrid from "./components/bento-grid.json";
 import breadcrumb from "./components/breadcrumb.json";
 import button from "./components/button.json";
@@ -84,6 +85,7 @@ import neonGlow from "./components/neon-glow.json";
 import neonPortal from "./components/neon-portal.json";
 import notificationStack from "./components/notification-stack.json";
 import numberFlip from "./components/number-flip.json";
+import numberInput from "./components/number-input.json";
 import numberTicker from "./components/number-ticker.json";
 import orbitStack from "./components/orbit-stack.json";
 import orbitalMenu from "./components/orbital-menu.json";
@@ -105,6 +107,7 @@ import radioGroup from "./components/radio-group.json";
 import rating from "./components/rating.json";
 import ripple from "./components/ripple.json";
 import scrollArea from "./components/scroll-area.json";
+import scrollProgress from "./components/scroll-progress.json";
 import segmentedControl from "./components/segmented-control.json";
 import select from "./components/select.json";
 import separator from "./components/separator.json";
@@ -123,6 +126,7 @@ import swipeStack from "./components/swipe-stack.json";
 import switchEntry from "./components/switch.json";
 import table from "./components/table.json";
 import tabs from "./components/tabs.json";
+import tagInput from "./components/tag-input.json";
 import testimonialQuote from "./components/testimonial-quote.json";
 import textGenerateEffect from "./components/text-generate-effect.json";
 import textScramble from "./components/text-scramble.json";
@@ -157,6 +161,7 @@ export const registry: Registry = [
   backgroundBeams,
   backgroundBoxes,
   badge,
+  banner,
   bentoGrid,
   breadcrumb,
   button,
@@ -228,6 +233,7 @@ export const registry: Registry = [
   neonPortal,
   notificationStack,
   numberFlip,
+  numberInput,
   numberTicker,
   orbitStack,
   orbitalMenu,
@@ -249,6 +255,7 @@ export const registry: Registry = [
   rating,
   ripple,
   scrollArea,
+  scrollProgress,
   segmentedControl,
   select,
   separator,
@@ -267,6 +274,7 @@ export const registry: Registry = [
   switchEntry,
   table,
   tabs,
+  tagInput,
   testimonialQuote,
   textGenerateEffect,
   textScramble,

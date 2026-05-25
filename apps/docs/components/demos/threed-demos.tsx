@@ -13,6 +13,7 @@ import {
   BackgroundBeams,
   BackgroundBoxes,
   Badge,
+  Banner,
   BentoGrid,
   BentoGridItem,
   Button,
@@ -67,6 +68,7 @@ import {
   NeonPortal,
   NotificationStack,
   NumberFlip,
+  NumberInput,
   NumberTicker,
   OrbitStack,
   OrbitalMenu,
@@ -83,12 +85,14 @@ import {
   PrismOrb,
   QuantumGrid,
   Ripple,
+  ScrollProgress,
   SegmentedControl,
   Sparkles as SparklesFx,
   SparklesText,
   StatCard,
   Spotlight,
   SwipeStack,
+  TagInput,
   TestimonialQuote,
   TextGenerateEffect,
   TextScramble,
@@ -3533,6 +3537,132 @@ export function ComparisonTableDemo() {
     <div className="flex w-full items-center justify-center px-6 py-10">
       <div className="w-full max-w-[640px]">
         <ComparisonTable plans={plans} features={features} />
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * TagInput — token field with chips, dedup, and email validation.
+ * ------------------------------------------------------------------ */
+export function TagInputDemo() {
+  const [tags, setTags] = React.useState<string[]>([
+    "design",
+    "react",
+    "typescript",
+  ]);
+  const [emails, setEmails] = React.useState<string[]>(["ada@craftui.dev"]);
+  const isEmail = (s: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+  return (
+    <div className="flex w-full flex-col items-center justify-center gap-6 px-6 py-12">
+      <div className="w-full max-w-sm space-y-1.5">
+        <p className="text-xs font-medium text-foreground/60">Topics</p>
+        <TagInput value={tags} onChange={setTags} placeholder="Add a topic…" />
+      </div>
+      <div className="w-full max-w-sm space-y-1.5">
+        <p className="text-xs font-medium text-foreground/60">
+          Invite by email (validated)
+        </p>
+        <TagInput
+          value={emails}
+          onChange={setEmails}
+          validate={isEmail}
+          placeholder="name@company.com"
+        />
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * NumberInput — quantity stepper and a currency field.
+ * ------------------------------------------------------------------ */
+export function NumberInputDemo() {
+  const [qty, setQty] = React.useState<number | null>(2);
+  const [price, setPrice] = React.useState<number | null>(19.99);
+  return (
+    <div className="flex w-full flex-wrap items-end justify-center gap-8 px-6 py-12">
+      <div className="w-40 space-y-1.5">
+        <p className="text-xs font-medium text-foreground/60">Quantity</p>
+        <NumberInput value={qty} onChange={setQty} min={0} max={99} />
+      </div>
+      <div className="w-44 space-y-1.5">
+        <p className="text-xs font-medium text-foreground/60">Unit price</p>
+        <NumberInput
+          value={price}
+          onChange={setPrice}
+          min={0}
+          step={0.01}
+          prefix="$"
+        />
+      </div>
+      <div className="w-40 space-y-1.5">
+        <p className="text-xs font-medium text-foreground/60">Weight</p>
+        <NumberInput defaultValue={5} min={0} step={0.5} suffix="kg" />
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * ScrollProgress — tracks a scrollable container (not the page).
+ * ------------------------------------------------------------------ */
+export function ScrollProgressDemo() {
+  const ref = React.useRef<HTMLDivElement | null>(null);
+  return (
+    <div className="flex w-full items-center justify-center px-6 py-10">
+      <div
+        ref={ref}
+        className="relative h-72 w-full max-w-md overflow-y-auto rounded-2xl border border-white/10 bg-neutral-950 text-white"
+      >
+        <ScrollProgress target={ref} height={4} showLabel />
+        <div className="space-y-4 p-6 pt-8">
+          <h3 className="text-lg font-semibold">The making of CraftUI</h3>
+          {Array.from({ length: 9 }).map((_, i) => (
+            <p key={i} className="text-sm leading-relaxed text-white/65">
+              {i + 1}. Scroll this panel — the bar pinned to the top fills to
+              match how far you&apos;ve read. ScrollProgress can also track the
+              whole page when you omit the target prop. Smooth on every frame,
+              and it recalculates when the content or viewport resizes.
+            </p>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * Banner — announcement bars in several tones, with reset.
+ * ------------------------------------------------------------------ */
+export function BannerDemo() {
+  const [seed, setSeed] = React.useState(0);
+  return (
+    <div className="w-full px-6 py-10">
+      <div
+        key={seed}
+        className="mx-auto flex max-w-xl flex-col gap-3 overflow-hidden rounded-2xl border border-white/10"
+      >
+        <Banner
+          variant="promo"
+          action={
+            <Button size="sm" variant="secondary">
+              Upgrade
+            </Button>
+          }
+        >
+          <span className="font-medium">CraftUI Pro is here</span> — unlock 40+
+          premium blocks.
+        </Banner>
+        <Banner variant="success">Your changes were published.</Banner>
+        <Banner variant="warning">
+          Your trial ends in 3 days. Add a payment method to keep access.
+        </Banner>
+      </div>
+      <div className="mt-4 text-center">
+        <Button size="sm" variant="outline" onClick={() => setSeed((s) => s + 1)}>
+          Reset banners
+        </Button>
       </div>
     </div>
   );

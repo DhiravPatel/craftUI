@@ -1,0 +1,16 @@
+{
+  "name": "number-input",
+  "description": "Numeric field with increment / decrement steppers, hold-to-repeat with acceleration, arrow-key nudging (×10 with Shift), clamping to min/max, precision rounding, and optional prefix / suffix.",
+  "category": "forms",
+  "files": [
+    {
+      "path": "components/number-input/number-input.tsx",
+      "target": "{{components}}/number-input.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["number", "input", "stepper", "quantity", "spinner", "form"]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "scroll-progress",
+  "description": "Thin reading-progress bar that fills as the page or a given scroll container is scrolled. Smooth rAF updates, top or bottom placement, custom color/gradient, and an optional percentage label.",
+  "category": "feedback",
+  "files": [
+    {
+      "path": "components/scroll-progress/scroll-progress.tsx",
+      "target": "{{components}}/scroll-progress.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["scroll", "progress", "reading", "indicator", "bar", "feedback"]
+}
