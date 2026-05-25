@@ -1,0 +1,16 @@
+{
+  "name": "kanban-board",
+  "description": "A drag-and-drop task board. Cards live in columns keyed by id; drag a card to another column or reorder within one and the board emits the next state. Works controlled / uncontrolled, uses native HTML5 drag and drop (no dependencies), and supports custom card rendering.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/kanban-board/kanban-board.tsx",
+      "target": "{{components}}/kanban-board.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["kanban", "board", "drag", "drop", "tasks", "trello", "pipeline", "dashboard"]
+}

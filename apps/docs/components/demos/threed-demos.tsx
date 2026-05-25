@@ -22,6 +22,7 @@ import {
   Carousel3D,
   ChatBubble,
   CoinFlip,
+  ColorPicker,
   Compare,
   ComparisonTable,
   CopyButton,
@@ -57,6 +58,7 @@ import {
   Lamp,
   Lens,
   LogoCloud,
+  KanbanBoard,
   MagicLayer,
   Magnet,
   MagneticButton,
@@ -84,6 +86,7 @@ import {
   PricingCards,
   PrismOrb,
   QuantumGrid,
+  Resizable,
   Ripple,
   ScrollProgress,
   SegmentedControl,
@@ -100,6 +103,7 @@ import {
   Tilt,
   TiltTiles,
   TracingBeam,
+  TreeView,
   VoteWidget,
   WaveGrid,
   WavyBackground,
@@ -4019,6 +4023,159 @@ export function SegmentedControlDemo() {
           { value: "lg", label: "Large" },
         ]}
       />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * KanbanBoard — drag cards between columns (uncontrolled).
+ * ------------------------------------------------------------------ */
+export function KanbanBoardDemo() {
+  return (
+    <div className="w-full px-6 py-10">
+      <KanbanBoard
+        columns={[
+          { id: "todo", title: "To do", accent: "rgb(148, 163, 184)" },
+          { id: "doing", title: "In progress", accent: "rgb(125, 211, 252)" },
+          { id: "done", title: "Done", accent: "rgb(74, 222, 128)" },
+        ]}
+        defaultValue={{
+          todo: [
+            {
+              id: "1",
+              title: "Audit onboarding flow",
+              tags: ["UX"],
+              assignee: "AL",
+            },
+            {
+              id: "2",
+              title: "Draft Q3 roadmap",
+              description: "Share with team leads",
+              tags: ["Planning"],
+            },
+          ],
+          doing: [
+            {
+              id: "3",
+              title: "Build billing webhook",
+              tags: ["API"],
+              assignee: "JM",
+            },
+          ],
+          done: [
+            { id: "4", title: "Ship dark mode", tags: ["UI"], assignee: "RK" },
+            { id: "5", title: "Fix CSV export", tags: ["Bug"] },
+          ],
+        }}
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * TreeView — a file explorer with selection.
+ * ------------------------------------------------------------------ */
+export function TreeViewDemo() {
+  const [selected, setSelected] = React.useState("button.tsx");
+  return (
+    <div className="flex w-full justify-center px-6 py-10">
+      <TreeView
+        className="w-72"
+        defaultExpanded={["src", "components", "ui"]}
+        selectedId={selected}
+        onSelect={(id) => setSelected(id)}
+        data={[
+          {
+            id: "src",
+            label: "src",
+            children: [
+              {
+                id: "components",
+                label: "components",
+                children: [
+                  {
+                    id: "ui",
+                    label: "ui",
+                    children: [
+                      { id: "button.tsx", label: "button.tsx" },
+                      { id: "card.tsx", label: "card.tsx" },
+                      { id: "tree-view.tsx", label: "tree-view.tsx" },
+                    ],
+                  },
+                ],
+              },
+              { id: "app.tsx", label: "app.tsx" },
+            ],
+          },
+          {
+            id: "lib",
+            label: "lib",
+            children: [
+              { id: "cn.ts", label: "cn.ts" },
+              { id: "utils.ts", label: "utils.ts" },
+            ],
+          },
+          { id: "package.json", label: "package.json" },
+        ]}
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * ColorPicker — HSV picker driving a live preview.
+ * ------------------------------------------------------------------ */
+export function ColorPickerDemo() {
+  const [color, setColor] = React.useState("#7dd3fc");
+  return (
+    <div className="flex w-full flex-col items-center justify-center gap-5 px-6 py-10">
+      <div
+        className="flex h-16 w-48 items-center justify-center rounded-xl border border-white/10 font-mono text-sm font-medium"
+        style={{ backgroundColor: color, color: "#0a0a0a" }}
+      >
+        {color.toUpperCase()}
+      </div>
+      <ColorPicker value={color} onChange={setColor} />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * Resizable — drag the divider between two panels.
+ * ------------------------------------------------------------------ */
+export function ResizableDemo() {
+  return (
+    <div className="w-full px-6 py-10">
+      <Resizable
+        defaultSize={38}
+        min={20}
+        max={75}
+        className="mx-auto h-64 max-w-2xl"
+      >
+        <div className="flex h-full flex-col gap-2 p-4">
+          <p className="text-xs font-semibold uppercase tracking-wide text-white/40">
+            Files
+          </p>
+          {["index.tsx", "styles.css", "config.ts"].map((f) => (
+            <div
+              key={f}
+              className="rounded-md bg-white/[0.04] px-3 py-2 text-sm text-white/75"
+            >
+              {f}
+            </div>
+          ))}
+        </div>
+        <div className="flex h-full flex-col p-4">
+          <p className="text-xs font-semibold uppercase tracking-wide text-white/40">
+            Editor
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-white/70">
+            Drag the divider to resize the panels — or focus it and use the
+            arrow keys. Double-click to reset. Resizable works for horizontal or
+            vertical splits and stays dependency-free.
+          </p>
+        </div>
+      </Resizable>
     </div>
   );
 }

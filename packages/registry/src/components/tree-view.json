@@ -1,0 +1,16 @@
+{
+  "name": "tree-view",
+  "description": "A collapsible hierarchical list for file explorers, nested navigation, or category pickers. Branches toggle on click, leaves fire selection, and rows fall back to folder / file glyphs when no icon is supplied. Expansion and selection are each controllable, keyboard accessible, and dependency-free.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/tree-view/tree-view.tsx",
+      "target": "{{components}}/tree-view.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["tree", "treeview", "file", "explorer", "hierarchy", "nested", "folder", "navigation"]
+}

@@ -175,6 +175,7 @@ import {
   Carousel3DDemo,
   ChatBubbleDemo,
   CoinFlipDemo,
+  ColorPickerDemo,
   CompareDemo,
   ComparisonTableDemo,
   CopyButtonDemo,
@@ -204,6 +205,7 @@ import {
   HoloSlicesDemo,
   HoverBorderGradientDemo,
   InfiniteMovingCardsDemo,
+  KanbanBoardDemo,
   LampDemo,
   LensDemo,
   LogoCloudDemo,
@@ -233,6 +235,7 @@ import {
   PricingCardsDemo,
   PrismOrbDemo,
   QuantumGridDemo,
+  ResizableDemo,
   RippleDemo,
   ScrollProgressDemo,
   SegmentedControlDemo,
@@ -250,6 +253,7 @@ import {
   TiltDemo,
   TiltTilesDemo,
   TracingBeamDemo,
+  TreeViewDemo,
   VoteWidgetDemo,
   WaveGridDemo,
   WavyBackgroundDemo,
@@ -8256,6 +8260,242 @@ const ref = React.useRef<HTMLDivElement>(null);
       },
     ],
     related: ["alert", "toast", "callout"],
+  },
+
+  // ---------- KanbanBoard ----------
+  {
+    name: "kanban-board",
+    title: "Kanban Board",
+    description:
+      "A drag-and-drop task board. Cards live in columns keyed by id; drag a card to another column or reorder within one and the board emits the next state. Works controlled / uncontrolled, uses native HTML5 drag and drop (no dependencies), and supports custom card rendering.",
+    imports: `import { KanbanBoard } from "@/components/ui/kanban-board";`,
+    usage: `const [board, setBoard] = React.useState({
+  todo: [{ id: "1", title: "Audit onboarding flow" }],
+  doing: [],
+  done: [],
+});
+
+<KanbanBoard
+  columns={[
+    { id: "todo", title: "To do" },
+    { id: "doing", title: "In progress" },
+    { id: "done", title: "Done" },
+  ]}
+  value={board}
+  onChange={setBoard}
+/>`,
+    defaultExample: {
+      title: "Sprint board",
+      code: `<KanbanBoard
+  columns={[
+    { id: "todo", title: "To do", accent: "rgb(148, 163, 184)" },
+    { id: "doing", title: "In progress", accent: "rgb(125, 211, 252)" },
+    { id: "done", title: "Done", accent: "rgb(74, 222, 128)" },
+  ]}
+  defaultValue={{
+    todo: [{ id: "1", title: "Audit onboarding flow", tags: ["UX"], assignee: "AL" }],
+    doing: [{ id: "3", title: "Build billing webhook", tags: ["API"] }],
+    done: [{ id: "4", title: "Ship dark mode", tags: ["UI"] }],
+  }}
+/>`,
+      render: <KanbanBoardDemo />,
+    },
+    props: [
+      {
+        name: "columns",
+        type: "KanbanColumn[]",
+        description: "Column definitions, left to right ({ id, title, accent? }).",
+      },
+      {
+        name: "value",
+        type: "Record<string, KanbanCard[]>",
+        description: "Controlled board state keyed by column id.",
+      },
+      {
+        name: "defaultValue",
+        type: "Record<string, KanbanCard[]>",
+        description: "Initial board state when uncontrolled.",
+      },
+      {
+        name: "onChange",
+        type: "(next: KanbanState) => void",
+        description: "Fired with the next board state after a card moves.",
+      },
+      {
+        name: "renderCard",
+        type: "(card: KanbanCard, columnId: string) => ReactNode",
+        description: "Override how a card renders.",
+      },
+    ],
+    related: ["table", "stat-card", "tree-view"],
+  },
+
+  // ---------- TreeView ----------
+  {
+    name: "tree-view",
+    title: "Tree View",
+    description:
+      "A collapsible hierarchical list for file explorers, nested navigation, or category pickers. Branches toggle on click, leaves fire selection, and rows fall back to folder / file glyphs when no icon is supplied. Expansion and selection are each controllable and keyboard accessible.",
+    imports: `import { TreeView } from "@/components/ui/tree-view";`,
+    usage: `<TreeView
+  defaultExpanded={["src"]}
+  onSelect={(id, node) => console.log(id, node)}
+  data={[
+    {
+      id: "src",
+      label: "src",
+      children: [{ id: "app.tsx", label: "app.tsx" }],
+    },
+  ]}
+/>`,
+    defaultExample: {
+      title: "File explorer",
+      code: `<TreeView
+  defaultExpanded={["src", "components", "ui"]}
+  selectedId={selected}
+  onSelect={(id) => setSelected(id)}
+  data={tree}
+/>`,
+      render: <TreeViewDemo />,
+    },
+    props: [
+      {
+        name: "data",
+        type: "TreeNode[]",
+        description: "Root-level nodes ({ id, label, icon?, children? }).",
+      },
+      {
+        name: "defaultExpanded",
+        type: "string[]",
+        description: "Ids expanded on first render when uncontrolled.",
+      },
+      {
+        name: "expanded",
+        type: "string[]",
+        description: "Controlled set of expanded ids.",
+      },
+      {
+        name: "onExpandedChange",
+        type: "(ids: string[]) => void",
+        description: "Fired with the next expanded-id list when a branch toggles.",
+      },
+      {
+        name: "selectedId",
+        type: "string",
+        description: "Controlled selected id.",
+      },
+      {
+        name: "onSelect",
+        type: "(id: string, node: TreeNode) => void",
+        description: "Fired when a node is clicked.",
+      },
+    ],
+    related: ["sidebar", "accordion", "kanban-board"],
+  },
+
+  // ---------- ColorPicker ----------
+  {
+    name: "color-picker",
+    title: "Color Picker",
+    description:
+      "An HSV color picker with a saturation / value square, a hue slider, a live preview, an editable hex field, and preset swatches. Drag inside the square or along the hue bar (mouse or touch) to dial in a color; the component emits a hex string. Works controlled / uncontrolled with no dependencies.",
+    imports: `import { ColorPicker } from "@/components/ui/color-picker";`,
+    usage: `const [color, setColor] = React.useState("#7dd3fc");
+
+<ColorPicker value={color} onChange={setColor} />`,
+    defaultExample: {
+      title: "Pick a color",
+      code: `<ColorPicker value={color} onChange={setColor} />`,
+      render: <ColorPickerDemo />,
+    },
+    props: [
+      {
+        name: "value",
+        type: "string",
+        description: "Controlled hex color, e.g. \"#7dd3fc\".",
+      },
+      {
+        name: "defaultValue",
+        type: "string",
+        default: '"#7dd3fc"',
+        description: "Initial hex when uncontrolled.",
+      },
+      {
+        name: "onChange",
+        type: "(hex: string) => void",
+        description: "Fired with the next hex string whenever the color changes.",
+      },
+      {
+        name: "swatches",
+        type: "string[]",
+        description: "Preset swatches shown below the picker.",
+      },
+      {
+        name: "hideInput",
+        type: "boolean",
+        default: "false",
+        description: "Hide the hex text field.",
+      },
+    ],
+    related: ["slider", "input", "segmented-control"],
+  },
+
+  // ---------- Resizable ----------
+  {
+    name: "resizable",
+    title: "Resizable",
+    description:
+      "Two panels separated by a draggable handle. Drag the divider (mouse or touch) to repartition the space; sizes are a percent of the first panel, clamped to [min, max]. Supports horizontal / vertical splits, controlled / uncontrolled sizing, keyboard arrows, and double-click to reset.",
+    imports: `import { Resizable } from "@/components/ui/resizable";`,
+    usage: `<Resizable defaultSize={40} min={20} max={80}>
+  <div>Left panel</div>
+  <div>Right panel</div>
+</Resizable>`,
+    defaultExample: {
+      title: "Split layout",
+      code: `<Resizable defaultSize={38} min={20} max={75} className="h-64">
+  <div>Files</div>
+  <div>Editor</div>
+</Resizable>`,
+      render: <ResizableDemo />,
+    },
+    props: [
+      {
+        name: "direction",
+        type: '"horizontal" | "vertical"',
+        default: '"horizontal"',
+        description: "Split axis. Horizontal places panels side by side.",
+      },
+      {
+        name: "defaultSize",
+        type: "number",
+        default: "50",
+        description: "Initial size of the first panel as a percent when uncontrolled.",
+      },
+      {
+        name: "size",
+        type: "number",
+        description: "Controlled size of the first panel as a percent.",
+      },
+      {
+        name: "onChange",
+        type: "(size: number) => void",
+        description: "Fired with the first panel's size (percent) while dragging.",
+      },
+      {
+        name: "min",
+        type: "number",
+        default: "10",
+        description: "Smallest size the first panel can shrink to, in percent.",
+      },
+      {
+        name: "max",
+        type: "number",
+        default: "90",
+        description: "Largest size the first panel can grow to, in percent.",
+      },
+    ],
+    related: ["layout", "sidebar", "scroll-area"],
   },
 ];
 

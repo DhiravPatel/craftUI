@@ -194,6 +194,10 @@ export const navigation: NavSection[] = [
       { title: "Number Input", href: "/docs/components/number-input" },
       { title: "Scroll Progress", href: "/docs/components/scroll-progress" },
       { title: "Banner", href: "/docs/components/banner" },
+      { title: "Kanban Board", href: "/docs/components/kanban-board" },
+      { title: "Tree View", href: "/docs/components/tree-view" },
+      { title: "Color Picker", href: "/docs/components/color-picker" },
+      { title: "Resizable", href: "/docs/components/resizable" },
     ],
   },
 ];

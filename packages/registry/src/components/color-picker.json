@@ -1,0 +1,16 @@
+{
+  "name": "color-picker",
+  "description": "An HSV color picker with a saturation / value square, a hue slider, a live preview, an editable hex field, and preset swatches. Drag inside the square or along the hue bar (mouse or touch) to dial in a color; the component emits a hex string. Works controlled / uncontrolled with no dependencies.",
+  "category": "forms",
+  "files": [
+    {
+      "path": "components/color-picker/color-picker.tsx",
+      "target": "{{components}}/color-picker.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["color", "picker", "hsv", "hex", "swatch", "hue", "palette", "form"]
+}

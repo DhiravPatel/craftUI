@@ -1,0 +1,16 @@
+{
+  "name": "resizable",
+  "description": "Two panels separated by a draggable handle. Drag the divider (mouse or touch) to repartition the space; sizes are a percent of the first panel, clamped to [min, max]. Supports horizontal / vertical splits, controlled / uncontrolled sizing, keyboard arrows, and double-click to reset. Dependency-free.",
+  "category": "layout",
+  "files": [
+    {
+      "path": "components/resizable/resizable.tsx",
+      "target": "{{components}}/resizable.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["resizable", "split", "panel", "splitter", "pane", "layout", "drag", "divider"]
+}

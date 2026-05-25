@@ -29,6 +29,7 @@ import combobox from "./components/combobox.json";
 import command from "./components/command.json";
 import compare from "./components/compare.json";
 import comparisonTable from "./components/comparison-table.json";
+import colorPicker from "./components/color-picker.json";
 import copyButton from "./components/copy-button.json";
 import countUpRing from "./components/count-up-ring.json";
 import coverflow from "./components/coverflow.json";
@@ -67,6 +68,7 @@ import hoverCard from "./components/hover-card.json";
 import infiniteMovingCards from "./components/infinite-moving-cards.json";
 import input from "./components/input.json";
 import inputOtp from "./components/input-otp.json";
+import kanbanBoard from "./components/kanban-board.json";
 import kbd from "./components/kbd.json";
 import label from "./components/label.json";
 import lamp from "./components/lamp.json";
@@ -105,6 +107,7 @@ import progress from "./components/progress.json";
 import quantumGrid from "./components/quantum-grid.json";
 import radioGroup from "./components/radio-group.json";
 import rating from "./components/rating.json";
+import resizable from "./components/resizable.json";
 import ripple from "./components/ripple.json";
 import scrollArea from "./components/scroll-area.json";
 import scrollProgress from "./components/scroll-progress.json";
@@ -141,6 +144,7 @@ import toggle from "./components/toggle.json";
 import toggleGroup from "./components/toggle-group.json";
 import tooltip from "./components/tooltip.json";
 import tracingBeam from "./components/tracing-beam.json";
+import treeView from "./components/tree-view.json";
 import voteWidget from "./components/vote-widget.json";
 import waveGrid from "./components/wave-grid.json";
 import wavyBackground from "./components/wavy-background.json";
@@ -177,6 +181,7 @@ export const registry: Registry = [
   command,
   compare,
   comparisonTable,
+  colorPicker,
   copyButton,
   countUpRing,
   coverflow,
@@ -215,6 +220,7 @@ export const registry: Registry = [
   infiniteMovingCards,
   input,
   inputOtp,
+  kanbanBoard,
   kbd,
   label,
   lamp,
@@ -253,6 +259,7 @@ export const registry: Registry = [
   quantumGrid,
   radioGroup,
   rating,
+  resizable,
   ripple,
   scrollArea,
   scrollProgress,
@@ -289,6 +296,7 @@ export const registry: Registry = [
   toggleGroup,
   tooltip,
   tracingBeam,
+  treeView,
   voteWidget,
   waveGrid,
   wavyBackground,
