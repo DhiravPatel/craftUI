@@ -2,12 +2,14 @@
 
 import * as React from "react";
 import {
+  ActivityHeatmap,
   AnimatedChart,
   AnimatedText,
   AnimatedTooltip,
   Aurora,
   Avatar,
   AvatarFallback,
+  AvatarStack,
   BackgroundBeams,
   BackgroundBoxes,
   Badge,
@@ -17,8 +19,10 @@ import {
   CardHoverEffect,
   CardStack,
   Carousel3D,
+  ChatBubble,
   CoinFlip,
   Compare,
+  ComparisonTable,
   CopyButton,
   CountUpRing,
   Coverflow,
@@ -41,6 +45,7 @@ import {
   FollowingPointer,
   GlitchClip,
   Globe,
+  GaugeMeter,
   GravityWell,
   Helix,
   HoldToConfirm,
@@ -3318,6 +3323,217 @@ export function NotificationStackDemo() {
         visible={3}
         interval={2.4}
       />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * AvatarStack — overlapping team avatars with a +N overflow chip.
+ * ------------------------------------------------------------------ */
+export function AvatarStackDemo() {
+  const team = [
+    { name: "Aiko Tanaka" },
+    { name: "Ben Carter" },
+    { name: "Chloe Diaz" },
+    { name: "Dmitri Volkov" },
+    { name: "Elena Rossi" },
+    { name: "Farid Hassan" },
+    { name: "Grace Kim" },
+  ];
+  return (
+    <div className="flex w-full flex-col items-center justify-center gap-8 px-6 py-12">
+      <div className="flex flex-col items-center gap-3">
+        <AvatarStack items={team} max={5} size={40} />
+        <p className="text-xs font-medium uppercase tracking-wider text-foreground/55">
+          7 collaborators on this project
+        </p>
+      </div>
+      <div className="flex items-center gap-3 rounded-full border border-white/10 bg-neutral-950 py-2 pl-2 pr-4 text-white">
+        <AvatarStack items={team.slice(0, 4)} max={3} size={30} />
+        <span className="text-xs font-medium text-white/70">
+          +4 people are viewing
+        </span>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * ActivityHeatmap — GitHub-style contribution calendar.
+ * Data is generated deterministically so server and client agree.
+ * ------------------------------------------------------------------ */
+export function ActivityHeatmapDemo() {
+  const values = React.useMemo(() => {
+    const out: { date: string; count: number }[] = [];
+    const today = new Date();
+    for (let i = 0; i < 182; i++) {
+      const d = new Date(today);
+      d.setDate(today.getDate() - i);
+      const iso = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(
+        2,
+        "0"
+      )}-${String(d.getDate()).padStart(2, "0")}`;
+      // Deterministic 0..1 from the day index — stable across renders.
+      const seed = Math.sin(i * 12.9898) * 43758.5453;
+      const r = seed - Math.floor(seed);
+      const dow = d.getDay();
+      const weekendDamp = dow === 0 || dow === 6 ? 0.35 : 1;
+      const count = r < 0.16 ? 0 : Math.round(r * weekendDamp * 13);
+      out.push({ date: iso, count });
+    }
+    return out;
+  }, []);
+
+  return (
+    <div className="flex w-full items-center justify-center px-6 py-12">
+      <div className="rounded-2xl border border-white/10 bg-neutral-950 p-6">
+        <p className="mb-4 text-sm font-semibold text-white">
+          1,284 contributions in the last 6 months
+        </p>
+        <ActivityHeatmap values={values} weeks={26} accent="rgb(74, 222, 128)" />
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * GaugeMeter — KPI gauges with zoned color ramps.
+ * ------------------------------------------------------------------ */
+export function GaugeMeterDemo() {
+  const greenAmberRed = [
+    { stop: 0.6, color: "rgb(74, 222, 128)" },
+    { stop: 0.85, color: "rgb(250, 204, 21)" },
+    { stop: 1, color: "rgb(248, 113, 113)" },
+  ];
+  return (
+    <div className="flex w-full flex-wrap items-center justify-center gap-10 px-6 py-12">
+      <div className="rounded-2xl border border-white/10 bg-neutral-950 px-6 pb-4 pt-6">
+        <GaugeMeter
+          value={99.2}
+          min={90}
+          max={100}
+          decimals={1}
+          suffix="%"
+          label="API uptime"
+          accent="rgb(74, 222, 128)"
+        />
+      </div>
+      <div className="rounded-2xl border border-white/10 bg-neutral-950 px-6 pb-4 pt-6">
+        <GaugeMeter
+          value={72}
+          suffix="%"
+          label="CPU load"
+          zones={greenAmberRed}
+        />
+      </div>
+      <div className="rounded-2xl border border-white/10 bg-neutral-950 px-6 pb-4 pt-6">
+        <GaugeMeter
+          value={428}
+          max={600}
+          suffix=" req/s"
+          label="Throughput"
+          accent="rgb(125, 211, 252)"
+        />
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * ChatBubble — a short assistant conversation thread.
+ * ------------------------------------------------------------------ */
+export function ChatBubbleDemo() {
+  return (
+    <div className="flex w-full items-center justify-center px-6 py-10">
+      <div className="flex w-full max-w-[420px] flex-col gap-3 rounded-2xl border border-white/10 bg-neutral-950 p-5">
+        <ChatBubble variant="incoming" name="Nova" showName>
+          Hey! How can I help you ship today?
+        </ChatBubble>
+        <ChatBubble variant="outgoing" timestamp="9:41 AM" status="read">
+          Summarize last week&apos;s signups for me.
+        </ChatBubble>
+        <ChatBubble variant="incoming" name="Nova">
+          You added 1,284 new users — up 18% week over week. Pro conversions led
+          the jump.
+        </ChatBubble>
+        <ChatBubble variant="incoming" name="Nova" typing />
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * ComparisonTable — a pricing / feature comparison matrix.
+ * ------------------------------------------------------------------ */
+export function ComparisonTableDemo() {
+  const plans = [
+    { id: "starter", name: "Starter", price: "$0", tagline: "For tinkering" },
+    {
+      id: "pro",
+      name: "Pro",
+      price: "$29",
+      tagline: "Per month",
+      highlighted: true,
+      cta: (
+        <Button size="sm" className="w-full">
+          Choose Pro
+        </Button>
+      ),
+    },
+    {
+      id: "team",
+      name: "Team",
+      price: "$99",
+      tagline: "Per month",
+      cta: (
+        <Button size="sm" variant="outline" className="w-full">
+          Contact us
+        </Button>
+      ),
+    },
+  ];
+  const features = [
+    {
+      group: "Core",
+      features: [
+        {
+          label: "Projects",
+          values: { starter: "3", pro: "Unlimited", team: "Unlimited" },
+        },
+        {
+          label: "Team members",
+          values: { starter: "1", pro: "10", team: "Unlimited" },
+        },
+        {
+          label: "Analytics",
+          values: { starter: true, pro: true, team: true },
+        },
+      ],
+    },
+    {
+      group: "Advanced",
+      features: [
+        {
+          label: "SSO & SAML",
+          hint: "SAML 2.0, SCIM provisioning",
+          values: { starter: false, pro: false, team: true },
+        },
+        {
+          label: "Audit log",
+          values: { starter: false, pro: true, team: true },
+        },
+        {
+          label: "Priority support",
+          values: { starter: false, pro: true, team: true },
+        },
+      ],
+    },
+  ];
+  return (
+    <div className="flex w-full items-center justify-center px-6 py-10">
+      <div className="w-full max-w-[640px]">
+        <ComparisonTable plans={plans} features={features} />
+      </div>
     </div>
   );
 }

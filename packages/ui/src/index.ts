@@ -30,6 +30,7 @@ export * from "./components/checkbox";
 export * from "./components/combobox";
 export * from "./components/command";
 export * from "./components/compare";
+export * from "./components/comparison-table";
 export * from "./components/coin-flip";
 export * from "./components/copy-button";
 export * from "./components/count-up-ring";

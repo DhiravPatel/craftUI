@@ -1,0 +1,16 @@
+{
+  "name": "activity-heatmap",
+  "description": "GitHub-style contribution calendar. Auto-bucketed intensity cells, month labels, an optional legend, a diagonal mount-in animation, and click-to-select.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/activity-heatmap/activity-heatmap.tsx",
+      "target": "{{components}}/activity-heatmap.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["heatmap", "calendar", "activity", "contributions", "chart", "saas"]
+}

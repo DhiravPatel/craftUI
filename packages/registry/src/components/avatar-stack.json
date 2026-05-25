@@ -1,0 +1,16 @@
+{
+  "name": "avatar-stack",
+  "description": "Overlapping avatars for teams, members, or viewers. Image or auto-colored initials fallback, a +N overflow chip, and a hover-spread interaction.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/avatar-stack/avatar-stack.tsx",
+      "target": "{{components}}/avatar-stack.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["avatar", "stack", "group", "team", "users", "saas"]
+}

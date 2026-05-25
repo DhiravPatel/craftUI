@@ -1,7 +1,14 @@
 {
   "permissions": {
     "allow": [
-      "Bash(pnpm build *)"
+      "Bash(pnpm build *)",
+      "Bash(awk '/import \\\\{/{f=1} f&&/lucide-react/{print NR\": \"$0; f=0}' apps/docs/components/demos/threed-demos.tsx)",
+      "Bash(pnpm typecheck *)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(echo \"docs typecheck exit: $?\")",
+      "Bash(pnpm lint *)",
+      "Bash(cd \"/Users/dhiravpatel/.claude/projects/-Users-dhiravpatel-Documents-Project-2-CraftUI/memory/\")",
+      "Bash(cat MEMORY.md)"
     ]
   }
 }

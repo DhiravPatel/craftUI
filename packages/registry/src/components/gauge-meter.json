@@ -1,0 +1,16 @@
+{
+  "name": "gauge-meter",
+  "description": "Half-circle KPI gauge with an animated sweep and count-up, optional zoned color stops (green/amber/red), tick marks, and a glow on the filled arc.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/gauge-meter/gauge-meter.tsx",
+      "target": "{{components}}/gauge-meter.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["gauge", "meter", "kpi", "dashboard", "chart", "saas"]
+}

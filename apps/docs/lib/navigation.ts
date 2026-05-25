@@ -185,6 +185,11 @@ export const navigation: NavSection[] = [
       { title: "Hold to Confirm", href: "/docs/components/hold-to-confirm" },
       { title: "Vote Widget", href: "/docs/components/vote-widget" },
       { title: "Segmented Control", href: "/docs/components/segmented-control" },
+      { title: "Avatar Stack", href: "/docs/components/avatar-stack" },
+      { title: "Activity Heatmap", href: "/docs/components/activity-heatmap" },
+      { title: "Gauge Meter", href: "/docs/components/gauge-meter" },
+      { title: "Chat Bubble", href: "/docs/components/chat-bubble" },
+      { title: "Comparison Table", href: "/docs/components/comparison-table" },
     ],
   },
 ];

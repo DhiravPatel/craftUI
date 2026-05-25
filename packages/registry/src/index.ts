@@ -1,6 +1,7 @@
 import type { Registry, RegistryEntry } from "./types";
 
 import accordion from "./components/accordion.json";
+import activityHeatmap from "./components/activity-heatmap.json";
 import alert from "./components/alert.json";
 import alertDialog from "./components/alert-dialog.json";
 import animatedChart from "./components/animated-chart.json";
@@ -8,6 +9,7 @@ import animatedText from "./components/animated-text.json";
 import animatedTooltip from "./components/animated-tooltip.json";
 import aurora from "./components/aurora.json";
 import avatar from "./components/avatar.json";
+import avatarStack from "./components/avatar-stack.json";
 import backgroundBeams from "./components/background-beams.json";
 import backgroundBoxes from "./components/background-boxes.json";
 import badge from "./components/badge.json";
@@ -19,11 +21,13 @@ import card from "./components/card.json";
 import cardHoverEffect from "./components/card-hover-effect.json";
 import cardStack from "./components/card-stack.json";
 import carousel3d from "./components/carousel-3d.json";
+import chatBubble from "./components/chat-bubble.json";
 import checkbox from "./components/checkbox.json";
 import coinFlip from "./components/coin-flip.json";
 import combobox from "./components/combobox.json";
 import command from "./components/command.json";
 import compare from "./components/compare.json";
+import comparisonTable from "./components/comparison-table.json";
 import copyButton from "./components/copy-button.json";
 import countUpRing from "./components/count-up-ring.json";
 import coverflow from "./components/coverflow.json";
@@ -49,6 +53,7 @@ import foldOut from "./components/fold-out.json";
 import followingPointer from "./components/following-pointer.json";
 import footer from "./components/footer.json";
 import form from "./components/form.json";
+import gaugeMeter from "./components/gauge-meter.json";
 import glitchClip from "./components/glitch-clip.json";
 import globe from "./components/globe.json";
 import gravityWell from "./components/gravity-well.json";
@@ -140,6 +145,7 @@ import worldMap from "./components/world-map.json";
 
 export const registry: Registry = [
   accordion,
+  activityHeatmap,
   alert,
   alertDialog,
   animatedChart,
@@ -147,6 +153,7 @@ export const registry: Registry = [
   animatedTooltip,
   aurora,
   avatar,
+  avatarStack,
   backgroundBeams,
   backgroundBoxes,
   badge,
@@ -158,11 +165,13 @@ export const registry: Registry = [
   cardHoverEffect,
   cardStack,
   carousel3d,
+  chatBubble,
   checkbox,
   coinFlip,
   combobox,
   command,
   compare,
+  comparisonTable,
   copyButton,
   countUpRing,
   coverflow,
@@ -188,6 +197,7 @@ export const registry: Registry = [
   followingPointer,
   footer,
   form,
+  gaugeMeter,
   glitchClip,
   globe,
   gravityWell,

@@ -1,0 +1,16 @@
+{
+  "name": "comparison-table",
+  "description": "Plan / feature comparison matrix for pricing pages. Highlightable column with a Popular ribbon, grouped feature sections, and cells that accept booleans, text, or any node, plus an optional CTA row.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/comparison-table/comparison-table.tsx",
+      "target": "{{components}}/comparison-table.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["comparison", "table", "pricing", "plans", "features", "saas"]
+}

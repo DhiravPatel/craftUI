@@ -1,0 +1,16 @@
+{
+  "name": "chat-bubble",
+  "description": "A single message in a conversation thread with optional avatar, sender name, timestamp, read receipts (sent/delivered/read), and a three-dot typing indicator.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/chat-bubble/chat-bubble.tsx",
+      "target": "{{components}}/chat-bubble.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["chat", "bubble", "message", "conversation", "messaging", "ai", "saas"]
+}

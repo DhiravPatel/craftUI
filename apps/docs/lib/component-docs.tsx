@@ -160,18 +160,22 @@ import {
   ToggleDemo,
 } from "@/components/demos/interactive-demos";
 import {
+  ActivityHeatmapDemo,
   AnimatedChartDemo,
   AnimatedTextDemo,
   AnimatedTooltipDemo,
   AuroraDemo,
+  AvatarStackDemo,
   BackgroundBeamsDemo,
   BackgroundBoxesDemo,
   BentoGridDemo,
   CardHoverEffectDemo,
   CardStackDemo,
   Carousel3DDemo,
+  ChatBubbleDemo,
   CoinFlipDemo,
   CompareDemo,
+  ComparisonTableDemo,
   CopyButtonDemo,
   CountUpRingDemo,
   CoverflowDemo,
@@ -189,6 +193,7 @@ import {
   FocusCardsDemo,
   FoldOutDemo,
   FollowingPointerDemo,
+  GaugeMeterDemo,
   GlitchClipDemo,
   GlobeDemo,
   GravityWellDemo,
@@ -7628,6 +7633,372 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";`,
       },
     ],
     related: ["tabs", "toggle-group"],
+  },
+
+  // ---------- AvatarStack ----------
+  {
+    name: "avatar-stack",
+    title: "Avatar Stack",
+    description:
+      "Overlapping avatars for teams, project members, or viewers. Renders an image or auto-colored initials fallback, collapses past a max into a +N chip, and spreads apart slightly on hover.",
+    imports: `import { AvatarStack } from "@/components/ui/avatar-stack";`,
+    defaultExample: {
+      title: "Team",
+      code: `<AvatarStack
+  items={[
+    { name: "Aiko Tanaka" },
+    { name: "Ben Carter" },
+    { name: "Chloe Diaz" },
+    { name: "Dmitri Volkov" },
+    { name: "Elena Rossi" },
+    { name: "Farid Hassan" },
+    { name: "Grace Kim" },
+  ]}
+  max={5}
+  size={40}
+/>`,
+      render: <AvatarStackDemo />,
+    },
+    props: [
+      {
+        name: "items",
+        type: "AvatarStackItem[]",
+        required: true,
+        description:
+          "Avatars, left to right. Each takes { name, src?, background?, href? }.",
+      },
+      {
+        name: "max",
+        type: "number",
+        default: "4",
+        description: "Max avatars shown before collapsing into a +N chip.",
+      },
+      {
+        name: "size",
+        type: "number",
+        default: "36",
+        description: "Avatar diameter in px.",
+      },
+      {
+        name: "overlap",
+        type: "number",
+        default: "size * 0.3",
+        description: "How far each avatar overlaps the previous one, in px.",
+      },
+      {
+        name: "ringColor",
+        type: "string",
+        default: '"rgb(10, 10, 10)"',
+        description: "Border color drawn around each avatar.",
+      },
+      {
+        name: "interactive",
+        type: "boolean",
+        default: "true",
+        description: "Nudge an avatar up and out on hover.",
+      },
+    ],
+    related: ["avatar", "notification-stack"],
+  },
+
+  // ---------- ActivityHeatmap ----------
+  {
+    name: "activity-heatmap",
+    title: "Activity Heatmap",
+    description:
+      "GitHub-style contribution calendar. Renders the last N weeks as a 7-row grid of intensity cells with month labels and an optional legend. Counts are auto-bucketed into five intensity levels and cells animate in on mount.",
+    imports: `import { ActivityHeatmap } from "@/components/ui/activity-heatmap";`,
+    defaultExample: {
+      title: "Six months",
+      code: `<ActivityHeatmap
+  values={[{ date: "2026-05-01", count: 7 }, /* … */]}
+  weeks={26}
+  accent="rgb(74, 222, 128)"
+/>`,
+      render: <ActivityHeatmapDemo />,
+    },
+    props: [
+      {
+        name: "values",
+        type: "ActivityHeatmapValue[]",
+        default: "[]",
+        description:
+          "Daily values, each { date: 'YYYY-MM-DD', count: number }. Missing days render empty.",
+      },
+      {
+        name: "weeks",
+        type: "number",
+        default: "26",
+        description: "Number of weeks to render, ending today.",
+      },
+      {
+        name: "cellSize",
+        type: "number",
+        default: "12",
+        description: "Cell size in px.",
+      },
+      {
+        name: "gap",
+        type: "number",
+        default: "3",
+        description: "Gap between cells in px.",
+      },
+      {
+        name: "accent",
+        type: "string",
+        default: '"rgb(125, 211, 252)"',
+        description: "Color of the highest-intensity cells.",
+      },
+      {
+        name: "emptyColor",
+        type: "string",
+        default: '"rgba(255,255,255,0.06)"',
+        description: "Color of empty / lowest-intensity cells.",
+      },
+      {
+        name: "animate",
+        type: "boolean",
+        default: "true",
+        description: "Animate cells in with a diagonal sweep on mount.",
+      },
+      {
+        name: "showMonths",
+        type: "boolean",
+        default: "true",
+        description: "Show month labels above the grid.",
+      },
+      {
+        name: "showLegend",
+        type: "boolean",
+        default: "true",
+        description: "Show the Less → More intensity legend below the grid.",
+      },
+      {
+        name: "onSelect",
+        type: "(value) => void",
+        description: "Fired with { date, count } when a cell is clicked.",
+      },
+    ],
+    related: ["animated-chart", "stat-card"],
+  },
+
+  // ---------- GaugeMeter ----------
+  {
+    name: "gauge-meter",
+    title: "Gauge Meter",
+    description:
+      "Half-circle KPI gauge. Animates a sweep from min to value on mount and whenever the value changes, with an optional zoned color ramp for traffic-light-style indicators.",
+    imports: `import { GaugeMeter } from "@/components/ui/gauge-meter";`,
+    defaultExample: {
+      title: "KPI gauges",
+      code: `<GaugeMeter value={72} suffix="%" label="CPU load" zones={[
+  { stop: 0.6, color: "rgb(74, 222, 128)" },
+  { stop: 0.85, color: "rgb(250, 204, 21)" },
+  { stop: 1, color: "rgb(248, 113, 113)" },
+]} />`,
+      render: <GaugeMeterDemo />,
+    },
+    props: [
+      {
+        name: "value",
+        type: "number",
+        required: true,
+        description: "Current value, clamped to [min, max].",
+      },
+      {
+        name: "min",
+        type: "number",
+        default: "0",
+        description: "Lower bound of the gauge.",
+      },
+      {
+        name: "max",
+        type: "number",
+        default: "100",
+        description: "Upper bound of the gauge.",
+      },
+      {
+        name: "size",
+        type: "number",
+        default: "200",
+        description: "Outer diameter in px.",
+      },
+      {
+        name: "label",
+        type: "string",
+        description: "Caption shown below the value.",
+      },
+      {
+        name: "suffix",
+        type: "string",
+        description: 'Appended to the value, e.g. "%", " req/s".',
+      },
+      {
+        name: "decimals",
+        type: "number",
+        default: "0",
+        description: "Decimal places for the displayed value.",
+      },
+      {
+        name: "accent",
+        type: "string",
+        default: '"rgb(125, 211, 252)"',
+        description: "Fill color when no zones are provided.",
+      },
+      {
+        name: "zones",
+        type: "{ stop: number; color: string }[]",
+        description:
+          "Color stops keyed by ratio (0..1). The arc color reflects the current value's zone.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "1100",
+        description: "Total ms for the sweep on mount / value change.",
+      },
+      {
+        name: "showTicks",
+        type: "boolean",
+        default: "true",
+        description: "Render tick marks around the arc.",
+      },
+    ],
+    related: ["count-up-ring", "stat-card", "progress"],
+  },
+
+  // ---------- ChatBubble ----------
+  {
+    name: "chat-bubble",
+    title: "Chat Bubble",
+    description:
+      "A single message in a conversation thread with optional avatar, sender name, timestamp, and read receipt. Set typing to render a three-dot indicator. Pair with sibling bubbles to mock up an AI assistant, support inbox, or product demo.",
+    imports: `import { ChatBubble } from "@/components/ui/chat-bubble";`,
+    defaultExample: {
+      title: "Assistant thread",
+      code: `<ChatBubble variant="incoming" name="Nova" showName>
+  Hey! How can I help you ship today?
+</ChatBubble>
+<ChatBubble variant="outgoing" timestamp="9:41 AM" status="read">
+  Summarize last week's signups for me.
+</ChatBubble>
+<ChatBubble variant="incoming" name="Nova" typing />`,
+      render: <ChatBubbleDemo />,
+    },
+    props: [
+      {
+        name: "variant",
+        type: '"incoming" | "outgoing"',
+        default: '"incoming"',
+        description:
+          "Incoming sits on the left, outgoing on the right with an accent fill.",
+      },
+      {
+        name: "children",
+        type: "ReactNode",
+        description: "Bubble contents. Ignored when typing is true.",
+      },
+      {
+        name: "avatarSrc",
+        type: "string",
+        description: "Avatar image URL. Falls back to initials from name.",
+      },
+      {
+        name: "name",
+        type: "string",
+        description: "Sender name, used for the avatar fallback and label.",
+      },
+      {
+        name: "showName",
+        type: "boolean",
+        default: "false",
+        description: "Show the sender name above the bubble.",
+      },
+      {
+        name: "timestamp",
+        type: "string",
+        description: 'Timestamp shown beneath the bubble, e.g. "2m ago".',
+      },
+      {
+        name: "typing",
+        type: "boolean",
+        default: "false",
+        description: "Render three bouncing dots instead of the children.",
+      },
+      {
+        name: "status",
+        type: '"sent" | "delivered" | "read"',
+        description: "Read receipt for outgoing bubbles.",
+      },
+    ],
+    related: ["notification-stack", "avatar-stack"],
+  },
+
+  // ---------- ComparisonTable ----------
+  {
+    name: "comparison-table",
+    title: "Comparison Table",
+    description:
+      "Plan / feature comparison matrix for pricing pages. Columns are plans — one can be highlighted with a Popular ribbon — and rows are features that can be grouped into sections. Cells accept booleans (check / dash), strings, numbers, or any node, plus an optional CTA row.",
+    imports: `import { ComparisonTable } from "@/components/ui/comparison-table";`,
+    defaultExample: {
+      title: "Pricing comparison",
+      code: `<ComparisonTable
+  plans={[
+    { id: "starter", name: "Starter", price: "$0" },
+    { id: "pro", name: "Pro", price: "$29", highlighted: true, cta: <Button size="sm">Choose Pro</Button> },
+    { id: "team", name: "Team", price: "$99" },
+  ]}
+  features={[
+    { group: "Core", features: [
+      { label: "Projects", values: { starter: "3", pro: "Unlimited", team: "Unlimited" } },
+      { label: "Analytics", values: { starter: true, pro: true, team: true } },
+    ]},
+  ]}
+/>`,
+      render: <ComparisonTableDemo />,
+    },
+    props: [
+      {
+        name: "plans",
+        type: "ComparisonPlan[]",
+        required: true,
+        description:
+          "Columns. Each takes { id, name, price?, tagline?, highlighted?, badge?, cta? }.",
+      },
+      {
+        name: "features",
+        type: "ComparisonFeature[] | ComparisonGroup[]",
+        required: true,
+        description:
+          "Rows — a flat list, or grouped sections of { group, features }. Each feature's values map plan id → cell content.",
+      },
+      {
+        name: "featuresLabel",
+        type: "string",
+        default: '"Features"',
+        description: "Label for the top-left header cell.",
+      },
+      {
+        name: "accent",
+        type: "string",
+        default: '"rgb(125, 211, 252)"',
+        description: "Accent for highlighted columns and check marks.",
+      },
+      {
+        name: "stickyHeader",
+        type: "boolean",
+        default: "true",
+        description: "Keep the header row stuck to the top on scroll.",
+      },
+      {
+        name: "zebra",
+        type: "boolean",
+        default: "true",
+        description: "Tint alternating rows for readability.",
+      },
+    ],
+    related: ["pricing-cards", "table"],
   },
 ];
 
