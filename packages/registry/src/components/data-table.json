@@ -1,0 +1,16 @@
+{
+  "name": "data-table",
+  "description": "A sortable, paginated table driven by a column config. Click a sortable header to cycle ascending / descending, pass pageSize to page the rows, and selectable to add a checkbox column with a header select-all. Cells render row[key] or a custom accessor. Controlled / uncontrolled selection, dependency-free.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/data-table/data-table.tsx",
+      "target": "{{components}}/data-table.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["data", "table", "datatable", "sort", "pagination", "grid", "rows", "dashboard"]
+}

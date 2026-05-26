@@ -198,6 +198,10 @@ export const navigation: NavSection[] = [
       { title: "Tree View", href: "/docs/components/tree-view" },
       { title: "Color Picker", href: "/docs/components/color-picker" },
       { title: "Resizable", href: "/docs/components/resizable" },
+      { title: "Data Table", href: "/docs/components/data-table" },
+      { title: "Context Menu", href: "/docs/components/context-menu" },
+      { title: "Time Picker", href: "/docs/components/time-picker" },
+      { title: "Toolbar", href: "/docs/components/toolbar" },
     ],
   },
 ];

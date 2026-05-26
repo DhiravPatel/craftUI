@@ -1,0 +1,16 @@
+{
+  "name": "toolbar",
+  "description": "A compact action bar that groups buttons, toggles, separators, and groups onto a single rounded surface. Compose it from Toolbar, ToolbarButton, ToolbarToggle (a pressable state), ToolbarSeparator, and ToolbarGroup. Horizontal or vertical, dependency-free.",
+  "category": "navigation",
+  "files": [
+    {
+      "path": "components/toolbar/toolbar.tsx",
+      "target": "{{components}}/toolbar.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["toolbar", "actions", "buttons", "toggle", "editor", "controls", "navigation"]
+}

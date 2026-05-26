@@ -1,0 +1,16 @@
+{
+  "name": "context-menu",
+  "description": "Wraps any area and opens a menu at the cursor on right-click. Supports option rows (icons, shortcuts, disabled and destructive styles), separators, and section labels. Closes on selection, Escape, or an outside click, and clamps itself to stay inside the viewport. Dependency-free.",
+  "category": "overlay",
+  "files": [
+    {
+      "path": "components/context-menu/context-menu.tsx",
+      "target": "{{components}}/context-menu.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["context", "menu", "right-click", "contextmenu", "actions", "overlay"]
+}

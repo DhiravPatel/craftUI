@@ -24,6 +24,7 @@ import {
   CoinFlip,
   ColorPicker,
   Compare,
+  ContextMenu,
   ComparisonTable,
   CopyButton,
   CountUpRing,
@@ -31,6 +32,7 @@ import {
   Cube,
   CubeFace,
   CursorTrail,
+  DataTable,
   DirectionAwareHover,
   DotPattern,
   DotProgress,
@@ -102,6 +104,12 @@ import {
   ThemeToggle,
   Tilt,
   TiltTiles,
+  TimePicker,
+  Toolbar,
+  ToolbarButton,
+  ToolbarToggle,
+  ToolbarSeparator,
+  ToolbarGroup,
   TracingBeam,
   TreeView,
   VoteWidget,
@@ -4176,6 +4184,218 @@ export function ResizableDemo() {
           </p>
         </div>
       </Resizable>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * DataTable — sortable, paginated, selectable rows.
+ * ------------------------------------------------------------------ */
+type DataTableRow = {
+  id: string;
+  name: string;
+  role: string;
+  mrr: number;
+  status: "Active" | "Trial" | "Churned";
+};
+
+const DATA_TABLE_ROWS: DataTableRow[] = [
+  { id: "1", name: "Ada Lovelace", role: "Owner", mrr: 4200, status: "Active" },
+  { id: "2", name: "Grace Hopper", role: "Admin", mrr: 2800, status: "Active" },
+  { id: "3", name: "Alan Turing", role: "Member", mrr: 990, status: "Trial" },
+  { id: "4", name: "Katherine Johnson", role: "Member", mrr: 1500, status: "Active" },
+  { id: "5", name: "Linus Torvalds", role: "Admin", mrr: 0, status: "Churned" },
+  { id: "6", name: "Margaret Hamilton", role: "Member", mrr: 3100, status: "Active" },
+  { id: "7", name: "Dennis Ritchie", role: "Member", mrr: 760, status: "Trial" },
+];
+
+const STATUS_TONE: Record<DataTableRow["status"], string> = {
+  Active: "bg-emerald-400/15 text-emerald-300",
+  Trial: "bg-sky-400/15 text-sky-300",
+  Churned: "bg-white/10 text-white/50",
+};
+
+export function DataTableDemo() {
+  const [selected, setSelected] = React.useState<string[]>(["2"]);
+  return (
+    <div className="w-full px-6 py-10">
+      <DataTable<DataTableRow>
+        className="mx-auto max-w-2xl"
+        data={DATA_TABLE_ROWS}
+        rowKey={(r) => r.id}
+        pageSize={4}
+        selectable
+        selectedKeys={selected}
+        onSelectionChange={setSelected}
+        columns={[
+          { key: "name", header: "Name", sortBy: (r) => r.name },
+          { key: "role", header: "Role" },
+          {
+            key: "mrr",
+            header: "MRR",
+            align: "right",
+            sortBy: (r) => r.mrr,
+            accessor: (r) => `$${r.mrr.toLocaleString("en-US")}`,
+          },
+          {
+            key: "status",
+            header: "Status",
+            accessor: (r) => (
+              <span
+                className={`rounded-full px-2 py-0.5 text-xs font-medium ${STATUS_TONE[r.status]}`}
+              >
+                {r.status}
+              </span>
+            ),
+          },
+        ]}
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * ContextMenu — right-click the surface to open actions.
+ * ------------------------------------------------------------------ */
+export function ContextMenuDemo() {
+  const [last, setLast] = React.useState<string | null>(null);
+  return (
+    <div className="flex w-full flex-col items-center gap-4 px-6 py-12">
+      <ContextMenu
+        items={[
+          { type: "label", label: "Actions" },
+          { label: "Open", shortcut: "⌘O", onSelect: () => setLast("Open") },
+          { label: "Rename", shortcut: "⌘R", onSelect: () => setLast("Rename") },
+          { label: "Duplicate", onSelect: () => setLast("Duplicate") },
+          { type: "separator" },
+          { label: "Share", disabled: true },
+          {
+            label: "Delete",
+            shortcut: "⌫",
+            destructive: true,
+            onSelect: () => setLast("Delete"),
+          },
+        ]}
+      >
+        <div className="flex h-40 w-full max-w-md items-center justify-center rounded-xl border border-dashed border-white/15 bg-neutral-950 text-sm text-white/55">
+          Right-click anywhere in this area
+        </div>
+      </ContextMenu>
+      <p className="text-xs text-white/45">
+        Last action:{" "}
+        <span className="text-white/80">{last ?? "—"}</span>
+      </p>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * TimePicker — 24-hour and 12-hour variants.
+ * ------------------------------------------------------------------ */
+export function TimePickerDemo() {
+  const [t1, setT1] = React.useState("09:30");
+  const [t2, setT2] = React.useState("14:00");
+  return (
+    <div className="flex w-full flex-wrap items-start justify-center gap-8 px-6 py-12">
+      <div className="space-y-1.5">
+        <p className="text-xs font-medium text-foreground/60">24-hour</p>
+        <TimePicker value={t1} onChange={setT1} />
+      </div>
+      <div className="space-y-1.5">
+        <p className="text-xs font-medium text-foreground/60">
+          12-hour · 15-min steps
+        </p>
+        <TimePicker value={t2} onChange={setT2} use12Hour minuteStep={15} />
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * Toolbar — a text-formatting action bar.
+ * ------------------------------------------------------------------ */
+function AlignIcon({ side }: { side: "left" | "center" | "right" }) {
+  const lines: Record<typeof side, [number, number][]> = {
+    left: [
+      [3, 21],
+      [3, 15],
+      [3, 21],
+    ],
+    center: [
+      [5, 19],
+      [7, 17],
+      [5, 19],
+    ],
+    right: [
+      [3, 21],
+      [9, 21],
+      [3, 21],
+    ],
+  };
+  const rows = lines[side];
+  return (
+    <svg viewBox="0 0 24 24" width={15} height={15} stroke="currentColor" strokeWidth={2} strokeLinecap="round">
+      {rows.map(([x1, x2], i) => (
+        <line key={i} x1={x1} y1={6 + i * 6} x2={x2} y2={6 + i * 6} />
+      ))}
+    </svg>
+  );
+}
+
+export function ToolbarDemo() {
+  const [marks, setMarks] = React.useState({
+    bold: true,
+    italic: false,
+    underline: false,
+  });
+  const [align, setAlign] = React.useState<"left" | "center" | "right">("left");
+  return (
+    <div className="flex w-full justify-center px-6 py-12">
+      <Toolbar>
+        <ToolbarGroup>
+          <ToolbarToggle
+            pressed={marks.bold}
+            onPressedChange={(p) => setMarks((m) => ({ ...m, bold: p }))}
+            aria-label="Bold"
+          >
+            <span className="font-bold">B</span>
+          </ToolbarToggle>
+          <ToolbarToggle
+            pressed={marks.italic}
+            onPressedChange={(p) => setMarks((m) => ({ ...m, italic: p }))}
+            aria-label="Italic"
+          >
+            <span className="italic">I</span>
+          </ToolbarToggle>
+          <ToolbarToggle
+            pressed={marks.underline}
+            onPressedChange={(p) => setMarks((m) => ({ ...m, underline: p }))}
+            aria-label="Underline"
+          >
+            <span className="underline">U</span>
+          </ToolbarToggle>
+        </ToolbarGroup>
+        <ToolbarSeparator />
+        <ToolbarGroup>
+          {(["left", "center", "right"] as const).map((a) => (
+            <ToolbarToggle
+              key={a}
+              pressed={align === a}
+              onPressedChange={() => setAlign(a)}
+              aria-label={`Align ${a}`}
+            >
+              <AlignIcon side={a} />
+            </ToolbarToggle>
+          ))}
+        </ToolbarGroup>
+        <ToolbarSeparator />
+        <ToolbarButton label="Link">
+          <svg viewBox="0 0 24 24" width={15} height={15} fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.07 0l1.41-1.41a5 5 0 0 0-7.07-7.07l-1 1" />
+            <path d="M14 11a5 5 0 0 0-7.07 0L5.5 12.4a5 5 0 0 0 7.07 7.07l1-1" />
+          </svg>
+        </ToolbarButton>
+      </Toolbar>
     </div>
   );
 }

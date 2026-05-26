@@ -1,0 +1,16 @@
+{
+  "name": "time-picker",
+  "description": "A compact time field with a dropdown of scrollable hour and minute columns (plus an AM/PM toggle in 12-hour mode). Pick an hour and a minute; the component emits a 24-hour HH:mm string. Closes on outside click or Escape, works controlled / uncontrolled, dependency-free.",
+  "category": "forms",
+  "files": [
+    {
+      "path": "components/time-picker/time-picker.tsx",
+      "target": "{{components}}/time-picker.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["time", "picker", "timepicker", "clock", "hours", "minutes", "form"]
+}

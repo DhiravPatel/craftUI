@@ -27,6 +27,7 @@ import checkbox from "./components/checkbox.json";
 import coinFlip from "./components/coin-flip.json";
 import combobox from "./components/combobox.json";
 import command from "./components/command.json";
+import contextMenu from "./components/context-menu.json";
 import compare from "./components/compare.json";
 import comparisonTable from "./components/comparison-table.json";
 import colorPicker from "./components/color-picker.json";
@@ -35,6 +36,7 @@ import countUpRing from "./components/count-up-ring.json";
 import coverflow from "./components/coverflow.json";
 import cube from "./components/cube.json";
 import cursorTrail from "./components/cursor-trail.json";
+import dataTable from "./components/data-table.json";
 import datePicker from "./components/date-picker.json";
 import dialog from "./components/dialog.json";
 import directionAwareHover from "./components/direction-aware-hover.json";
@@ -138,10 +140,12 @@ import themeProvider from "./components/theme-provider.json";
 import themeToggle from "./components/theme-toggle.json";
 import tilt from "./components/tilt.json";
 import tiltTiles from "./components/tilt-tiles.json";
+import timePicker from "./components/time-picker.json";
 import timeline from "./components/timeline.json";
 import toast from "./components/toast.json";
 import toggle from "./components/toggle.json";
 import toggleGroup from "./components/toggle-group.json";
+import toolbar from "./components/toolbar.json";
 import tooltip from "./components/tooltip.json";
 import tracingBeam from "./components/tracing-beam.json";
 import treeView from "./components/tree-view.json";
@@ -179,6 +183,7 @@ export const registry: Registry = [
   coinFlip,
   combobox,
   command,
+  contextMenu,
   compare,
   comparisonTable,
   colorPicker,
@@ -187,6 +192,7 @@ export const registry: Registry = [
   coverflow,
   cube,
   cursorTrail,
+  dataTable,
   datePicker,
   dialog,
   directionAwareHover,
@@ -290,10 +296,12 @@ export const registry: Registry = [
   themeToggle,
   tilt,
   tiltTiles,
+  timePicker,
   timeline,
   toast,
   toggle,
   toggleGroup,
+  toolbar,
   tooltip,
   tracingBeam,
   treeView,

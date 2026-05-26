@@ -176,6 +176,7 @@ import {
   ChatBubbleDemo,
   CoinFlipDemo,
   ColorPickerDemo,
+  ContextMenuDemo,
   CompareDemo,
   ComparisonTableDemo,
   CopyButtonDemo,
@@ -183,6 +184,7 @@ import {
   CoverflowDemo,
   CubeDemo,
   CursorTrailDemo,
+  DataTableDemo,
   DirectionAwareHoverDemo,
   DotPatternDemo,
   DotProgressDemo,
@@ -252,6 +254,8 @@ import {
   ThemeToggleDemo,
   TiltDemo,
   TiltTilesDemo,
+  TimePickerDemo,
+  ToolbarDemo,
   TracingBeamDemo,
   TreeViewDemo,
   VoteWidgetDemo,
@@ -8496,6 +8500,253 @@ const ref = React.useRef<HTMLDivElement>(null);
       },
     ],
     related: ["layout", "sidebar", "scroll-area"],
+  },
+
+  // ---------- DataTable ----------
+  {
+    name: "data-table",
+    title: "Data Table",
+    description:
+      "A sortable, paginated table driven by a column config. Click a sortable header to cycle ascending / descending, pass pageSize to page the rows, and selectable to add a checkbox column with a header select-all. Cells render row[key] or a custom accessor. Works controlled / uncontrolled for selection and is dependency-free.",
+    imports: `import { DataTable } from "@/components/ui/data-table";`,
+    usage: `<DataTable
+  data={rows}
+  rowKey={(r) => r.id}
+  pageSize={10}
+  columns={[
+    { key: "name", header: "Name", sortBy: (r) => r.name },
+    { key: "mrr", header: "MRR", align: "right", sortBy: (r) => r.mrr },
+  ]}
+/>`,
+    defaultExample: {
+      title: "Members table",
+      code: `<DataTable
+  data={members}
+  rowKey={(r) => r.id}
+  pageSize={4}
+  selectable
+  selectedKeys={selected}
+  onSelectionChange={setSelected}
+  columns={[
+    { key: "name", header: "Name", sortBy: (r) => r.name },
+    { key: "role", header: "Role" },
+    { key: "mrr", header: "MRR", align: "right", sortBy: (r) => r.mrr },
+    { key: "status", header: "Status", accessor: (r) => <Badge>{r.status}</Badge> },
+  ]}
+/>`,
+      render: <DataTableDemo />,
+    },
+    props: [
+      {
+        name: "columns",
+        type: "DataTableColumn<T>[]",
+        description:
+          "Column config: { key, header, accessor?, sortBy?, align?, width?, className? }.",
+      },
+      { name: "data", type: "T[]", description: "Row data." },
+      {
+        name: "rowKey",
+        type: "(row: T, index: number) => string",
+        description: "Stable key per row — required for sorting / selection.",
+      },
+      {
+        name: "pageSize",
+        type: "number",
+        description: "Rows per page. Omit to render every row without pagination.",
+      },
+      {
+        name: "selectable",
+        type: "boolean",
+        default: "false",
+        description: "Show a leading checkbox column with a header select-all.",
+      },
+      {
+        name: "selectedKeys",
+        type: "string[]",
+        description: "Controlled selected row keys.",
+      },
+      {
+        name: "onSelectionChange",
+        type: "(keys: string[]) => void",
+        description: "Fired with the next selected-key list.",
+      },
+      {
+        name: "onRowClick",
+        type: "(row: T) => void",
+        description: "Fired when a row body is clicked.",
+      },
+      {
+        name: "emptyMessage",
+        type: "ReactNode",
+        description: "Shown when data is empty.",
+      },
+    ],
+    related: ["table", "pagination", "kanban-board"],
+  },
+
+  // ---------- ContextMenu ----------
+  {
+    name: "context-menu",
+    title: "Context Menu",
+    description:
+      "Wraps any area and opens a menu at the cursor on right-click. Supports option rows (icons, shortcuts, disabled and destructive styles), separators, and section labels. Closes on selection, Escape, or an outside click, and clamps itself to stay inside the viewport.",
+    imports: `import { ContextMenu } from "@/components/ui/context-menu";`,
+    usage: `<ContextMenu
+  items={[
+    { label: "Open", shortcut: "⌘O", onSelect: handleOpen },
+    { type: "separator" },
+    { label: "Delete", destructive: true, onSelect: handleDelete },
+  ]}
+>
+  <div>Right-click me</div>
+</ContextMenu>`,
+    defaultExample: {
+      title: "Right-click actions",
+      code: `<ContextMenu
+  items={[
+    { type: "label", label: "Actions" },
+    { label: "Open", shortcut: "⌘O", onSelect: () => {} },
+    { label: "Rename", shortcut: "⌘R", onSelect: () => {} },
+    { type: "separator" },
+    { label: "Share", disabled: true },
+    { label: "Delete", shortcut: "⌫", destructive: true, onSelect: () => {} },
+  ]}
+>
+  <div className="grid h-40 place-items-center">Right-click anywhere</div>
+</ContextMenu>`,
+      render: <ContextMenuDemo />,
+    },
+    props: [
+      {
+        name: "items",
+        type: "ContextMenuEntry[]",
+        description:
+          "Menu rows — options ({ label, icon?, shortcut?, onSelect?, disabled?, destructive? }), { type: \"separator\" }, or { type: \"label\", label }.",
+      },
+      {
+        name: "children",
+        type: "ReactNode",
+        description: "The area that opens the menu on right-click.",
+      },
+    ],
+    related: ["dropdown-menu", "command", "popover"],
+  },
+
+  // ---------- TimePicker ----------
+  {
+    name: "time-picker",
+    title: "Time Picker",
+    description:
+      "A compact time field with a dropdown of scrollable hour and minute columns (plus an AM/PM toggle in 12-hour mode). Pick an hour and a minute; the component emits a 24-hour HH:mm string. Closes on outside click or Escape and works controlled / uncontrolled.",
+    imports: `import { TimePicker } from "@/components/ui/time-picker";`,
+    usage: `const [time, setTime] = React.useState("09:30");
+
+<TimePicker value={time} onChange={setTime} />`,
+    defaultExample: {
+      title: "24-hour & 12-hour",
+      code: `<TimePicker value={t1} onChange={setT1} />
+<TimePicker value={t2} onChange={setT2} use12Hour minuteStep={15} />`,
+      render: <TimePickerDemo />,
+    },
+    props: [
+      {
+        name: "value",
+        type: "string",
+        description: 'Controlled value as 24-hour "HH:mm".',
+      },
+      {
+        name: "defaultValue",
+        type: "string",
+        default: '"09:00"',
+        description: "Initial value when uncontrolled.",
+      },
+      {
+        name: "onChange",
+        type: "(value: string) => void",
+        description: 'Fired with the next 24-hour "HH:mm" string.',
+      },
+      {
+        name: "use12Hour",
+        type: "boolean",
+        default: "false",
+        description: "Use a 12-hour clock with an AM/PM toggle.",
+      },
+      {
+        name: "minuteStep",
+        type: "number",
+        default: "5",
+        description: "Minute increment shown in the list.",
+      },
+      {
+        name: "placeholder",
+        type: "string",
+        default: '"Select time"',
+        description: "Shown when there is no value.",
+      },
+    ],
+    related: ["date-picker", "calendar", "select"],
+  },
+
+  // ---------- Toolbar ----------
+  {
+    name: "toolbar",
+    title: "Toolbar",
+    description:
+      "A compact action bar that groups buttons, toggles, separators, and groups onto a single rounded surface. Compose it from Toolbar, ToolbarButton, ToolbarToggle (a pressable state), ToolbarSeparator, and ToolbarGroup. Horizontal or vertical, dependency-free.",
+    imports: `import {
+  Toolbar,
+  ToolbarButton,
+  ToolbarToggle,
+  ToolbarSeparator,
+  ToolbarGroup,
+} from "@/components/ui/toolbar";`,
+    usage: `<Toolbar>
+  <ToolbarToggle pressed={bold} onPressedChange={setBold}>B</ToolbarToggle>
+  <ToolbarSeparator />
+  <ToolbarButton label="Link">{icon}</ToolbarButton>
+</Toolbar>`,
+    defaultExample: {
+      title: "Text formatting bar",
+      code: `<Toolbar>
+  <ToolbarGroup>
+    <ToolbarToggle pressed={bold} onPressedChange={setBold}>B</ToolbarToggle>
+    <ToolbarToggle pressed={italic} onPressedChange={setItalic}>I</ToolbarToggle>
+  </ToolbarGroup>
+  <ToolbarSeparator />
+  <ToolbarButton label="Link">{linkIcon}</ToolbarButton>
+</Toolbar>`,
+      render: <ToolbarDemo />,
+    },
+    props: [
+      {
+        name: "Toolbar.orientation",
+        type: '"horizontal" | "vertical"',
+        default: '"horizontal"',
+        description: "Lay the items out horizontally or vertically.",
+      },
+      {
+        name: "ToolbarToggle.pressed",
+        type: "boolean",
+        description: "Whether the toggle is pressed (on).",
+      },
+      {
+        name: "ToolbarToggle.onPressedChange",
+        type: "(pressed: boolean) => void",
+        description: "Fired with the next pressed state.",
+      },
+      {
+        name: "ToolbarButton.label",
+        type: "string",
+        description: "Optional text rendered after the icon.",
+      },
+      {
+        name: "ToolbarSeparator.orientation",
+        type: '"horizontal" | "vertical"',
+        default: '"vertical"',
+        description: "Divider direction.",
+      },
+    ],
+    related: ["toggle-group", "button", "segmented-control"],
   },
 ];
 
