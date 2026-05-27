@@ -1,0 +1,16 @@
+{
+  "name": "confetti",
+  "description": "A celebratory particle burst on a transparent canvas. Drop it inside a relative (or fixed inset-0) container and call fire() on its ref — on a successful payment, a finished onboarding step, a won game. Pieces fling in a cone, tumble under gravity, and fade out, then the animation stops on its own. Dependency-free and pointer-events-none.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/confetti/confetti.tsx",
+      "target": "{{components}}/confetti.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["confetti", "celebration", "particles", "canvas", "success", "animation", "reward"]
+}

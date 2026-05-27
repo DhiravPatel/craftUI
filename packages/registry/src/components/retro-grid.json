@@ -1,0 +1,16 @@
+{
+  "name": "retro-grid",
+  "description": "An animated synthwave horizon: an infinite perspective grid that scrolls toward the viewer, fading into the distance. Pure CSS (a tilted, looping background), so it's lightweight and runs without JavaScript once painted. Drop it behind a hero, a pricing CTA, or a 404 for an instant retro-futuristic backdrop; render content as children on top.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/retro-grid/retro-grid.tsx",
+      "target": "{{components}}/retro-grid.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["retro", "grid", "synthwave", "perspective", "background", "3d", "horizon", "animated"]
+}

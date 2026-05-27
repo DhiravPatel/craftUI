@@ -1,0 +1,16 @@
+{
+  "name": "animated-beam",
+  "description": "Draws a glowing gradient beam between two elements and sweeps light along it on a loop. Give it a positioned container plus refs to a from and to node; it measures their centers, draws a curved SVG path, and recomputes on resize. Perfect for connect-your-tools, integration maps, and architecture diagrams. The sweep uses SVG SMIL, so it runs without JavaScript once painted.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/animated-beam/animated-beam.tsx",
+      "target": "{{components}}/animated-beam.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["beam", "animated", "connect", "integration", "diagram", "svg", "gradient", "network"]
+}

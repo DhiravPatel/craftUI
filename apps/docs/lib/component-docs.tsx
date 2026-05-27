@@ -161,6 +161,7 @@ import {
 } from "@/components/demos/interactive-demos";
 import {
   ActivityHeatmapDemo,
+  AnimatedBeamDemo,
   AnimatedChartDemo,
   AnimatedTextDemo,
   AnimatedTooltipDemo,
@@ -176,6 +177,7 @@ import {
   ChatBubbleDemo,
   CoinFlipDemo,
   ColorPickerDemo,
+  ConfettiDemo,
   ContextMenuDemo,
   CompareDemo,
   ComparisonTableDemo,
@@ -238,7 +240,9 @@ import {
   PrismOrbDemo,
   QuantumGridDemo,
   ResizableDemo,
+  RetroGridDemo,
   RippleDemo,
+  ScratchCardDemo,
   ScrollProgressDemo,
   SegmentedControlDemo,
   SparklesDemo,
@@ -8747,6 +8751,253 @@ const ref = React.useRef<HTMLDivElement>(null);
       },
     ],
     related: ["toggle-group", "button", "segmented-control"],
+  },
+
+  // ---------- Confetti ----------
+  {
+    name: "confetti",
+    title: "Confetti",
+    description:
+      "A celebratory particle burst on a transparent canvas. Drop it inside a relative (or fixed inset-0) container and call fire() on its ref — on a successful payment, a finished onboarding step, a won game. Pieces fling in a cone, tumble under gravity, and fade out, then the animation stops on its own. Dependency-free and pointer-events-none.",
+    imports: `import { Confetti, type ConfettiHandle } from "@/components/ui/confetti";`,
+    usage: `const ref = React.useRef<ConfettiHandle>(null);
+
+<div className="relative">
+  <Confetti ref={ref} />
+  <button onClick={() => ref.current?.fire()}>Celebrate</button>
+</div>`,
+    defaultExample: {
+      title: "Fire on click",
+      code: `<Confetti ref={confettiRef} />
+<button onClick={() => confettiRef.current?.fire({ origin: { x: 0.5, y: 0.65 } })}>
+  🎉 Celebrate
+</button>`,
+      render: <ConfettiDemo />,
+    },
+    props: [
+      {
+        name: "ref.fire",
+        type: "(options?: ConfettiOptions) => void",
+        description: "Imperative handle — launch a burst, optionally overriding options.",
+      },
+      {
+        name: "particleCount",
+        type: "number",
+        default: "90",
+        description: "Number of pieces to launch.",
+      },
+      {
+        name: "spread",
+        type: "number",
+        default: "70",
+        description: "Cone width in degrees around straight up.",
+      },
+      {
+        name: "startVelocity",
+        type: "number",
+        default: "42",
+        description: "Initial speed in px/frame.",
+      },
+      {
+        name: "gravity",
+        type: "number",
+        default: "0.45",
+        description: "Downward acceleration per frame.",
+      },
+      {
+        name: "colors",
+        type: "string[]",
+        description: "Piece colors, picked at random.",
+      },
+      {
+        name: "origin",
+        type: "{ x: number; y: number }",
+        default: "{ x: 0.5, y: 0.5 }",
+        description: "Launch origin relative to the canvas (0–1).",
+      },
+      {
+        name: "autoFire",
+        type: "boolean",
+        default: "false",
+        description: "Fire once automatically when mounted.",
+      },
+    ],
+    related: ["sparkles", "meteors", "number-ticker"],
+  },
+
+  // ---------- AnimatedBeam ----------
+  {
+    name: "animated-beam",
+    title: "Animated Beam",
+    description:
+      "Draws a glowing gradient beam between two elements and sweeps light along it on a loop. Give it a positioned container plus refs to a from and to node; it measures their centers, draws a curved SVG path, and recomputes on resize. Perfect for connect-your-tools, integration maps, and architecture diagrams. The sweep uses SVG SMIL, so it runs without JavaScript once painted.",
+    imports: `import { AnimatedBeam } from "@/components/ui/animated-beam";`,
+    usage: `<div ref={containerRef} className="relative">
+  <div ref={fromRef}>A</div>
+  <div ref={toRef}>B</div>
+  <AnimatedBeam containerRef={containerRef} fromRef={fromRef} toRef={toRef} />
+</div>`,
+    defaultExample: {
+      title: "Service nodes → hub",
+      code: `<AnimatedBeam containerRef={containerRef} fromRef={dbRef} toRef={hubRef} curvature={40} />
+<AnimatedBeam containerRef={containerRef} fromRef={apiRef} toRef={hubRef} />
+<AnimatedBeam containerRef={containerRef} fromRef={cdnRef} toRef={hubRef} curvature={-40} />`,
+      render: <AnimatedBeamDemo />,
+    },
+    props: [
+      {
+        name: "containerRef",
+        type: "RefObject<HTMLElement>",
+        description: "The positioned ancestor the beam is drawn inside.",
+      },
+      {
+        name: "fromRef",
+        type: "RefObject<HTMLElement>",
+        description: "Element the beam starts from.",
+      },
+      {
+        name: "toRef",
+        type: "RefObject<HTMLElement>",
+        description: "Element the beam travels to.",
+      },
+      {
+        name: "curvature",
+        type: "number",
+        default: "0",
+        description: "Bow of the curve in px (positive arcs upward).",
+      },
+      {
+        name: "reverse",
+        type: "boolean",
+        default: "false",
+        description: "Animate from end → start instead.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "4",
+        description: "Sweep duration in seconds.",
+      },
+      {
+        name: "gradientStartColor / gradientStopColor",
+        type: "string",
+        description: "Leading and trailing colors of the moving gradient.",
+      },
+      {
+        name: "pathColor / pathWidth / pathOpacity",
+        type: "string / number / number",
+        description: "Styling for the static base path.",
+      },
+    ],
+    related: ["background-beams", "orbiting-circles", "tracing-beam"],
+  },
+
+  // ---------- ScratchCard ----------
+  {
+    name: "scratch-card",
+    title: "Scratch Card",
+    description:
+      "A scratch-off foil over a hidden reward. Drag across it (mouse or touch) to erase the coating; once enough is cleared it auto-reveals the rest and fires onComplete. Great for promos, coupon codes, gamified onboarding, and reward reveals. Renders the prize as children, paints the foil on a canvas, dependency-free.",
+    imports: `import { ScratchCard } from "@/components/ui/scratch-card";`,
+    usage: `<ScratchCard onComplete={() => setRevealed(true)}>
+  <span className="font-mono text-2xl font-bold">CRAFT-2026</span>
+</ScratchCard>`,
+    defaultExample: {
+      title: "Reveal a coupon",
+      code: `<ScratchCard width={300} height={170} coverLabel="Scratch to reveal" onComplete={celebrate}>
+  <span className="font-mono text-2xl font-bold text-sky-300">CRAFT-2026</span>
+</ScratchCard>`,
+      render: <ScratchCardDemo />,
+    },
+    props: [
+      {
+        name: "children",
+        type: "ReactNode",
+        description: "The prize revealed underneath the foil.",
+      },
+      { name: "width", type: "number", default: "280", description: "Card width in px." },
+      { name: "height", type: "number", default: "160", description: "Card height in px." },
+      {
+        name: "brushSize",
+        type: "number",
+        default: "26",
+        description: "Brush radius in px.",
+      },
+      {
+        name: "coverColors",
+        type: "[string, string]",
+        description: "Two-stop gradient for the scratch-off foil.",
+      },
+      {
+        name: "coverLabel",
+        type: "string",
+        default: '"Scratch here"',
+        description: "Hint text drawn on the foil.",
+      },
+      {
+        name: "revealThreshold",
+        type: "number",
+        default: "0.55",
+        description: "Fraction (0–1) scratched before it auto-clears + fires onComplete.",
+      },
+      {
+        name: "onComplete",
+        type: "() => void",
+        description: "Fired once the threshold is crossed.",
+      },
+    ],
+    related: ["confetti", "compare", "lens"],
+  },
+
+  // ---------- RetroGrid ----------
+  {
+    name: "retro-grid",
+    title: "Retro Grid",
+    description:
+      "An animated synthwave horizon: an infinite perspective grid that scrolls toward the viewer, fading into the distance. Pure CSS (a tilted, looping background), so it's lightweight and runs without JavaScript once painted. Drop it behind a hero, a pricing CTA, or a 404 for an instant retro-futuristic backdrop; render content as children on top.",
+    imports: `import { RetroGrid } from "@/components/ui/retro-grid";`,
+    usage: `<RetroGrid className="h-64">
+  <h3>Ship the future</h3>
+</RetroGrid>`,
+    defaultExample: {
+      title: "Hero backdrop",
+      code: `<RetroGrid className="flex h-64 items-center justify-center">
+  <h3 className="text-3xl font-bold">Ship the future</h3>
+</RetroGrid>`,
+      render: <RetroGridDemo />,
+    },
+    props: [
+      {
+        name: "angle",
+        type: "number",
+        default: "65",
+        description: "Tilt of the grid plane in degrees.",
+      },
+      {
+        name: "cellSize",
+        type: "number",
+        default: "60",
+        description: "Grid cell size in px.",
+      },
+      {
+        name: "lineColor",
+        type: "string",
+        description: "Line color. Default sky.",
+      },
+      {
+        name: "speed",
+        type: "number",
+        default: "12",
+        description: "Seconds for one full scroll loop.",
+      },
+      {
+        name: "gridOpacity",
+        type: "number",
+        default: "0.5",
+        description: "Overall grid opacity (0–1).",
+      },
+    ],
+    related: ["dot-pattern", "background-boxes", "wave-grid"],
   },
 ];
 

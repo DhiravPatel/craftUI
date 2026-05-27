@@ -1,0 +1,16 @@
+{
+  "name": "scratch-card",
+  "description": "A scratch-off foil over a hidden reward. Drag across it (mouse or touch) to erase the coating; once enough is cleared it auto-reveals the rest and fires onComplete. Great for promos, coupon codes, gamified onboarding, and reward reveals. Renders the prize as children, paints the foil on a canvas, dependency-free.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/scratch-card/scratch-card.tsx",
+      "target": "{{components}}/scratch-card.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["scratch", "card", "reveal", "coupon", "promo", "canvas", "gamified", "reward"]
+}

@@ -3,6 +3,7 @@
 import * as React from "react";
 import {
   ActivityHeatmap,
+  AnimatedBeam,
   AnimatedChart,
   AnimatedText,
   AnimatedTooltip,
@@ -23,6 +24,8 @@ import {
   ChatBubble,
   CoinFlip,
   ColorPicker,
+  Confetti,
+  type ConfettiHandle,
   Compare,
   ContextMenu,
   ComparisonTable,
@@ -89,7 +92,9 @@ import {
   PrismOrb,
   QuantumGrid,
   Resizable,
+  RetroGrid,
   Ripple,
+  ScratchCard,
   ScrollProgress,
   SegmentedControl,
   Sparkles as SparklesFx,
@@ -4396,6 +4401,129 @@ export function ToolbarDemo() {
           </svg>
         </ToolbarButton>
       </Toolbar>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * Confetti — fire a celebratory burst from a button.
+ * ------------------------------------------------------------------ */
+export function ConfettiDemo() {
+  const confettiRef = React.useRef<ConfettiHandle>(null);
+  return (
+    <div className="flex w-full items-center justify-center px-6 py-12">
+      <div className="relative flex h-64 w-full max-w-md items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-neutral-950">
+        <Confetti ref={confettiRef} />
+        <button
+          type="button"
+          onClick={() => confettiRef.current?.fire({ origin: { x: 0.5, y: 0.65 } })}
+          className="relative z-10 rounded-full bg-sky-400 px-5 py-2.5 text-sm font-semibold text-neutral-950 transition-transform hover:scale-105 active:scale-95"
+        >
+          🎉 Celebrate
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * AnimatedBeam — beams connecting service nodes to a hub.
+ * ------------------------------------------------------------------ */
+export function AnimatedBeamDemo() {
+  const containerRef = React.useRef<HTMLDivElement | null>(null);
+  const hubRef = React.useRef<HTMLDivElement | null>(null);
+  const aRef = React.useRef<HTMLDivElement | null>(null);
+  const bRef = React.useRef<HTMLDivElement | null>(null);
+  const cRef = React.useRef<HTMLDivElement | null>(null);
+  const node =
+    "flex h-12 w-12 items-center justify-center rounded-xl border border-white/15 bg-neutral-900 text-sm font-semibold text-white shadow-lg shadow-black/30";
+  return (
+    <div className="flex w-full items-center justify-center px-6 py-12">
+      <div
+        ref={containerRef}
+        className="relative flex h-64 w-full max-w-lg items-center justify-between px-12"
+      >
+        <div className="flex flex-col gap-7">
+          <div ref={aRef} className={node}>
+            DB
+          </div>
+          <div ref={bRef} className={node}>
+            API
+          </div>
+          <div ref={cRef} className={node}>
+            CDN
+          </div>
+        </div>
+        <div
+          ref={hubRef}
+          className="flex h-16 w-16 items-center justify-center rounded-2xl border border-sky-400/40 bg-sky-400/15 text-lg font-bold text-sky-300 shadow-lg shadow-sky-500/20"
+        >
+          ★
+        </div>
+        <AnimatedBeam
+          containerRef={containerRef}
+          fromRef={aRef}
+          toRef={hubRef}
+          curvature={40}
+        />
+        <AnimatedBeam containerRef={containerRef} fromRef={bRef} toRef={hubRef} />
+        <AnimatedBeam
+          containerRef={containerRef}
+          fromRef={cRef}
+          toRef={hubRef}
+          curvature={-40}
+        />
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * ScratchCard — scratch the foil to reveal a coupon code.
+ * ------------------------------------------------------------------ */
+export function ScratchCardDemo() {
+  const [revealed, setRevealed] = React.useState(false);
+  return (
+    <div className="flex w-full flex-col items-center gap-3 px-6 py-12">
+      <ScratchCard
+        width={300}
+        height={170}
+        coverLabel="Scratch to reveal"
+        onComplete={() => setRevealed(true)}
+      >
+        <div className="flex flex-col items-center gap-1">
+          <span className="text-xs uppercase tracking-widest text-white/40">
+            Your code
+          </span>
+          <span className="font-mono text-2xl font-bold text-sky-300">
+            CRAFT-2026
+          </span>
+          <span className="text-xs text-white/50">30% off your first year</span>
+        </div>
+      </ScratchCard>
+      <p className="text-xs text-white/45">
+        {revealed ? "Revealed! 🎁" : "Drag across the foil above"}
+      </p>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * RetroGrid — animated synthwave backdrop behind a hero.
+ * ------------------------------------------------------------------ */
+export function RetroGridDemo() {
+  return (
+    <div className="flex w-full items-center justify-center px-6 py-10">
+      <RetroGrid className="flex h-64 w-full max-w-lg items-center justify-center rounded-2xl border border-white/10 bg-neutral-950">
+        <div className="px-6 text-center">
+          <h3 className="bg-gradient-to-b from-white to-sky-200 bg-clip-text text-3xl font-bold text-transparent">
+            Ship the future
+          </h3>
+          <p className="mt-1 text-sm text-white/55">
+            A retro-futuristic backdrop for heroes and CTAs.
+          </p>
+        </div>
+      </RetroGrid>
     </div>
   );
 }

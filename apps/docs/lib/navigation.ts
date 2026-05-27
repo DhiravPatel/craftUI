@@ -202,6 +202,10 @@ export const navigation: NavSection[] = [
       { title: "Context Menu", href: "/docs/components/context-menu" },
       { title: "Time Picker", href: "/docs/components/time-picker" },
       { title: "Toolbar", href: "/docs/components/toolbar" },
+      { title: "Confetti", href: "/docs/components/confetti" },
+      { title: "Animated Beam", href: "/docs/components/animated-beam" },
+      { title: "Scratch Card", href: "/docs/components/scratch-card" },
+      { title: "Retro Grid", href: "/docs/components/retro-grid" },
     ],
   },
 ];

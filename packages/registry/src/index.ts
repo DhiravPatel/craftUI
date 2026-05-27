@@ -4,6 +4,7 @@ import accordion from "./components/accordion.json";
 import activityHeatmap from "./components/activity-heatmap.json";
 import alert from "./components/alert.json";
 import alertDialog from "./components/alert-dialog.json";
+import animatedBeam from "./components/animated-beam.json";
 import animatedChart from "./components/animated-chart.json";
 import animatedText from "./components/animated-text.json";
 import animatedTooltip from "./components/animated-tooltip.json";
@@ -31,6 +32,7 @@ import contextMenu from "./components/context-menu.json";
 import compare from "./components/compare.json";
 import comparisonTable from "./components/comparison-table.json";
 import colorPicker from "./components/color-picker.json";
+import confetti from "./components/confetti.json";
 import copyButton from "./components/copy-button.json";
 import countUpRing from "./components/count-up-ring.json";
 import coverflow from "./components/coverflow.json";
@@ -110,7 +112,9 @@ import quantumGrid from "./components/quantum-grid.json";
 import radioGroup from "./components/radio-group.json";
 import rating from "./components/rating.json";
 import resizable from "./components/resizable.json";
+import retroGrid from "./components/retro-grid.json";
 import ripple from "./components/ripple.json";
+import scratchCard from "./components/scratch-card.json";
 import scrollArea from "./components/scroll-area.json";
 import scrollProgress from "./components/scroll-progress.json";
 import segmentedControl from "./components/segmented-control.json";
@@ -160,6 +164,7 @@ export const registry: Registry = [
   activityHeatmap,
   alert,
   alertDialog,
+  animatedBeam,
   animatedChart,
   animatedText,
   animatedTooltip,
@@ -187,6 +192,7 @@ export const registry: Registry = [
   compare,
   comparisonTable,
   colorPicker,
+  confetti,
   copyButton,
   countUpRing,
   coverflow,
@@ -266,7 +272,9 @@ export const registry: Registry = [
   radioGroup,
   rating,
   resizable,
+  retroGrid,
   ripple,
+  scratchCard,
   scrollArea,
   scrollProgress,
   segmentedControl,
