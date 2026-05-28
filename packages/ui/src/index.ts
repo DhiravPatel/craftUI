@@ -97,6 +97,7 @@ export * from "./components/notification-stack";
 export * from "./components/number-flip";
 export * from "./components/number-input";
 export * from "./components/number-ticker";
+export * from "./components/onboarding-checklist";
 export * from "./components/orbit-stack";
 export * from "./components/orbital-menu";
 export * from "./components/orbiting-circles";

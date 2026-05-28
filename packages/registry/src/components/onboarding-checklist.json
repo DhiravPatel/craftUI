@@ -1,0 +1,23 @@
+{
+  "name": "onboarding-checklist",
+  "description": "A SaaS getting-started widget with progress bar, animated checkmarks, collapsible body, dismiss button, and a celebration state when every step is done. Steps can carry descriptions and inline CTAs.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/onboarding-checklist/onboarding-checklist.tsx",
+      "target": "{{components}}/onboarding-checklist.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": [
+    "onboarding",
+    "checklist",
+    "saas",
+    "progress",
+    "getting-started",
+    "todo"
+  ]
+}

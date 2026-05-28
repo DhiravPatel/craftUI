@@ -93,6 +93,7 @@ import notificationStack from "./components/notification-stack.json";
 import numberFlip from "./components/number-flip.json";
 import numberInput from "./components/number-input.json";
 import numberTicker from "./components/number-ticker.json";
+import onboardingChecklist from "./components/onboarding-checklist.json";
 import orbitStack from "./components/orbit-stack.json";
 import orbitalMenu from "./components/orbital-menu.json";
 import orbitingCircles from "./components/orbiting-circles.json";
@@ -253,6 +254,7 @@ export const registry: Registry = [
   numberFlip,
   numberInput,
   numberTicker,
+  onboardingChecklist,
   orbitStack,
   orbitalMenu,
   orbitingCircles,

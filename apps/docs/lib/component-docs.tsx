@@ -226,6 +226,7 @@ import {
   NumberFlipDemo,
   NumberInputDemo,
   NumberTickerDemo,
+  OnboardingChecklistDemo,
   OrbitStackDemo,
   OrbitalMenuDemo,
   OrbitingCirclesDemo,
@@ -8998,6 +8999,113 @@ const ref = React.useRef<HTMLDivElement>(null);
       },
     ],
     related: ["dot-pattern", "background-boxes", "wave-grid"],
+  },
+
+  // ---------- OnboardingChecklist ----------
+  {
+    name: "onboarding-checklist",
+    title: "Onboarding Checklist",
+    description:
+      "A SaaS getting-started widget — the kind you see in Linear, Stripe, or Vercel after sign-up. Renders a header with completion count, an animated progress bar, and a list of steps the user ticks off. Each step can have a description and an inline CTA, the body is collapsible, the whole card is dismissible, and when every step is done it animates into a celebration state. Works fully uncontrolled or controlled via `completedIds`.",
+    imports: `import { OnboardingChecklist } from "@/components/ui/onboarding-checklist";`,
+    usage: `<OnboardingChecklist
+  title="Get started"
+  steps={[
+    { id: "account", title: "Create your account", completed: true },
+    { id: "team", title: "Invite your team", action: { label: "Invite" } },
+  ]}
+/>`,
+    defaultExample: {
+      title: "Get started widget",
+      code: `const [completedIds, setCompletedIds] = React.useState(["account", "workspace"]);
+
+<OnboardingChecklist
+  title="Get started with CraftUI"
+  description="Finish setup to unlock the full workspace"
+  completedIds={completedIds}
+  onCompletedChange={setCompletedIds}
+  steps={[
+    { id: "account", title: "Create your account", description: "Sign up with email or SSO." },
+    { id: "workspace", title: "Name your workspace", description: "Used in URLs and shared links." },
+    { id: "invite", title: "Invite your team", action: { label: "Invite" } },
+    { id: "integration", title: "Connect an integration", action: { label: "Connect" } },
+    { id: "ship", title: "Ship your first component", action: { label: "Open docs" } },
+  ]}
+/>`,
+      render: <OnboardingChecklistDemo />,
+    },
+    props: [
+      {
+        name: "steps",
+        type: "OnboardingStep[]",
+        required: true,
+        description:
+          "List of steps. Each has { id, title, description?, completed?, icon?, action? }.",
+      },
+      {
+        name: "title",
+        type: "string",
+        default: '"Getting started"',
+        description: "Header title shown above the progress bar.",
+      },
+      {
+        name: "description",
+        type: "string",
+        description: "Optional one-line subtitle under the title.",
+      },
+      {
+        name: "completedIds",
+        type: "string[]",
+        description:
+          "Controlled set of completed step ids. Omit for uncontrolled use.",
+      },
+      {
+        name: "onCompletedChange",
+        type: "(ids: string[]) => void",
+        description: "Called when the user toggles a step.",
+      },
+      {
+        name: "defaultCollapsed",
+        type: "boolean",
+        default: "false",
+        description: "Start with the body collapsed.",
+      },
+      {
+        name: "collapsible",
+        type: "boolean",
+        default: "true",
+        description: "Allow the header to toggle the body.",
+      },
+      {
+        name: "dismissible",
+        type: "boolean",
+        default: "true",
+        description: "Show the X close button in the header.",
+      },
+      {
+        name: "onDismiss",
+        type: "() => void",
+        description: "Fires when the user closes the card.",
+      },
+      {
+        name: "showCompletionState",
+        type: "boolean",
+        default: "true",
+        description: "Render the celebration block when all steps are done.",
+      },
+      {
+        name: "accentColor",
+        type: "string",
+        default: '"rgb(125, 211, 252)"',
+        description: "Accent color for the progress bar, focus ring, and CTA.",
+      },
+      {
+        name: "completionContent",
+        type: "ReactNode",
+        description: "Custom body for the celebration state.",
+      },
+    ],
+    related: ["stepper", "progress", "stat-card"],
   },
 ];
 

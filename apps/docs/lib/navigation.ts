@@ -206,6 +206,7 @@ export const navigation: NavSection[] = [
       { title: "Animated Beam", href: "/docs/components/animated-beam" },
       { title: "Scratch Card", href: "/docs/components/scratch-card" },
       { title: "Retro Grid", href: "/docs/components/retro-grid" },
+      { title: "Onboarding Checklist", href: "/docs/components/onboarding-checklist" },
     ],
   },
 ];

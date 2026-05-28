@@ -77,6 +77,7 @@ import {
   NumberFlip,
   NumberInput,
   NumberTicker,
+  OnboardingChecklist,
   OrbitStack,
   OrbitalMenu,
   OrbitingCircles,
@@ -4524,6 +4525,56 @@ export function RetroGridDemo() {
           </p>
         </div>
       </RetroGrid>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * OnboardingChecklist — Linear/Stripe-style getting-started widget.
+ * ------------------------------------------------------------------ */
+export function OnboardingChecklistDemo() {
+  const [completedIds, setCompletedIds] = React.useState<string[]>([
+    "account",
+    "workspace",
+  ]);
+  return (
+    <div className="flex w-full items-center justify-center px-6 py-10">
+      <OnboardingChecklist
+        title="Get started with CraftUI"
+        description="Finish setup to unlock the full workspace"
+        completedIds={completedIds}
+        onCompletedChange={setCompletedIds}
+        steps={[
+          {
+            id: "account",
+            title: "Create your account",
+            description: "Sign up with email or single sign-on.",
+          },
+          {
+            id: "workspace",
+            title: "Name your workspace",
+            description: "Used in URLs and shared links.",
+          },
+          {
+            id: "invite",
+            title: "Invite your team",
+            description: "Bring 2+ teammates to collaborate in real time.",
+            action: { label: "Invite" },
+          },
+          {
+            id: "integration",
+            title: "Connect an integration",
+            description: "Sync with GitHub, Linear, or Slack.",
+            action: { label: "Connect" },
+          },
+          {
+            id: "ship",
+            title: "Ship your first component",
+            description: "Use the CLI to install a component from the registry.",
+            action: { label: "Open docs" },
+          },
+        ]}
+      />
     </div>
   );
 }
