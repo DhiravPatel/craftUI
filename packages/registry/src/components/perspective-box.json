@@ -1,0 +1,16 @@
+{
+  "name": "perspective-box",
+  "description": "A 3D opened gift-box laid out with all four inner flaps fanned outward, each carrying its own content. Hover to spread the flaps further. Pure CSS 3D.",
+  "category": "3d",
+  "files": [
+    {
+      "path": "components/perspective-box/perspective-box.tsx",
+      "target": "{{components}}/perspective-box.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "box", "perspective", "unbox", "hero", "feature"]
+}

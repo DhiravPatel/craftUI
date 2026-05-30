@@ -37,9 +37,11 @@ import copyButton from "./components/copy-button.json";
 import countUpRing from "./components/count-up-ring.json";
 import coverflow from "./components/coverflow.json";
 import cube from "./components/cube.json";
+import cubeMatrix from "./components/cube-matrix.json";
 import cursorTrail from "./components/cursor-trail.json";
 import dataTable from "./components/data-table.json";
 import datePicker from "./components/date-picker.json";
+import diceRoll from "./components/dice-roll.json";
 import dialog from "./components/dialog.json";
 import directionAwareHover from "./components/direction-aware-hover.json";
 import dotPattern from "./components/dot-pattern.json";
@@ -101,12 +103,14 @@ import pageCurl from "./components/page-curl.json";
 import pagination from "./components/pagination.json";
 import paperPlane from "./components/paper-plane.json";
 import parallax from "./components/parallax.json";
+import perspectiveBox from "./components/perspective-box.json";
 import phoneMockup from "./components/phone-mockup.json";
 import pin3d from "./components/pin-3d.json";
 import pinBoard from "./components/pin-board.json";
 import plasmaField from "./components/plasma-field.json";
 import prismOrb from "./components/prism-orb.json";
 import popover from "./components/popover.json";
+import portalRings from "./components/portal-rings.json";
 import pricingCards from "./components/pricing-cards.json";
 import progress from "./components/progress.json";
 import quantumGrid from "./components/quantum-grid.json";
@@ -198,9 +202,11 @@ export const registry: Registry = [
   countUpRing,
   coverflow,
   cube,
+  cubeMatrix,
   cursorTrail,
   dataTable,
   datePicker,
+  diceRoll,
   dialog,
   directionAwareHover,
   dotPattern,
@@ -262,12 +268,14 @@ export const registry: Registry = [
   pagination,
   paperPlane,
   parallax,
+  perspectiveBox,
   phoneMockup,
   pin3d,
   pinBoard,
   plasmaField,
   prismOrb,
   popover,
+  portalRings,
   pricingCards,
   progress,
   quantumGrid,

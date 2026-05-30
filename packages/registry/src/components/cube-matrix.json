@@ -1,0 +1,16 @@
+{
+  "name": "cube-matrix",
+  "description": "A tilted grid of small 3D cubes that all rotate in unison with a radial delay, producing a rippling wave field. Pure CSS keyframes, dependency-free.",
+  "category": "3d",
+  "files": [
+    {
+      "path": "components/cube-matrix/cube-matrix.tsx",
+      "target": "{{components}}/cube-matrix.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "cube", "matrix", "grid", "wave", "background", "animated"]
+}

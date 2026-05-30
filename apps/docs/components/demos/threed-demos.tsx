@@ -34,8 +34,10 @@ import {
   Coverflow,
   Cube,
   CubeFace,
+  CubeMatrix,
   CursorTrail,
   DataTable,
+  DiceRoll,
   DirectionAwareHover,
   DotPattern,
   DotProgress,
@@ -85,10 +87,12 @@ import {
   PaperPlane,
   Parallax,
   ParallaxLayer,
+  PerspectiveBox,
   PhoneMockup,
   Pin3D,
   PinBoard,
   PlasmaField,
+  PortalRings,
   PricingCards,
   PrismOrb,
   QuantumGrid,
@@ -4525,6 +4529,90 @@ export function RetroGridDemo() {
           </p>
         </div>
       </RetroGrid>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * CubeMatrix — wave field of small rotating 3D cubes.
+ * ------------------------------------------------------------------ */
+export function CubeMatrixDemo() {
+  return (
+    <div className="flex w-full items-center justify-center px-6 py-14">
+      <CubeMatrix rows={5} cols={5} cubeSize={34} gap={10} duration={4.2} />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * DiceRoll — click the die to roll it. Shows the resting face.
+ * ------------------------------------------------------------------ */
+export function DiceRollDemo() {
+  const [face, setFace] = React.useState<1 | 2 | 3 | 4 | 5 | 6>(1);
+  return (
+    <div className="flex w-full flex-col items-center gap-6 px-6 py-12">
+      <DiceRoll defaultFace={1} onRoll={(f) => setFace(f)} />
+      <p className="text-xs text-white/55">
+        Rolled <span className="font-mono text-sky-300">{face}</span> — click to roll again
+      </p>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * PortalRings — concentric rings spinning around different axes.
+ * ------------------------------------------------------------------ */
+export function PortalRingsDemo() {
+  return (
+    <div className="flex w-full items-center justify-center px-6 py-8">
+      <PortalRings size={300} rings={5}>
+        <span className="rounded-full bg-neutral-950 px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-sky-300 ring-1 ring-sky-300/30">
+          Live
+        </span>
+      </PortalRings>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * PerspectiveBox — opened box with 4 inner flap panels.
+ * ------------------------------------------------------------------ */
+export function PerspectiveBoxDemo() {
+  const Panel = ({
+    label,
+    icon,
+  }: {
+    label: string;
+    icon: React.ReactNode;
+  }) => (
+    <div className="flex h-full w-full flex-col items-center justify-center gap-1.5 text-center">
+      <span className="flex h-7 w-7 items-center justify-center rounded-md bg-sky-300/15 text-sky-300">
+        {icon}
+      </span>
+      <span className="text-[11px] font-medium text-white/85">{label}</span>
+    </div>
+  );
+  return (
+    <div className="flex w-full items-center justify-center px-6 py-6">
+      <PerspectiveBox
+        size={170}
+        panelHeight={110}
+        base={
+          <div className="flex flex-col items-center gap-1 text-center">
+            <Sparkles className="h-6 w-6 text-sky-300" />
+            <p className="text-xs font-semibold uppercase tracking-widest text-white/80">
+              CraftUI
+            </p>
+            <p className="text-[10px] text-white/45">Hover to open</p>
+          </div>
+        }
+        panels={[
+          <Panel key="t" label="Components" icon={<Star className="h-4 w-4" />} />,
+          <Panel key="r" label="Themes" icon={<Sun className="h-4 w-4" />} />,
+          <Panel key="b" label="CLI" icon={<Zap className="h-4 w-4" />} />,
+          <Panel key="l" label="Docs" icon={<FileText className="h-4 w-4" />} />,
+        ]}
+      />
     </div>
   );
 }

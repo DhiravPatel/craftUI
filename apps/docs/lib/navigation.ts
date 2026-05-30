@@ -207,6 +207,10 @@ export const navigation: NavSection[] = [
       { title: "Scratch Card", href: "/docs/components/scratch-card" },
       { title: "Retro Grid", href: "/docs/components/retro-grid" },
       { title: "Onboarding Checklist", href: "/docs/components/onboarding-checklist" },
+      { title: "Cube Matrix", href: "/docs/components/cube-matrix" },
+      { title: "Dice Roll", href: "/docs/components/dice-roll" },
+      { title: "Portal Rings", href: "/docs/components/portal-rings" },
+      { title: "Perspective Box", href: "/docs/components/perspective-box" },
     ],
   },
 ];

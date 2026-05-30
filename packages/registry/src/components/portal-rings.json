@@ -1,0 +1,16 @@
+{
+  "name": "portal-rings",
+  "description": "Concentric rings rotated to different 3D angles, each spinning at its own speed, with a soft central core. A stargate / dimensional-portal backdrop for logos and heroes.",
+  "category": "3d",
+  "files": [
+    {
+      "path": "components/portal-rings/portal-rings.tsx",
+      "target": "{{components}}/portal-rings.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "rings", "portal", "stargate", "hero", "animated"]
+}

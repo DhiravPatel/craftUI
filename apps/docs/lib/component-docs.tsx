@@ -185,8 +185,10 @@ import {
   CountUpRingDemo,
   CoverflowDemo,
   CubeDemo,
+  CubeMatrixDemo,
   CursorTrailDemo,
   DataTableDemo,
+  DiceRollDemo,
   DirectionAwareHoverDemo,
   DotPatternDemo,
   DotProgressDemo,
@@ -233,10 +235,12 @@ import {
   PageCurlDemo,
   PaperPlaneDemo,
   ParallaxDemo,
+  PerspectiveBoxDemo,
   PhoneMockupDemo,
   Pin3DDemo,
   PinBoardDemo,
   PlasmaFieldDemo,
+  PortalRingsDemo,
   PricingCardsDemo,
   PrismOrbDemo,
   QuantumGridDemo,
@@ -9106,6 +9110,293 @@ const ref = React.useRef<HTMLDivElement>(null);
       },
     ],
     related: ["stepper", "progress", "stat-card"],
+  },
+
+  // ---------- CubeMatrix ----------
+  {
+    name: "cube-matrix",
+    title: "Cube Matrix",
+    description:
+      "A tilted grid of small 3D cubes that all rotate in unison with a radial wave delay — outer cubes fire later than inner ones, so the ripple radiates from the center. Pure CSS keyframes with per-cube `animation-delay`, so it's GPU-accelerated and dependency-free. Great as a hero backdrop or as decoration behind a feature block.",
+    imports: `import { CubeMatrix } from "@/components/ui/cube-matrix";`,
+    usage: `<CubeMatrix rows={5} cols={5} cubeSize={34} />`,
+    defaultExample: {
+      title: "Wave field",
+      code: `<CubeMatrix rows={5} cols={5} cubeSize={34} gap={10} duration={4.2} />`,
+      render: <CubeMatrixDemo />,
+    },
+    props: [
+      {
+        name: "rows",
+        type: "number",
+        default: "5",
+        description: "Number of cube rows.",
+      },
+      {
+        name: "cols",
+        type: "number",
+        default: "5",
+        description: "Number of cube columns.",
+      },
+      {
+        name: "cubeSize",
+        type: "number",
+        default: "36",
+        description: "Edge length of each cube in px.",
+      },
+      {
+        name: "gap",
+        type: "number",
+        default: "12",
+        description: "Gap between cubes in px.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "4",
+        description: "Seconds for one full wave loop.",
+      },
+      {
+        name: "ringDelay",
+        type: "number",
+        default: "0.18",
+        description: "Wave delay (s) per ring of cubes away from the center.",
+      },
+      {
+        name: "color",
+        type: "string",
+        description: "Face color. Default sky.",
+      },
+      {
+        name: "tilt",
+        type: "number",
+        default: "55",
+        description: "Tilt of the whole grid in degrees (rotateX).",
+      },
+      {
+        name: "spin",
+        type: "number",
+        default: "-45",
+        description: "Spin of the whole grid in degrees (rotateZ).",
+      },
+    ],
+    related: ["cube", "quantum-grid", "wave-grid"],
+  },
+
+  // ---------- DiceRoll ----------
+  {
+    name: "dice-roll",
+    title: "Dice Roll",
+    description:
+      "An interactive 6-sided 3D die. Click — or press Space / Enter — to tumble for the configured duration then settle on a random face. Each face carries the proper pip layout, the rotation always accumulates forward (the die never unwinds), and a soft contact shadow grounds it. Pure CSS 3D, dependency-free.",
+    imports: `import { DiceRoll } from "@/components/ui/dice-roll";`,
+    usage: `<DiceRoll onRoll={(face) => console.log(face)} />`,
+    defaultExample: {
+      title: "Roll the die",
+      code: `<DiceRoll defaultFace={1} onRoll={(f) => setFace(f)} />`,
+      render: <DiceRollDemo />,
+    },
+    props: [
+      {
+        name: "size",
+        type: "number",
+        default: "120",
+        description: "Edge length of the die in px.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "1200",
+        description: "Roll duration in ms.",
+      },
+      {
+        name: "defaultFace",
+        type: "1 | 2 | 3 | 4 | 5 | 6",
+        default: "1",
+        description: "Initial face shown.",
+      },
+      {
+        name: "face",
+        type: "1 | 2 | 3 | 4 | 5 | 6",
+        description: "Controlled face. When set, internal rolling is disabled.",
+      },
+      {
+        name: "onRoll",
+        type: "(face) => void",
+        description: "Fires every time a roll settles on a new face.",
+      },
+      {
+        name: "color",
+        type: "string",
+        description: "Die body color. Default white.",
+      },
+      {
+        name: "pipColor",
+        type: "string",
+        description: "Pip color. Default near-black.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false",
+        description: "Disable click-to-roll.",
+      },
+    ],
+    related: ["cube", "coin-flip", "flip-card"],
+  },
+
+  // ---------- PortalRings ----------
+  {
+    name: "portal-rings",
+    title: "Portal Rings",
+    description:
+      "A stack of concentric rings rotated to different 3D angles, each spinning at its own speed around its own axis, with a soft luminous core. Built entirely with CSS borders + `rotateX/Y/Z` keyframes — smooth at any size, GPU-accelerated, and self-contained. Drop it behind a logo or a hero status badge for a stargate / dimensional-portal feel. Pass `children` to layer content in the middle.",
+    imports: `import { PortalRings } from "@/components/ui/portal-rings";`,
+    usage: `<PortalRings size={300}>
+  <YourLogo />
+</PortalRings>`,
+    defaultExample: {
+      title: "Portal backdrop",
+      code: `<PortalRings size={300} rings={5}>
+  <span className="rounded-full bg-neutral-950 px-3 py-1 text-xs uppercase tracking-widest text-sky-300 ring-1 ring-sky-300/30">
+    Live
+  </span>
+</PortalRings>`,
+      render: <PortalRingsDemo />,
+    },
+    props: [
+      {
+        name: "size",
+        type: "number",
+        default: "320",
+        description: "Outer diameter of the portal in px.",
+      },
+      {
+        name: "rings",
+        type: "number",
+        default: "5",
+        description: "Number of concentric rings.",
+      },
+      {
+        name: "ringWidth",
+        type: "number",
+        default: "3",
+        description: "Border thickness of each ring in px.",
+      },
+      {
+        name: "duration",
+        type: "number",
+        default: "14",
+        description: "Seconds for the slowest ring's full rotation.",
+      },
+      {
+        name: "color",
+        type: "string",
+        description: "Color of the rings. Default sky.",
+      },
+      {
+        name: "glow",
+        type: "string",
+        description: "Glow color behind the portal. Defaults to `color`.",
+      },
+      {
+        name: "core",
+        type: "boolean",
+        default: "true",
+        description: "Render the soft luminous core.",
+      },
+      {
+        name: "children",
+        type: "ReactNode",
+        description: "Content rendered in the center, on top of the core.",
+      },
+    ],
+    related: ["orbiting-circles", "orbital-menu", "ripple"],
+  },
+
+  // ---------- PerspectiveBox ----------
+  {
+    name: "perspective-box",
+    title: "Perspective Box",
+    description:
+      "A 3D opened gift-box laid flat with all four inner flaps fanned outward, each carrying its own content. The base anchors a logo or hero element, while the four flaps showcase features, plans, or product-tour stops. Hover the box to spread the flaps further. Pure CSS 3D (perspective + rotateX/Y per flap hinge), so it's smooth at any size and ships with no dependencies.",
+    imports: `import { PerspectiveBox } from "@/components/ui/perspective-box";`,
+    usage: `<PerspectiveBox
+  base={<Logo />}
+  panels={[<Panel/>, <Panel/>, <Panel/>, <Panel/>]}
+/>`,
+    defaultExample: {
+      title: "Opened box",
+      code: `<PerspectiveBox
+  size={170}
+  panelHeight={110}
+  base={<Logo />}
+  panels={[
+    <Panel label="Components" />,
+    <Panel label="Themes" />,
+    <Panel label="CLI" />,
+    <Panel label="Docs" />,
+  ]}
+/>`,
+      render: <PerspectiveBoxDemo />,
+    },
+    props: [
+      {
+        name: "size",
+        type: "number",
+        default: "200",
+        description: "Edge length of the square base in px.",
+      },
+      {
+        name: "panelHeight",
+        type: "number",
+        default: "140",
+        description: "Height (depth) of each unfolded flap in px.",
+      },
+      {
+        name: "openAngle",
+        type: "number",
+        default: "115",
+        description:
+          "Resting open angle of each flap in degrees (90 = standing, 180 = fully flipped open).",
+      },
+      {
+        name: "hoverOpenAngle",
+        type: "number",
+        default: "145",
+        description: "Open angle while the box is hovered.",
+      },
+      {
+        name: "tilt",
+        type: "number",
+        default: "55",
+        description: "Tilt of the whole scene in degrees (rotateX).",
+      },
+      {
+        name: "spin",
+        type: "number",
+        default: "-8",
+        description: "Spin of the whole scene in degrees (rotateZ).",
+      },
+      {
+        name: "base",
+        type: "ReactNode",
+        description: "Content rendered in the floor of the box.",
+      },
+      {
+        name: "panels",
+        type: "[ReactNode, ReactNode, ReactNode, ReactNode]",
+        required: true,
+        description:
+          "The four flap contents in order: top, right, bottom, left.",
+      },
+      {
+        name: "panelColor",
+        type: "string",
+        description: "Color of every surface. Default neutral-900.",
+      },
+    ],
+    related: ["fold-out", "flip-card", "cube"],
   },
 ];
 

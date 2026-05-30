@@ -1,0 +1,16 @@
+{
+  "name": "dice-roll",
+  "description": "An interactive 6-sided 3D die. Click (or press space/enter) to tumble in 3D for a configurable duration then settle on a random face. Pure CSS 3D, dependency-free.",
+  "category": "3d",
+  "files": [
+    {
+      "path": "components/dice-roll/dice-roll.tsx",
+      "target": "{{components}}/dice-roll.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["3d", "dice", "die", "roll", "interactive", "random"]
+}
