@@ -1,0 +1,16 @@
+{
+  "name": "split-flap",
+  "description": "A vintage mechanical split-flap display (airport / train-station board). Each cell flips through the charset before settling on its target, with a staggered start across cells. Pure CSS + setTimeout — no dependencies.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/split-flap/split-flap.tsx",
+      "target": "{{components}}/split-flap.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["split-flap", "counter", "vintage", "mechanical", "board", "animated"]
+}

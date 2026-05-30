@@ -1,0 +1,16 @@
+{
+  "name": "code-rain",
+  "description": "Matrix-style digital rain rendered to a canvas: each column tracks its own falling head with a fading trail. DPR-aware, pauses when the page is hidden, and resizes to its container. Optional children render on top.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/code-rain/code-rain.tsx",
+      "target": "{{components}}/code-rain.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["matrix", "rain", "code", "canvas", "background", "hero", "animated"]
+}

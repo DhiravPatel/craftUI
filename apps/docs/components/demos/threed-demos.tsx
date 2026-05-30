@@ -5,6 +5,7 @@ import {
   ActivityHeatmap,
   AnimatedBeam,
   AnimatedChart,
+  AudioVisualizer,
   AnimatedText,
   AnimatedTooltip,
   Aurora,
@@ -22,6 +23,7 @@ import {
   CardStack,
   Carousel3D,
   ChatBubble,
+  CodeRain,
   CoinFlip,
   ColorPicker,
   Confetti,
@@ -56,6 +58,7 @@ import {
   Globe,
   GaugeMeter,
   GravityWell,
+  HeartbeatMonitor,
   Helix,
   HoldToConfirm,
   HoloCard,
@@ -104,6 +107,7 @@ import {
   SegmentedControl,
   Sparkles as SparklesFx,
   SparklesText,
+  SplitFlap,
   StatCard,
   Spotlight,
   SwipeStack,
@@ -4529,6 +4533,102 @@ export function RetroGridDemo() {
           </p>
         </div>
       </RetroGrid>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * CodeRain — Matrix-style backdrop with a centered title.
+ * ------------------------------------------------------------------ */
+export function CodeRainDemo() {
+  return (
+    <div className="flex w-full items-center justify-center px-6 py-10">
+      <CodeRain className="h-72 w-full max-w-lg border border-white/10">
+        <div className="rounded-xl bg-black/40 px-5 py-3 text-center backdrop-blur-sm ring-1 ring-white/10">
+          <p className="text-xs uppercase tracking-widest text-sky-300">
+            System
+          </p>
+          <p className="mt-1 text-xl font-semibold text-white">Initializing…</p>
+        </div>
+      </CodeRain>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * SplitFlap — vintage mechanical board.
+ * ------------------------------------------------------------------ */
+export function SplitFlapDemo() {
+  const [value, setValue] = React.useState("ARRIVED");
+  const options = ["BOARDING", "DELAYED", "ON TIME", "ARRIVED"];
+  return (
+    <div className="flex w-full flex-col items-center gap-4 px-6 py-8">
+      <SplitFlap value={value} digits={8} cellHeight={52} />
+      <div className="flex flex-wrap items-center justify-center gap-2">
+        {options.map((opt) => (
+          <button
+            key={opt}
+            type="button"
+            onClick={() => setValue(opt)}
+            className={
+              opt === value
+                ? "rounded-md bg-sky-300 px-2.5 py-1 text-[11px] font-medium text-neutral-950"
+                : "rounded-md bg-white/[0.06] px-2.5 py-1 text-[11px] font-medium text-white/75 hover:text-white"
+            }
+          >
+            {opt}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * AudioVisualizer — bouncing equalizer bars + play/pause toggle.
+ * ------------------------------------------------------------------ */
+export function AudioVisualizerDemo() {
+  const [playing, setPlaying] = React.useState(true);
+  return (
+    <div className="flex w-full flex-col items-center gap-4 px-6 py-10">
+      <div className="flex w-full max-w-md items-end justify-center rounded-2xl border border-white/10 bg-neutral-950 p-6">
+        <AudioVisualizer bars={40} height={96} playing={playing} />
+      </div>
+      <button
+        type="button"
+        onClick={() => setPlaying((p) => !p)}
+        className="rounded-md bg-white/[0.06] px-3 py-1.5 text-[11px] font-medium text-white/85 hover:text-white"
+      >
+        {playing ? "Pause" : "Play"}
+      </button>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * HeartbeatMonitor — scrolling EKG line with BPM badge.
+ * ------------------------------------------------------------------ */
+export function HeartbeatMonitorDemo() {
+  const [bpm, setBpm] = React.useState(72);
+  return (
+    <div className="flex w-full flex-col items-center gap-3 px-6 py-8">
+      <HeartbeatMonitor bpm={bpm} className="w-full max-w-lg" />
+      <div className="flex items-center gap-2">
+        {[60, 72, 96, 128].map((b) => (
+          <button
+            key={b}
+            type="button"
+            onClick={() => setBpm(b)}
+            className={
+              b === bpm
+                ? "rounded-md bg-sky-300 px-2.5 py-1 text-[11px] font-medium text-neutral-950"
+                : "rounded-md bg-white/[0.06] px-2.5 py-1 text-[11px] font-medium text-white/75 hover:text-white"
+            }
+          >
+            {b} bpm
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

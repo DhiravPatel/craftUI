@@ -165,6 +165,7 @@ import {
   AnimatedChartDemo,
   AnimatedTextDemo,
   AnimatedTooltipDemo,
+  AudioVisualizerDemo,
   AuroraDemo,
   AvatarStackDemo,
   BackgroundBeamsDemo,
@@ -175,6 +176,7 @@ import {
   CardStackDemo,
   Carousel3DDemo,
   ChatBubbleDemo,
+  CodeRainDemo,
   CoinFlipDemo,
   ColorPickerDemo,
   ConfettiDemo,
@@ -205,6 +207,7 @@ import {
   GlitchClipDemo,
   GlobeDemo,
   GravityWellDemo,
+  HeartbeatMonitorDemo,
   HelixDemo,
   HoldToConfirmDemo,
   HoloCardDemo,
@@ -253,6 +256,7 @@ import {
   SparklesDemo,
   SparklesStarfieldDemo,
   SparklesTextDemo,
+  SplitFlapDemo,
   SpotlightDemo,
   StatCardDemo,
   SwipeStackDemo,
@@ -9397,6 +9401,302 @@ const ref = React.useRef<HTMLDivElement>(null);
       },
     ],
     related: ["fold-out", "flip-card", "cube"],
+  },
+
+  // ---------- CodeRain ----------
+  {
+    name: "code-rain",
+    title: "Code Rain",
+    description:
+      "The classic Matrix digital rain, rendered to a canvas. Each column tracks its own falling head; trailing characters fade into the background via a translucent overlay redrawn every frame. The canvas resizes to its container, respects DPR, and pauses when the page is hidden — drop-in for a hero, a 404, or a loading state. Pass `children` to layer content over the rain.",
+    imports: `import { CodeRain } from "@/components/ui/code-rain";`,
+    usage: `<CodeRain className="h-72 w-full">
+  <h1>Initializing…</h1>
+</CodeRain>`,
+    defaultExample: {
+      title: "System boot backdrop",
+      code: `<CodeRain className="h-72 w-full max-w-lg">
+  <div className="rounded-xl bg-black/40 px-5 py-3 backdrop-blur-sm">
+    <p className="text-xs uppercase tracking-widest text-sky-300">System</p>
+    <p className="mt-1 text-xl font-semibold text-white">Initializing…</p>
+  </div>
+</CodeRain>`,
+      render: <CodeRainDemo />,
+    },
+    props: [
+      {
+        name: "charset",
+        type: "string",
+        description: "Characters drawn from this string. Default = katakana + digits.",
+      },
+      {
+        name: "fontSize",
+        type: "number",
+        default: "16",
+        description: "Font size and column width in px.",
+      },
+      {
+        name: "headColor",
+        type: "string",
+        description: "Color of the leading character in each column.",
+      },
+      {
+        name: "trailColor",
+        type: "string",
+        description: "Color of the trailing characters.",
+      },
+      {
+        name: "background",
+        type: "string",
+        description: "Background color painted under the rain.",
+      },
+      {
+        name: "fade",
+        type: "number",
+        default: "0.08",
+        description: "Per-frame fade overlay strength (0–1). Higher = shorter trails.",
+      },
+      {
+        name: "speed",
+        type: "number",
+        default: "1",
+        description: "Speed multiplier — higher = faster drops.",
+      },
+      {
+        name: "children",
+        type: "ReactNode",
+        description: "Content rendered on top of the rain, centered.",
+      },
+    ],
+    related: ["background-beams", "wavy-background", "dot-pattern"],
+  },
+
+  // ---------- SplitFlap ----------
+  {
+    name: "split-flap",
+    title: "Split Flap",
+    description:
+      "A vintage mechanical split-flap display — the kind that used to clatter through letters on an old airport board or train-station sign. When `value` changes, each cell cycles rapidly through `charset` before settling on its target, with a staggered start across cells so the message ripples in from the left. Pure CSS + setTimeout — no canvas, no dependencies.",
+    imports: `import { SplitFlap } from "@/components/ui/split-flap";`,
+    usage: `<SplitFlap value="ARRIVED" digits={8} />`,
+    defaultExample: {
+      title: "Departure board",
+      code: `const [value, setValue] = React.useState("ARRIVED");
+
+<SplitFlap value={value} digits={8} cellHeight={52} />`,
+      render: <SplitFlapDemo />,
+    },
+    props: [
+      {
+        name: "value",
+        type: "string",
+        required: true,
+        description: "The string to display.",
+      },
+      {
+        name: "digits",
+        type: "number",
+        description:
+          "Number of cells. The value is right-padded with spaces. Default = value.length.",
+      },
+      {
+        name: "charset",
+        type: "string",
+        description: "Charset cycled through. Default A–Z, 0–9, space.",
+      },
+      {
+        name: "cellHeight",
+        type: "number",
+        default: "64",
+        description: "Height of each cell in px.",
+      },
+      {
+        name: "cellWidth",
+        type: "number",
+        description: "Width of each cell in px. Default = cellHeight × 0.66.",
+      },
+      {
+        name: "flipInterval",
+        type: "number",
+        default: "55",
+        description: "Time between flips while cycling, in ms.",
+      },
+      {
+        name: "extraFlips",
+        type: "number",
+        default: "8",
+        description: "Extra random flips before each cell settles.",
+      },
+      {
+        name: "stagger",
+        type: "number",
+        default: "80",
+        description: "Delay (ms) between adjacent cells starting their cycle.",
+      },
+      {
+        name: "background",
+        type: "string",
+        description: "Background color of each cell.",
+      },
+      {
+        name: "color",
+        type: "string",
+        description: "Text color.",
+      },
+    ],
+    related: ["number-flip", "text-scramble", "number-ticker"],
+  },
+
+  // ---------- AudioVisualizer ----------
+  {
+    name: "audio-visualizer",
+    title: "Audio Visualizer",
+    description:
+      "A row of animated bars, like the equalizer in a music or podcast player. Per-bar CSS animation durations and delays are derived deterministically from the bar's index (no `Math.random()` at render time — SSR-safe). Toggle `playing` to freeze the bars at idle height when audio is paused. Pure CSS — no Web Audio, no canvas — so it's useful as decoration rather than for real signal display.",
+    imports: `import { AudioVisualizer } from "@/components/ui/audio-visualizer";`,
+    usage: `<AudioVisualizer bars={32} height={96} playing={isPlaying} />`,
+    defaultExample: {
+      title: "Equalizer with pause",
+      code: `const [playing, setPlaying] = React.useState(true);
+
+<AudioVisualizer bars={40} height={96} playing={playing} />`,
+      render: <AudioVisualizerDemo />,
+    },
+    props: [
+      {
+        name: "bars",
+        type: "number",
+        default: "32",
+        description: "Number of bars to render.",
+      },
+      {
+        name: "height",
+        type: "number",
+        default: "96",
+        description: "Overall height of the visualizer in px.",
+      },
+      {
+        name: "barWidth",
+        type: "number",
+        default: "4",
+        description: "Width of each bar in px.",
+      },
+      {
+        name: "gap",
+        type: "number",
+        default: "3",
+        description: "Gap between bars in px.",
+      },
+      {
+        name: "color",
+        type: "string",
+        description: "Top color of the bar gradient. Default sky.",
+      },
+      {
+        name: "baseColor",
+        type: "string",
+        description: "Bottom color of the bar gradient. Defaults to `color`.",
+      },
+      {
+        name: "minHeight",
+        type: "number",
+        default: "0.15",
+        description: "Lowest bar height as a fraction of `height`.",
+      },
+      {
+        name: "maxHeight",
+        type: "number",
+        default: "1",
+        description: "Tallest bar height as a fraction of `height`.",
+      },
+      {
+        name: "playing",
+        type: "boolean",
+        default: "true",
+        description: "Whether bars animate.",
+      },
+      {
+        name: "speed",
+        type: "number",
+        default: "1.4",
+        description: "Approximate wave frequency in Hz.",
+      },
+      {
+        name: "mirrored",
+        type: "boolean",
+        default: "false",
+        description:
+          "Mirror the bars across the horizontal centerline (oscilloscope look).",
+      },
+      {
+        name: "rounded",
+        type: "boolean",
+        default: "true",
+        description: "Round the bar tops.",
+      },
+    ],
+    related: ["sparkles", "wave-grid", "ripple"],
+  },
+
+  // ---------- HeartbeatMonitor ----------
+  {
+    name: "heartbeat-monitor",
+    title: "Heartbeat Monitor",
+    description:
+      "An SVG EKG / heart-rate monitor: a continuously scrolling pulse line on a faint grid, with an optional BPM badge and a heart icon that throbs in time. The line is one repeating PQRS-T tile translated leftward via SMIL `animateTransform`, so the scroll happens in SVG user-space units and looks correct at any container width. The animation duration is derived from `bpm`, so the visual pulse stays in sync with the displayed number.",
+    imports: `import { HeartbeatMonitor } from "@/components/ui/heartbeat-monitor";`,
+    usage: `<HeartbeatMonitor bpm={72} />`,
+    defaultExample: {
+      title: "Live vitals",
+      code: `const [bpm, setBpm] = React.useState(72);
+
+<HeartbeatMonitor bpm={bpm} />`,
+      render: <HeartbeatMonitorDemo />,
+    },
+    props: [
+      {
+        name: "bpm",
+        type: "number",
+        default: "72",
+        description: "Beats per minute shown in the badge and used to time the pulse.",
+      },
+      {
+        name: "color",
+        type: "string",
+        description: "Color of the pulse line and heart. Default sky.",
+      },
+      {
+        name: "strokeWidth",
+        type: "number",
+        default: "2",
+        description: "Line thickness in px.",
+      },
+      {
+        name: "height",
+        type: "number",
+        default: "160",
+        description: "Height of the monitor in px.",
+      },
+      {
+        name: "grid",
+        type: "boolean",
+        default: "true",
+        description: "Show the faint background grid.",
+      },
+      {
+        name: "showBadge",
+        type: "boolean",
+        default: "true",
+        description: "Show the BPM badge and pulsing heart in the corner.",
+      },
+      {
+        name: "glow",
+        type: "boolean",
+        default: "true",
+        description: "Apply an SVG blur filter for the soft glow behind the line.",
+      },
+    ],
+    related: ["animated-chart", "stat-card", "gauge-meter"],
   },
 ];
 

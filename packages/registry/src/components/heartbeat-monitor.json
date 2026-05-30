@@ -1,0 +1,16 @@
+{
+  "name": "heartbeat-monitor",
+  "description": "An SVG EKG / heart-rate monitor: a continuously scrolling pulse line on a faint grid, with a BPM badge and a heart icon that throbs in time. Pulse rate is derived from `bpm`, so the visual stays in sync with the displayed number.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/heartbeat-monitor/heartbeat-monitor.tsx",
+      "target": "{{components}}/heartbeat-monitor.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["ekg", "heartbeat", "monitor", "pulse", "health", "vital", "svg"]
+}

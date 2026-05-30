@@ -8,6 +8,7 @@ import animatedBeam from "./components/animated-beam.json";
 import animatedChart from "./components/animated-chart.json";
 import animatedText from "./components/animated-text.json";
 import animatedTooltip from "./components/animated-tooltip.json";
+import audioVisualizer from "./components/audio-visualizer.json";
 import aurora from "./components/aurora.json";
 import avatar from "./components/avatar.json";
 import avatarStack from "./components/avatar-stack.json";
@@ -25,6 +26,7 @@ import cardStack from "./components/card-stack.json";
 import carousel3d from "./components/carousel-3d.json";
 import chatBubble from "./components/chat-bubble.json";
 import checkbox from "./components/checkbox.json";
+import codeRain from "./components/code-rain.json";
 import coinFlip from "./components/coin-flip.json";
 import combobox from "./components/combobox.json";
 import command from "./components/command.json";
@@ -70,6 +72,7 @@ import holdToConfirm from "./components/hold-to-confirm.json";
 import holoCard from "./components/holo-card.json";
 import holoSlices from "./components/holo-slices.json";
 import hoverBorderGradient from "./components/hover-border-gradient.json";
+import heartbeatMonitor from "./components/heartbeat-monitor.json";
 import hoverCard from "./components/hover-card.json";
 import infiniteMovingCards from "./components/infinite-moving-cards.json";
 import input from "./components/input.json";
@@ -132,6 +135,7 @@ import slider from "./components/slider.json";
 import sparkles from "./components/sparkles.json";
 import sparklesText from "./components/sparkles-text.json";
 import spinner from "./components/spinner.json";
+import splitFlap from "./components/split-flap.json";
 import spotlight from "./components/spotlight.json";
 import stat from "./components/stat.json";
 import statCard from "./components/stat-card.json";
@@ -173,6 +177,7 @@ export const registry: Registry = [
   animatedChart,
   animatedText,
   animatedTooltip,
+  audioVisualizer,
   aurora,
   avatar,
   avatarStack,
@@ -190,6 +195,7 @@ export const registry: Registry = [
   carousel3d,
   chatBubble,
   checkbox,
+  codeRain,
   coinFlip,
   combobox,
   command,
@@ -235,6 +241,7 @@ export const registry: Registry = [
   holoCard,
   holoSlices,
   hoverBorderGradient,
+  heartbeatMonitor,
   hoverCard,
   infiniteMovingCards,
   input,
@@ -297,6 +304,7 @@ export const registry: Registry = [
   sparkles,
   sparklesText,
   spinner,
+  splitFlap,
   spotlight,
   stat,
   statCard,

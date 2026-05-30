@@ -1,0 +1,16 @@
+{
+  "name": "audio-visualizer",
+  "description": "A row of bars that bounce like an equalizer. Per-bar CSS animation durations and delays are derived deterministically from the index (SSR-safe). Toggle `playing` to freeze the bars when audio is paused.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/audio-visualizer/audio-visualizer.tsx",
+      "target": "{{components}}/audio-visualizer.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["audio", "equalizer", "visualizer", "bars", "music", "podcast"]
+}

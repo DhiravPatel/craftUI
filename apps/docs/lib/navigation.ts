@@ -211,6 +211,10 @@ export const navigation: NavSection[] = [
       { title: "Dice Roll", href: "/docs/components/dice-roll" },
       { title: "Portal Rings", href: "/docs/components/portal-rings" },
       { title: "Perspective Box", href: "/docs/components/perspective-box" },
+      { title: "Code Rain", href: "/docs/components/code-rain" },
+      { title: "Split Flap", href: "/docs/components/split-flap" },
+      { title: "Audio Visualizer", href: "/docs/components/audio-visualizer" },
+      { title: "Heartbeat Monitor", href: "/docs/components/heartbeat-monitor" },
     ],
   },
 ];
