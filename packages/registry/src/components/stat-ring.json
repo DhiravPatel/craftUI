@@ -1,0 +1,16 @@
+{
+  "name": "stat-ring",
+  "description": "Circular KPI ring with a large central value, optional label and unit suffix, and an optional trend pill (auto-tinted green/red/neutral based on the delta). The arc draws from 0 to the target percentage on mount with a smooth CSS transition.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/stat-ring/stat-ring.tsx",
+      "target": "{{components}}/stat-ring.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["stat", "kpi", "ring", "progress", "circular", "dashboard", "trend"]
+}

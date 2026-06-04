@@ -223,6 +223,10 @@ export const navigation: NavSection[] = [
       { title: "Plan Card", href: "/docs/components/plan-card" },
       { title: "Invite People", href: "/docs/components/invite-people" },
       { title: "Task Card", href: "/docs/components/task-card" },
+      { title: "Mesh Gradient", href: "/docs/components/mesh-gradient" },
+      { title: "Countdown Timer", href: "/docs/components/countdown-timer" },
+      { title: "Glass Card", href: "/docs/components/glass-card" },
+      { title: "Stat Ring", href: "/docs/components/stat-ring" },
     ],
   },
 ];

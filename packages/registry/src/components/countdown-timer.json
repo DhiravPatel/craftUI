@@ -1,0 +1,16 @@
+{
+  "name": "countdown-timer",
+  "description": "Flip-clock-style countdown to a target date. Days / Hours / Minutes / Seconds rendered as paired digit cells with the recognizable horizontal seam. Each cell remounts on value change to retrigger its flip-in keyframe. Fires onComplete at zero.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/countdown-timer/countdown-timer.tsx",
+      "target": "{{components}}/countdown-timer.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["countdown", "timer", "launch", "event", "flip-clock", "deadline"]
+}

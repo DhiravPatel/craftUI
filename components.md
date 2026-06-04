@@ -1,6 +1,6 @@
 # CraftUI components
 
-> A copy-paste component library in a pnpm + turbo monorepo. **175 components** ship today.
+> A copy-paste component library in a pnpm + turbo monorepo. **179 components** ship today.
 
 ## How to use this file
 
@@ -29,34 +29,35 @@ Browse the live previews and full prop tables at the [docs site](./apps/docs).
 | [`carousel-3d`](#carousel-3d) | [`chat-bubble`](#chat-bubble) | [`checkbox`](#checkbox) | [`code-rain`](#code-rain) |
 | [`coin-flip`](#coin-flip) | [`color-picker`](#color-picker) | [`combobox`](#combobox) | [`command`](#command) |
 | [`compare`](#compare) | [`comparison-table`](#comparison-table) | [`confetti`](#confetti) | [`context-menu`](#context-menu) |
-| [`copy-button`](#copy-button) | [`count-up-ring`](#count-up-ring) | [`coverflow`](#coverflow) | [`cube`](#cube) |
-| [`cube-matrix`](#cube-matrix) | [`cursor-trail`](#cursor-trail) | [`data-table`](#data-table) | [`date-picker`](#date-picker) |
-| [`dialog`](#dialog) | [`dice-roll`](#dice-roll) | [`direction-aware-hover`](#direction-aware-hover) | [`dot-pattern`](#dot-pattern) |
-| [`dot-progress`](#dot-progress) | [`drawer`](#drawer) | [`dropdown-menu`](#dropdown-menu) | [`empty-state`](#empty-state) |
-| [`evervault-card`](#evervault-card) | [`feature-card`](#feature-card) | [`file-upload`](#file-upload) | [`flip-card`](#flip-card) |
-| [`flip-words`](#flip-words) | [`floating-dock`](#floating-dock) | [`flux-panels`](#flux-panels) | [`focus-cards`](#focus-cards) |
-| [`fold-out`](#fold-out) | [`following-pointer`](#following-pointer) | [`footer`](#footer) | [`form`](#form) |
-| [`gauge-meter`](#gauge-meter) | [`glitch-clip`](#glitch-clip) | [`globe`](#globe) | [`gravity-well`](#gravity-well) |
-| [`heartbeat-monitor`](#heartbeat-monitor) | [`helix`](#helix) | [`hold-to-confirm`](#hold-to-confirm) | [`holo-card`](#holo-card) |
-| [`holo-slices`](#holo-slices) | [`hover-border-gradient`](#hover-border-gradient) | [`hover-card`](#hover-card) | [`infinite-moving-cards`](#infinite-moving-cards) |
-| [`input`](#input) | [`input-otp`](#input-otp) | [`invite-people`](#invite-people) | [`kanban-board`](#kanban-board) |
-| [`kbd`](#kbd) | [`label`](#label) | [`lamp`](#lamp) | [`layout`](#layout) |
-| [`lens`](#lens) | [`logo-cloud`](#logo-cloud) | [`magic-layer`](#magic-layer) | [`magnet`](#magnet) |
-| [`magnetic-button`](#magnetic-button) | [`marquee-3d`](#marquee-3d) | [`mention-input`](#mention-input) | [`meteors`](#meteors) |
-| [`moving-border`](#moving-border) | [`multi-step-loader`](#multi-step-loader) | [`navbar`](#navbar) | [`neon-glow`](#neon-glow) |
-| [`neon-portal`](#neon-portal) | [`notification-stack`](#notification-stack) | [`number-flip`](#number-flip) | [`number-input`](#number-input) |
-| [`number-ticker`](#number-ticker) | [`onboarding-checklist`](#onboarding-checklist) | [`orbit-stack`](#orbit-stack) | [`orbital-menu`](#orbital-menu) |
-| [`orbiting-circles`](#orbiting-circles) | [`page-curl`](#page-curl) | [`pagination`](#pagination) | [`paper-plane`](#paper-plane) |
-| [`parallax`](#parallax) | [`payment-card`](#payment-card) | [`perspective-box`](#perspective-box) | [`phone-mockup`](#phone-mockup) |
-| [`pin-3d`](#pin-3d) | [`pin-board`](#pin-board) | [`plan-card`](#plan-card) | [`plasma-field`](#plasma-field) |
-| [`popover`](#popover) | [`portal-rings`](#portal-rings) | [`pricing-cards`](#pricing-cards) | [`pricing-slider`](#pricing-slider) |
-| [`prism-orb`](#prism-orb) | [`progress`](#progress) | [`quantum-grid`](#quantum-grid) | [`radio-group`](#radio-group) |
-| [`rating`](#rating) | [`resizable`](#resizable) | [`retro-grid`](#retro-grid) | [`ripple`](#ripple) |
-| [`scratch-card`](#scratch-card) | [`scroll-area`](#scroll-area) | [`scroll-progress`](#scroll-progress) | [`segmented-control`](#segmented-control) |
-| [`select`](#select) | [`separator`](#separator) | [`sheet`](#sheet) | [`sidebar`](#sidebar) |
-| [`skeleton`](#skeleton) | [`slider`](#slider) | [`sparkles`](#sparkles) | [`sparkles-text`](#sparkles-text) |
-| [`spinner`](#spinner) | [`split-flap`](#split-flap) | [`spotlight`](#spotlight) | [`stat`](#stat) |
-| [`stat-card`](#stat-card) | [`stepper`](#stepper) | [`swipe-stack`](#swipe-stack) | [`switch`](#switch) |
+| [`copy-button`](#copy-button) | [`count-up-ring`](#count-up-ring) | [`countdown-timer`](#countdown-timer) | [`coverflow`](#coverflow) |
+| [`cube`](#cube) | [`cube-matrix`](#cube-matrix) | [`cursor-trail`](#cursor-trail) | [`data-table`](#data-table) |
+| [`date-picker`](#date-picker) | [`dialog`](#dialog) | [`dice-roll`](#dice-roll) | [`direction-aware-hover`](#direction-aware-hover) |
+| [`dot-pattern`](#dot-pattern) | [`dot-progress`](#dot-progress) | [`drawer`](#drawer) | [`dropdown-menu`](#dropdown-menu) |
+| [`empty-state`](#empty-state) | [`evervault-card`](#evervault-card) | [`feature-card`](#feature-card) | [`file-upload`](#file-upload) |
+| [`flip-card`](#flip-card) | [`flip-words`](#flip-words) | [`floating-dock`](#floating-dock) | [`flux-panels`](#flux-panels) |
+| [`focus-cards`](#focus-cards) | [`fold-out`](#fold-out) | [`following-pointer`](#following-pointer) | [`footer`](#footer) |
+| [`form`](#form) | [`gauge-meter`](#gauge-meter) | [`glass-card`](#glass-card) | [`glitch-clip`](#glitch-clip) |
+| [`globe`](#globe) | [`gravity-well`](#gravity-well) | [`heartbeat-monitor`](#heartbeat-monitor) | [`helix`](#helix) |
+| [`hold-to-confirm`](#hold-to-confirm) | [`holo-card`](#holo-card) | [`holo-slices`](#holo-slices) | [`hover-border-gradient`](#hover-border-gradient) |
+| [`hover-card`](#hover-card) | [`infinite-moving-cards`](#infinite-moving-cards) | [`input`](#input) | [`input-otp`](#input-otp) |
+| [`invite-people`](#invite-people) | [`kanban-board`](#kanban-board) | [`kbd`](#kbd) | [`label`](#label) |
+| [`lamp`](#lamp) | [`layout`](#layout) | [`lens`](#lens) | [`logo-cloud`](#logo-cloud) |
+| [`magic-layer`](#magic-layer) | [`magnet`](#magnet) | [`magnetic-button`](#magnetic-button) | [`marquee-3d`](#marquee-3d) |
+| [`mention-input`](#mention-input) | [`mesh-gradient`](#mesh-gradient) | [`meteors`](#meteors) | [`moving-border`](#moving-border) |
+| [`multi-step-loader`](#multi-step-loader) | [`navbar`](#navbar) | [`neon-glow`](#neon-glow) | [`neon-portal`](#neon-portal) |
+| [`notification-stack`](#notification-stack) | [`number-flip`](#number-flip) | [`number-input`](#number-input) | [`number-ticker`](#number-ticker) |
+| [`onboarding-checklist`](#onboarding-checklist) | [`orbit-stack`](#orbit-stack) | [`orbital-menu`](#orbital-menu) | [`orbiting-circles`](#orbiting-circles) |
+| [`page-curl`](#page-curl) | [`pagination`](#pagination) | [`paper-plane`](#paper-plane) | [`parallax`](#parallax) |
+| [`payment-card`](#payment-card) | [`perspective-box`](#perspective-box) | [`phone-mockup`](#phone-mockup) | [`pin-3d`](#pin-3d) |
+| [`pin-board`](#pin-board) | [`plan-card`](#plan-card) | [`plasma-field`](#plasma-field) | [`popover`](#popover) |
+| [`portal-rings`](#portal-rings) | [`pricing-cards`](#pricing-cards) | [`pricing-slider`](#pricing-slider) | [`prism-orb`](#prism-orb) |
+| [`progress`](#progress) | [`quantum-grid`](#quantum-grid) | [`radio-group`](#radio-group) | [`rating`](#rating) |
+| [`resizable`](#resizable) | [`retro-grid`](#retro-grid) | [`ripple`](#ripple) | [`scratch-card`](#scratch-card) |
+| [`scroll-area`](#scroll-area) | [`scroll-progress`](#scroll-progress) | [`segmented-control`](#segmented-control) | [`select`](#select) |
+| [`separator`](#separator) | [`sheet`](#sheet) | [`sidebar`](#sidebar) | [`skeleton`](#skeleton) |
+| [`slider`](#slider) | [`sparkles`](#sparkles) | [`sparkles-text`](#sparkles-text) | [`spinner`](#spinner) |
+| [`split-flap`](#split-flap) | [`spotlight`](#spotlight) | [`stat`](#stat) | [`stat-card`](#stat-card) |
+| [`stat-ring`](#stat-ring) | [`stepper`](#stepper) | [`swipe-stack`](#swipe-stack) | [`switch`](#switch) |
 | [`table`](#table) | [`tabs`](#tabs) | [`tag-input`](#tag-input) | [`task-card`](#task-card) |
 | [`testimonial-quote`](#testimonial-quote) | [`text-generate-effect`](#text-generate-effect) | [`text-scramble`](#text-scramble) | [`textarea`](#textarea) |
 | [`theme-provider`](#theme-provider) | [`theme-toggle`](#theme-toggle) | [`tilt`](#tilt) | [`tilt-tiles`](#tilt-tiles) |
@@ -70,7 +71,7 @@ Browse the live previews and full prop tables at the [docs site](./apps/docs).
 - <a id="invite-people"></a>**`invite-people`** — Team invite block for SaaS settings. Email field with inline validation, role dropdown, Send button, and a pending-invites list with Resend / Revoke per row. Fully callback-driven. _keywords: invite, team, members, settings, form, roles, saas_
 - <a id="mention-input"></a>**`mention-input`** — A textarea with @ mention autocomplete. Type `@` to open the dropdown, filter by name or handle, navigate with arrow keys, and Enter to insert the mention at the cursor. Self-contained, no dependencies. _keywords: mention, input, textarea, autocomplete, comment, social_
 
-## Display <small>(107)</small>
+## Display <small>(111)</small>
 
 - <a id="activity-heatmap"></a>**`activity-heatmap`** — GitHub-style contribution calendar. Auto-bucketed intensity cells, month labels, an optional legend, a diagonal mount-in animation, and click-to-select. _keywords: heatmap, calendar, activity, contributions, chart, saas_
 - <a id="animated-beam"></a>**`animated-beam`** — Draws a glowing gradient beam between two elements and sweeps light along it on a loop. Give it a positioned container plus refs to a from and to node; it measures their centers, draws a curved SVG path, and recomputes on resize. Perfect for connect-your-tools, integration maps, and architecture diagrams. The sweep uses SVG SMIL, so it runs without JavaScript once painted. _keywords: beam, animated, connect, integration, diagram, svg, gradient, network_
@@ -96,6 +97,7 @@ Browse the live previews and full prop tables at the [docs site](./apps/docs).
 - <a id="comparison-table"></a>**`comparison-table`** — Plan / feature comparison matrix for pricing pages. Highlightable column with a Popular ribbon, grouped feature sections, and cells that accept booleans, text, or any node, plus an optional CTA row. _keywords: comparison, table, pricing, plans, features, saas_
 - <a id="confetti"></a>**`confetti`** — A celebratory particle burst on a transparent canvas. Drop it inside a relative (or fixed inset-0) container and call fire() on its ref — on a successful payment, a finished onboarding step, a won game. Pieces fling in a cone, tumble under gravity, and fade out, then the animation stops on its own. Dependency-free and pointer-events-none. _keywords: confetti, celebration, particles, canvas, success, animation, reward_
 - <a id="count-up-ring"></a>**`count-up-ring`** — Circular SVG progress ring that animates its fill from 0 to value/max on viewport entry, with a synchronized count-up label at the center. _keywords: progress, ring, metric, svg, animated_
+- <a id="countdown-timer"></a>**`countdown-timer`** — Flip-clock-style countdown to a target date. Days / Hours / Minutes / Seconds rendered as paired digit cells with the recognizable horizontal seam. Each cell remounts on value change to retrigger its flip-in keyframe. Fires onComplete at zero. _keywords: countdown, timer, launch, event, flip-clock, deadline_
 - <a id="coverflow"></a>**`coverflow`** — iTunes-style 3D linear carousel. Center item faces the viewer; sides are angled into the distance. Click to bring an item forward. _keywords: 3d, carousel, coverflow, gallery_
 - <a id="cube"></a>**`cube`** — A 6-face 3D cube. Drive the visible face from props or animate through all six. Pure CSS transforms. _keywords: 3d, cube, rotate, carousel, perspective_
 - <a id="cursor-trail"></a>**`cursor-trail`** — Wraps an area and renders a fading dot trail behind the cursor as it moves. _keywords: cursor, trail, pointer, interactive, animated_
@@ -113,6 +115,7 @@ Browse the live previews and full prop tables at the [docs site](./apps/docs).
 - <a id="fold-out"></a>**`fold-out`** — A double-door card whose left and right halves swing open to reveal content behind them. _keywords: 3d, fold, origami, doors, reveal, interactive_
 - <a id="following-pointer"></a>**`following-pointer`** — Custom cursor that follows the pointer inside a wrapped area. Hide the system cursor and replace it with a branded indicator (or any React node). _keywords: 3d, pointer, cursor, interactive, hover_
 - <a id="gauge-meter"></a>**`gauge-meter`** — Half-circle KPI gauge with an animated sweep and count-up, optional zoned color stops (green/amber/red), tick marks, and a glow on the filled arc. _keywords: gauge, meter, kpi, dashboard, chart, saas_
+- <a id="glass-card"></a>**`glass-card`** — A frosted-glass surface with a refracted edge. Backdrop-blurred translucent fill, a mask-stenciled gradient border that catches light like real glass, and a soft sheen that sweeps across once on mount. Works best layered over a colored or gradient backdrop. _keywords: glass, frosted, card, blur, glassmorphism, surface_
 - <a id="glitch-clip"></a>**`glitch-clip`** — Wrapper that splits its content into horizontal slices on hover, each shifted by a small random offset for a digital-glitch effect. _keywords: glitch, clip-path, hover, slices, animated_
 - <a id="globe"></a>**`globe`** — Drag-to-rotate 3D dotted globe. Auto-rotates when idle; click + drag to spin in any direction. Place markers at lat/lng to highlight cities. Pure CSS 3D — no Three.js. _keywords: 3d, globe, earth, rotate, interactive_
 - <a id="gravity-well"></a>**`gravity-well`** — A layered 3D gravity well made from pulsating depth rings. _keywords: 3d, depth, rings, well, animated_
@@ -130,6 +133,7 @@ Browse the live previews and full prop tables at the [docs site](./apps/docs).
 - <a id="magic-layer"></a>**`magic-layer`** — Stack of layers that separates into discrete Z-depths on hover for an X-ray reveal effect. _keywords: 3d, layers, depth, xray, hover, tilt_
 - <a id="magnet"></a>**`magnet`** — Element gravitates toward the cursor when nearby. Listens to window mousemove and translates within a configurable range. Snaps back when out of range. _keywords: 3d, magnet, cursor, interactive, hover_
 - <a id="marquee-3d"></a>**`marquee-3d`** — Perspective-tilted marquee. Multiple rows scroll horizontally on a 3D-tilted plane, alternating direction for a parallax-y effect. Pure CSS animation. _keywords: 3d, marquee, scroll, perspective, infinite_
+- <a id="mesh-gradient"></a>**`mesh-gradient`** — Stripe / Linear-style animated mesh-gradient backdrop. 3 to 6 softly drifting, heavily blurred color blobs over a dark canvas, with an optional grain overlay for a WebGL-mesh feel without WebGL. Each blob drifts on its own independent keyframe loop so motion never loops on a beat. _keywords: mesh-gradient, gradient, background, hero, animated, landing_
 - <a id="meteors"></a>**`meteors`** — Animated meteor shower overlay. Drop into any container — meteors stream diagonally across with randomized speed and delay. _keywords: 3d, meteors, shower, animation, background_
 - <a id="moving-border"></a>**`moving-border`** — Animated conic-gradient border that traces the perimeter. Wrap any content to add a premium, attention-grabbing edge. _keywords: 3d, border, gradient, animation, card_
 - <a id="neon-glow"></a>**`neon-glow`** — Neon glow wrapper. Layers concentric box-shadows in a chosen color to make any element look like a neon sign — dark backgrounds make it pop. _keywords: 3d, neon, glow, border, premium_
@@ -163,6 +167,7 @@ Browse the live previews and full prop tables at the [docs site](./apps/docs).
 - <a id="spotlight"></a>**`spotlight`** — Cursor-following spotlight overlay. Wraps a section to add a soft, depth-conveying light source that tracks the pointer. _keywords: 3d, spotlight, hover, glow, hero_
 - <a id="stat"></a>**`stat`** — A purpose-built KPI card with label, value, trend delta, and optional helper text. _keywords: stat, metric, kpi, trend_
 - <a id="stat-card"></a>**`stat-card`** — Polished metric card with animated count-up on view, optional trend indicator, and optional inline sparkline. _keywords: stat, metric, saas, landing, animated_
+- <a id="stat-ring"></a>**`stat-ring`** — Circular KPI ring with a large central value, optional label and unit suffix, and an optional trend pill (auto-tinted green/red/neutral based on the delta). The arc draws from 0 to the target percentage on mount with a smooth CSS transition. _keywords: stat, kpi, ring, progress, circular, dashboard, trend_
 - <a id="swipe-stack"></a>**`swipe-stack`** — Draggable Tinder-style card stack with rotation, dismiss threshold, and Like/Nope hint badges. _keywords: 3d, swipe, drag, card, tinder, stack, interactive_
 - <a id="table"></a>**`table`** — Semantic HTML table with styled parts. _keywords: table, grid_
 - <a id="task-card"></a>**`task-card`** — Linear / Asana-style task row card with an ID, title, description, status glyph (progress dots that visually match Linear), colored priority chip, tags, assignee avatar, subtask count, comment count, and due-date pill that goes danger when overdue. _keywords: task, card, linear, asana, kanban, project, issue_

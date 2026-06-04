@@ -186,6 +186,7 @@ import {
   ComparisonTableDemo,
   CopyButtonDemo,
   CountUpRingDemo,
+  CountdownTimerDemo,
   CoverflowDemo,
   CubeDemo,
   CubeMatrixDemo,
@@ -205,6 +206,7 @@ import {
   FoldOutDemo,
   FollowingPointerDemo,
   GaugeMeterDemo,
+  GlassCardDemo,
   GlitchClipDemo,
   GlobeDemo,
   GravityWellDemo,
@@ -225,6 +227,7 @@ import {
   MagneticButtonDemo,
   Marquee3DDemo,
   MentionInputDemo,
+  MeshGradientDemo,
   MeteorsDemo,
   MovingBorderDemo,
   MultiStepLoaderDemo,
@@ -265,6 +268,7 @@ import {
   SplitFlapDemo,
   SpotlightDemo,
   StatCardDemo,
+  StatRingDemo,
   SwipeStackDemo,
   TagInputDemo,
   TaskCardDemo,
@@ -10225,6 +10229,135 @@ const ref = React.useRef<HTMLDivElement>(null);
       { name: "comments", type: "number", description: "Comment count chip." },
     ],
     related: ["kanban-board", "stepper", "stat-card"],
+  },
+
+  // ---------- MeshGradient ----------
+  {
+    name: "mesh-gradient",
+    title: "Mesh Gradient",
+    description:
+      "A Stripe / Linear-style animated mesh-gradient backdrop. 3–6 softly drifting, heavily blurred color blobs render over a dark canvas with an optional grain overlay, producing the WebGL-mesh look without any WebGL. Each blob drifts on its own independent CSS keyframe loop, so motion never loops on a beat. Drop content in as `children` to layer hero copy on top.",
+    imports: `import { MeshGradient } from "@/components/ui/mesh-gradient";`,
+    usage: `<MeshGradient className="h-80" radius={24}>
+  <Hero />
+</MeshGradient>`,
+    defaultExample: {
+      title: "Hero with mesh backdrop",
+      code: `<MeshGradient className="h-80 w-full max-w-2xl" radius={24}>
+  <div className="flex h-80 flex-col items-center justify-center text-center">
+    <h3 className="text-4xl font-bold text-white">Ship something beautiful</h3>
+    <Button>Get started</Button>
+  </div>
+</MeshGradient>`,
+      render: <MeshGradientDemo />,
+    },
+    props: [
+      { name: "blobs", type: "MeshGradientBlob[]", description: "Override the default 4-blob sky/purple/rose/teal palette. Each = { color, x?, y?, size?, duration?, drift? }." },
+      { name: "background", type: "string", description: "Background color painted under the mesh. Default neutral-950." },
+      { name: "blur", type: "number", default: "90", description: "Gaussian blur strength applied to the blob layer in px." },
+      { name: "grain", type: "number", default: "0.08", description: "Grain noise overlay opacity (0–1). Set 0 to disable." },
+      { name: "radius", type: "number", default: "0", description: "Border radius of the surface in px." },
+      { name: "border", type: "boolean", default: "true", description: "Render an inner edge ring for the glass look." },
+      { name: "children", type: "ReactNode", description: "Content layered on top of the gradient." },
+    ],
+    related: ["aurora", "background-beams", "wavy-background"],
+  },
+
+  // ---------- CountdownTimer ----------
+  {
+    name: "countdown-timer",
+    title: "Countdown Timer",
+    description:
+      "A flip-clock-style countdown to a target date. Renders Days / Hours / Minutes / Seconds as paired digit cells, each with the recognizable horizontal seam. Every time a digit changes the cell is remounted via React's `key` so its CSS flip-in keyframe re-fires, producing a continuous mechanical-board tick. Auto-updates every second, fires `onComplete` once at zero, and swaps in `completedContent` afterwards. SSR-safe (the first paint shows the full duration before client-side timing kicks in).",
+    imports: `import { CountdownTimer } from "@/components/ui/countdown-timer";`,
+    usage: `<CountdownTimer target="2027-01-15T12:00:00Z" />`,
+    defaultExample: {
+      title: "Launch countdown",
+      code: `<CountdownTimer target={new Date(Date.now() + 9 * 86400_000)} cellHeight={56} />`,
+      render: <CountdownTimerDemo />,
+    },
+    props: [
+      { name: "target", type: "Date | string | number", required: true, description: "Target date — Date instance, ISO string, or epoch ms." },
+      { name: "hideZeroLeading", type: "boolean", default: "false", description: "Hide leading groups (Days / Hours) when their value is 0." },
+      { name: "showSeconds", type: "boolean", default: "true", description: "Show the seconds group." },
+      { name: "labels", type: "{ days?, hours?, minutes?, seconds? }", description: "Custom labels under each group." },
+      { name: "cellHeight", type: "number", default: "64", description: "Height of each flip cell in px." },
+      { name: "cellWidth", type: "number", description: "Width of each flip cell in px. Default = cellHeight × 0.74." },
+      { name: "cellBackground", type: "string", description: "Cell background color." },
+      { name: "color", type: "string", description: "Text color." },
+      { name: "onComplete", type: "() => void", description: "Fires once when the countdown reaches zero." },
+      { name: "completedContent", type: "ReactNode", description: "Element rendered after the timer finishes." },
+    ],
+    related: ["split-flap", "number-flip", "number-ticker"],
+  },
+
+  // ---------- GlassCard ----------
+  {
+    name: "glass-card",
+    title: "Glass Card",
+    description:
+      "A frosted-glass surface with a refracted edge. Built from a backdrop-blurred translucent fill, a CSS mask-stenciled gradient border (so the rim catches light like real glass), and a soft sheen that sweeps across once on mount. Optional `interactive` mode adds a subtle 3D tilt to the cursor. Works best layered over a colored or gradient backdrop (pair with `MeshGradient` or a busy image).",
+    imports: `import { GlassCard } from "@/components/ui/glass-card";`,
+    usage: `<GlassCard className="p-5">
+  <YourContent />
+</GlassCard>`,
+    defaultExample: {
+      title: "Glass card on mesh backdrop",
+      code: `<GlassCard interactive className="w-72 p-5" radius={22}>
+  <p className="font-semibold">Pro tier unlocked</p>
+  <Button className="w-full">Manage plan</Button>
+</GlassCard>`,
+      render: <GlassCardDemo />,
+    },
+    props: [
+      { name: "blur", type: "number", default: "22", description: "Backdrop blur strength in px." },
+      { name: "tint", type: "string", description: "Surface tint — translucent white by default." },
+      { name: "ringColor", type: "string", description: "Color of the gradient border around the edge." },
+      { name: "radius", type: "number", default: "20", description: "Border radius in px." },
+      { name: "sheen", type: "boolean", default: "true", description: "Render the one-shot edge sheen sweep on mount." },
+      { name: "interactive", type: "boolean", default: "false", description: "Subtle 3D tilt that follows the cursor." },
+    ],
+    related: ["holo-card", "card", "mesh-gradient"],
+  },
+
+  // ---------- StatRing ----------
+  {
+    name: "stat-ring",
+    title: "Stat Ring",
+    description:
+      "A circular KPI with an animated SVG arc, a large central value, an optional label and unit suffix, and an optional trend pill. The arc draws from 0 to its target percentage on mount via `stroke-dasharray` + a CSS transition, so it animates cleanly without any animation library. The trend pill auto-tints emerald / rose / neutral based on the delta sign. Pair three side-by-side as a dashboard header.",
+    imports: `import { StatRing } from "@/components/ui/stat-ring";`,
+    usage: `<StatRing value={86} unit="%" label="CSAT score" trend={4.2} />`,
+    defaultExample: {
+      title: "KPI ring trio",
+      code: `<StatRing value={86} unit="%" label="CSAT score" trend={4.2} />
+<StatRing
+  value={42580}
+  max={50000}
+  label="API requests"
+  trend={-2.1}
+  formatValue={(v) => (v / 1000).toFixed(1) + "k"}
+  color="rgb(244, 114, 182)"
+/>
+<StatRing value={94.7} unit="%" label="Uptime SLA" trend={0} color="rgb(74, 222, 128)" />`,
+      render: <StatRingDemo />,
+    },
+    props: [
+      { name: "value", type: "number", required: true, description: "Current value." },
+      { name: "max", type: "number", default: "100", description: "Maximum value the arc represents (full sweep)." },
+      { name: "size", type: "number", default: "180", description: "Diameter of the ring in px." },
+      { name: "strokeWidth", type: "number", default: "14", description: "Stroke thickness in px." },
+      { name: "label", type: "string", description: "Label shown under the value." },
+      { name: "unit", type: "string", description: "Unit suffix on the value." },
+      { name: "trend", type: "number", description: "Trend delta vs previous period — positive tints green, negative red." },
+      { name: "trendSuffix", type: "string", default: '"%"', description: "Suffix next to the trend number." },
+      { name: "formatValue", type: "(value) => ReactNode", description: "Override how the central value is rendered." },
+      { name: "color", type: "string", description: "Arc accent color." },
+      { name: "trackColor", type: "string", description: "Color of the background track behind the arc." },
+      { name: "animateOnMount", type: "boolean", default: "true", description: "Animate the arc from 0% on mount." },
+      { name: "cap", type: '"round" | "butt"', default: '"round"', description: "Line cap style." },
+    ],
+    related: ["count-up-ring", "gauge-meter", "stat-card"],
   },
 ];
 
