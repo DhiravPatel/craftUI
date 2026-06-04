@@ -215,6 +215,10 @@ export const navigation: NavSection[] = [
       { title: "Split Flap", href: "/docs/components/split-flap" },
       { title: "Audio Visualizer", href: "/docs/components/audio-visualizer" },
       { title: "Heartbeat Monitor", href: "/docs/components/heartbeat-monitor" },
+      { title: "Payment Card", href: "/docs/components/payment-card" },
+      { title: "Pricing Slider", href: "/docs/components/pricing-slider" },
+      { title: "Mention Input", href: "/docs/components/mention-input" },
+      { title: "API Key Display", href: "/docs/components/api-key-display" },
     ],
   },
 ];

@@ -1,0 +1,16 @@
+{
+  "name": "mention-input",
+  "description": "A textarea with @ mention autocomplete. Type `@` to open the dropdown, filter by name or handle, navigate with arrow keys, and Enter to insert the mention at the cursor. Self-contained, no dependencies.",
+  "category": "form",
+  "files": [
+    {
+      "path": "components/mention-input/mention-input.tsx",
+      "target": "{{components}}/mention-input.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["mention", "input", "textarea", "autocomplete", "comment", "social"]
+}

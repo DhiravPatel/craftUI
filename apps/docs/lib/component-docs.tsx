@@ -165,6 +165,7 @@ import {
   AnimatedChartDemo,
   AnimatedTextDemo,
   AnimatedTooltipDemo,
+  ApiKeyDisplayDemo,
   AudioVisualizerDemo,
   AuroraDemo,
   AvatarStackDemo,
@@ -222,6 +223,7 @@ import {
   MagnetDemo,
   MagneticButtonDemo,
   Marquee3DDemo,
+  MentionInputDemo,
   MeteorsDemo,
   MovingBorderDemo,
   MultiStepLoaderDemo,
@@ -238,6 +240,7 @@ import {
   PageCurlDemo,
   PaperPlaneDemo,
   ParallaxDemo,
+  PaymentCardDemo,
   PerspectiveBoxDemo,
   PhoneMockupDemo,
   Pin3DDemo,
@@ -245,6 +248,7 @@ import {
   PlasmaFieldDemo,
   PortalRingsDemo,
   PricingCardsDemo,
+  PricingSliderDemo,
   PrismOrbDemo,
   QuantumGridDemo,
   ResizableDemo,
@@ -9697,6 +9701,357 @@ const ref = React.useRef<HTMLDivElement>(null);
       },
     ],
     related: ["animated-chart", "stat-card", "gauge-meter"],
+  },
+
+  // ---------- PaymentCard ----------
+  {
+    name: "payment-card",
+    title: "Payment Card",
+    description:
+      "A live-binding credit-card preview for checkout flows — pass form values for `number`, `name`, `expiry`, and `cvv` and the card renders them in their proper positions, auto-formats the number per brand, and auto-detects Visa, Mastercard, Amex, or Discover from the prefix. Toggle `flipped` (typically on CVV focus) to reveal the back side with the signature strip and CVV.",
+    imports: `import { PaymentCard } from "@/components/ui/payment-card";`,
+    usage: `<PaymentCard
+  number={number}
+  name={name}
+  expiry={expiry}
+  cvv={cvv}
+  flipped={cvvFocused}
+/>`,
+    defaultExample: {
+      title: "Checkout preview",
+      code: `<PaymentCard
+  number="4242424242424242"
+  name="ALEX MORGAN"
+  expiry="12/27"
+  cvv="123"
+  flipped={cvvFocused}
+/>`,
+      render: <PaymentCardDemo />,
+    },
+    props: [
+      {
+        name: "number",
+        type: "string",
+        description: "Raw card number — auto-formatted on display.",
+      },
+      {
+        name: "name",
+        type: "string",
+        description: "Cardholder name shown on the front.",
+      },
+      {
+        name: "expiry",
+        type: "string",
+        description: "Expiry in MM/YY form.",
+      },
+      {
+        name: "cvv",
+        type: "string",
+        description: "CVV shown on the back.",
+      },
+      {
+        name: "flipped",
+        type: "boolean",
+        default: "false",
+        description: "Show the back side. Usually driven by CVV input focus.",
+      },
+      {
+        name: "brand",
+        type: '"visa" | "mastercard" | "amex" | "discover" | "unknown"',
+        description: "Override the auto-detected brand.",
+      },
+      {
+        name: "width",
+        type: "number",
+        default: "360",
+        description: "Width of the card in px.",
+      },
+      {
+        name: "background",
+        type: "string",
+        description: "Custom CSS gradient background.",
+      },
+    ],
+    related: ["flip-card", "form", "input"],
+  },
+
+  // ---------- PricingSlider ----------
+  {
+    name: "pricing-slider",
+    title: "Pricing Slider",
+    description:
+      "An interactive seat / usage calculator for SaaS pricing pages. Drag the slider to set quantity; the total updates live with any tier discount applied, the per-tier strip highlights the active breakpoint, and an optional CTA renders below the total. Use `tiers` to ladder discounts at thresholds (e.g. 10+ seats = 10% off, 50+ = 20%).",
+    imports: `import { PricingSlider } from "@/components/ui/pricing-slider";`,
+    usage: `<PricingSlider
+  min={1}
+  max={100}
+  pricePerUnit={12}
+  unit="seat"
+  tiers={[
+    { from: 10, discount: 0.1 },
+    { from: 50, discount: 0.2 },
+  ]}
+/>`,
+    defaultExample: {
+      title: "Tiered seat pricing",
+      code: `<PricingSlider
+  min={1}
+  max={100}
+  defaultValue={12}
+  pricePerUnit={12}
+  unit="seat"
+  cadence="month"
+  tiers={[
+    { from: 10, discount: 0.10 },
+    { from: 25, discount: 0.18 },
+    { from: 50, discount: 0.25 },
+  ]}
+  cta={<Button className="w-full">Start free trial</Button>}
+/>`,
+      render: <PricingSliderDemo />,
+    },
+    props: [
+      {
+        name: "pricePerUnit",
+        type: "number",
+        required: true,
+        description: "Per-unit price before any discount.",
+      },
+      {
+        name: "min",
+        type: "number",
+        default: "1",
+        description: "Minimum quantity.",
+      },
+      {
+        name: "max",
+        type: "number",
+        default: "100",
+        description: "Maximum quantity.",
+      },
+      {
+        name: "step",
+        type: "number",
+        default: "1",
+        description: "Step between values.",
+      },
+      {
+        name: "value",
+        type: "number",
+        description: "Controlled quantity.",
+      },
+      {
+        name: "defaultValue",
+        type: "number",
+        description: "Initial quantity (uncontrolled).",
+      },
+      {
+        name: "tiers",
+        type: "PricingSliderTier[]",
+        description:
+          "Discount breakpoints. Each tier = { from, discount, label? }.",
+      },
+      {
+        name: "currency",
+        type: "string",
+        default: '"$"',
+        description: "Currency symbol shown before the total.",
+      },
+      {
+        name: "unit",
+        type: "string",
+        default: '"seat"',
+        description: "Singular unit label.",
+      },
+      {
+        name: "cadence",
+        type: "string",
+        default: '"month"',
+        description: "Billing cadence label.",
+      },
+      {
+        name: "onChange",
+        type: "(quantity, total) => void",
+        description: "Fires every time the slider moves.",
+      },
+      {
+        name: "cta",
+        type: "ReactNode",
+        description: "Optional element rendered under the total.",
+      },
+      {
+        name: "accentColor",
+        type: "string",
+        description: "Accent for the fill, thumb, and active tier.",
+      },
+    ],
+    related: ["pricing-cards", "slider", "stat-card"],
+  },
+
+  // ---------- MentionInput ----------
+  {
+    name: "mention-input",
+    title: "Mention Input",
+    description:
+      "A textarea with an @ mention autocomplete dropdown. Type `@` to open the menu; keep typing to filter `users` by name or handle; arrow keys navigate, Enter or Tab selects, Esc closes. The selected mention is spliced into the textarea at the cursor as `@handle ` (replacing any in-progress query). Self-contained, no dependencies — drop it into comments, chat composers, or task descriptions.",
+    imports: `import { MentionInput } from "@/components/ui/mention-input";`,
+    usage: `<MentionInput
+  users={users}
+  value={value}
+  onChange={setValue}
+/>`,
+    defaultExample: {
+      title: "Comment composer",
+      code: `<MentionInput
+  value={value}
+  onChange={setValue}
+  users={[
+    { id: "1", name: "Alex Morgan", handle: "alex", subtitle: "Engineering · Lead" },
+    { id: "2", name: "Sam Carter", handle: "sam", subtitle: "Design · Senior" },
+    { id: "3", name: "Riley Park", handle: "riley", subtitle: "Product · PM" },
+  ]}
+/>`,
+      render: <MentionInputDemo />,
+    },
+    props: [
+      {
+        name: "users",
+        type: "MentionUser[]",
+        required: true,
+        description:
+          "Users available for @ mentions. Each = { id, name, handle?, avatar?, subtitle? }.",
+      },
+      {
+        name: "value",
+        type: "string",
+        description: "Controlled text value.",
+      },
+      {
+        name: "defaultValue",
+        type: "string",
+        description: "Initial text value (uncontrolled).",
+      },
+      {
+        name: "onChange",
+        type: "(value: string) => void",
+        description: "Fires when the text changes.",
+      },
+      {
+        name: "onMention",
+        type: "(user: MentionUser) => void",
+        description: "Fires when a mention is inserted.",
+      },
+      {
+        name: "maxResults",
+        type: "number",
+        default: "5",
+        description: "Maximum rows shown in the dropdown.",
+      },
+      {
+        name: "rows",
+        type: "number",
+        default: "3",
+        description: "Minimum rows the textarea grows to.",
+      },
+      {
+        name: "placeholder",
+        type: "string",
+        description: "Textarea placeholder.",
+      },
+    ],
+    related: ["textarea", "combobox", "command"],
+  },
+
+  // ---------- ApiKeyDisplay ----------
+  {
+    name: "api-key-display",
+    title: "API Key Display",
+    description:
+      "A masked-secret row for dashboards — the same UI you see in Stripe, Vercel, or GitHub when reading an API key. All but the last few characters are replaced with bullets (the key's prefix like `sk_live_` is preserved for at-a-glance recognition), there's a show/hide eye toggle, a copy button with a green-check confirmation, and an optional Rotate action. Label, environment badge, created-at and expires-at metadata render around the value.",
+    imports: `import { ApiKeyDisplay } from "@/components/ui/api-key-display";`,
+    usage: `<ApiKeyDisplay
+  label="Production secret key"
+  badge="Live"
+  badgeTone="success"
+  value="sk_live_..."
+  onRotate={() => rotateKey()}
+/>`,
+    defaultExample: {
+      title: "Live + test keys",
+      code: `<ApiKeyDisplay
+  label="Production secret key"
+  badge="Live"
+  badgeTone="success"
+  value="demo_secret_EXAMPLE0000000000000000000000abcd"
+  createdAt="2026-02-14"
+  expiresAt="2027-02-14"
+  onRotate={rotateKey}
+/>`,
+      render: <ApiKeyDisplayDemo />,
+    },
+    props: [
+      {
+        name: "value",
+        type: "string",
+        required: true,
+        description: "The secret value.",
+      },
+      {
+        name: "label",
+        type: "string",
+        description: "Title shown above the value field.",
+      },
+      {
+        name: "badge",
+        type: "string",
+        description: "Environment / status badge text.",
+      },
+      {
+        name: "badgeTone",
+        type: '"success" | "warning" | "danger" | "neutral"',
+        default: '"neutral"',
+        description: "Color of the badge.",
+      },
+      {
+        name: "createdAt",
+        type: "string",
+        description: "Creation date shown below the value.",
+      },
+      {
+        name: "expiresAt",
+        type: "string",
+        description: "Expiry date shown below the value.",
+      },
+      {
+        name: "visibleChars",
+        type: "number",
+        default: "4",
+        description: "How many trailing characters stay visible.",
+      },
+      {
+        name: "defaultVisible",
+        type: "boolean",
+        default: "false",
+        description: "Whether the value starts visible.",
+      },
+      {
+        name: "onCopy",
+        type: "() => void",
+        description: "Fires after the value is copied.",
+      },
+      {
+        name: "onRotate",
+        type: "() => void",
+        description: "When present, renders a Rotate button.",
+      },
+      {
+        name: "hideToggle",
+        type: "boolean",
+        default: "false",
+        description: "Hide the show/hide eye button.",
+      },
+    ],
+    related: ["copy-button", "input", "kbd"],
   },
 ];
 
