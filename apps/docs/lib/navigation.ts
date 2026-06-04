@@ -227,6 +227,10 @@ export const navigation: NavSection[] = [
       { title: "Countdown Timer", href: "/docs/components/countdown-timer" },
       { title: "Glass Card", href: "/docs/components/glass-card" },
       { title: "Stat Ring", href: "/docs/components/stat-ring" },
+      { title: "Password Strength Meter", href: "/docs/components/password-strength-meter" },
+      { title: "Date Range Picker", href: "/docs/components/date-range-picker" },
+      { title: "Status Dot", href: "/docs/components/status-dot" },
+      { title: "Inline Edit", href: "/docs/components/inline-edit" },
     ],
   },
 ];
