@@ -8,7 +8,8 @@
       "Bash(echo \"docs typecheck exit: $?\")",
       "Bash(pnpm lint *)",
       "Bash(cd \"/Users/dhiravpatel/.claude/projects/-Users-dhiravpatel-Documents-Project-2-CraftUI/memory/\")",
-      "Bash(cat MEMORY.md)"
+      "Bash(cat MEMORY.md)",
+      "Bash(node scripts/generate-components-md.mjs)"
     ]
   }
 }

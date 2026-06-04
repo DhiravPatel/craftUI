@@ -78,6 +78,7 @@ import hoverCard from "./components/hover-card.json";
 import infiniteMovingCards from "./components/infinite-moving-cards.json";
 import input from "./components/input.json";
 import inputOtp from "./components/input-otp.json";
+import invitePeople from "./components/invite-people.json";
 import kanbanBoard from "./components/kanban-board.json";
 import kbd from "./components/kbd.json";
 import label from "./components/label.json";
@@ -112,6 +113,7 @@ import paymentCard from "./components/payment-card.json";
 import perspectiveBox from "./components/perspective-box.json";
 import phoneMockup from "./components/phone-mockup.json";
 import pin3d from "./components/pin-3d.json";
+import planCard from "./components/plan-card.json";
 import pinBoard from "./components/pin-board.json";
 import plasmaField from "./components/plasma-field.json";
 import prismOrb from "./components/prism-orb.json";
@@ -149,6 +151,7 @@ import switchEntry from "./components/switch.json";
 import table from "./components/table.json";
 import tabs from "./components/tabs.json";
 import tagInput from "./components/tag-input.json";
+import taskCard from "./components/task-card.json";
 import testimonialQuote from "./components/testimonial-quote.json";
 import textGenerateEffect from "./components/text-generate-effect.json";
 import textScramble from "./components/text-scramble.json";
@@ -166,6 +169,7 @@ import toolbar from "./components/toolbar.json";
 import tooltip from "./components/tooltip.json";
 import tracingBeam from "./components/tracing-beam.json";
 import treeView from "./components/tree-view.json";
+import usageBar from "./components/usage-bar.json";
 import voteWidget from "./components/vote-widget.json";
 import waveGrid from "./components/wave-grid.json";
 import wavyBackground from "./components/wavy-background.json";
@@ -251,6 +255,7 @@ export const registry: Registry = [
   infiniteMovingCards,
   input,
   inputOtp,
+  invitePeople,
   kanbanBoard,
   kbd,
   label,
@@ -286,6 +291,7 @@ export const registry: Registry = [
   phoneMockup,
   pin3d,
   pinBoard,
+  planCard,
   plasmaField,
   prismOrb,
   popover,
@@ -322,6 +328,7 @@ export const registry: Registry = [
   table,
   tabs,
   tagInput,
+  taskCard,
   testimonialQuote,
   textGenerateEffect,
   textScramble,
@@ -339,6 +346,7 @@ export const registry: Registry = [
   tooltip,
   tracingBeam,
   treeView,
+  usageBar,
   voteWidget,
   waveGrid,
   wavyBackground,

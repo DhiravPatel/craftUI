@@ -219,6 +219,10 @@ export const navigation: NavSection[] = [
       { title: "Pricing Slider", href: "/docs/components/pricing-slider" },
       { title: "Mention Input", href: "/docs/components/mention-input" },
       { title: "API Key Display", href: "/docs/components/api-key-display" },
+      { title: "Usage Bar", href: "/docs/components/usage-bar" },
+      { title: "Plan Card", href: "/docs/components/plan-card" },
+      { title: "Invite People", href: "/docs/components/invite-people" },
+      { title: "Task Card", href: "/docs/components/task-card" },
     ],
   },
 ];

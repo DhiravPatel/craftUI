@@ -1,0 +1,16 @@
+{
+  "name": "usage-bar",
+  "description": "Quota / usage indicator for billing and admin dashboards. A labelled progress bar that shifts from accent to amber to rose as usage crosses warn / danger thresholds, with current and limit values rendered alongside. Pass limit=Infinity for unlimited plans.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/usage-bar/usage-bar.tsx",
+      "target": "{{components}}/usage-bar.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["usage", "quota", "progress", "billing", "saas", "limit"]
+}

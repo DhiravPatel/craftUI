@@ -215,6 +215,7 @@ import {
   HoloSlicesDemo,
   HoverBorderGradientDemo,
   InfiniteMovingCardsDemo,
+  InvitePeopleDemo,
   KanbanBoardDemo,
   LampDemo,
   LensDemo,
@@ -245,6 +246,7 @@ import {
   PhoneMockupDemo,
   Pin3DDemo,
   PinBoardDemo,
+  PlanCardDemo,
   PlasmaFieldDemo,
   PortalRingsDemo,
   PricingCardsDemo,
@@ -265,6 +267,7 @@ import {
   StatCardDemo,
   SwipeStackDemo,
   TagInputDemo,
+  TaskCardDemo,
   TestimonialQuoteDemo,
   TextGenerateEffectDemo,
   TextScrambleDemo,
@@ -275,6 +278,7 @@ import {
   ToolbarDemo,
   TracingBeamDemo,
   TreeViewDemo,
+  UsageBarDemo,
   VoteWidgetDemo,
   WaveGridDemo,
   WavyBackgroundDemo,
@@ -10052,6 +10056,175 @@ const ref = React.useRef<HTMLDivElement>(null);
       },
     ],
     related: ["copy-button", "input", "kbd"],
+  },
+
+  // ---------- UsageBar ----------
+  {
+    name: "usage-bar",
+    title: "Usage Bar",
+    description:
+      "A labelled progress bar for quota / usage display on billing and admin dashboards. The fill recolors from the accent through amber to rose as usage crosses configurable warn / danger thresholds, the current and limit values render alongside, and `limit={Infinity}` renders a striped 'unlimited' track.",
+    imports: `import { UsageBar } from "@/components/ui/usage-bar";`,
+    usage: `<UsageBar
+  label="API requests"
+  value={42580}
+  limit={50000}
+  unit="req"
+/>`,
+    defaultExample: {
+      title: "Mixed quotas",
+      code: `<UsageBar label="API requests" value={42580} limit={50000} unit="req" hint="Resets on the 1st" />
+<UsageBar label="Storage" value={9.4} limit={10} unit="GB" />
+<UsageBar label="Team seats" value={6} limit={Infinity} unit="seats" />`,
+      render: <UsageBarDemo />,
+    },
+    props: [
+      { name: "value", type: "number", required: true, description: "Current usage." },
+      { name: "limit", type: "number", required: true, description: "Limit / cap. Pass Infinity for unlimited." },
+      { name: "label", type: "string", description: "Label shown above the bar." },
+      { name: "unit", type: "string", description: "Unit suffix, e.g. 'GB', 'requests'." },
+      { name: "formatCount", type: "(value, limit) => ReactNode", description: "Override how value/limit is rendered." },
+      { name: "warnAt", type: "number", default: "0.75", description: "Fraction at which the bar turns warning." },
+      { name: "dangerAt", type: "number", default: "0.9", description: "Fraction at which the bar turns danger." },
+      { name: "color", type: "string", description: "Base accent color." },
+      { name: "warnColor", type: "string", description: "Warning color. Default amber." },
+      { name: "dangerColor", type: "string", description: "Danger color. Default rose." },
+      { name: "height", type: "number", default: "8", description: "Height of the bar in px." },
+      { name: "hint", type: "ReactNode", description: "Optional hint shown below the bar." },
+    ],
+    related: ["progress", "stat-card", "plan-card"],
+  },
+
+  // ---------- PlanCard ----------
+  {
+    name: "plan-card",
+    title: "Plan Card",
+    description:
+      "The in-app 'current plan' summary card you see at the top of a SaaS billing or settings page. Shows the plan name, status pill, headline price, renewal date, and a stack of usage rows whose mini progress bars recolor as they approach their limits, plus two CTA buttons (e.g. Upgrade / Manage billing). Distinct from `pricing-cards` — that's the plan-comparison grid for marketing pages; this is the in-app widget.",
+    imports: `import { PlanCard } from "@/components/ui/plan-card";`,
+    usage: `<PlanCard
+  plan="Pro"
+  status="Active"
+  price="$20"
+  usage={[{ label: "Seats", value: 6, limit: 10 }]}
+  primaryAction={{ label: "Upgrade plan" }}
+/>`,
+    defaultExample: {
+      title: "Pro plan with usage",
+      code: `<PlanCard
+  plan="Pro"
+  status="Active"
+  price="$20"
+  priceSuffix="per seat / month"
+  description="For growing teams that need advanced controls."
+  renewalText="Renews on Jan 15, 2027 · 6 seats"
+  usage={[
+    { label: "API requests", value: 42580, limit: 50000, unit: "req" },
+    { label: "Storage", value: 9.4, limit: 10, unit: "GB" },
+    { label: "Seats", value: 6, limit: 10 },
+  ]}
+  primaryAction={{ label: "Upgrade plan" }}
+  secondaryAction={{ label: "Manage billing" }}
+/>`,
+      render: <PlanCardDemo />,
+    },
+    props: [
+      { name: "plan", type: "string", required: true, description: "Plan name (e.g. 'Pro')." },
+      { name: "status", type: "string", description: "Status badge text (e.g. 'Active', 'Trial')." },
+      { name: "statusTone", type: '"success" | "warning" | "danger" | "neutral"', default: '"success"', description: "Color of the status badge." },
+      { name: "price", type: "string", description: "Headline price text." },
+      { name: "priceSuffix", type: "string", default: '"/mo"', description: "Suffix next to the headline price." },
+      { name: "description", type: "string", description: "One-line plan description." },
+      { name: "renewalText", type: "string", description: "Renewal hint shown above the actions." },
+      { name: "usage", type: "PlanUsageMetric[]", description: "Up to ~3 usage rows. Each = { label, value, limit, unit? }." },
+      { name: "primaryAction", type: "{ label, onClick? }", description: "Primary CTA." },
+      { name: "secondaryAction", type: "{ label, onClick? }", description: "Secondary CTA." },
+      { name: "accentColor", type: "string", description: "Accent for the corner glow and CTA." },
+    ],
+    related: ["pricing-cards", "usage-bar", "stat-card"],
+  },
+
+  // ---------- InvitePeople ----------
+  {
+    name: "invite-people",
+    title: "Invite People",
+    description:
+      "Team-invite block for SaaS settings pages. Email field with inline validation, a role dropdown with descriptions per role, a Send button, and a pending-invites list with Resend / Revoke actions per row. Fully callback-driven — the parent decides what happens on submit / resend / revoke.",
+    imports: `import { InvitePeople } from "@/components/ui/invite-people";`,
+    usage: `<InvitePeople
+  pending={pendingInvites}
+  onInvite={(email, role) => sendInvite(email, role)}
+/>`,
+    defaultExample: {
+      title: "Invite + pending list",
+      code: `<InvitePeople
+  pending={[
+    { id: "1", email: "alex@acme.co", role: "admin", sentAt: "2d ago" },
+    { id: "2", email: "riley@acme.co", role: "member", sentAt: "5d ago" },
+  ]}
+  onInvite={(email, role) => sendInvite(email, role)}
+  onResend={(invite) => resend(invite.id)}
+  onRevoke={(invite) => revoke(invite.id)}
+/>`,
+      render: <InvitePeopleDemo />,
+    },
+    props: [
+      { name: "roles", type: "InviteRole[]", description: "Roles available. Default Admin/Member/Viewer." },
+      { name: "defaultRole", type: "string", description: "Initial selected role value." },
+      { name: "pending", type: "PendingInvite[]", description: "Pending invites shown below the form." },
+      { name: "onInvite", type: "(email, role) => void", description: "Fires when the user submits a valid invite." },
+      { name: "onResend", type: "(invite) => void", description: "Fires when a pending row's Resend is clicked." },
+      { name: "onRevoke", type: "(invite) => void", description: "Fires when a pending row's Revoke is clicked." },
+      { name: "title", type: "string", default: '"Invite people"', description: "Header title." },
+      { name: "description", type: "string", description: "Optional one-line subtitle." },
+    ],
+    related: ["form", "input", "combobox"],
+  },
+
+  // ---------- TaskCard ----------
+  {
+    name: "task-card",
+    title: "Task Card",
+    description:
+      "A Linear / Asana-style task row card. Compact layout: identifier (e.g. ENG-204), title and optional description, a status glyph that visually matches Linear's progress dots (backlog dashed, in-progress half-filled, in-review three-quarters, done filled with check, canceled with cross), a colored priority chip, tags, subtask completion (3/7), comment count, an assignee avatar, and a due-date pill that switches to danger tone when overdue.",
+    imports: `import { TaskCard } from "@/components/ui/task-card";`,
+    usage: `<TaskCard
+  id="ENG-204"
+  title="Wire OAuth callback"
+  status="in_progress"
+  priority="high"
+  assignee={{ name: "Alex Morgan" }}
+/>`,
+    defaultExample: {
+      title: "Task list",
+      code: `<TaskCard
+  id="ENG-204"
+  title="Wire OAuth callback to session store"
+  description="Persist the refresh token and pipe it through middleware."
+  status="in_progress"
+  priority="high"
+  tags={["backend", "auth"]}
+  subtasks={{ done: 3, total: 7 }}
+  comments={4}
+  due="Jun 8"
+  assignee={{ name: "Alex Morgan" }}
+/>`,
+      render: <TaskCardDemo />,
+    },
+    props: [
+      { name: "title", type: "ReactNode", required: true, description: "Task title." },
+      { name: "id", type: "string", description: "Short identifier shown before the title (e.g. 'ENG-204')." },
+      { name: "description", type: "ReactNode", description: "Optional one- or two-line description." },
+      { name: "status", type: '"backlog" | "todo" | "in_progress" | "in_review" | "done" | "canceled"', default: '"todo"', description: "Lifecycle status." },
+      { name: "priority", type: '"none" | "low" | "medium" | "high" | "urgent"', default: '"none"', description: "Priority chip tone." },
+      { name: "tags", type: "string[]", description: "Up to ~4 tag chips." },
+      { name: "assignee", type: "{ name, avatar? }", description: "Assignee shown in the top-right." },
+      { name: "due", type: "string", description: "Due date — human string." },
+      { name: "overdue", type: "boolean", description: "Render the due pill in danger tone." },
+      { name: "subtasks", type: "{ done, total }", description: "Subtask completion." },
+      { name: "comments", type: "number", description: "Comment count chip." },
+    ],
+    related: ["kanban-board", "stepper", "stat-card"],
   },
 ];
 

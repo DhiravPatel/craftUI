@@ -1,0 +1,16 @@
+{
+  "name": "invite-people",
+  "description": "Team invite block for SaaS settings. Email field with inline validation, role dropdown, Send button, and a pending-invites list with Resend / Revoke per row. Fully callback-driven.",
+  "category": "form",
+  "files": [
+    {
+      "path": "components/invite-people/invite-people.tsx",
+      "target": "{{components}}/invite-people.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["invite", "team", "members", "settings", "form", "roles", "saas"]
+}
