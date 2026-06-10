@@ -1,0 +1,16 @@
+{
+  "name": "task-card",
+  "description": "Linear / Asana-style task row card with an ID, title, description, status glyph (progress dots that visually match Linear), colored priority chip, tags, assignee avatar, subtask count, comment count, and due-date pill that goes danger when overdue.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/task-card/task-card.tsx",
+      "target": "{{components}}/task-card.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["task", "card", "linear", "asana", "kanban", "project", "issue"]
+}

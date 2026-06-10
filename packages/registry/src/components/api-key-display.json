@@ -1,0 +1,16 @@
+{
+  "name": "api-key-display",
+  "description": "Masked-secret row for dashboards (Stripe, Vercel, GitHub-style). Shows the key with all but the last few characters bulleted, a show/hide eye toggle, a copy button with confirmation, and an optional rotate action plus created/expires metadata.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/api-key-display/api-key-display.tsx",
+      "target": "{{components}}/api-key-display.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["api-key", "secret", "token", "mask", "copy", "dashboard", "settings"]
+}

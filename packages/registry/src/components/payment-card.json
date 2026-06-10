@@ -1,0 +1,16 @@
+{
+  "name": "payment-card",
+  "description": "Live-binding credit-card preview for checkout flows. Renders the cardholder's number (auto-formatted per brand), name, and expiry on the front, with a CSS-3D flip to reveal the back signature strip and CVV. Auto-detects Visa, Mastercard, Amex, and Discover from the number prefix.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/payment-card/payment-card.tsx",
+      "target": "{{components}}/payment-card.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["payment", "credit-card", "checkout", "billing", "stripe", "form"]
+}

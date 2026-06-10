@@ -8,6 +8,7 @@ import animatedBeam from "./components/animated-beam.json";
 import animatedChart from "./components/animated-chart.json";
 import animatedText from "./components/animated-text.json";
 import animatedTooltip from "./components/animated-tooltip.json";
+import apiKeyDisplay from "./components/api-key-display.json";
 import audioVisualizer from "./components/audio-visualizer.json";
 import aurora from "./components/aurora.json";
 import avatar from "./components/avatar.json";
@@ -77,6 +78,7 @@ import hoverCard from "./components/hover-card.json";
 import infiniteMovingCards from "./components/infinite-moving-cards.json";
 import input from "./components/input.json";
 import inputOtp from "./components/input-otp.json";
+import invitePeople from "./components/invite-people.json";
 import kanbanBoard from "./components/kanban-board.json";
 import kbd from "./components/kbd.json";
 import label from "./components/label.json";
@@ -88,6 +90,7 @@ import magicLayer from "./components/magic-layer.json";
 import magnet from "./components/magnet.json";
 import magneticButton from "./components/magnetic-button.json";
 import marquee3d from "./components/marquee-3d.json";
+import mentionInput from "./components/mention-input.json";
 import meteors from "./components/meteors.json";
 import movingBorder from "./components/moving-border.json";
 import multiStepLoader from "./components/multi-step-loader.json";
@@ -106,15 +109,18 @@ import pageCurl from "./components/page-curl.json";
 import pagination from "./components/pagination.json";
 import paperPlane from "./components/paper-plane.json";
 import parallax from "./components/parallax.json";
+import paymentCard from "./components/payment-card.json";
 import perspectiveBox from "./components/perspective-box.json";
 import phoneMockup from "./components/phone-mockup.json";
 import pin3d from "./components/pin-3d.json";
+import planCard from "./components/plan-card.json";
 import pinBoard from "./components/pin-board.json";
 import plasmaField from "./components/plasma-field.json";
 import prismOrb from "./components/prism-orb.json";
 import popover from "./components/popover.json";
 import portalRings from "./components/portal-rings.json";
 import pricingCards from "./components/pricing-cards.json";
+import pricingSlider from "./components/pricing-slider.json";
 import progress from "./components/progress.json";
 import quantumGrid from "./components/quantum-grid.json";
 import radioGroup from "./components/radio-group.json";
@@ -145,6 +151,7 @@ import switchEntry from "./components/switch.json";
 import table from "./components/table.json";
 import tabs from "./components/tabs.json";
 import tagInput from "./components/tag-input.json";
+import taskCard from "./components/task-card.json";
 import testimonialQuote from "./components/testimonial-quote.json";
 import textGenerateEffect from "./components/text-generate-effect.json";
 import textScramble from "./components/text-scramble.json";
@@ -162,6 +169,7 @@ import toolbar from "./components/toolbar.json";
 import tooltip from "./components/tooltip.json";
 import tracingBeam from "./components/tracing-beam.json";
 import treeView from "./components/tree-view.json";
+import usageBar from "./components/usage-bar.json";
 import voteWidget from "./components/vote-widget.json";
 import waveGrid from "./components/wave-grid.json";
 import wavyBackground from "./components/wavy-background.json";
@@ -177,6 +185,7 @@ export const registry: Registry = [
   animatedChart,
   animatedText,
   animatedTooltip,
+  apiKeyDisplay,
   audioVisualizer,
   aurora,
   avatar,
@@ -246,6 +255,7 @@ export const registry: Registry = [
   infiniteMovingCards,
   input,
   inputOtp,
+  invitePeople,
   kanbanBoard,
   kbd,
   label,
@@ -257,6 +267,7 @@ export const registry: Registry = [
   magnet,
   magneticButton,
   marquee3d,
+  mentionInput,
   meteors,
   movingBorder,
   multiStepLoader,
@@ -275,15 +286,18 @@ export const registry: Registry = [
   pagination,
   paperPlane,
   parallax,
+  paymentCard,
   perspectiveBox,
   phoneMockup,
   pin3d,
   pinBoard,
+  planCard,
   plasmaField,
   prismOrb,
   popover,
   portalRings,
   pricingCards,
+  pricingSlider,
   progress,
   quantumGrid,
   radioGroup,
@@ -314,6 +328,7 @@ export const registry: Registry = [
   table,
   tabs,
   tagInput,
+  taskCard,
   testimonialQuote,
   textGenerateEffect,
   textScramble,
@@ -331,6 +346,7 @@ export const registry: Registry = [
   tooltip,
   tracingBeam,
   treeView,
+  usageBar,
   voteWidget,
   waveGrid,
   wavyBackground,

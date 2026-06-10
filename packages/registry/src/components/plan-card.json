@@ -1,0 +1,16 @@
+{
+  "name": "plan-card",
+  "description": "In-app current-subscription summary card with plan name, status pill, headline price, renewal date, and a stack of usage rows that recolor as they approach their limits. Distinct from PricingCards (the comparison grid) — this is the billing widget.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/plan-card/plan-card.tsx",
+      "target": "{{components}}/plan-card.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["plan", "subscription", "billing", "saas", "usage", "settings"]
+}

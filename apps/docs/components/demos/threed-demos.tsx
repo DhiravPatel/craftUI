@@ -8,6 +8,7 @@ import {
   AudioVisualizer,
   AnimatedText,
   AnimatedTooltip,
+  ApiKeyDisplay,
   Aurora,
   Avatar,
   AvatarFallback,
@@ -65,6 +66,7 @@ import {
   HoloSlices,
   HoverBorderGradient,
   InfiniteMovingCards,
+  InvitePeople,
   Lamp,
   Lens,
   LogoCloud,
@@ -72,6 +74,7 @@ import {
   MagicLayer,
   Magnet,
   MagneticButton,
+  MentionInput,
   Marquee3D,
   Meteors,
   MovingBorder,
@@ -90,13 +93,16 @@ import {
   PaperPlane,
   Parallax,
   ParallaxLayer,
+  PaymentCard,
   PerspectiveBox,
   PhoneMockup,
   Pin3D,
   PinBoard,
+  PlanCard,
   PlasmaField,
   PortalRings,
   PricingCards,
+  PricingSlider,
   PrismOrb,
   QuantumGrid,
   Resizable,
@@ -112,6 +118,7 @@ import {
   Spotlight,
   SwipeStack,
   TagInput,
+  TaskCard,
   TestimonialQuote,
   TextGenerateEffect,
   TextScramble,
@@ -126,6 +133,7 @@ import {
   ToolbarGroup,
   TracingBeam,
   TreeView,
+  UsageBar,
   VoteWidget,
   WaveGrid,
   WavyBackground,
@@ -4533,6 +4541,288 @@ export function RetroGridDemo() {
           </p>
         </div>
       </RetroGrid>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * UsageBar — quota indicators with warning / danger tones.
+ * ------------------------------------------------------------------ */
+export function UsageBarDemo() {
+  return (
+    <div className="flex w-full items-center justify-center px-6 py-8">
+      <div className="w-full max-w-md space-y-5 rounded-2xl border border-white/10 bg-neutral-950 p-5">
+        <UsageBar
+          label="API requests"
+          value={42_580}
+          limit={50_000}
+          unit="req"
+          hint="Resets on the 1st"
+        />
+        <UsageBar
+          label="Storage"
+          value={9.4}
+          limit={10}
+          unit="GB"
+        />
+        <UsageBar
+          label="Team seats"
+          value={6}
+          limit={Infinity}
+          unit="seats"
+        />
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * PlanCard — current-subscription widget for billing pages.
+ * ------------------------------------------------------------------ */
+export function PlanCardDemo() {
+  return (
+    <div className="flex w-full items-center justify-center px-6 py-8">
+      <PlanCard
+        plan="Pro"
+        status="Active"
+        statusTone="success"
+        price="$20"
+        priceSuffix="per seat / month"
+        description="For growing teams that need advanced controls."
+        renewalText="Renews on Jan 15, 2027 · 6 seats"
+        usage={[
+          { label: "API requests", value: 42_580, limit: 50_000, unit: "req" },
+          { label: "Storage", value: 9.4, limit: 10, unit: "GB" },
+          { label: "Seats", value: 6, limit: 10 },
+        ]}
+        primaryAction={{ label: "Upgrade plan" }}
+        secondaryAction={{ label: "Manage billing" }}
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * InvitePeople — team invite form with role picker + pending list.
+ * ------------------------------------------------------------------ */
+export function InvitePeopleDemo() {
+  return (
+    <div className="flex w-full items-center justify-center px-6 py-8">
+      <InvitePeople
+        pending={[
+          {
+            id: "1",
+            email: "alex@acme.co",
+            role: "admin",
+            sentAt: "2d ago",
+          },
+          {
+            id: "2",
+            email: "riley@acme.co",
+            role: "member",
+            sentAt: "5d ago",
+          },
+        ]}
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * TaskCard — Linear-style task list with mixed statuses.
+ * ------------------------------------------------------------------ */
+export function TaskCardDemo() {
+  return (
+    <div className="flex w-full items-start justify-center px-6 py-8">
+      <div className="w-full max-w-md space-y-2">
+        <TaskCard
+          id="ENG-204"
+          title="Wire OAuth callback to session store"
+          description="Persist the refresh token and pipe it through middleware."
+          status="in_progress"
+          priority="high"
+          tags={["backend", "auth"]}
+          subtasks={{ done: 3, total: 7 }}
+          comments={4}
+          due="Jun 8"
+          assignee={{ name: "Alex Morgan" }}
+        />
+        <TaskCard
+          id="DES-118"
+          title="Redesign empty state for the inbox"
+          status="in_review"
+          priority="medium"
+          tags={["design"]}
+          comments={2}
+          due="Jun 6"
+          overdue
+          assignee={{ name: "Sam Carter" }}
+        />
+        <TaskCard
+          id="OPS-72"
+          title="Roll out new logging pipeline to staging"
+          status="done"
+          priority="low"
+          tags={["infra"]}
+          subtasks={{ done: 5, total: 5 }}
+          assignee={{ name: "Riley Park" }}
+        />
+        <TaskCard
+          id="ENG-211"
+          title="Investigate flaky billing webhook test"
+          status="todo"
+          priority="urgent"
+          tags={["backend", "tests"]}
+          assignee={{ name: "Jordan Kim" }}
+        />
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * PaymentCard — credit card preview wired to a live form.
+ * ------------------------------------------------------------------ */
+export function PaymentCardDemo() {
+  const [number, setNumber] = React.useState("4242424242424242");
+  const [name, setName] = React.useState("ALEX MORGAN");
+  const [expiry, setExpiry] = React.useState("12/27");
+  const [cvv, setCvv] = React.useState("123");
+  const [flipped, setFlipped] = React.useState(false);
+
+  const inputCls =
+    "w-full rounded-lg border border-white/10 bg-neutral-900 px-3 py-2 text-sm text-white placeholder:text-white/35 outline-none focus:border-sky-300/50 focus:ring-2 focus:ring-sky-300/30";
+
+  return (
+    <div className="flex w-full flex-col items-center gap-6 px-6 py-8 md:flex-row md:items-start md:justify-center">
+      <PaymentCard
+        number={number}
+        name={name}
+        expiry={expiry}
+        cvv={cvv}
+        flipped={flipped}
+      />
+      <div className="grid w-full max-w-xs grid-cols-2 gap-2">
+        <label className="col-span-2 text-[10px] uppercase tracking-widest text-white/45">
+          Card number
+          <input
+            value={number.replace(/\D/g, "")}
+            onChange={(e) => setNumber(e.target.value)}
+            placeholder="4242 4242 4242 4242"
+            inputMode="numeric"
+            className={`${inputCls} mt-1 font-mono`}
+          />
+        </label>
+        <label className="col-span-2 text-[10px] uppercase tracking-widest text-white/45">
+          Cardholder
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value.toUpperCase())}
+            placeholder="FULL NAME"
+            className={`${inputCls} mt-1`}
+          />
+        </label>
+        <label className="text-[10px] uppercase tracking-widest text-white/45">
+          Expiry
+          <input
+            value={expiry}
+            onChange={(e) => setExpiry(e.target.value)}
+            placeholder="MM/YY"
+            className={`${inputCls} mt-1 font-mono`}
+          />
+        </label>
+        <label className="text-[10px] uppercase tracking-widest text-white/45">
+          CVV
+          <input
+            value={cvv}
+            onChange={(e) => setCvv(e.target.value.replace(/\D/g, "").slice(0, 4))}
+            onFocus={() => setFlipped(true)}
+            onBlur={() => setFlipped(false)}
+            placeholder="•••"
+            inputMode="numeric"
+            className={`${inputCls} mt-1 font-mono`}
+          />
+        </label>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * PricingSlider — interactive SaaS seat calculator.
+ * ------------------------------------------------------------------ */
+export function PricingSliderDemo() {
+  return (
+    <div className="flex w-full items-center justify-center px-6 py-8">
+      <PricingSlider
+        min={1}
+        max={100}
+        defaultValue={12}
+        pricePerUnit={12}
+        unit="seat"
+        cadence="month"
+        tiers={[
+          { from: 10, discount: 0.1 },
+          { from: 25, discount: 0.18 },
+          { from: 50, discount: 0.25 },
+        ]}
+        cta={
+          <Button className="w-full">Start free trial</Button>
+        }
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * MentionInput — comment box with @ mention dropdown.
+ * ------------------------------------------------------------------ */
+export function MentionInputDemo() {
+  const [value, setValue] = React.useState("Hey @alex can you review this? cc @sam");
+  return (
+    <div className="flex w-full items-start justify-center px-6 py-8">
+      <div className="w-full max-w-md">
+        <MentionInput
+          value={value}
+          onChange={setValue}
+          users={[
+            { id: "1", name: "Alex Morgan", handle: "alex", subtitle: "Engineering · Lead" },
+            { id: "2", name: "Sam Carter", handle: "sam", subtitle: "Design · Senior" },
+            { id: "3", name: "Riley Park", handle: "riley", subtitle: "Product · PM" },
+            { id: "4", name: "Jordan Kim", handle: "jordan", subtitle: "Engineering" },
+            { id: "5", name: "Taylor Reed", handle: "taylor", subtitle: "Marketing" },
+          ]}
+        />
+        <p className="mt-2 text-[11px] text-white/45">
+          Type <span className="font-mono text-white/65">@</span> in the box to mention someone.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * ApiKeyDisplay — masked secret with show / copy / rotate.
+ * ------------------------------------------------------------------ */
+export function ApiKeyDisplayDemo() {
+  return (
+    <div className="flex w-full flex-col items-center gap-3 px-6 py-8">
+      <ApiKeyDisplay
+        label="Production secret key"
+        badge="Live"
+        badgeTone="success"
+        value="demo_secret_EXAMPLE0000000000000000000000abcd"
+        createdAt="2026-02-14"
+        expiresAt="2027-02-14"
+        onRotate={() => {}}
+      />
+      <ApiKeyDisplay
+        label="Test publishable key"
+        badge="Test"
+        badgeTone="warning"
+        value="demo_public_EXAMPLE0000000000000000000000abcd"
+        createdAt="2026-01-03"
+      />
     </div>
   );
 }

@@ -1,0 +1,16 @@
+{
+  "name": "pricing-slider",
+  "description": "Interactive seat / usage calculator for SaaS pricing pages. Drag the slider to set quantity; the total updates live with any tier discount applied. Includes a tier strip showing active and upcoming breakpoints.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/pricing-slider/pricing-slider.tsx",
+      "target": "{{components}}/pricing-slider.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["pricing", "slider", "calculator", "seats", "saas", "billing"]
+}
