@@ -1,0 +1,16 @@
+{
+  "name": "glass-card",
+  "description": "A frosted-glass surface with a refracted edge. Backdrop-blurred translucent fill, a mask-stenciled gradient border that catches light like real glass, and a soft sheen that sweeps across once on mount. Works best layered over a colored or gradient backdrop.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/glass-card/glass-card.tsx",
+      "target": "{{components}}/glass-card.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["glass", "frosted", "card", "blur", "glassmorphism", "surface"]
+}

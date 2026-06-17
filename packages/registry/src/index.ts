@@ -38,6 +38,7 @@ import colorPicker from "./components/color-picker.json";
 import confetti from "./components/confetti.json";
 import copyButton from "./components/copy-button.json";
 import countUpRing from "./components/count-up-ring.json";
+import countdownTimer from "./components/countdown-timer.json";
 import coverflow from "./components/coverflow.json";
 import cube from "./components/cube.json";
 import cubeMatrix from "./components/cube-matrix.json";
@@ -65,6 +66,7 @@ import followingPointer from "./components/following-pointer.json";
 import footer from "./components/footer.json";
 import form from "./components/form.json";
 import gaugeMeter from "./components/gauge-meter.json";
+import glassCard from "./components/glass-card.json";
 import glitchClip from "./components/glitch-clip.json";
 import globe from "./components/globe.json";
 import gravityWell from "./components/gravity-well.json";
@@ -91,6 +93,7 @@ import magnet from "./components/magnet.json";
 import magneticButton from "./components/magnetic-button.json";
 import marquee3d from "./components/marquee-3d.json";
 import mentionInput from "./components/mention-input.json";
+import meshGradient from "./components/mesh-gradient.json";
 import meteors from "./components/meteors.json";
 import movingBorder from "./components/moving-border.json";
 import multiStepLoader from "./components/multi-step-loader.json";
@@ -145,6 +148,7 @@ import splitFlap from "./components/split-flap.json";
 import spotlight from "./components/spotlight.json";
 import stat from "./components/stat.json";
 import statCard from "./components/stat-card.json";
+import statRing from "./components/stat-ring.json";
 import stepper from "./components/stepper.json";
 import swipeStack from "./components/swipe-stack.json";
 import switchEntry from "./components/switch.json";
@@ -215,6 +219,7 @@ export const registry: Registry = [
   confetti,
   copyButton,
   countUpRing,
+  countdownTimer,
   coverflow,
   cube,
   cubeMatrix,
@@ -242,6 +247,7 @@ export const registry: Registry = [
   footer,
   form,
   gaugeMeter,
+  glassCard,
   glitchClip,
   globe,
   gravityWell,
@@ -268,6 +274,7 @@ export const registry: Registry = [
   magneticButton,
   marquee3d,
   mentionInput,
+  meshGradient,
   meteors,
   movingBorder,
   multiStepLoader,
@@ -322,6 +329,7 @@ export const registry: Registry = [
   spotlight,
   stat,
   statCard,
+  statRing,
   stepper,
   swipeStack,
   switchEntry,

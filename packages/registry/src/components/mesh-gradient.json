@@ -1,0 +1,16 @@
+{
+  "name": "mesh-gradient",
+  "description": "Stripe / Linear-style animated mesh-gradient backdrop. 3 to 6 softly drifting, heavily blurred color blobs over a dark canvas, with an optional grain overlay for a WebGL-mesh feel without WebGL. Each blob drifts on its own independent keyframe loop so motion never loops on a beat.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/mesh-gradient/mesh-gradient.tsx",
+      "target": "{{components}}/mesh-gradient.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["mesh-gradient", "gradient", "background", "hero", "animated", "landing"]
+}

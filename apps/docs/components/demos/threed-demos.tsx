@@ -34,6 +34,7 @@ import {
   ComparisonTable,
   CopyButton,
   CountUpRing,
+  CountdownTimer,
   Coverflow,
   Cube,
   CubeFace,
@@ -55,6 +56,7 @@ import {
   FloatingDock,
   FoldOut,
   FollowingPointer,
+  GlassCard,
   GlitchClip,
   Globe,
   GaugeMeter,
@@ -75,6 +77,7 @@ import {
   Magnet,
   MagneticButton,
   MentionInput,
+  MeshGradient,
   Marquee3D,
   Meteors,
   MovingBorder,
@@ -115,6 +118,7 @@ import {
   SparklesText,
   SplitFlap,
   StatCard,
+  StatRing,
   Spotlight,
   SwipeStack,
   TagInput,
@@ -4541,6 +4545,139 @@ export function RetroGridDemo() {
           </p>
         </div>
       </RetroGrid>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * MeshGradient — animated multi-blob backdrop with hero copy on top.
+ * ------------------------------------------------------------------ */
+export function MeshGradientDemo() {
+  return (
+    <div className="flex w-full items-center justify-center px-6 py-8">
+      <MeshGradient
+        className="h-80 w-full max-w-2xl"
+        radius={24}
+      >
+        <div className="flex h-80 flex-col items-center justify-center px-8 text-center">
+          <p className="text-[11px] uppercase tracking-[0.2em] text-white/55">
+            v2.0 · Now in beta
+          </p>
+          <h3 className="mt-3 bg-gradient-to-b from-white to-white/60 bg-clip-text text-4xl font-bold text-transparent">
+            Ship something beautiful
+          </h3>
+          <p className="mt-2 max-w-md text-sm text-white/65">
+            Drop CraftUI into any React project. Copy, paste, ship.
+          </p>
+          <div className="mt-5 flex gap-2">
+            <Button>Get started</Button>
+            <Button variant="outline">View on GitHub</Button>
+          </div>
+        </div>
+      </MeshGradient>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * CountdownTimer — flip-clock countdown to a date 9 days out.
+ * ------------------------------------------------------------------ */
+export function CountdownTimerDemo() {
+  // Compute target on mount once so SSR + client agree on the same date string.
+  const [target] = React.useState(() => {
+    const d = new Date();
+    d.setDate(d.getDate() + 9);
+    d.setHours(d.getHours() + 4);
+    d.setMinutes(d.getMinutes() + 32);
+    return d;
+  });
+  return (
+    <div className="flex w-full flex-col items-center gap-4 px-6 py-10">
+      <CountdownTimer target={target} cellHeight={56} />
+      <p className="text-[11px] text-white/45">
+        Launch day · {target.toLocaleDateString()}
+      </p>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * GlassCard — frosted glass on top of MeshGradient.
+ * ------------------------------------------------------------------ */
+export function GlassCardDemo() {
+  return (
+    <div className="flex w-full items-center justify-center px-6 py-8">
+      <MeshGradient className="h-80 w-full max-w-xl" radius={24}>
+        <div className="flex h-80 items-center justify-center px-6">
+          <GlassCard interactive className="w-72 p-5" radius={22}>
+            <div className="flex items-center gap-3">
+              <span
+                className="flex h-10 w-10 items-center justify-center rounded-xl text-neutral-950"
+                style={{ background: "linear-gradient(135deg, white, rgb(186,230,253))" }}
+              >
+                <Sparkles className="h-5 w-5" />
+              </span>
+              <div>
+                <p className="text-sm font-semibold text-white">Pro tier unlocked</p>
+                <p className="text-[11px] text-white/55">3 new features available</p>
+              </div>
+            </div>
+            <div className="mt-4 grid grid-cols-3 gap-2">
+              {[
+                { k: "API", v: "50k" },
+                { k: "Seats", v: "20" },
+                { k: "Storage", v: "1TB" },
+              ].map((s) => (
+                <div
+                  key={s.k}
+                  className="rounded-lg bg-white/[0.05] p-2 text-center ring-1 ring-white/10"
+                >
+                  <p className="font-mono text-sm font-semibold text-white">{s.v}</p>
+                  <p className="text-[10px] uppercase tracking-widest text-white/45">
+                    {s.k}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <Button className="mt-4 w-full" size="sm">
+              Manage plan
+            </Button>
+          </GlassCard>
+        </div>
+      </MeshGradient>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * StatRing — three KPI rings side-by-side with trends.
+ * ------------------------------------------------------------------ */
+export function StatRingDemo() {
+  return (
+    <div className="flex w-full items-center justify-center px-6 py-10">
+      <div className="flex flex-wrap items-center justify-center gap-6">
+        <StatRing
+          value={86}
+          unit="%"
+          label="CSAT score"
+          trend={4.2}
+        />
+        <StatRing
+          value={42_580}
+          max={50_000}
+          label="API requests"
+          trend={-2.1}
+          formatValue={(v) => (v / 1000).toFixed(1) + "k"}
+          color="rgb(244, 114, 182)"
+        />
+        <StatRing
+          value={94.7}
+          unit="%"
+          label="Uptime SLA"
+          trend={0}
+          color="rgb(74, 222, 128)"
+        />
+      </div>
     </div>
   );
 }
