@@ -41,6 +41,7 @@ import {
   CubeMatrix,
   CursorTrail,
   DataTable,
+  DateRangePicker,
   DiceRoll,
   DirectionAwareHover,
   DotPattern,
@@ -68,6 +69,7 @@ import {
   HoloSlices,
   HoverBorderGradient,
   InfiniteMovingCards,
+  InlineEdit,
   InvitePeople,
   Lamp,
   Lens,
@@ -96,6 +98,7 @@ import {
   PaperPlane,
   Parallax,
   ParallaxLayer,
+  PasswordStrengthMeter,
   PaymentCard,
   PerspectiveBox,
   PhoneMockup,
@@ -119,6 +122,7 @@ import {
   SplitFlap,
   StatCard,
   StatRing,
+  StatusDot,
   Spotlight,
   SwipeStack,
   TagInput,
@@ -4545,6 +4549,105 @@ export function RetroGridDemo() {
           </p>
         </div>
       </RetroGrid>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * PasswordStrengthMeter — live-scored password input + criteria checklist.
+ * ------------------------------------------------------------------ */
+export function PasswordStrengthMeterDemo() {
+  const [value, setValue] = React.useState("");
+  return (
+    <div className="flex w-full items-center justify-center px-6 py-8">
+      <div className="w-full max-w-sm">
+        <label className="text-[10px] uppercase tracking-widest text-white/45">
+          Password
+        </label>
+        <div className="mt-1">
+          <PasswordStrengthMeter value={value} onChange={setValue} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * DateRangePicker — analytics range with preset shortcuts.
+ * ------------------------------------------------------------------ */
+export function DateRangePickerDemo() {
+  const [range, setRange] = React.useState<{ start: Date | null; end: Date | null }>({
+    start: null,
+    end: null,
+  });
+  return (
+    <div className="flex w-full items-center justify-center px-6 py-6">
+      <DateRangePicker value={range} onChange={setRange} />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * StatusDot — six tones lined up with labels.
+ * ------------------------------------------------------------------ */
+export function StatusDotDemo() {
+  const tones: Array<{
+    tone: "online" | "offline" | "away" | "busy" | "recording" | "syncing";
+    label: string;
+  }> = [
+    { tone: "online", label: "Online" },
+    { tone: "recording", label: "Recording" },
+    { tone: "syncing", label: "Syncing" },
+    { tone: "away", label: "Away" },
+    { tone: "busy", label: "Do not disturb" },
+    { tone: "offline", label: "Offline" },
+  ];
+  return (
+    <div className="flex w-full items-center justify-center px-6 py-10">
+      <div className="grid w-full max-w-md grid-cols-2 gap-x-6 gap-y-3 rounded-2xl border border-white/10 bg-neutral-950 p-5">
+        {tones.map((t) => (
+          <StatusDot key={t.tone} tone={t.tone} label={t.label} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * InlineEdit — click-to-edit profile rows (text + textarea).
+ * ------------------------------------------------------------------ */
+export function InlineEditDemo() {
+  const [name, setName] = React.useState("Alex Morgan");
+  const [bio, setBio] = React.useState(
+    "Engineering lead. Building product platforms for SaaS teams."
+  );
+  return (
+    <div className="flex w-full items-start justify-center px-6 py-8">
+      <div className="w-full max-w-md space-y-4 rounded-2xl border border-white/10 bg-neutral-950 p-5">
+        <div>
+          <p className="text-[10px] uppercase tracking-widest text-white/45">Name</p>
+          <div className="mt-1 text-base font-semibold">
+            <InlineEdit
+              value={name}
+              onSubmit={(next) => setName(next.trim() || name)}
+              validate={(v) =>
+                v.trim().length === 0 ? "Name can't be empty." : null
+              }
+            />
+          </div>
+        </div>
+        <div>
+          <p className="text-[10px] uppercase tracking-widest text-white/45">Bio</p>
+          <div className="mt-1 text-sm text-white/75">
+            <InlineEdit
+              value={bio}
+              variant="textarea"
+              onSubmit={(next) => setBio(next)}
+              placeholder="Tell us about yourself…"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

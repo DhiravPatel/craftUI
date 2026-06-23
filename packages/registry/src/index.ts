@@ -45,6 +45,7 @@ import cubeMatrix from "./components/cube-matrix.json";
 import cursorTrail from "./components/cursor-trail.json";
 import dataTable from "./components/data-table.json";
 import datePicker from "./components/date-picker.json";
+import dateRangePicker from "./components/date-range-picker.json";
 import diceRoll from "./components/dice-roll.json";
 import dialog from "./components/dialog.json";
 import directionAwareHover from "./components/direction-aware-hover.json";
@@ -79,6 +80,7 @@ import heartbeatMonitor from "./components/heartbeat-monitor.json";
 import hoverCard from "./components/hover-card.json";
 import infiniteMovingCards from "./components/infinite-moving-cards.json";
 import input from "./components/input.json";
+import inlineEdit from "./components/inline-edit.json";
 import inputOtp from "./components/input-otp.json";
 import invitePeople from "./components/invite-people.json";
 import kanbanBoard from "./components/kanban-board.json";
@@ -112,6 +114,7 @@ import pageCurl from "./components/page-curl.json";
 import pagination from "./components/pagination.json";
 import paperPlane from "./components/paper-plane.json";
 import parallax from "./components/parallax.json";
+import passwordStrengthMeter from "./components/password-strength-meter.json";
 import paymentCard from "./components/payment-card.json";
 import perspectiveBox from "./components/perspective-box.json";
 import phoneMockup from "./components/phone-mockup.json";
@@ -149,6 +152,7 @@ import spotlight from "./components/spotlight.json";
 import stat from "./components/stat.json";
 import statCard from "./components/stat-card.json";
 import statRing from "./components/stat-ring.json";
+import statusDot from "./components/status-dot.json";
 import stepper from "./components/stepper.json";
 import swipeStack from "./components/swipe-stack.json";
 import switchEntry from "./components/switch.json";
@@ -226,6 +230,7 @@ export const registry: Registry = [
   cursorTrail,
   dataTable,
   datePicker,
+  dateRangePicker,
   diceRoll,
   dialog,
   directionAwareHover,
@@ -260,6 +265,7 @@ export const registry: Registry = [
   hoverCard,
   infiniteMovingCards,
   input,
+  inlineEdit,
   inputOtp,
   invitePeople,
   kanbanBoard,
@@ -293,6 +299,7 @@ export const registry: Registry = [
   pagination,
   paperPlane,
   parallax,
+  passwordStrengthMeter,
   paymentCard,
   perspectiveBox,
   phoneMockup,
@@ -330,6 +337,7 @@ export const registry: Registry = [
   stat,
   statCard,
   statRing,
+  statusDot,
   stepper,
   swipeStack,
   switchEntry,

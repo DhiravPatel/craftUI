@@ -192,6 +192,7 @@ import {
   CubeMatrixDemo,
   CursorTrailDemo,
   DataTableDemo,
+  DateRangePickerDemo,
   DiceRollDemo,
   DirectionAwareHoverDemo,
   DotPatternDemo,
@@ -217,6 +218,7 @@ import {
   HoloSlicesDemo,
   HoverBorderGradientDemo,
   InfiniteMovingCardsDemo,
+  InlineEditDemo,
   InvitePeopleDemo,
   KanbanBoardDemo,
   LampDemo,
@@ -244,6 +246,7 @@ import {
   PageCurlDemo,
   PaperPlaneDemo,
   ParallaxDemo,
+  PasswordStrengthMeterDemo,
   PaymentCardDemo,
   PerspectiveBoxDemo,
   PhoneMockupDemo,
@@ -269,6 +272,7 @@ import {
   SpotlightDemo,
   StatCardDemo,
   StatRingDemo,
+  StatusDotDemo,
   SwipeStackDemo,
   TagInputDemo,
   TaskCardDemo,
@@ -10358,6 +10362,131 @@ const ref = React.useRef<HTMLDivElement>(null);
       { name: "cap", type: '"round" | "butt"', default: '"round"', description: "Line cap style." },
     ],
     related: ["count-up-ring", "gauge-meter", "stat-card"],
+  },
+
+  // ---------- PasswordStrengthMeter ----------
+  {
+    name: "password-strength-meter",
+    title: "Password Strength Meter",
+    description:
+      "A password input that scores the typed value live against a checklist of criteria (length, uppercase, number, symbol by default — fully overridable), renders a 4-segment strength bar that fills and tints from rose → amber → sky → emerald as the score climbs, and shows the criteria checklist with each row ticking green when it passes. Includes a show/hide eye toggle. Wire to a parent via `value` + `onChange`, or get the computed score via `onScoreChange`.",
+    imports: `import { PasswordStrengthMeter } from "@/components/ui/password-strength-meter";`,
+    usage: `<PasswordStrengthMeter value={value} onChange={setValue} />`,
+    defaultExample: {
+      title: "Signup password field",
+      code: `const [value, setValue] = React.useState("");
+
+<PasswordStrengthMeter value={value} onChange={setValue} />`,
+      render: <PasswordStrengthMeterDemo />,
+    },
+    props: [
+      { name: "value", type: "string", description: "Controlled value." },
+      { name: "defaultValue", type: "string", description: "Initial value (uncontrolled)." },
+      { name: "onChange", type: "(value: string) => void", description: "Fires when the value changes." },
+      { name: "onScoreChange", type: "(score: number) => void", description: "Fires when the computed 0–4 score changes." },
+      { name: "criteria", type: "PasswordCriterion[]", description: "Override the default criteria set. Each = { id, label, test(value) }." },
+      { name: "showToggle", type: "boolean", default: "true", description: "Show the show/hide eye toggle." },
+      { name: "hideCriteria", type: "boolean", default: "false", description: "Hide the criteria checklist." },
+      { name: "strengthLabels", type: "[string, string, string, string, string]", description: "Five labels for the strength tiers (score 0..4)." },
+    ],
+    related: ["input", "input-otp", "form"],
+  },
+
+  // ---------- DateRangePicker ----------
+  {
+    name: "date-range-picker",
+    title: "Date Range Picker",
+    description:
+      "An inline two-month calendar for choosing a start and end date, with a preset shortcuts rail (Today / Yesterday / Last 7 days / Last 30 days / This month / Last month). Click a day to set the start, click another to set the end; hovering during selection previews the resulting range. Dependency-free — uses native `Date` math only. Designed to drop into an analytics filter bar or a date-scoped report.",
+    imports: `import { DateRangePicker } from "@/components/ui/date-range-picker";`,
+    usage: `<DateRangePicker value={range} onChange={setRange} />`,
+    defaultExample: {
+      title: "Analytics range with presets",
+      code: `const [range, setRange] = React.useState({ start: null, end: null });
+
+<DateRangePicker value={range} onChange={setRange} />`,
+      render: <DateRangePickerDemo />,
+    },
+    props: [
+      { name: "value", type: "DateRange", description: "Controlled range = { start, end }." },
+      { name: "defaultValue", type: "DateRange", description: "Initial range (uncontrolled)." },
+      { name: "onChange", type: "(range: DateRange) => void", description: "Fires when the range changes." },
+      { name: "presets", type: "DateRangePreset[]", description: "Override the default preset shortcuts. Pass [] to hide." },
+      { name: "minDate", type: "Date", description: "Earliest selectable date." },
+      { name: "maxDate", type: "Date", description: "Latest selectable date." },
+      { name: "numberOfMonths", type: "number", default: "2", description: "How many months to show side-by-side." },
+      { name: "weekStartsOn", type: "0 | 1", default: "1", description: "First day of the week — 0 (Sun) or 1 (Mon)." },
+      { name: "accentColor", type: "string", description: "Accent for selected days and range fill." },
+    ],
+    related: ["date-picker", "calendar", "data-table"],
+  },
+
+  // ---------- StatusDot ----------
+  {
+    name: "status-dot",
+    title: "Status Dot",
+    description:
+      "A small status indicator with an optional animated concentric pulse. Picks a sensible color and pulse behavior per tone (`online` / `recording` / `syncing` pulse; `offline` / `away` / `busy` stay static), and you can override either with `color` and `pulse`. Pass `label` to render text alongside. Use it next to a user avatar, in a sidebar header, or inside a status badge.",
+    imports: `import { StatusDot } from "@/components/ui/status-dot";`,
+    usage: `<StatusDot tone="online" label="Online" />`,
+    defaultExample: {
+      title: "Six tones",
+      code: `<StatusDot tone="online" label="Online" />
+<StatusDot tone="recording" label="Recording" />
+<StatusDot tone="syncing" label="Syncing" />
+<StatusDot tone="away" label="Away" />
+<StatusDot tone="busy" label="Do not disturb" />
+<StatusDot tone="offline" label="Offline" />`,
+      render: <StatusDotDemo />,
+    },
+    props: [
+      { name: "tone", type: '"online" | "offline" | "away" | "busy" | "recording" | "syncing" | "neutral"', default: '"online"', description: "Picks color + pulse behavior." },
+      { name: "size", type: "number", default: "9", description: "Diameter of the inner dot in px." },
+      { name: "color", type: "string", description: "Override the tone's color." },
+      { name: "pulse", type: "boolean", description: "Override whether the dot pulses. Defaults depend on tone." },
+      { name: "duration", type: "number", default: "2", description: "Pulse speed in seconds per cycle." },
+      { name: "label", type: "ReactNode", description: "Text rendered to the right of the dot." },
+    ],
+    related: ["status-badge", "badge", "spinner"],
+  },
+
+  // ---------- InlineEdit ----------
+  {
+    name: "inline-edit",
+    title: "Inline Edit",
+    description:
+      "A click-to-edit field for settings, profile rows, and card titles. Read mode shows the value (with a subtle pencil affordance on hover); clicking switches into an editor that commits on Enter (or Cmd/Ctrl+Enter in textarea mode) or the explicit Save button and reverts on Esc or Cancel. Async-safe — `onSubmit` can return a promise and the Save button shows a loading state while it resolves. Optional `validate` blocks submission with an inline error message.",
+    imports: `import { InlineEdit } from "@/components/ui/inline-edit";`,
+    usage: `<InlineEdit value={name} onSubmit={setName} />`,
+    defaultExample: {
+      title: "Profile row + textarea bio",
+      code: `<InlineEdit
+  value={name}
+  onSubmit={(next) => setName(next.trim() || name)}
+  validate={(v) => (v.trim().length === 0 ? "Name can't be empty." : null)}
+/>
+
+<InlineEdit
+  value={bio}
+  variant="textarea"
+  onSubmit={setBio}
+/>`,
+      render: <InlineEditDemo />,
+    },
+    props: [
+      { name: "value", type: "string", required: true, description: "Current value." },
+      { name: "onSubmit", type: "(next: string) => void | Promise<void>", required: true, description: "Called when the user confirms a new value." },
+      { name: "placeholder", type: "string", default: '"Click to add…"', description: "Shown when the value is empty." },
+      { name: "variant", type: '"text" | "textarea"', default: '"text"', description: "Editor type." },
+      { name: "validate", type: "(next: string) => string | null", description: "Return an error message to block submission." },
+      { name: "renderDisplay", type: "(value: string) => ReactNode", description: "Custom rendering for the read mode." },
+      { name: "defaultEditing", type: "boolean", default: "false", description: "Open the editor immediately." },
+      { name: "disabled", type: "boolean", default: "false", description: "Disable editing entirely." },
+      { name: "hideButtons", type: "boolean", default: "false", description: "Hide the Save / Cancel buttons (still bound to Enter / Esc)." },
+      { name: "saveLabel", type: "string", default: '"Save"', description: "Text for the Save button." },
+      { name: "cancelLabel", type: "string", default: '"Cancel"', description: "Text for the Cancel button." },
+    ],
+    related: ["form", "input", "textarea"],
   },
 ];
 

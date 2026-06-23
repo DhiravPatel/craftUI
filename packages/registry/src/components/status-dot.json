@@ -1,0 +1,16 @@
+{
+  "name": "status-dot",
+  "description": "Small status indicator with an optional animated concentric pulse. Picks a sensible color and pulse behavior per tone (online / recording pulse; offline / away stay static), with overrides for color and pulse. Optional inline label.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/status-dot/status-dot.tsx",
+      "target": "{{components}}/status-dot.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["status", "dot", "indicator", "live", "online", "pulse", "presence"]
+}

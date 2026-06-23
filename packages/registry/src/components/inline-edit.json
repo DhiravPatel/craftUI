@@ -1,0 +1,16 @@
+{
+  "name": "inline-edit",
+  "description": "Click-to-edit field for settings, profile rows, and card titles. Read mode shows the value; clicking switches into an editor that commits on Enter or Save and reverts on Esc or Cancel. Async-safe (onSubmit can return a promise) with optional inline validation.",
+  "category": "form",
+  "files": [
+    {
+      "path": "components/inline-edit/inline-edit.tsx",
+      "target": "{{components}}/inline-edit.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": ["inline", "edit", "editable", "form", "settings", "profile"]
+}

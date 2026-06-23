@@ -1,6 +1,6 @@
 # CraftUI components
 
-> A copy-paste component library in a pnpm + turbo monorepo. **179 components** ship today.
+> A copy-paste component library in a pnpm + turbo monorepo. **183 components** ship today.
 
 ## How to use this file
 
@@ -31,33 +31,34 @@ Browse the live previews and full prop tables at the [docs site](./apps/docs).
 | [`compare`](#compare) | [`comparison-table`](#comparison-table) | [`confetti`](#confetti) | [`context-menu`](#context-menu) |
 | [`copy-button`](#copy-button) | [`count-up-ring`](#count-up-ring) | [`countdown-timer`](#countdown-timer) | [`coverflow`](#coverflow) |
 | [`cube`](#cube) | [`cube-matrix`](#cube-matrix) | [`cursor-trail`](#cursor-trail) | [`data-table`](#data-table) |
-| [`date-picker`](#date-picker) | [`dialog`](#dialog) | [`dice-roll`](#dice-roll) | [`direction-aware-hover`](#direction-aware-hover) |
-| [`dot-pattern`](#dot-pattern) | [`dot-progress`](#dot-progress) | [`drawer`](#drawer) | [`dropdown-menu`](#dropdown-menu) |
-| [`empty-state`](#empty-state) | [`evervault-card`](#evervault-card) | [`feature-card`](#feature-card) | [`file-upload`](#file-upload) |
-| [`flip-card`](#flip-card) | [`flip-words`](#flip-words) | [`floating-dock`](#floating-dock) | [`flux-panels`](#flux-panels) |
-| [`focus-cards`](#focus-cards) | [`fold-out`](#fold-out) | [`following-pointer`](#following-pointer) | [`footer`](#footer) |
-| [`form`](#form) | [`gauge-meter`](#gauge-meter) | [`glass-card`](#glass-card) | [`glitch-clip`](#glitch-clip) |
-| [`globe`](#globe) | [`gravity-well`](#gravity-well) | [`heartbeat-monitor`](#heartbeat-monitor) | [`helix`](#helix) |
-| [`hold-to-confirm`](#hold-to-confirm) | [`holo-card`](#holo-card) | [`holo-slices`](#holo-slices) | [`hover-border-gradient`](#hover-border-gradient) |
-| [`hover-card`](#hover-card) | [`infinite-moving-cards`](#infinite-moving-cards) | [`input`](#input) | [`input-otp`](#input-otp) |
-| [`invite-people`](#invite-people) | [`kanban-board`](#kanban-board) | [`kbd`](#kbd) | [`label`](#label) |
-| [`lamp`](#lamp) | [`layout`](#layout) | [`lens`](#lens) | [`logo-cloud`](#logo-cloud) |
-| [`magic-layer`](#magic-layer) | [`magnet`](#magnet) | [`magnetic-button`](#magnetic-button) | [`marquee-3d`](#marquee-3d) |
-| [`mention-input`](#mention-input) | [`mesh-gradient`](#mesh-gradient) | [`meteors`](#meteors) | [`moving-border`](#moving-border) |
-| [`multi-step-loader`](#multi-step-loader) | [`navbar`](#navbar) | [`neon-glow`](#neon-glow) | [`neon-portal`](#neon-portal) |
-| [`notification-stack`](#notification-stack) | [`number-flip`](#number-flip) | [`number-input`](#number-input) | [`number-ticker`](#number-ticker) |
-| [`onboarding-checklist`](#onboarding-checklist) | [`orbit-stack`](#orbit-stack) | [`orbital-menu`](#orbital-menu) | [`orbiting-circles`](#orbiting-circles) |
-| [`page-curl`](#page-curl) | [`pagination`](#pagination) | [`paper-plane`](#paper-plane) | [`parallax`](#parallax) |
-| [`payment-card`](#payment-card) | [`perspective-box`](#perspective-box) | [`phone-mockup`](#phone-mockup) | [`pin-3d`](#pin-3d) |
-| [`pin-board`](#pin-board) | [`plan-card`](#plan-card) | [`plasma-field`](#plasma-field) | [`popover`](#popover) |
-| [`portal-rings`](#portal-rings) | [`pricing-cards`](#pricing-cards) | [`pricing-slider`](#pricing-slider) | [`prism-orb`](#prism-orb) |
-| [`progress`](#progress) | [`quantum-grid`](#quantum-grid) | [`radio-group`](#radio-group) | [`rating`](#rating) |
-| [`resizable`](#resizable) | [`retro-grid`](#retro-grid) | [`ripple`](#ripple) | [`scratch-card`](#scratch-card) |
-| [`scroll-area`](#scroll-area) | [`scroll-progress`](#scroll-progress) | [`segmented-control`](#segmented-control) | [`select`](#select) |
-| [`separator`](#separator) | [`sheet`](#sheet) | [`sidebar`](#sidebar) | [`skeleton`](#skeleton) |
-| [`slider`](#slider) | [`sparkles`](#sparkles) | [`sparkles-text`](#sparkles-text) | [`spinner`](#spinner) |
-| [`split-flap`](#split-flap) | [`spotlight`](#spotlight) | [`stat`](#stat) | [`stat-card`](#stat-card) |
-| [`stat-ring`](#stat-ring) | [`stepper`](#stepper) | [`swipe-stack`](#swipe-stack) | [`switch`](#switch) |
+| [`date-picker`](#date-picker) | [`date-range-picker`](#date-range-picker) | [`dialog`](#dialog) | [`dice-roll`](#dice-roll) |
+| [`direction-aware-hover`](#direction-aware-hover) | [`dot-pattern`](#dot-pattern) | [`dot-progress`](#dot-progress) | [`drawer`](#drawer) |
+| [`dropdown-menu`](#dropdown-menu) | [`empty-state`](#empty-state) | [`evervault-card`](#evervault-card) | [`feature-card`](#feature-card) |
+| [`file-upload`](#file-upload) | [`flip-card`](#flip-card) | [`flip-words`](#flip-words) | [`floating-dock`](#floating-dock) |
+| [`flux-panels`](#flux-panels) | [`focus-cards`](#focus-cards) | [`fold-out`](#fold-out) | [`following-pointer`](#following-pointer) |
+| [`footer`](#footer) | [`form`](#form) | [`gauge-meter`](#gauge-meter) | [`glass-card`](#glass-card) |
+| [`glitch-clip`](#glitch-clip) | [`globe`](#globe) | [`gravity-well`](#gravity-well) | [`heartbeat-monitor`](#heartbeat-monitor) |
+| [`helix`](#helix) | [`hold-to-confirm`](#hold-to-confirm) | [`holo-card`](#holo-card) | [`holo-slices`](#holo-slices) |
+| [`hover-border-gradient`](#hover-border-gradient) | [`hover-card`](#hover-card) | [`infinite-moving-cards`](#infinite-moving-cards) | [`inline-edit`](#inline-edit) |
+| [`input`](#input) | [`input-otp`](#input-otp) | [`invite-people`](#invite-people) | [`kanban-board`](#kanban-board) |
+| [`kbd`](#kbd) | [`label`](#label) | [`lamp`](#lamp) | [`layout`](#layout) |
+| [`lens`](#lens) | [`logo-cloud`](#logo-cloud) | [`magic-layer`](#magic-layer) | [`magnet`](#magnet) |
+| [`magnetic-button`](#magnetic-button) | [`marquee-3d`](#marquee-3d) | [`mention-input`](#mention-input) | [`mesh-gradient`](#mesh-gradient) |
+| [`meteors`](#meteors) | [`moving-border`](#moving-border) | [`multi-step-loader`](#multi-step-loader) | [`navbar`](#navbar) |
+| [`neon-glow`](#neon-glow) | [`neon-portal`](#neon-portal) | [`notification-stack`](#notification-stack) | [`number-flip`](#number-flip) |
+| [`number-input`](#number-input) | [`number-ticker`](#number-ticker) | [`onboarding-checklist`](#onboarding-checklist) | [`orbit-stack`](#orbit-stack) |
+| [`orbital-menu`](#orbital-menu) | [`orbiting-circles`](#orbiting-circles) | [`page-curl`](#page-curl) | [`pagination`](#pagination) |
+| [`paper-plane`](#paper-plane) | [`parallax`](#parallax) | [`password-strength-meter`](#password-strength-meter) | [`payment-card`](#payment-card) |
+| [`perspective-box`](#perspective-box) | [`phone-mockup`](#phone-mockup) | [`pin-3d`](#pin-3d) | [`pin-board`](#pin-board) |
+| [`plan-card`](#plan-card) | [`plasma-field`](#plasma-field) | [`popover`](#popover) | [`portal-rings`](#portal-rings) |
+| [`pricing-cards`](#pricing-cards) | [`pricing-slider`](#pricing-slider) | [`prism-orb`](#prism-orb) | [`progress`](#progress) |
+| [`quantum-grid`](#quantum-grid) | [`radio-group`](#radio-group) | [`rating`](#rating) | [`resizable`](#resizable) |
+| [`retro-grid`](#retro-grid) | [`ripple`](#ripple) | [`scratch-card`](#scratch-card) | [`scroll-area`](#scroll-area) |
+| [`scroll-progress`](#scroll-progress) | [`segmented-control`](#segmented-control) | [`select`](#select) | [`separator`](#separator) |
+| [`sheet`](#sheet) | [`sidebar`](#sidebar) | [`skeleton`](#skeleton) | [`slider`](#slider) |
+| [`sparkles`](#sparkles) | [`sparkles-text`](#sparkles-text) | [`spinner`](#spinner) | [`split-flap`](#split-flap) |
+| [`spotlight`](#spotlight) | [`stat`](#stat) | [`stat-card`](#stat-card) | [`stat-ring`](#stat-ring) |
+| [`status-dot`](#status-dot) | [`stepper`](#stepper) | [`swipe-stack`](#swipe-stack) | [`switch`](#switch) |
 | [`table`](#table) | [`tabs`](#tabs) | [`tag-input`](#tag-input) | [`task-card`](#task-card) |
 | [`testimonial-quote`](#testimonial-quote) | [`text-generate-effect`](#text-generate-effect) | [`text-scramble`](#text-scramble) | [`textarea`](#textarea) |
 | [`theme-provider`](#theme-provider) | [`theme-toggle`](#theme-toggle) | [`tilt`](#tilt) | [`tilt-tiles`](#tilt-tiles) |
@@ -66,12 +67,15 @@ Browse the live previews and full prop tables at the [docs site](./apps/docs).
 | [`tree-view`](#tree-view) | [`usage-bar`](#usage-bar) | [`vote-widget`](#vote-widget) | [`wave-grid`](#wave-grid) |
 | [`wavy-background`](#wavy-background) | [`wavy-text`](#wavy-text) | [`world-map`](#world-map) |  |
 
-## Form <small>(2)</small>
+## Form <small>(5)</small>
 
+- <a id="date-range-picker"></a>**`date-range-picker`** — Inline two-month calendar for choosing a start + end date, with a preset shortcuts rail (Today / Yesterday / Last 7 days / Last 30 days / This month / Last month). Click to set start, click again to set end; hover during selection previews the range. Dependency-free, native Date math only. _keywords: date, range, calendar, picker, analytics, filter_
+- <a id="inline-edit"></a>**`inline-edit`** — Click-to-edit field for settings, profile rows, and card titles. Read mode shows the value; clicking switches into an editor that commits on Enter or Save and reverts on Esc or Cancel. Async-safe (onSubmit can return a promise) with optional inline validation. _keywords: inline, edit, editable, form, settings, profile_
 - <a id="invite-people"></a>**`invite-people`** — Team invite block for SaaS settings. Email field with inline validation, role dropdown, Send button, and a pending-invites list with Resend / Revoke per row. Fully callback-driven. _keywords: invite, team, members, settings, form, roles, saas_
 - <a id="mention-input"></a>**`mention-input`** — A textarea with @ mention autocomplete. Type `@` to open the dropdown, filter by name or handle, navigate with arrow keys, and Enter to insert the mention at the cursor. Self-contained, no dependencies. _keywords: mention, input, textarea, autocomplete, comment, social_
+- <a id="password-strength-meter"></a>**`password-strength-meter`** — Password input that scores the value live against a checklist of criteria, renders a 4-segment strength bar that fills and tints as the score climbs, and shows the criteria checklist with each row ticking green when it passes. Includes a show/hide eye toggle. _keywords: password, strength, auth, input, signup, security_
 
-## Display <small>(111)</small>
+## Display <small>(112)</small>
 
 - <a id="activity-heatmap"></a>**`activity-heatmap`** — GitHub-style contribution calendar. Auto-bucketed intensity cells, month labels, an optional legend, a diagonal mount-in animation, and click-to-select. _keywords: heatmap, calendar, activity, contributions, chart, saas_
 - <a id="animated-beam"></a>**`animated-beam`** — Draws a glowing gradient beam between two elements and sweeps light along it on a loop. Give it a positioned container plus refs to a from and to node; it measures their centers, draws a curved SVG path, and recomputes on resize. Perfect for connect-your-tools, integration maps, and architecture diagrams. The sweep uses SVG SMIL, so it runs without JavaScript once painted. _keywords: beam, animated, connect, integration, diagram, svg, gradient, network_
@@ -168,6 +172,7 @@ Browse the live previews and full prop tables at the [docs site](./apps/docs).
 - <a id="stat"></a>**`stat`** — A purpose-built KPI card with label, value, trend delta, and optional helper text. _keywords: stat, metric, kpi, trend_
 - <a id="stat-card"></a>**`stat-card`** — Polished metric card with animated count-up on view, optional trend indicator, and optional inline sparkline. _keywords: stat, metric, saas, landing, animated_
 - <a id="stat-ring"></a>**`stat-ring`** — Circular KPI ring with a large central value, optional label and unit suffix, and an optional trend pill (auto-tinted green/red/neutral based on the delta). The arc draws from 0 to the target percentage on mount with a smooth CSS transition. _keywords: stat, kpi, ring, progress, circular, dashboard, trend_
+- <a id="status-dot"></a>**`status-dot`** — Small status indicator with an optional animated concentric pulse. Picks a sensible color and pulse behavior per tone (online / recording pulse; offline / away stay static), with overrides for color and pulse. Optional inline label. _keywords: status, dot, indicator, live, online, pulse, presence_
 - <a id="swipe-stack"></a>**`swipe-stack`** — Draggable Tinder-style card stack with rotation, dismiss threshold, and Like/Nope hint badges. _keywords: 3d, swipe, drag, card, tinder, stack, interactive_
 - <a id="table"></a>**`table`** — Semantic HTML table with styled parts. _keywords: table, grid_
 - <a id="task-card"></a>**`task-card`** — Linear / Asana-style task row card with an ID, title, description, status glyph (progress dots that visually match Linear), colored priority chip, tags, assignee avatar, subtask count, comment count, and due-date pill that goes danger when overdue. _keywords: task, card, linear, asana, kanban, project, issue_
