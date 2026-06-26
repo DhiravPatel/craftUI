@@ -1,6 +1,6 @@
 # CraftUI components
 
-> A copy-paste component library in a pnpm + turbo monorepo. **183 components** ship today.
+> A copy-paste component library in a pnpm + turbo monorepo. **191 components** ship today.
 
 ## How to use this file
 
@@ -22,15 +22,16 @@ Browse the live previews and full prop tables at the [docs site](./apps/docs).
 |---|---|---|---|
 | [`accordion`](#accordion) | [`activity-heatmap`](#activity-heatmap) | [`alert`](#alert) | [`alert-dialog`](#alert-dialog) |
 | [`animated-beam`](#animated-beam) | [`animated-chart`](#animated-chart) | [`animated-text`](#animated-text) | [`animated-tooltip`](#animated-tooltip) |
-| [`api-key-display`](#api-key-display) | [`audio-visualizer`](#audio-visualizer) | [`aurora`](#aurora) | [`avatar`](#avatar) |
-| [`avatar-stack`](#avatar-stack) | [`background-beams`](#background-beams) | [`background-boxes`](#background-boxes) | [`badge`](#badge) |
-| [`banner`](#banner) | [`bento-grid`](#bento-grid) | [`breadcrumb`](#breadcrumb) | [`button`](#button) |
-| [`calendar`](#calendar) | [`card`](#card) | [`card-hover-effect`](#card-hover-effect) | [`card-stack`](#card-stack) |
-| [`carousel-3d`](#carousel-3d) | [`chat-bubble`](#chat-bubble) | [`checkbox`](#checkbox) | [`code-rain`](#code-rain) |
-| [`coin-flip`](#coin-flip) | [`color-picker`](#color-picker) | [`combobox`](#combobox) | [`command`](#command) |
-| [`compare`](#compare) | [`comparison-table`](#comparison-table) | [`confetti`](#confetti) | [`context-menu`](#context-menu) |
-| [`copy-button`](#copy-button) | [`count-up-ring`](#count-up-ring) | [`countdown-timer`](#countdown-timer) | [`coverflow`](#coverflow) |
-| [`cube`](#cube) | [`cube-matrix`](#cube-matrix) | [`cursor-trail`](#cursor-trail) | [`data-table`](#data-table) |
+| [`api-key-display`](#api-key-display) | [`audio-player`](#audio-player) | [`audio-visualizer`](#audio-visualizer) | [`aurora`](#aurora) |
+| [`auth-card`](#auth-card) | [`avatar`](#avatar) | [`avatar-stack`](#avatar-stack) | [`background-beams`](#background-beams) |
+| [`background-boxes`](#background-boxes) | [`badge`](#badge) | [`banner`](#banner) | [`bento-grid`](#bento-grid) |
+| [`breadcrumb`](#breadcrumb) | [`button`](#button) | [`calendar`](#calendar) | [`card`](#card) |
+| [`card-hover-effect`](#card-hover-effect) | [`card-stack`](#card-stack) | [`carousel-3d`](#carousel-3d) | [`chat-bubble`](#chat-bubble) |
+| [`checkbox`](#checkbox) | [`code-rain`](#code-rain) | [`coin-flip`](#coin-flip) | [`color-picker`](#color-picker) |
+| [`combobox`](#combobox) | [`command`](#command) | [`compare`](#compare) | [`comparison-table`](#comparison-table) |
+| [`confetti`](#confetti) | [`context-menu`](#context-menu) | [`cookie-banner`](#cookie-banner) | [`copy-button`](#copy-button) |
+| [`count-up-ring`](#count-up-ring) | [`countdown-timer`](#countdown-timer) | [`coverflow`](#coverflow) | [`cube`](#cube) |
+| [`cube-matrix`](#cube-matrix) | [`currency-input`](#currency-input) | [`cursor-trail`](#cursor-trail) | [`data-table`](#data-table) |
 | [`date-picker`](#date-picker) | [`date-range-picker`](#date-range-picker) | [`dialog`](#dialog) | [`dice-roll`](#dice-roll) |
 | [`direction-aware-hover`](#direction-aware-hover) | [`dot-pattern`](#dot-pattern) | [`dot-progress`](#dot-progress) | [`drawer`](#drawer) |
 | [`dropdown-menu`](#dropdown-menu) | [`empty-state`](#empty-state) | [`evervault-card`](#evervault-card) | [`feature-card`](#feature-card) |
@@ -53,29 +54,34 @@ Browse the live previews and full prop tables at the [docs site](./apps/docs).
 | [`plan-card`](#plan-card) | [`plasma-field`](#plasma-field) | [`popover`](#popover) | [`portal-rings`](#portal-rings) |
 | [`pricing-cards`](#pricing-cards) | [`pricing-slider`](#pricing-slider) | [`prism-orb`](#prism-orb) | [`progress`](#progress) |
 | [`quantum-grid`](#quantum-grid) | [`radio-group`](#radio-group) | [`rating`](#rating) | [`resizable`](#resizable) |
-| [`retro-grid`](#retro-grid) | [`ripple`](#ripple) | [`scratch-card`](#scratch-card) | [`scroll-area`](#scroll-area) |
-| [`scroll-progress`](#scroll-progress) | [`segmented-control`](#segmented-control) | [`select`](#select) | [`separator`](#separator) |
-| [`sheet`](#sheet) | [`sidebar`](#sidebar) | [`skeleton`](#skeleton) | [`slider`](#slider) |
-| [`sparkles`](#sparkles) | [`sparkles-text`](#sparkles-text) | [`spinner`](#spinner) | [`split-flap`](#split-flap) |
-| [`spotlight`](#spotlight) | [`stat`](#stat) | [`stat-card`](#stat-card) | [`stat-ring`](#stat-ring) |
-| [`status-dot`](#status-dot) | [`stepper`](#stepper) | [`swipe-stack`](#swipe-stack) | [`switch`](#switch) |
-| [`table`](#table) | [`tabs`](#tabs) | [`tag-input`](#tag-input) | [`task-card`](#task-card) |
-| [`testimonial-quote`](#testimonial-quote) | [`text-generate-effect`](#text-generate-effect) | [`text-scramble`](#text-scramble) | [`textarea`](#textarea) |
-| [`theme-provider`](#theme-provider) | [`theme-toggle`](#theme-toggle) | [`tilt`](#tilt) | [`tilt-tiles`](#tilt-tiles) |
-| [`time-picker`](#time-picker) | [`timeline`](#timeline) | [`toast`](#toast) | [`toggle`](#toggle) |
-| [`toggle-group`](#toggle-group) | [`toolbar`](#toolbar) | [`tooltip`](#tooltip) | [`tracing-beam`](#tracing-beam) |
-| [`tree-view`](#tree-view) | [`usage-bar`](#usage-bar) | [`vote-widget`](#vote-widget) | [`wave-grid`](#wave-grid) |
+| [`retro-grid`](#retro-grid) | [`review-card`](#review-card) | [`ripple`](#ripple) | [`scratch-card`](#scratch-card) |
+| [`scroll-area`](#scroll-area) | [`scroll-progress`](#scroll-progress) | [`segmented-control`](#segmented-control) | [`select`](#select) |
+| [`separator`](#separator) | [`sheet`](#sheet) | [`sidebar`](#sidebar) | [`skeleton`](#skeleton) |
+| [`slider`](#slider) | [`sparkles`](#sparkles) | [`sparkles-text`](#sparkles-text) | [`sparkline`](#sparkline) |
+| [`spinner`](#spinner) | [`split-flap`](#split-flap) | [`spotlight`](#spotlight) | [`stat`](#stat) |
+| [`stat-card`](#stat-card) | [`stat-ring`](#stat-ring) | [`status-dot`](#status-dot) | [`stepper`](#stepper) |
+| [`swipe-stack`](#swipe-stack) | [`switch`](#switch) | [`table`](#table) | [`tabs`](#tabs) |
+| [`tag-input`](#tag-input) | [`task-card`](#task-card) | [`testimonial-quote`](#testimonial-quote) | [`text-generate-effect`](#text-generate-effect) |
+| [`text-scramble`](#text-scramble) | [`textarea`](#textarea) | [`theme-provider`](#theme-provider) | [`theme-selector`](#theme-selector) |
+| [`theme-toggle`](#theme-toggle) | [`tilt`](#tilt) | [`tilt-tiles`](#tilt-tiles) | [`time-picker`](#time-picker) |
+| [`timeline`](#timeline) | [`toast`](#toast) | [`toggle`](#toggle) | [`toggle-group`](#toggle-group) |
+| [`toolbar`](#toolbar) | [`tooltip`](#tooltip) | [`tracing-beam`](#tracing-beam) | [`tree-view`](#tree-view) |
+| [`two-factor-setup`](#two-factor-setup) | [`usage-bar`](#usage-bar) | [`vote-widget`](#vote-widget) | [`wave-grid`](#wave-grid) |
 | [`wavy-background`](#wavy-background) | [`wavy-text`](#wavy-text) | [`world-map`](#world-map) |  |
 
-## Form <small>(5)</small>
+## Form <small>(9)</small>
 
+- <a id="auth-card"></a>**`auth-card`** — A production sign-in / sign-up card with social login buttons, divider, email + password fields with show/hide toggle, async-safe submit, forgot-password link, and a footer switch between sign-in and sign-up. Includes inline validation for required fields and email format. _keywords: auth, login, signin, signup, register, oauth, social, form, saas_
+- <a id="currency-input"></a>**`currency-input`** — A locale-aware money input that groups digits as the user types, respects the locale's decimal separator, and re-formats on blur with the currency's natural fraction digits. The currency symbol is rendered inside the input as a prefix (derived via Intl.NumberFormat.formatToParts). Optional right-side dropdown lets the user switch currency. Works controlled or uncontrolled with `value` + `onValueChange`. _keywords: currency, money, input, form, intl, locale, price, amount_
 - <a id="date-range-picker"></a>**`date-range-picker`** — Inline two-month calendar for choosing a start + end date, with a preset shortcuts rail (Today / Yesterday / Last 7 days / Last 30 days / This month / Last month). Click to set start, click again to set end; hover during selection previews the range. Dependency-free, native Date math only. _keywords: date, range, calendar, picker, analytics, filter_
 - <a id="inline-edit"></a>**`inline-edit`** — Click-to-edit field for settings, profile rows, and card titles. Read mode shows the value; clicking switches into an editor that commits on Enter or Save and reverts on Esc or Cancel. Async-safe (onSubmit can return a promise) with optional inline validation. _keywords: inline, edit, editable, form, settings, profile_
 - <a id="invite-people"></a>**`invite-people`** — Team invite block for SaaS settings. Email field with inline validation, role dropdown, Send button, and a pending-invites list with Resend / Revoke per row. Fully callback-driven. _keywords: invite, team, members, settings, form, roles, saas_
 - <a id="mention-input"></a>**`mention-input`** — A textarea with @ mention autocomplete. Type `@` to open the dropdown, filter by name or handle, navigate with arrow keys, and Enter to insert the mention at the cursor. Self-contained, no dependencies. _keywords: mention, input, textarea, autocomplete, comment, social_
 - <a id="password-strength-meter"></a>**`password-strength-meter`** — Password input that scores the value live against a checklist of criteria, renders a 4-segment strength bar that fills and tints as the score climbs, and shows the criteria checklist with each row ticking green when it passes. Includes a show/hide eye toggle. _keywords: password, strength, auth, input, signup, security_
+- <a id="theme-selector"></a>**`theme-selector`** — A three-option visual theme picker (Light / Dark / System) rendered as clickable cards with mini browser-window mockup previews. Sky accent ring and animated check badge mark the active card. Fully keyboard-accessible radiogroup. _keywords: theme, selector, light, dark, system, appearance, settings, preferences_
+- <a id="two-factor-setup"></a>**`two-factor-setup`** — A 2FA / TOTP setup flow card. Step 1 renders an inline-SVG QR code from an otpauth URL with a copyable manual key. Step 2 is a 6-digit verification field with auto-advance, paste-distribution, async verify, and an animated success state. _keywords: 2fa, two-factor, totp, authenticator, otp, security, qr-code, saas_
 
-## Display <small>(112)</small>
+## Display <small>(115)</small>
 
 - <a id="activity-heatmap"></a>**`activity-heatmap`** — GitHub-style contribution calendar. Auto-bucketed intensity cells, month labels, an optional legend, a diagonal mount-in animation, and click-to-select. _keywords: heatmap, calendar, activity, contributions, chart, saas_
 - <a id="animated-beam"></a>**`animated-beam`** — Draws a glowing gradient beam between two elements and sweeps light along it on a loop. Give it a positioned container plus refs to a from and to node; it measures their centers, draws a curved SVG path, and recomputes on resize. Perfect for connect-your-tools, integration maps, and architecture diagrams. The sweep uses SVG SMIL, so it runs without JavaScript once painted. _keywords: beam, animated, connect, integration, diagram, svg, gradient, network_
@@ -83,6 +89,7 @@ Browse the live previews and full prop tables at the [docs site](./apps/docs).
 - <a id="animated-text"></a>**`animated-text`** — Single text-effect component with four variants — `shiny` (gradient sweep), `gradient` (animated rainbow), `typewriter` (cycling phrases), and `reveal` (char/word stagger on scroll). _keywords: 3d, text, shimmer, gradient, typewriter, reveal_
 - <a id="animated-tooltip"></a>**`animated-tooltip`** — Overlapping avatar group where hovering an avatar lifts and tilts it while a tooltip with name + role rises above. Useful for team rosters and 'people on this project'. _keywords: 3d, tooltip, avatar, team, hover_
 - <a id="api-key-display"></a>**`api-key-display`** — Masked-secret row for dashboards (Stripe, Vercel, GitHub-style). Shows the key with all but the last few characters bulleted, a show/hide eye toggle, a copy button with confirmation, and an optional rotate action plus created/expires metadata. _keywords: api-key, secret, token, mask, copy, dashboard, settings_
+- <a id="audio-player"></a>**`audio-player`** — A compact music / podcast player card with album art, track meta, play/pause, prev/next, a seek slider with mm:ss labels, and an optional volume slider. Wraps a hidden native audio element. _keywords: audio, player, music, podcast, media, saas_
 - <a id="audio-visualizer"></a>**`audio-visualizer`** — A row of bars that bounce like an equalizer. Per-bar CSS animation durations and delays are derived deterministically from the index (SSR-safe). Toggle `playing` to freeze the bars when audio is paused. _keywords: audio, equalizer, visualizer, bars, music, podcast_
 - <a id="aurora"></a>**`aurora`** — Animated aurora background. Multiple colored gradient blobs slowly drift and morph behind your content for a calming, premium feel. _keywords: 3d, aurora, background, gradient, hero_
 - <a id="avatar"></a>**`avatar`** — User avatar with image + fallback and grouping. _keywords: avatar, user_
@@ -162,11 +169,13 @@ Browse the live previews and full prop tables at the [docs site](./apps/docs).
 - <a id="prism-orb"></a>**`prism-orb`** — A spectral 3D orb with rotating conic highlights and glow. _keywords: 3d, orb, glow, gradient, animated_
 - <a id="quantum-grid"></a>**`quantum-grid`** — A 3D pulsing grid that ripples like a quantum field. _keywords: 3d, grid, tiles, pulse, animated_
 - <a id="retro-grid"></a>**`retro-grid`** — An animated synthwave horizon: an infinite perspective grid that scrolls toward the viewer, fading into the distance. Pure CSS (a tilted, looping background), so it's lightweight and runs without JavaScript once painted. Drop it behind a hero, a pricing CTA, or a 404 for an instant retro-futuristic backdrop; render content as children on top. _keywords: retro, grid, synthwave, perspective, background, 3d, horizon, animated_
+- <a id="review-card"></a>**`review-card`** — A product review card with a half-star SVG rating row, reviewer avatar and name, optional emerald verified-purchase pill, bold title and body, optional pros/cons columns with iconified bullets, and a Helpful voting button that works controlled or uncontrolled. _keywords: review, rating, stars, testimonial, feedback, verified, helpful, ecommerce, saas_
 - <a id="scratch-card"></a>**`scratch-card`** — A scratch-off foil over a hidden reward. Drag across it (mouse or touch) to erase the coating; once enough is cleared it auto-reveals the rest and fires onComplete. Great for promos, coupon codes, gamified onboarding, and reward reveals. Renders the prize as children, paints the foil on a canvas, dependency-free. _keywords: scratch, card, reveal, coupon, promo, canvas, gamified, reward_
 - <a id="scroll-area"></a>**`scroll-area`** — Custom-styled scroll area with scrollbar. _keywords: scroll_
 - <a id="separator"></a>**`separator`** — Visual or semantic divider (horizontal/vertical). _keywords: separator, divider, hr_
 - <a id="sparkles"></a>**`sparkles`** — Sparkle particles overlay. Drop into any container — twinkling 4-pointed stars scatter across with randomized size, position, and timing. _keywords: 3d, sparkles, twinkle, decoration, background_
 - <a id="sparkles-text"></a>**`sparkles-text`** — Hero text with a glowing horizontal beam and twinkling sparkle particles falling below — Aceternity-style 'Sparkles' headline. _keywords: 3d, text, sparkles, beam, hero_
+- <a id="sparkline"></a>**`sparkline`** — An inline, axis-less SVG trend chart. Renders a series as either a line or a filled area, auto-scales to the data range, supports Catmull-Rom smoothing, and marks the latest point with a soft glowing dot. Pure SVG, deterministic ids, no external dependencies. _keywords: sparkline, chart, trend, kpi, mini-chart, svg, data-viz_
 - <a id="split-flap"></a>**`split-flap`** — A vintage mechanical split-flap display (airport / train-station board). Each cell flips through the charset before settling on its target, with a staggered start across cells. Pure CSS + setTimeout — no dependencies. _keywords: split-flap, counter, vintage, mechanical, board, animated_
 - <a id="spotlight"></a>**`spotlight`** — Cursor-following spotlight overlay. Wraps a section to add a soft, depth-conveying light source that tracks the pointer. _keywords: 3d, spotlight, hover, glow, hero_
 - <a id="stat"></a>**`stat`** — A purpose-built KPI card with label, value, trend delta, and optional helper text. _keywords: stat, metric, kpi, trend_
@@ -230,10 +239,11 @@ Browse the live previews and full prop tables at the [docs site](./apps/docs).
 - <a id="sheet"></a>**`sheet`** — Side-anchored slide-in panel (top, bottom, left, or right). _keywords: sheet, drawer, side-panel, off-canvas_
 - <a id="tooltip"></a>**`tooltip`** — Text label that appears on hover/focus. _keywords: tooltip, hover_
 
-## Feedback <small>(9)</small>
+## Feedback <small>(10)</small>
 
 - <a id="alert"></a>**`alert`** — Inline status message with icon variants. _keywords: alert, banner, notification_
 - <a id="banner"></a>**`banner`** — Full-width announcement bar for product updates, promos, or status notices. Five tones, an optional leading icon and trailing CTA, optional sticky position, and a dismiss button. Controlled or uncontrolled. _keywords: banner, announcement, notice, alert, promo, feedback_
+- <a id="cookie-banner"></a>**`cookie-banner`** — A GDPR-style consent banner that slides up from the bottom of the viewport with Accept all / Reject all / Customize actions. Customize expands into per-category switches (Essential locked on, Analytics, Marketing) and emits a typed prefs map on accept. Dependency-free, controlled or uncontrolled, with a configurable accent color. _keywords: cookie, consent, gdpr, banner, privacy, preferences, feedback_
 - <a id="multi-step-loader"></a>**`multi-step-loader`** — Fullscreen overlay that auto-advances through a list of steps. Completed steps stack above the active one; upcoming steps queue below. Optional close button. _keywords: loader, steps, loading, overlay, fullscreen_
 - <a id="progress"></a>**`progress`** — Determinate progress bar. _keywords: progress, bar, loader_
 - <a id="ripple"></a>**`ripple`** — Concentric rings that scale from 0 to full size and fade out, staggered so a new ring starts as the outer one disappears. Sonar / radar pulse — useful for 'live', 'loading', or 'waiting' indicators. _keywords: 3d, ripple, pulse, loading, live_

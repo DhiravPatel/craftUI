@@ -1,0 +1,25 @@
+{
+  "name": "theme-selector",
+  "description": "A three-option visual theme picker (Light / Dark / System) rendered as clickable cards with mini browser-window mockup previews. Sky accent ring and animated check badge mark the active card. Fully keyboard-accessible radiogroup.",
+  "category": "form",
+  "files": [
+    {
+      "path": "components/theme-selector/theme-selector.tsx",
+      "target": "{{components}}/theme-selector.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": [
+    "theme",
+    "selector",
+    "light",
+    "dark",
+    "system",
+    "appearance",
+    "settings",
+    "preferences"
+  ]
+}

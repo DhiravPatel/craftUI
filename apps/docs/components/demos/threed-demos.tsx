@@ -9,7 +9,10 @@ import {
   AnimatedText,
   AnimatedTooltip,
   ApiKeyDisplay,
+  AudioPlayer,
   Aurora,
+  AuthCard,
+  AuthCardSocial,
   Avatar,
   AvatarFallback,
   AvatarStack,
@@ -26,6 +29,8 @@ import {
   ChatBubble,
   CodeRain,
   CoinFlip,
+  CookieBanner,
+  CookieBannerCategory,
   ColorPicker,
   Confetti,
   type ConfettiHandle,
@@ -39,6 +44,7 @@ import {
   Cube,
   CubeFace,
   CubeMatrix,
+  CurrencyInput,
   CursorTrail,
   DataTable,
   DateRangePicker,
@@ -113,12 +119,15 @@ import {
   QuantumGrid,
   Resizable,
   RetroGrid,
+  ReviewCard,
   Ripple,
   ScratchCard,
   ScrollProgress,
   SegmentedControl,
   Sparkles as SparklesFx,
   SparklesText,
+  Sparkline,
+  SparklineVariant,
   SplitFlap,
   StatCard,
   StatRing,
@@ -128,12 +137,15 @@ import {
   TagInput,
   TaskCard,
   TestimonialQuote,
+  ThemeSelector,
+  ThemeSelectorValue,
   TextGenerateEffect,
   TextScramble,
   ThemeToggle,
   Tilt,
   TiltTiles,
   TimePicker,
+  TwoFactorSetup,
   Toolbar,
   ToolbarButton,
   ToolbarToggle,
@@ -5293,6 +5305,692 @@ export function OnboardingChecklistDemo() {
           },
         ]}
       />
+    </div>
+  );
+}
+
+
+
+/* ----------------------------------------------------------------------- */
+/* AudioPlayer                                                              */
+/* ----------------------------------------------------------------------- */
+export function AudioPlayerDemo() {
+  const playlist = React.useMemo(
+    () => [
+      {
+        title: "Midnight Drive",
+        artist: "Polar Hues",
+        src: "https://cdn.pixabay.com/audio/2023/02/28/audio_4babe9d0bf.mp3",
+      },
+      {
+        title: "Glass Halls",
+        artist: "Lior Aven",
+        src: "https://cdn.pixabay.com/audio/2024/05/13/audio_e5cc2f3c7a.mp3",
+      },
+      {
+        title: "Soft Static",
+        artist: "Anjuna Bay",
+        src: "https://cdn.pixabay.com/audio/2022/10/30/audio_347ea3f37e.mp3",
+      },
+    ],
+    []
+  );
+  const [index, setIndex] = React.useState(0);
+  const [log, setLog] = React.useState<string>("idle");
+  const track = playlist[index] ?? playlist[0]!;
+
+  const advance = (delta: number) => {
+    setIndex((i) => (i + delta + playlist.length) % playlist.length);
+  };
+
+  return (
+    <div className="flex w-full max-w-md flex-col gap-3">
+      <AudioPlayer
+        src={track.src}
+        title={track.title}
+        artist={track.artist}
+        onPlay={() => setLog("playing")}
+        onPause={() => setLog("paused")}
+        onEnded={() => {
+          setLog("ended → next");
+          advance(1);
+        }}
+        onNext={() => advance(1)}
+        onPrev={() => advance(-1)}
+      />
+      <div className="flex items-center justify-between px-1 text-[11px] text-white/45">
+        <span>
+          Track {index + 1} of {playlist.length}
+        </span>
+        <span className="font-mono uppercase tracking-widest">{log}</span>
+      </div>
+      <div className="flex gap-2">
+        <Button variant="outline" size="sm" onClick={() => advance(-1)}>
+          Prev
+        </Button>
+        <Button variant="outline" size="sm" onClick={() => advance(1)}>
+          Next
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+
+/* ------------------------------------------------------------------
+ * AuthCard — sign-in card with social logins, email/password, footer switch.
+ * ------------------------------------------------------------------ */
+export function AuthCardDemo() {
+  const [variant, setVariant] = React.useState<"signin" | "signup">("signin");
+  const [lastSubmission, setLastSubmission] = React.useState<string | null>(
+    null
+  );
+
+  const socials: AuthCardSocial[] = [
+    {
+      id: "google",
+      label: "Google",
+      icon: (
+        <svg width={16} height={16} viewBox="0 0 24 24" aria-hidden>
+          <path
+            fill="#EA4335"
+            d="M12 10.2v3.9h5.5c-.24 1.4-1.7 4.1-5.5 4.1a6.2 6.2 0 1 1 0-12.4c1.9 0 3.2.8 4 1.5l2.7-2.6C16.9 3.2 14.7 2.2 12 2.2 6.6 2.2 2.2 6.6 2.2 12S6.6 21.8 12 21.8c6.4 0 10.6-4.5 10.6-10.8 0-.7-.1-1.2-.2-1.8H12Z"
+          />
+        </svg>
+      ),
+      onClick: () => new Promise<void>((r) => setTimeout(r, 700)),
+    },
+    {
+      id: "github",
+      label: "GitHub",
+      icon: (
+        <svg width={16} height={16} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+          <path d="M12 .5C5.6.5.5 5.6.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.7.9 1.2 1.9 1.2 3.2 0 4.5-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.6 18.4.5 12 .5Z" />
+        </svg>
+      ),
+      onClick: () => new Promise<void>((r) => setTimeout(r, 700)),
+    },
+  ];
+
+  return (
+    <div className="flex w-full items-start justify-center px-6 py-10">
+      <div className="flex w-full max-w-sm flex-col gap-3">
+        <AuthCard
+          variant={variant}
+          socials={socials}
+          logo={
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-sky-300 to-sky-500 text-neutral-950">
+              <svg width={18} height={18} viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path
+                  d="M4 7l8-4 8 4-8 4-8-4Zm0 5l8 4 8-4M4 17l8 4 8-4"
+                  stroke="currentColor"
+                  strokeWidth={1.8}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+          }
+          onForgotPassword={() => setLastSubmission("Sent reset email.")}
+          onSubmit={async ({ email }) => {
+            await new Promise((r) => setTimeout(r, 1000));
+            setLastSubmission(
+              `${variant === "signup" ? "Created" : "Signed in as"} ${email}`
+            );
+          }}
+          onFooterAction={() =>
+            setVariant((v) => (v === "signin" ? "signup" : "signin"))
+          }
+        />
+        {lastSubmission ? (
+          <p className="text-center text-[11px] text-white/45">
+            {lastSubmission}
+          </p>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+/* ----- CookieBanner ----- */
+export function CookieBannerDemo() {
+  const [open, setOpen] = React.useState(false);
+  const [lastChoice, setLastChoice] = React.useState<string | null>(null);
+  const [prefs, setPrefs] = React.useState<Record<string, boolean> | null>(
+    null
+  );
+
+  const categories: CookieBannerCategory[] = [
+    {
+      id: "essential",
+      label: "Essential",
+      description: "Required for login, security, and core site features.",
+      required: true,
+    },
+    {
+      id: "analytics",
+      label: "Analytics",
+      description: "Anonymous product metrics so we know what to improve.",
+      defaultEnabled: true,
+    },
+    {
+      id: "marketing",
+      label: "Marketing",
+      description: "Personalized ads and re-engagement campaigns.",
+      defaultEnabled: false,
+    },
+  ];
+
+  return (
+    <div className="relative flex w-full flex-col items-center justify-center gap-4 overflow-hidden rounded-2xl bg-neutral-900/40 px-6 py-16 ring-1 ring-white/[0.04]">
+      <div className="flex flex-col items-center gap-2 text-center">
+        <p className="text-sm text-white/70">
+          Click the button to summon the consent banner.
+        </p>
+        <Button onClick={() => setOpen(true)} disabled={open}>
+          {open ? "Banner shown" : "Show cookie banner"}
+        </Button>
+        {lastChoice ? (
+          <p className="mt-2 text-xs text-white/55">
+            Last action:{" "}
+            <span className="font-mono text-white/80">{lastChoice}</span>
+          </p>
+        ) : null}
+        {prefs ? (
+          <pre className="mt-1 max-w-xs overflow-x-auto rounded-md bg-white/[0.04] px-3 py-2 text-left text-[11px] text-white/70">
+            {JSON.stringify(prefs, null, 2)}
+          </pre>
+        ) : null}
+      </div>
+
+      <CookieBanner
+        open={open}
+        onOpenChange={setOpen}
+        categories={categories}
+        privacyHref="#privacy"
+        description="We use cookies to keep CraftUI fast, measure how features perform, and personalize what you see. Tune your preferences any time."
+        onAccept={(next) => {
+          setPrefs(next);
+          setLastChoice("accepted");
+        }}
+        onReject={() => {
+          setPrefs({ essential: true, analytics: false, marketing: false });
+          setLastChoice("rejected");
+        }}
+        className="absolute"
+        style={{ position: "absolute" }}
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * CurrencyInput — invoice line item editor with live total + selector.
+ * ------------------------------------------------------------------ */
+export function CurrencyInputDemo() {
+  const [unitPrice, setUnitPrice] = React.useState<number | null>(1299.5);
+  const [discount, setDiscount] = React.useState<number | null>(150);
+  const [currency, setCurrency] = React.useState("USD");
+  const [locale, setLocale] = React.useState("en-US");
+
+  const subtotal = (unitPrice ?? 0) - (discount ?? 0);
+  const tax = Math.max(0, subtotal) * 0.08;
+  const total = Math.max(0, subtotal) + tax;
+
+  const fmt = React.useMemo(
+    () =>
+      new Intl.NumberFormat(locale, {
+        style: "currency",
+        currency,
+        currencyDisplay: "symbol",
+      }),
+    [locale, currency]
+  );
+
+  const localeOptions: { code: string; label: string }[] = [
+    { code: "en-US", label: "en-US" },
+    { code: "de-DE", label: "de-DE" },
+    { code: "fr-FR", label: "fr-FR" },
+    { code: "ja-JP", label: "ja-JP" },
+  ];
+
+  return (
+    <div className="flex w-full items-start justify-center px-6 py-8">
+      <div className="w-full max-w-md rounded-2xl border border-white/10 bg-neutral-950 p-5 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6)]">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-[10px] uppercase tracking-widest text-white/45">
+              New invoice line
+            </p>
+            <h3 className="mt-0.5 text-base font-semibold text-white">
+              Pro plan — annual
+            </h3>
+          </div>
+          <div className="flex gap-1 rounded-md border border-white/10 bg-white/[0.03] p-0.5">
+            {localeOptions.map((opt) => {
+              const active = opt.code === locale;
+              return (
+                <button
+                  key={opt.code}
+                  type="button"
+                  onClick={() => setLocale(opt.code)}
+                  className={
+                    "rounded px-2 py-1 text-[10px] font-medium tabular-nums transition-colors " +
+                    (active
+                      ? "bg-white/[0.08] text-white"
+                      : "text-white/55 hover:text-white")
+                  }
+                >
+                  {opt.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="mt-5 space-y-3">
+          <div>
+            <label className="mb-1 block text-[11px] font-medium text-white/55">
+              Unit price
+            </label>
+            <CurrencyInput
+              value={unitPrice}
+              onValueChange={setUnitPrice}
+              currency={currency}
+              onCurrencyChange={setCurrency}
+              locale={locale}
+              showCurrencySelector
+              min={0}
+              max={1_000_000}
+            />
+          </div>
+          <div>
+            <label className="mb-1 block text-[11px] font-medium text-white/55">
+              Discount
+            </label>
+            <CurrencyInput
+              value={discount}
+              onValueChange={setDiscount}
+              currency={currency}
+              locale={locale}
+              min={0}
+            />
+          </div>
+        </div>
+
+        <div className="mt-5 space-y-1.5 rounded-xl border border-white/5 bg-white/[0.02] p-4 text-xs">
+          <Row label="Subtotal" value={fmt.format(Math.max(0, subtotal))} />
+          <Row label="Tax (8%)" value={fmt.format(tax)} />
+          <div className="my-1 h-px bg-white/10" />
+          <Row label="Total due" value={fmt.format(total)} bold />
+        </div>
+
+        <div className="mt-4 flex gap-2">
+          <Button
+            className="flex-1"
+            onClick={() => {
+              setUnitPrice(0);
+              setDiscount(0);
+            }}
+          >
+            Reset
+          </Button>
+          <Button className="flex-1" variant="outline">
+            Add line
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Row({
+  label,
+  value,
+  bold,
+}: {
+  label: string;
+  value: string;
+  bold?: boolean;
+}) {
+  return (
+    <div className="flex items-center justify-between">
+      <span className="text-white/55">{label}</span>
+      <span
+        className={
+          "tabular-nums " + (bold ? "text-base font-semibold text-white" : "text-white/85")
+        }
+      >
+        {value}
+      </span>
+    </div>
+  );
+}
+
+/* ----------------------------------- ReviewCard ----------------------------------- */
+export function ReviewCardDemo() {
+  const [helpful, setHelpful] = React.useState(false);
+  const [count, setCount] = React.useState(128);
+
+  return (
+    <div className="flex w-full max-w-md flex-col gap-4">
+      <ReviewCard
+        rating={4.5}
+        author="Maya Rodriguez"
+        date="2 days ago"
+        verified
+        title="Punches well above its price"
+        content="The build quality is genuinely surprising for a sub-$100 keyboard. Stabilizers came pre-lubed, the typing sound is creamy, and the software is finally usable on Mac."
+        pros={["Pre-lubed stabilizers", "Hot-swap PCB", "Excellent typing sound"]}
+        cons={["Software needs a Mac restart", "No wireless option"]}
+        helpful={count}
+        isHelpful={helpful}
+        onHelpful={(next) => {
+          setHelpful(next);
+          setCount((c) => (next ? c + 1 : c - 1));
+        }}
+        footer={
+          <Button className="h-7 px-3 text-[11px]">Reply</Button>
+        }
+      />
+
+      <ReviewCard
+        rating={3}
+        author="Daniel Kim"
+        date="1 week ago"
+        title="Good, not great"
+        content="Solid daily driver but the trackpad gestures feel inconsistent after the last update. Battery life is still excellent."
+        helpful={12}
+      />
+    </div>
+  );
+}
+
+/* ----------------------------- Sparkline ----------------------------- */
+export function SparklineDemo() {
+  const revenue = React.useMemo(
+    () => [
+      12, 14, 13, 18, 22, 19, 24, 27, 24, 31, 29, 35, 33, 38, 42, 40, 47, 51,
+      48, 56,
+    ],
+    []
+  );
+  const signups = React.useMemo(
+    () => [
+      48, 46, 49, 44, 41, 45, 39, 42, 36, 38, 33, 30, 32, 28, 26, 29, 24, 22,
+      25, 21,
+    ],
+    []
+  );
+  const latency = React.useMemo(
+    () => [
+      120, 118, 122, 116, 124, 119, 121, 117, 123, 120, 122, 118, 121, 119,
+      122, 117, 120, 119, 121, 118,
+    ],
+    []
+  );
+  const traffic = React.useMemo(
+    () => [
+      4, 6, 5, 9, 7, 12, 10, 16, 14, 19, 22, 18, 26, 24, 31, 28, 34, 30, 38, 42,
+    ],
+    []
+  );
+
+  const series: Array<{
+    label: string;
+    value: string;
+    delta: string;
+    deltaTone: "up" | "down" | "flat";
+    data: number[];
+    variant: "line" | "area";
+    color: string;
+  }> = [
+    {
+      label: "Revenue",
+      value: "$56.2k",
+      delta: "+18.4%",
+      deltaTone: "up",
+      data: revenue,
+      variant: "area",
+      color: "rgb(125, 211, 252)",
+    },
+    {
+      label: "Signups",
+      value: "2,148",
+      delta: "-9.1%",
+      deltaTone: "down",
+      data: signups,
+      variant: "area",
+      color: "rgb(244, 114, 182)",
+    },
+    {
+      label: "p95 latency",
+      value: "118ms",
+      delta: "±0.4%",
+      deltaTone: "flat",
+      data: latency,
+      variant: "line",
+      color: "rgb(165, 180, 252)",
+    },
+    {
+      label: "Traffic",
+      value: "42k rpm",
+      delta: "+24.0%",
+      deltaTone: "up",
+      data: traffic,
+      variant: "area",
+      color: "rgb(134, 239, 172)",
+    },
+  ];
+
+  const toneClass = (tone: "up" | "down" | "flat") =>
+    tone === "up"
+      ? "text-emerald-300 bg-emerald-300/10"
+      : tone === "down"
+      ? "text-rose-300 bg-rose-300/10"
+      : "text-white/55 bg-white/5";
+
+  return (
+    <div className="flex w-full max-w-3xl flex-col gap-6">
+      {/* KPI grid — sparklines inside stat cards */}
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        {series.map((s) => (
+          <div
+            key={s.label}
+            className="relative overflow-hidden rounded-xl border border-white/10 bg-neutral-950 p-4"
+          >
+            <div className="flex items-start justify-between gap-3">
+              <div className="min-w-0">
+                <p className="text-[11px] uppercase tracking-widest text-white/45">
+                  {s.label}
+                </p>
+                <p className="mt-1 font-mono text-2xl font-semibold tabular-nums text-white">
+                  {s.value}
+                </p>
+              </div>
+              <span
+                className={
+                  "shrink-0 rounded-md px-2 py-0.5 font-mono text-[11px] tabular-nums " +
+                  toneClass(s.deltaTone)
+                }
+              >
+                {s.delta}
+              </span>
+            </div>
+            <div className="mt-3">
+              <Sparkline
+                data={s.data}
+                width={260}
+                height={48}
+                variant={s.variant}
+                color={s.color}
+                strokeWidth={1.8}
+                className="w-full"
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Inline-in-table row demo */}
+      <div className="overflow-hidden rounded-xl border border-white/10 bg-neutral-950">
+        <div className="grid grid-cols-[1fr,auto,140px,auto] items-center gap-4 border-b border-white/5 px-4 py-2 text-[11px] uppercase tracking-widest text-white/40">
+          <span>Project</span>
+          <span className="text-right">MRR</span>
+          <span>Last 14d</span>
+          <span className="text-right">Δ</span>
+        </div>
+        {[
+          {
+            name: "Lumen",
+            mrr: "$8.4k",
+            d: [3, 4, 5, 4, 6, 7, 6, 8, 7, 9, 11, 10, 12, 14],
+            tone: "up" as const,
+            delta: "+12%",
+            color: "rgb(125, 211, 252)",
+          },
+          {
+            name: "Halcyon",
+            mrr: "$4.1k",
+            d: [9, 9, 8, 8, 7, 7, 6, 7, 6, 5, 5, 5, 4, 4],
+            tone: "down" as const,
+            delta: "-7%",
+            color: "rgb(244, 114, 182)",
+          },
+          {
+            name: "Forge",
+            mrr: "$12.7k",
+            d: [10, 10, 11, 10, 11, 12, 11, 12, 13, 12, 13, 13, 14, 14],
+            tone: "up" as const,
+            delta: "+3%",
+            color: "rgb(134, 239, 172)",
+          },
+        ].map((row) => (
+          <div
+            key={row.name}
+            className="grid grid-cols-[1fr,auto,140px,auto] items-center gap-4 border-b border-white/5 px-4 py-3 last:border-b-0"
+          >
+            <span className="truncate text-sm font-medium text-white">
+              {row.name}
+            </span>
+            <span className="font-mono text-sm tabular-nums text-white/85">
+              {row.mrr}
+            </span>
+            <Sparkline
+              data={row.d}
+              width={140}
+              height={28}
+              color={row.color}
+              showDot
+              strokeWidth={1.4}
+            />
+            <span
+              className={
+                "rounded-md px-2 py-0.5 text-right font-mono text-[11px] tabular-nums " +
+                toneClass(row.tone)
+              }
+            >
+              {row.delta}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <div className="flex items-center justify-end">
+        <Button size="sm" variant="ghost">
+          View all metrics
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * ThemeSelector — appearance settings card with Light / Dark / System.
+ * ------------------------------------------------------------------ */
+export function ThemeSelectorDemo() {
+  const [theme, setTheme] = React.useState<ThemeSelectorValue>("system");
+  return (
+    <div className="flex w-full items-center justify-center px-6 py-8">
+      <div className="w-full max-w-xl rounded-2xl border border-white/10 bg-neutral-950 p-5 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6)]">
+        <div className="mb-4 flex items-baseline justify-between">
+          <div>
+            <p className="text-[10px] uppercase tracking-widest text-white/45">
+              Appearance
+            </p>
+            <h3 className="mt-1 text-base font-semibold text-white">
+              Choose your theme
+            </h3>
+            <p className="mt-0.5 text-xs text-white/55">
+              Sets how the interface looks across this workspace.
+            </p>
+          </div>
+          <span className="rounded-md bg-white/[0.06] px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-white/70">
+            {theme}
+          </span>
+        </div>
+
+        <ThemeSelector value={theme} onChange={setTheme} />
+
+        <div className="mt-5 flex items-center justify-end gap-2 border-t border-white/5 pt-4">
+          <Button
+            variant="ghost"
+            onClick={() => setTheme("system")}
+            disabled={theme === "system"}
+          >
+            Reset
+          </Button>
+          <Button onClick={() => setTheme(theme)}>Save changes</Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * TwoFactorSetup — full 2FA enrollment flow: QR + manual key, then a
+ * 6-digit verification field with async verify and success animation.
+ * ------------------------------------------------------------------ */
+export function TwoFactorSetupDemo() {
+  // A real app would mint this per-user on the server.
+  const secret = "JBSWY3DPEHPK3PXP7VLQK4ZN";
+  const [attempts, setAttempts] = React.useState(0);
+  const [resetKey, setResetKey] = React.useState(0);
+
+  // Pretend "123456" is the correct code so the demo is testable.
+  const verify = async (code: string): Promise<boolean> => {
+    setAttempts((n) => n + 1);
+    await new Promise((r) => setTimeout(r, 700));
+    return code === "123456";
+  };
+
+  return (
+    <div className="flex w-full flex-col items-center gap-4 px-6 py-8">
+      <TwoFactorSetup
+        key={resetKey}
+        secret={secret}
+        accountName="alex@acme.io"
+        issuer="Acme"
+        onVerify={verify}
+        onComplete={() => {
+          // Could navigate, toast, etc.
+        }}
+      />
+      <div className="flex items-center gap-3 text-[11px] text-white/45">
+        <span>
+          Try code <span className="font-mono text-white/70">123456</span> · Attempts: {attempts}
+        </span>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => {
+            setAttempts(0);
+            setResetKey((k) => k + 1);
+          }}
+        >
+          Reset
+        </Button>
+      </div>
     </div>
   );
 }

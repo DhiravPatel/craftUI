@@ -1,0 +1,25 @@
+{
+  "name": "two-factor-setup",
+  "description": "A 2FA / TOTP setup flow card. Step 1 renders an inline-SVG QR code from an otpauth URL with a copyable manual key. Step 2 is a 6-digit verification field with auto-advance, paste-distribution, async verify, and an animated success state.",
+  "category": "form",
+  "files": [
+    {
+      "path": "components/two-factor-setup/two-factor-setup.tsx",
+      "target": "{{components}}/two-factor-setup.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": [
+    "2fa",
+    "two-factor",
+    "totp",
+    "authenticator",
+    "otp",
+    "security",
+    "qr-code",
+    "saas"
+  ]
+}

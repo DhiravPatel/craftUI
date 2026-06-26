@@ -1,0 +1,24 @@
+{
+  "name": "cookie-banner",
+  "description": "A GDPR-style consent banner that slides up from the bottom of the viewport with Accept all / Reject all / Customize actions. Customize expands into per-category switches (Essential locked on, Analytics, Marketing) and emits a typed prefs map on accept. Dependency-free, controlled or uncontrolled, with a configurable accent color.",
+  "category": "feedback",
+  "files": [
+    {
+      "path": "components/cookie-banner/cookie-banner.tsx",
+      "target": "{{components}}/cookie-banner.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": [
+    "cookie",
+    "consent",
+    "gdpr",
+    "banner",
+    "privacy",
+    "preferences",
+    "feedback"
+  ]
+}

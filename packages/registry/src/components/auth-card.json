@@ -1,0 +1,26 @@
+{
+  "name": "auth-card",
+  "description": "A production sign-in / sign-up card with social login buttons, divider, email + password fields with show/hide toggle, async-safe submit, forgot-password link, and a footer switch between sign-in and sign-up. Includes inline validation for required fields and email format.",
+  "category": "form",
+  "files": [
+    {
+      "path": "components/auth-card/auth-card.tsx",
+      "target": "{{components}}/auth-card.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": [
+    "auth",
+    "login",
+    "signin",
+    "signup",
+    "register",
+    "oauth",
+    "social",
+    "form",
+    "saas"
+  ]
+}

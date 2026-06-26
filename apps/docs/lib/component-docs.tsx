@@ -166,8 +166,10 @@ import {
   AnimatedTextDemo,
   AnimatedTooltipDemo,
   ApiKeyDisplayDemo,
+  AudioPlayerDemo,
   AudioVisualizerDemo,
   AuroraDemo,
+  AuthCardDemo,
   AvatarStackDemo,
   BackgroundBeamsDemo,
   BackgroundBoxesDemo,
@@ -180,6 +182,7 @@ import {
   CodeRainDemo,
   CoinFlipDemo,
   ColorPickerDemo,
+  CookieBannerDemo,
   ConfettiDemo,
   ContextMenuDemo,
   CompareDemo,
@@ -190,6 +193,7 @@ import {
   CoverflowDemo,
   CubeDemo,
   CubeMatrixDemo,
+  CurrencyInputDemo,
   CursorTrailDemo,
   DataTableDemo,
   DateRangePickerDemo,
@@ -261,6 +265,7 @@ import {
   QuantumGridDemo,
   ResizableDemo,
   RetroGridDemo,
+  ReviewCardDemo,
   RippleDemo,
   ScratchCardDemo,
   ScrollProgressDemo,
@@ -268,6 +273,7 @@ import {
   SparklesDemo,
   SparklesStarfieldDemo,
   SparklesTextDemo,
+  SparklineDemo,
   SplitFlapDemo,
   SpotlightDemo,
   StatCardDemo,
@@ -279,6 +285,7 @@ import {
   TestimonialQuoteDemo,
   TextGenerateEffectDemo,
   TextScrambleDemo,
+  ThemeSelectorDemo,
   ThemeToggleDemo,
   TiltDemo,
   TiltTilesDemo,
@@ -286,6 +293,7 @@ import {
   ToolbarDemo,
   TracingBeamDemo,
   TreeViewDemo,
+  TwoFactorSetupDemo,
   UsageBarDemo,
   VoteWidgetDemo,
   WaveGridDemo,
@@ -10487,6 +10495,387 @@ const ref = React.useRef<HTMLDivElement>(null);
       { name: "cancelLabel", type: "string", default: '"Cancel"', description: "Text for the Cancel button." },
     ],
     related: ["form", "input", "textarea"],
+  },
+
+
+  // ---------- AudioPlayer ----------
+{
+    name: "audio-player",
+    title: "Audio Player",
+    description:
+      "A compact music / podcast player card with 56px album art, track title and artist, a circular sky-accented play/pause button, optional prev/next skip controls, a seek slider with mm:ss labels, and an optional volume slider with mute toggle. A hidden native `<audio>` element handles playback when `src` is provided; without `src` the component still renders fully for layout previews. Wire `onNext` / `onPrev` to drive a parent playlist.",
+    imports: `import { AudioPlayer } from "@/components/ui/audio-player";`,
+    usage: `<AudioPlayer
+  src="/tracks/midnight-drive.mp3"
+  title="Midnight Drive"
+  artist="Polar Hues"
+/>`,
+    defaultExample: {
+      title: "Playlist with prev / next",
+      code: `const [index, setIndex] = React.useState(0);
+const tracks = [
+  { title: "Midnight Drive", artist: "Polar Hues", src: "/tracks/1.mp3" },
+  { title: "Glass Halls",    artist: "Lior Aven",  src: "/tracks/2.mp3" },
+  { title: "Soft Static",    artist: "Anjuna Bay", src: "/tracks/3.mp3" },
+];
+const track = tracks[index];
+
+<AudioPlayer
+  src={track.src}
+  title={track.title}
+  artist={track.artist}
+  onNext={() => setIndex((i) => (i + 1) % tracks.length)}
+  onPrev={() => setIndex((i) => (i - 1 + tracks.length) % tracks.length)}
+  onEnded={() => setIndex((i) => (i + 1) % tracks.length)}
+/>`,
+      render: <AudioPlayerDemo />,
+    },
+    props: [
+      { name: "src", type: "string", description: "Audio file URL. When omitted the component is display-only." },
+      { name: "title", type: "ReactNode", required: true, description: "Track title — bold primary label." },
+      { name: "artist", type: "ReactNode", required: true, description: "Artist / subtitle line under the title." },
+      { name: "artwork", type: "string", description: "Album-art image URL. Renders as a 56px square; falls back to a sky→violet gradient with a music glyph." },
+      { name: "autoplay", type: "boolean", default: "false", description: "Start playback as soon as the source loads (subject to browser autoplay rules)." },
+      { name: "showVolume", type: "boolean", default: "true", description: "Show the volume slider + mute toggle." },
+      { name: "showSkip", type: "boolean", default: "true", description: "Show the prev / next skip buttons." },
+      { name: "onPlay", type: "() => void", description: "Fires when playback starts." },
+      { name: "onPause", type: "() => void", description: "Fires when playback pauses." },
+      { name: "onEnded", type: "() => void", description: "Fires when the track reaches the end." },
+      { name: "onNext", type: "() => void", description: "Fires when the user clicks the next button." },
+      { name: "onPrev", type: "() => void", description: "Fires when the user clicks the prev button." },
+      { name: "accentColor", type: "string", default: '"rgb(125, 211, 252)"', description: "Accent color for the play button, progress fill, and focus ring." },
+    ],
+    related: ["audio-visualizer", "video-player", "card"],
+  },
+  // ---------- AuthCard ----------
+  // ---------- AuthCard ----------
+  {
+    name: "auth-card",
+    title: "Auth Card",
+    description:
+      "A production sign-in / sign-up card. Renders social login buttons in a column at the top, an 'Or continue with email' divider, email + password fields with a show/hide eye toggle, an async-safe submit button that disables and shows a spinner while pending, a forgot-password link, and a footer link to switch between sign-in and sign-up. Inline validation enforces required fields and email format (and a minimum length for sign-up passwords). Dark, dependency-free, and ARIA-correct out of the box.",
+    imports: `import { AuthCard } from "@/components/ui/auth-card";`,
+    usage: `<AuthCard
+  variant="signin"
+  socials={[{ id: "google", label: "Google", icon: <GoogleIcon /> }]}
+  onSubmit={async ({ email, password }) => await signIn(email, password)}
+/>`,
+    defaultExample: {
+      title: "Sign in with Google, GitHub, or email",
+      code: `const [variant, setVariant] = React.useState<"signin" | "signup">("signin");
+
+<AuthCard
+  variant={variant}
+  socials={[
+    { id: "google", label: "Google", icon: <GoogleIcon /> },
+    { id: "github", label: "GitHub", icon: <GitHubIcon /> },
+  ]}
+  onSubmit={async ({ email, password }) => {
+    await signIn({ email, password });
+  }}
+  onForgotPassword={() => router.push("/forgot")}
+  onFooterAction={() =>
+    setVariant((v) => (v === "signin" ? "signup" : "signin"))
+  }
+/>`,
+      render: <AuthCardDemo />,
+    },
+    props: [
+      { name: "variant", type: '"signin" | "signup"', default: '"signin"', description: "Switches title, submit label, footer link, and password autocomplete hint." },
+      { name: "title", type: "string", description: "Heading title. Defaults depend on variant." },
+      { name: "description", type: "string", description: "One-line description shown under the title." },
+      { name: "socials", type: "AuthCardSocial[]", description: "Social login buttons rendered in a column at the top. Each = { id, label, icon, onClick }." },
+      { name: "showEmailPassword", type: "boolean", default: "true", description: "Render the email + password form." },
+      { name: "submitLabel", type: "string", description: "Submit button label. Defaults depend on variant." },
+      { name: "forgotHref", type: "string", description: "Anchor href for the forgot password link (sign-in only)." },
+      { name: "onForgotPassword", type: "() => void", description: "Called when the forgot password link is clicked." },
+      { name: "onSubmit", type: "(values: { email, password }) => void | Promise<void>", description: "Async-safe submit handler. The button shows a spinner while the promise is pending." },
+      { name: "footerText", type: "string", description: "Footer prompt text. Defaults depend on variant." },
+      { name: "footerActionLabel", type: "string", description: "Footer action link label. Defaults depend on variant." },
+      { name: "onFooterAction", type: "() => void", description: "Called when the footer action is clicked. Typically toggles variant." },
+      { name: "logo", type: "ReactNode", description: "Optional brand mark / logo rendered above the title." },
+      { name: "accentColor", type: "string", default: "sky-300", description: "Accent used for the submit button, focus ring, and footer link." },
+    ],
+    related: ["password-strength-meter", "input-otp", "form"],
+  },
+  // ---------- CookieBanner ----------
+  // ---------- CookieBanner ----------
+  {
+    name: "cookie-banner",
+    title: "Cookie Banner",
+    description:
+      "A GDPR-style consent banner that slides up from the bottom of the viewport on mount. The default panel surfaces Accept all / Reject all / Customize CTAs; Customize expands inline into a per-category panel with switches (Essential is locked on, Analytics / Marketing are user-toggleable). On accept it emits the resolved prefs map keyed by category id; on reject it forces required-only consent. Pure React + Tailwind, no dependencies, fully controlled or uncontrolled visibility, with a configurable accent color.",
+    imports: `import { CookieBanner } from "@/components/ui/cookie-banner";`,
+    usage: `<CookieBanner onAccept={(prefs) => save(prefs)} onReject={() => save({})} />`,
+    defaultExample: {
+      title: "Consent banner with category prefs",
+      code: `const [open, setOpen] = React.useState(false);
+const [prefs, setPrefs] = React.useState(null);
+
+<Button onClick={() => setOpen(true)}>Show cookie banner</Button>
+
+<CookieBanner
+  open={open}
+  onOpenChange={setOpen}
+  privacyHref="/privacy"
+  categories={[
+    { id: "essential", label: "Essential", required: true,
+      description: "Required for login, security, and core features." },
+    { id: "analytics", label: "Analytics", defaultEnabled: true,
+      description: "Anonymous product metrics." },
+    { id: "marketing", label: "Marketing", defaultEnabled: false,
+      description: "Personalized ads and re-engagement." },
+  ]}
+  onAccept={setPrefs}
+  onReject={() => setPrefs({ essential: true })}
+/>`,
+      render: <CookieBannerDemo />,
+    },
+    props: [
+      { name: "title", type: "string", default: '"We use cookies"', description: "Headline at the top of the banner." },
+      { name: "description", type: "ReactNode", description: "Body copy under the headline." },
+      { name: "categories", type: "CookieBannerCategory[]", description: "Cookie categories surfaced in the customize panel. Each = { id, label, description?, required?, defaultEnabled? }." },
+      { name: "privacyHref", type: "string", description: "Optional link to the full privacy policy." },
+      { name: "privacyLabel", type: "string", default: '"Privacy policy"', description: "Label for the privacy link." },
+      { name: "acceptLabel", type: "string", default: '"Accept all"', description: "Label for the primary CTA." },
+      { name: "rejectLabel", type: "string", default: '"Reject all"', description: "Label for the reject CTA." },
+      { name: "customizeLabel", type: "string", default: '"Customize"', description: "Label for the Customize CTA." },
+      { name: "saveLabel", type: "string", default: '"Save preferences"', description: "Label for the save CTA in customize mode." },
+      { name: "onAccept", type: "(prefs: Record<string, boolean>) => void", description: "Fires on Accept-all or Save-preferences with the resolved prefs map." },
+      { name: "onReject", type: "() => void", description: "Fires on Reject all — prefs are forced to required-only." },
+      { name: "open", type: "boolean", description: "Controlled visibility." },
+      { name: "defaultOpen", type: "boolean", default: "true", description: "Initial visibility (uncontrolled)." },
+      { name: "onOpenChange", type: "(open: boolean) => void", description: "Fires when visibility flips." },
+      { name: "accentColor", type: "string", default: '"rgb(125, 211, 252)"', description: "Accent color for the primary CTA, focus rings, and switches." },
+    ],
+    related: ["onboarding-checklist", "toast", "dialog"],
+  },
+  // ---------- CurrencyInput ----------
+  // ---------- CurrencyInput ----------
+  {
+    name: "currency-input",
+    title: "Currency Input",
+    description:
+      "A locale-aware money field. Numbers are grouped as the user types using the locale's group separator, the locale's decimal separator is respected, and on blur the value re-formats with the currency's natural fraction digits. The currency symbol is rendered as a prefix *inside* the input (derived from `Intl.NumberFormat.formatToParts`), so the editor stays a clean numeric field. Optional right-side dropdown lets the user switch currency. Works controlled (`value` + `onValueChange`) or uncontrolled.",
+    imports: `import { CurrencyInput } from "@/components/ui/currency-input";`,
+    usage: `<CurrencyInput value={amount} onValueChange={setAmount} currency="USD" />`,
+    defaultExample: {
+      title: "Invoice line item with selector",
+      code: `const [unitPrice, setUnitPrice] = React.useState<number | null>(1299.5);
+const [discount, setDiscount] = React.useState<number | null>(150);
+const [currency, setCurrency] = React.useState("USD");
+
+<CurrencyInput
+  value={unitPrice}
+  onValueChange={setUnitPrice}
+  currency={currency}
+  onCurrencyChange={setCurrency}
+  locale="en-US"
+  showCurrencySelector
+  min={0}
+  max={1_000_000}
+/>
+
+<CurrencyInput
+  value={discount}
+  onValueChange={setDiscount}
+  currency={currency}
+  locale="en-US"
+  min={0}
+/>`,
+      render: <CurrencyInputDemo />,
+    },
+    props: [
+      { name: "value", type: "number | null", description: "Controlled numeric value. Pass `null` for empty." },
+      { name: "defaultValue", type: "number | null", description: "Initial value (uncontrolled)." },
+      { name: "onValueChange", type: "(value: number | null) => void", description: "Fires whenever the parsed numeric value changes." },
+      { name: "currency", type: "string", default: '"USD"', description: "ISO 4217 currency code." },
+      { name: "onCurrencyChange", type: "(currency: string) => void", description: "Fires when the user picks a different currency from the selector." },
+      { name: "locale", type: "string", default: '"en-US"', description: "BCP-47 locale tag used for formatting." },
+      { name: "min", type: "number", description: "Minimum allowed numeric value (clamped)." },
+      { name: "max", type: "number", description: "Maximum allowed numeric value (clamped)." },
+      { name: "showCurrencySelector", type: "boolean", default: "false", description: "Show a small dropdown on the right to pick the currency." },
+      { name: "currencies", type: "string[]", default: '["USD","EUR","GBP","JPY","CAD","AUD"]', description: "Currencies available in the selector." },
+      { name: "placeholder", type: "string", default: '"0.00"', description: "Placeholder text for the input." },
+    ],
+    related: ["number-input", "input", "password-strength-meter"],
+  },
+
+  // ---------- ReviewCard ----------
+  // ---------- ReviewCard ----------
+  {
+    name: "review-card",
+    title: "Review Card",
+    description:
+      "A product review card for storefronts and SaaS marketplaces. Shows a half-star SVG rating row (gold, with a `linearGradient` stop-offset trick for fractional stars), the reviewer's avatar and name, an optional emerald \"Verified purchase\" pill, a bold title and body, optional pros/cons columns with iconified bullets (green check / rose x), a date, and a \"Helpful\" voting button that pops on toggle. The helpful button works fully uncontrolled — its count ticks live — or controlled via `isHelpful` + `onHelpful`. Zero dependencies.",
+    imports: `import { ReviewCard } from "@/components/ui/review-card";`,
+    usage: `<ReviewCard
+  rating={4.5}
+  author="Maya Rodriguez"
+  verified
+  title="Punches well above its price"
+  content="Build quality is surprising for the price."
+  helpful={128}
+/>`,
+    defaultExample: {
+      title: "Verified product review with pros/cons",
+      code: `const [helpful, setHelpful] = React.useState(false);
+const [count, setCount] = React.useState(128);
+
+<ReviewCard
+  rating={4.5}
+  author="Maya Rodriguez"
+  date="2 days ago"
+  verified
+  title="Punches well above its price"
+  content="The build quality is genuinely surprising for a sub-$100 keyboard."
+  pros={["Pre-lubed stabilizers", "Hot-swap PCB", "Excellent typing sound"]}
+  cons={["Software needs a Mac restart", "No wireless option"]}
+  helpful={count}
+  isHelpful={helpful}
+  onHelpful={(next) => {
+    setHelpful(next);
+    setCount((c) => (next ? c + 1 : c - 1));
+  }}
+  footer={<Button className="h-7 px-3 text-[11px]">Reply</Button>}
+/>`,
+      render: <ReviewCardDemo />,
+    },
+    props: [
+      { name: "rating", type: "number", required: true, description: "Star rating between 0 and `maxRating`. Supports .5 granularity." },
+      { name: "maxRating", type: "number", default: "5", description: "Maximum rating — number of stars rendered." },
+      { name: "author", type: "string", required: true, description: "Reviewer name." },
+      { name: "authorAvatar", type: "string", description: "Avatar image URL. Falls back to the author's initial." },
+      { name: "date", type: "string", description: "Date string shown next to the stars." },
+      { name: "title", type: "ReactNode", description: "Review headline." },
+      { name: "content", type: "ReactNode", description: "Body content of the review." },
+      { name: "verified", type: "boolean", default: "false", description: "Render the emerald \"Verified purchase\" pill." },
+      { name: "helpful", type: "number", description: "Number of helpful votes shown next to the button." },
+      { name: "isHelpful", type: "boolean", description: "Controlled — has the current user marked this helpful?" },
+      { name: "onHelpful", type: "(next: boolean) => void", description: "Fires when the helpful button toggles." },
+      { name: "pros", type: "string[]", description: "Pros bullets, rendered with green checks." },
+      { name: "cons", type: "string[]", description: "Cons bullets, rendered with rose x's." },
+      { name: "footer", type: "ReactNode", description: "Slot rendered next to the helpful button." },
+    ],
+    related: ["testimonial-card", "rating", "avatar"],
+  },
+  // ---------- Sparkline ----------
+// ---------- Sparkline ----------
+  {
+    name: "sparkline",
+    title: "Sparkline",
+    description:
+      "An inline, axis-less SVG trend chart. Renders a single series as either a line or a filled area, auto-scales to the data range, and pads the viewport so the curve never touches the edges. Smoothing uses a Catmull-Rom-derived cubic-bezier path (toggle with `smooth={false}` for straight segments). With `gradient` on, the stroke draws from a soft vertical gradient anchored on `color`; a subtle pulsing dot marks the most recent point. Pure SVG, deterministic ids, no external dependencies — drop one inside a stat card, KPI tile, or table row.",
+    imports: `import { Sparkline } from "@/components/ui/sparkline";`,
+    usage: `<Sparkline data={[12, 18, 14, 22, 27, 31, 38]} variant="area" />`,
+    defaultExample: {
+      title: "KPI cards + inline table sparklines",
+      code: `<Sparkline
+  data={[12, 14, 13, 18, 22, 19, 24, 27, 31, 35, 38, 42, 47, 56]}
+  width={260}
+  height={48}
+  variant="area"
+  color="rgb(125, 211, 252)"
+/>
+
+<Sparkline
+  data={[10, 10, 11, 10, 11, 12, 11, 12, 13, 13, 14, 14]}
+  width={140}
+  height={28}
+  color="rgb(134, 239, 172)"
+/>`,
+      render: <SparklineDemo />,
+    },
+    props: [
+      { name: "data", type: "number[]", required: true, description: "Series of numeric data points to plot." },
+      { name: "width", type: "number", default: "100", description: "SVG viewport width in px." },
+      { name: "height", type: "number", default: "32", description: "SVG viewport height in px." },
+      { name: "variant", type: '"line" | "area"', default: '"line"', description: "Render only the stroke, or close it into a filled area." },
+      { name: "color", type: "string", description: "Stroke (and gradient base) color. Defaults to sky-300." },
+      { name: "fillOpacity", type: "number", default: "0.18", description: "Opacity used for the filled area body." },
+      { name: "strokeWidth", type: "number", default: "1.6", description: "Path stroke width in px." },
+      { name: "showDot", type: "boolean", default: "true", description: "Show a dot at the last data point." },
+      { name: "dotColor", type: "string", description: "Override the dot color (defaults to `color`)." },
+      { name: "showFirstLast", type: "boolean", default: "false", description: "Show small ticks at the first and last data points." },
+      { name: "smooth", type: "boolean", default: "true", description: "Smooth the line via Catmull-Rom-derived cubic-bezier curves." },
+      { name: "min", type: "number", description: "Clamp the y-axis minimum (else uses min(data))." },
+      { name: "max", type: "number", description: "Clamp the y-axis maximum (else uses max(data))." },
+      { name: "gradient", type: "boolean", default: "true", description: "Apply a vertical gradient stroke instead of a solid color." },
+      { name: "ariaLabel", type: "string", description: "Accessible label that describes the trend for screen readers." },
+    ],
+    related: ["stat-ring", "stat-card", "gauge-meter"],
+  },
+  // ---------- ThemeSelector ----------
+{
+    name: "theme-selector",
+    title: "Theme Selector",
+    description:
+      "A three-option visual theme picker — Light, Dark, System — rendered as a row of clickable cards. Each card shows a tiny browser-window mockup so the user can see at a glance how the chosen mode will look (light gets a white surface with a gray header, dark gets neutral-950, system is a diagonal split). The active card gets a sky ring and a small animated check badge in the top corner of the preview. Use it on a settings page or during onboarding when you want a richer choice than a binary toggle.",
+    imports: `import { ThemeSelector } from "@/components/ui/theme-selector";`,
+    usage: `<ThemeSelector value={theme} onChange={setTheme} />`,
+    defaultExample: {
+      title: "Appearance settings card",
+      code: `const [theme, setTheme] = React.useState<ThemeSelectorValue>("system");
+
+<ThemeSelector value={theme} onChange={setTheme} />`,
+      render: <ThemeSelectorDemo />,
+    },
+    props: [
+      { name: "value", type: '"light" | "dark" | "system"', description: "Controlled value." },
+      { name: "defaultValue", type: '"light" | "dark" | "system"', default: '"system"', description: "Initial value (uncontrolled)." },
+      { name: "onChange", type: "(value) => void", description: "Fires whenever the user picks a theme." },
+      { name: "options", type: "ThemeSelectorOption[]", description: "Override the default three options. Each = { value, label, description? }." },
+      { name: "accentColor", type: "string", default: '"rgb(125, 211, 252)"', description: "Color of the active ring and the check badge in the preview corner." },
+      { name: "size", type: '"sm" | "md"', default: '"md"', description: "Density of the preview area." },
+      { name: "disabled", type: "boolean", default: "false", description: "Disable all interaction." },
+      { name: "ariaLabel", type: "string", default: '"Theme"', description: "Accessible label for the radiogroup." },
+    ],
+    related: ["theme-toggle", "color-picker", "radio-group"],
+  },
+  // ---------- TwoFactorSetup ----------
+{
+    name: "two-factor-setup",
+    title: "Two Factor Setup",
+    description:
+      "A self-contained 2FA / TOTP enrollment card. Step 1 renders an inline-SVG QR code generated deterministically from the otpauth URL (no QR library required) alongside the manual secret key with a copy-to-clipboard affordance. Step 2 is a digit-by-digit verification field with auto-advancing focus, backspace-back navigation, paste-distribution across the boxes, an async `onVerify` callback, an inline error + shake on failure, and an animated green-check success state on success. Drop it into onboarding, account security pages, or a step in a wizard.",
+    imports: `import { TwoFactorSetup } from "@/components/ui/two-factor-setup";`,
+    usage: `<TwoFactorSetup
+  secret="JBSWY3DPEHPK3PXP7VLQK4ZN"
+  accountName="alex@acme.io"
+  issuer="Acme"
+  onVerify={async (code) => code === "123456"}
+/>`,
+    defaultExample: {
+      title: "Enroll a new authenticator",
+      code: `const verify = async (code: string) => {
+  await new Promise((r) => setTimeout(r, 700));
+  return code === "123456";
+};
+
+<TwoFactorSetup
+  secret="JBSWY3DPEHPK3PXP7VLQK4ZN"
+  accountName="alex@acme.io"
+  issuer="Acme"
+  onVerify={verify}
+  onComplete={() => router.push("/settings/security")}
+/>`,
+      render: <TwoFactorSetupDemo />,
+    },
+    props: [
+      { name: "secret", type: "string", required: true, description: "The TOTP secret (base32) shared with the authenticator app." },
+      { name: "accountName", type: "string", description: "Account identifier shown in the authenticator (typically the user's email)." },
+      { name: "issuer", type: "string", description: "Issuer / app name shown in the authenticator." },
+      { name: "otpauthUrl", type: "string", description: "Override the constructed otpauth:// URL. Useful when the server pre-builds it." },
+      { name: "qrSize", type: "number", default: "180", description: "Pixel size of the rendered QR panel." },
+      { name: "onVerify", type: "(code: string) => Promise<boolean> | boolean", description: "Async hook called when the user submits the code. Resolve true to advance to the success state, false to show an inline error and shake." },
+      { name: "onComplete", type: "() => void", description: "Fires once the flow completes successfully." },
+      { name: "step", type: "1 | 2", description: "Controlled step." },
+      { name: "defaultStep", type: "1 | 2", default: "1", description: "Initial step (uncontrolled)." },
+      { name: "codeLength", type: "number", default: "6", description: "Number of digits in the verification code." },
+      { name: "title", type: "string", default: '"Set up two-factor auth"', description: "Card title." },
+      { name: "description", type: "string", description: "Card subtitle / instructions under the title." },
+    ],
+    related: ["api-key-display", "password-strength-meter", "input-otp"],
   },
 ];
 
