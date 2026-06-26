@@ -3,6 +3,8 @@
 import * as React from "react";
 import {
   ActivityHeatmap,
+  AddressForm,
+  AddressFormValue,
   AnimatedBeam,
   AnimatedChart,
   AudioVisualizer,
@@ -29,6 +31,8 @@ import {
   ChatBubble,
   CodeRain,
   CoinFlip,
+  CommentThread,
+  CommentThreadNode,
   CookieBanner,
   CookieBannerCategory,
   ColorPicker,
@@ -52,6 +56,7 @@ import {
   DirectionAwareHover,
   DotPattern,
   DotProgress,
+  EmojiPicker,
   EvervaultCard,
   FeatureCard,
   FluxPanels,
@@ -92,6 +97,8 @@ import {
   MultiStepLoader,
   NeonGlow,
   NeonPortal,
+  NotificationBell,
+  NotificationBellItem,
   NotificationStack,
   NumberFlip,
   NumberInput,
@@ -107,6 +114,7 @@ import {
   PasswordStrengthMeter,
   PaymentCard,
   PerspectiveBox,
+  PhoneInput,
   PhoneMockup,
   Pin3D,
   PinBoard,
@@ -124,6 +132,8 @@ import {
   ScratchCard,
   ScrollProgress,
   SegmentedControl,
+  SignaturePad,
+  SignaturePadHandle,
   Sparkles as SparklesFx,
   SparklesText,
   Sparkline,
@@ -146,6 +156,8 @@ import {
   TiltTiles,
   TimePicker,
   TwoFactorSetup,
+  VideoPlayer,
+  VoiceMessage,
   Toolbar,
   ToolbarButton,
   ToolbarToggle,
@@ -5990,6 +6002,678 @@ export function TwoFactorSetupDemo() {
         >
           Reset
         </Button>
+      </div>
+    </div>
+  );
+}
+
+
+/* ---------- AddressForm ---------- */
+export function AddressFormDemo() {
+  const [value, setValue] = React.useState<AddressFormValue>({
+    name: "Maya Rodriguez",
+    line1: "440 Brannan St",
+    line2: "Suite 300",
+    city: "San Francisco",
+    region: "CA",
+    postalCode: "94107",
+    country: "US",
+  });
+  const [savedAt, setSavedAt] = React.useState<string | null>(null);
+
+  const handleSubmit = async (next: AddressFormValue) => {
+    await new Promise((r) => setTimeout(r, 700));
+    setSavedAt(
+      new Date().toLocaleTimeString(undefined, {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      })
+    );
+    // eslint-disable-next-line no-console
+    console.log("address saved", next);
+  };
+
+  return (
+    <div className="flex flex-col items-center gap-4">
+      <AddressForm
+        value={value}
+        onChange={setValue}
+        onSubmit={handleSubmit}
+        showName
+        showCompany={false}
+        title="Shipping address"
+        description="Where should we send your order?"
+      />
+      <div className="flex items-center gap-2">
+        <Button
+          variant="outline"
+          className="h-8 px-3 text-xs"
+          onClick={() =>
+            setValue({
+              line1: "",
+              line2: "",
+              city: "",
+              region: "",
+              postalCode: "",
+              country: "",
+              name: "",
+            })
+          }
+        >
+          Reset
+        </Button>
+        {savedAt ? (
+          <span className="text-[11px] text-white/55">Saved at {savedAt}</span>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+/* ----- CommentThread demo ----- */
+export function CommentThreadDemo() {
+  const [comments, setComments] = React.useState<CommentThreadNode[]>([
+    {
+      id: "c1",
+      author: { name: "Maya Rodriguez", badge: "Author" },
+      time: "3h",
+      body: "Shipped the new pricing page today — would love a quick read before it goes live on Monday. Especially the comparison table at the bottom.",
+      reactions: [
+        { id: "fire", emoji: "🔥", count: 4, you: true },
+        { id: "love", emoji: "❤️", count: 2 },
+      ],
+      replies: [
+        {
+          id: "c1-r1",
+          author: { name: "Devon Park", badge: "Mod" },
+          time: "2h",
+          body: "Comparison table looks clean. One nit — the 'Most popular' badge on the middle tier disappears at the md breakpoint.",
+          reactions: [{ id: "like", emoji: "👍", count: 3 }],
+          replies: [
+            {
+              id: "c1-r1-r1",
+              author: { name: "Maya Rodriguez", badge: "Author" },
+              time: "1h",
+              edited: true,
+              body: "Good catch, pushed a fix — should be visible everywhere down to 360px now.",
+            },
+          ],
+        },
+        {
+          id: "c1-r2",
+          author: { name: "Priya Shah" },
+          time: "1h",
+          body: "Copy on the Enterprise tier reads a little dense. Want me to take a pass?",
+        },
+      ],
+    },
+    {
+      id: "c2",
+      author: { name: "Jordan Lee" },
+      time: "yesterday",
+      body: "How are we handling annual vs monthly pricing? I didn't see a toggle on the mock.",
+      reactions: [{ id: "wow", emoji: "😮", count: 1 }],
+    },
+  ]);
+
+  const currentUser = { name: "You" };
+
+  // Deterministic id generator — no Math.random at render time.
+  const nextIdRef = React.useRef(100);
+  const newId = () => `c${++nextIdRef.current}`;
+
+  // Walk the tree and update a node by id.
+  const updateNode = (
+    nodes: CommentThreadNode[],
+    id: string,
+    fn: (n: CommentThreadNode) => CommentThreadNode
+  ): CommentThreadNode[] =>
+    nodes.map((n) => {
+      if (n.id === id) return fn(n);
+      if (n.replies && n.replies.length > 0) {
+        return { ...n, replies: updateNode(n.replies, id, fn) };
+      }
+      return n;
+    });
+
+  const deleteNode = (
+    nodes: CommentThreadNode[],
+    id: string
+  ): CommentThreadNode[] =>
+    nodes
+      .filter((n) => n.id !== id)
+      .map((n) =>
+        n.replies && n.replies.length > 0
+          ? { ...n, replies: deleteNode(n.replies, id) }
+          : n
+      );
+
+  const handleReply = (parentId: string | null, body: string) => {
+    const fresh: CommentThreadNode = {
+      id: newId(),
+      author: { name: currentUser.name },
+      time: "just now",
+      body,
+    };
+    if (parentId === null) {
+      setComments((cs) => [...cs, fresh]);
+      return;
+    }
+    setComments((cs) =>
+      updateNode(cs, parentId, (n) => ({
+        ...n,
+        replies: [...(n.replies ?? []), fresh],
+      }))
+    );
+  };
+
+  const handleReact = (commentId: string, reactionId: string) => {
+    const emojiOf: Record<string, string> = {
+      like: "👍",
+      love: "❤️",
+      laugh: "😄",
+      wow: "😮",
+      sad: "😢",
+      fire: "🔥",
+    };
+    setComments((cs) =>
+      updateNode(cs, commentId, (n) => {
+        const existing = n.reactions ?? [];
+        const match = existing.find((r) => r.id === reactionId);
+        if (match) {
+          const nextCount = match.you ? match.count - 1 : match.count + 1;
+          const nextYou = !match.you;
+          const nextReactions = existing
+            .map((r) =>
+              r.id === reactionId
+                ? { ...r, count: nextCount, you: nextYou }
+                : r
+            )
+            .filter((r) => r.count > 0);
+          return { ...n, reactions: nextReactions };
+        }
+        return {
+          ...n,
+          reactions: [
+            ...existing,
+            {
+              id: reactionId,
+              emoji: emojiOf[reactionId] ?? "•",
+              count: 1,
+              you: true,
+            },
+          ],
+        };
+      })
+    );
+  };
+
+  const handleEdit = (commentId: string, body: string) => {
+    setComments((cs) =>
+      updateNode(cs, commentId, (n) => ({ ...n, body, edited: true }))
+    );
+  };
+
+  const handleDelete = (commentId: string) => {
+    setComments((cs) => deleteNode(cs, commentId));
+  };
+
+  return (
+    <CommentThread
+      comments={comments}
+      currentUser={currentUser}
+      onReply={handleReply}
+      onReact={handleReact}
+      onEdit={handleEdit}
+      onDelete={handleDelete}
+      canEdit
+      canDelete
+    />
+  );
+}
+
+/* ------------------------------------------------------------------
+ * EmojiPicker — categorized + searchable emoji picker for a chat composer.
+ * ------------------------------------------------------------------ */
+export function EmojiPickerDemo() {
+  const [message, setMessage] = React.useState("Ship it ");
+  const [recent, setRecent] = React.useState<string[]>([]);
+  const inputRef = React.useRef<HTMLInputElement | null>(null);
+
+  const insert = (emoji: string) => {
+    setMessage((m) => m + emoji);
+    setRecent((r) => {
+      const next = [emoji, ...r.filter((e) => e !== emoji)];
+      return next.slice(0, 6);
+    });
+    // Keep focus inside the composer so the next emoji keeps inserting cleanly.
+    requestAnimationFrame(() => inputRef.current?.focus());
+  };
+
+  return (
+    <div className="flex w-full items-start justify-center px-6 py-8">
+      <div className="flex w-full max-w-3xl flex-col gap-4 md:flex-row md:items-start">
+        {/* Composer */}
+        <div className="flex min-w-0 flex-1 flex-col gap-3 rounded-2xl border border-white/10 bg-neutral-950 p-4">
+          <p className="text-[10px] uppercase tracking-widest text-white/45">
+            Send to #launches
+          </p>
+          <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2">
+            <input
+              ref={inputRef}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="Write a message…"
+              className="min-w-0 flex-1 bg-transparent text-sm text-white placeholder:text-white/40 outline-none"
+            />
+            <Button
+              onClick={() => setMessage("")}
+              className="h-7 px-3 text-[11px]"
+              variant="outline"
+            >
+              Clear
+            </Button>
+          </div>
+          {recent.length > 0 ? (
+            <div className="flex flex-wrap items-center gap-1.5">
+              <span className="text-[10px] uppercase tracking-widest text-white/35">
+                Recent
+              </span>
+              {recent.map((e) => (
+                <button
+                  key={e}
+                  type="button"
+                  onClick={() => insert(e)}
+                  className="rounded-md bg-white/[0.04] px-1.5 py-0.5 text-base leading-none transition-transform hover:scale-110 hover:bg-white/[0.08]"
+                  aria-label={`Insert ${e}`}
+                >
+                  {e}
+                </button>
+              ))}
+            </div>
+          ) : null}
+          <p className="text-[11px] leading-relaxed text-white/45">
+            Tip: press <kbd className="rounded bg-white/[0.06] px-1.5 py-0.5 text-[10px] text-white/70">/</kbd> inside the picker
+            to focus the search, then arrow keys to navigate.
+          </p>
+        </div>
+
+        {/* Picker */}
+        <EmojiPicker
+          onSelect={insert}
+          defaultCategory="smileys"
+          columns={8}
+        />
+      </div>
+    </div>
+  );
+}
+
+/* ----------------------------------------------------------------------- */
+/* NotificationBell — top-bar bell + unread badge + recent activity panel.  */
+/* ----------------------------------------------------------------------- */
+export function NotificationBellDemo() {
+  const seed = React.useMemo<NotificationBellItem[]>(
+    () => [
+      {
+        id: "mention",
+        title: (
+          <>
+            <span className="text-sky-300">@maya</span> mentioned you in
+            {" "}
+            <span className="font-mono text-[12px] text-white/80">#design-system</span>
+          </>
+        ),
+        body: "Can you take a look at the new dropdown anchor before we ship?",
+        time: "2m",
+        icon: (
+          <svg width={14} height={14} viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path
+              d="M21 12a9 9 0 1 1-3.5-7.1M21 5v5h-5"
+              stroke="rgb(125,211,252)"
+              strokeWidth={1.8}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        ),
+      },
+      {
+        id: "deploy",
+        title: "Deploy succeeded — production",
+        body: "build #1842 · 312 files · 24s",
+        time: "12m",
+        icon: (
+          <svg width={14} height={14} viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path
+              d="M5 12l5 5L20 7"
+              stroke="rgb(134, 239, 172)"
+              strokeWidth={2.2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        ),
+      },
+      {
+        id: "invoice",
+        title: "Invoice #INV-0241 paid",
+        body: "Acme Industries · $2,400.00",
+        time: "1h",
+        icon: (
+          <svg width={14} height={14} viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path
+              d="M3 7h18v10H3zM3 11h18"
+              stroke="rgb(253, 224, 71)"
+              strokeWidth={1.6}
+              strokeLinecap="round"
+            />
+          </svg>
+        ),
+      },
+      {
+        id: "release",
+        title: "v1.18 release notes are live",
+        body: "Includes 9 new SaaS components and a fresh CLI.",
+        time: "Yesterday",
+        read: true,
+        icon: (
+          <svg width={14} height={14} viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path
+              d="M3 12h13l-4-4M16 12l-4 4"
+              stroke="rgb(192, 132, 252)"
+              strokeWidth={1.8}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        ),
+      },
+      {
+        id: "digest",
+        title: "Weekly digest is ready",
+        body: "Activity across 4 workspaces summarized for you.",
+        time: "Mon",
+        read: true,
+      },
+    ],
+    []
+  );
+
+  const [items, setItems] = React.useState<NotificationBellItem[]>(seed);
+  const [log, setLog] = React.useState<string>("ready");
+
+  const markAllRead = () => {
+    setItems((cur) => cur.map((n) => ({ ...n, read: true })));
+    setLog("marked all read");
+  };
+  const markRead = (id: string) => {
+    setItems((cur) => cur.map((n) => (n.id === id ? { ...n, read: true } : n)));
+  };
+  const ping = () => {
+    setItems((cur) => [
+      {
+        id: `evt-${Date.now()}`,
+        title: "New activity",
+        body: "Someone just joined your workspace.",
+        time: "now",
+      },
+      ...cur,
+    ]);
+    setLog("new notification");
+  };
+  const reset = () => {
+    setItems(seed);
+    setLog("reset");
+  };
+
+  return (
+    <div className="flex w-full max-w-md flex-col gap-4">
+      <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-neutral-950 px-4 py-2.5">
+        <div className="flex items-center gap-2">
+          <span
+            aria-hidden
+            className="block h-6 w-6 rounded-md bg-gradient-to-br from-sky-300 to-violet-400"
+          />
+          <p className="text-[13px] font-semibold text-white">Acme HQ</p>
+        </div>
+        <NotificationBell
+          notifications={items}
+          onMarkAllRead={markAllRead}
+          onMarkRead={markRead}
+          onClickItem={(item) => setLog(`opened ${item.id}`)}
+        />
+      </div>
+      <div className="flex flex-wrap items-center gap-2 px-1">
+        <Button size="sm" onClick={ping}>
+          Send new notification
+        </Button>
+        <Button variant="outline" size="sm" onClick={markAllRead}>
+          Mark all read
+        </Button>
+        <Button variant="outline" size="sm" onClick={reset}>
+          Reset
+        </Button>
+        <span className="ml-auto font-mono text-[10px] uppercase tracking-widest text-white/45">
+          {log}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+/* ----- PhoneInputDemo ----- */
+export function PhoneInputDemo() {
+  const [value, setValue] = React.useState("+14155550134");
+  const [country, setCountry] = React.useState("US");
+
+  return (
+    <div className="flex w-full max-w-md flex-col gap-4">
+      <div className="flex flex-col gap-1.5">
+        <label className="text-[11px] uppercase tracking-widest text-white/40">
+          Mobile number
+        </label>
+        <PhoneInput
+          value={value}
+          onValueChange={setValue}
+          onCountryChange={setCountry}
+          defaultCountry="US"
+          placeholder="(415) 555 0134"
+        />
+        <div className="flex items-center justify-between font-mono text-[10px] tabular-nums text-white/45">
+          <span>Country: {country}</span>
+          <span>Emits: {value || " "}</span>
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-1.5">
+        <label className="text-[11px] uppercase tracking-widest text-white/40">
+          Uncontrolled (defaultCountry=&quot;IN&quot;)
+        </label>
+        <PhoneInput defaultCountry="IN" placeholder="98765 43210" />
+      </div>
+
+      <div className="flex items-center gap-2 pt-1">
+        <Button
+          className="h-8 px-3 text-xs"
+          onClick={() => setValue("+447911123456")}
+        >
+          Set UK number
+        </Button>
+        <Button
+          className="h-8 bg-white/[0.06] px-3 text-xs text-white/80 hover:bg-white/[0.1]"
+          onClick={() => setValue("")}
+        >
+          Clear
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*  SignaturePadDemo                                                           */
+/* -------------------------------------------------------------------------- */
+export function SignaturePadDemo() {
+  const padRef = React.useRef<SignaturePadHandle | null>(null);
+  const [saved, setSaved] = React.useState<string | null>(null);
+  const [isEmpty, setIsEmpty] = React.useState(true);
+
+  return (
+    <div className="flex w-full max-w-[520px] flex-col gap-4">
+      <SignaturePad
+        ref={padRef}
+        width={480}
+        height={180}
+        penColor="#fff"
+        penWidth={2.2}
+        placeholder="Sign here"
+        onChange={(_, empty) => setIsEmpty(empty)}
+        onClear={() => setSaved(null)}
+        onSave={(dataUrl) => setSaved(dataUrl)}
+      />
+
+      <div className="flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-neutral-950 p-3 text-white">
+        <div className="min-w-0">
+          <p className="text-xs font-medium text-white/85">Acme Master Service Agreement</p>
+          <p className="mt-0.5 text-[11px] text-white/45">
+            {saved
+              ? "Signature captured — ready to submit."
+              : isEmpty
+              ? "Awaiting signature from authorized signatory."
+              : "Drawing in progress…"}
+          </p>
+        </div>
+        <Button
+          className="h-8 px-3 text-[11px]"
+          onClick={() => padRef.current?.clear()}
+        >
+          Reset
+        </Button>
+      </div>
+
+      {saved ? (
+        <div className="flex items-center gap-3 rounded-xl border border-emerald-300/20 bg-emerald-300/5 p-3 text-xs text-emerald-200">
+          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-300/20 text-emerald-200">
+            ✓
+          </span>
+          <span className="truncate font-mono text-[10px]">
+            {saved.slice(0, 64)}…
+          </span>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+/* ----- VideoPlayerDemo ----- */
+export function VideoPlayerDemo() {
+  const clips = React.useMemo(
+    () => [
+      {
+        title: "Designing for motion",
+        subtitle: "Fable Studio · 4:32",
+        src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+        poster:
+          "https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1200&q=80",
+        captionsSrc:
+          "https://gist.githubusercontent.com/samdutton/ca37f3adaf4e23679957b8083e061177/raw/e19399fbccbc069a2af4266e5120ae6bad62699a/sample.vtt",
+      },
+      {
+        title: "Inside the dashboard rebuild",
+        subtitle: "Polar Hues · 6:18",
+        src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+        poster:
+          "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80",
+      },
+    ],
+    []
+  );
+  const [index, setIndex] = React.useState(0);
+  const clip = clips[index] ?? clips[0]!;
+
+  return (
+    <div className="flex w-full max-w-2xl flex-col gap-3">
+      <VideoPlayer
+        src={clip.src}
+        poster={clip.poster}
+        title={clip.title}
+        subtitle={clip.subtitle}
+        captionsSrc={clip.captionsSrc}
+        onEnded={() => setIndex((i) => (i + 1) % clips.length)}
+      />
+      <div className="flex items-center justify-between gap-2">
+        <p className="text-xs text-white/55">
+          Clip {index + 1} of {clips.length}
+        </p>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            className="h-8 px-3 text-[11px]"
+            onClick={() =>
+              setIndex((i) => (i - 1 + clips.length) % clips.length)
+            }
+          >
+            Previous
+          </Button>
+          <Button
+            className="h-8 px-3 text-[11px]"
+            onClick={() => setIndex((i) => (i + 1) % clips.length)}
+          >
+            Next clip
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------
+ * VoiceMessage — a chat voice / audio message bubble with waveform,
+ * play/pause, and a click-to-seek playhead. Two-message thread demo.
+ * ------------------------------------------------------------------ */
+export function VoiceMessageDemo() {
+  // Hand-shaped waveform so the bubbles read like real speech instead of noise.
+  const incomingWave = [
+    0.18, 0.22, 0.38, 0.52, 0.65, 0.74, 0.7, 0.58, 0.46, 0.4, 0.55, 0.7, 0.82,
+    0.92, 0.88, 0.74, 0.6, 0.5, 0.42, 0.36, 0.42, 0.55, 0.72, 0.86, 0.78, 0.6,
+    0.46, 0.38, 0.32, 0.28, 0.34, 0.44, 0.56, 0.5, 0.4, 0.32, 0.26, 0.2, 0.16,
+    0.14,
+  ];
+
+  const outgoingWave = [
+    0.24, 0.36, 0.5, 0.42, 0.34, 0.46, 0.62, 0.78, 0.88, 0.74, 0.6, 0.5, 0.42,
+    0.56, 0.72, 0.86, 0.92, 0.8, 0.66, 0.54, 0.46, 0.38, 0.44, 0.58, 0.72, 0.66,
+    0.54, 0.42, 0.34, 0.4, 0.52, 0.66, 0.78, 0.7, 0.56, 0.44, 0.36, 0.3, 0.24,
+    0.18,
+  ];
+
+  return (
+    <div className="flex w-full items-center justify-center px-6 py-10">
+      <div className="flex w-full max-w-[420px] flex-col gap-3 rounded-2xl border border-white/10 bg-neutral-950 p-5">
+        <VoiceMessage
+          variant="incoming"
+          avatar="https://i.pravatar.cc/72?img=47"
+          avatarFallback="NV"
+          src="https://www.soundjay.com/buttons/sounds/beep-07.mp3"
+          duration={14}
+          waveform={incomingWave}
+          timestamp="9:41 AM"
+        />
+        <VoiceMessage
+          variant="outgoing"
+          avatarFallback="ME"
+          src="https://www.soundjay.com/buttons/sounds/beep-09.mp3"
+          duration={9}
+          waveform={outgoingWave}
+          timestamp="9:42 AM · Read"
+        />
+        <div className="mt-1 flex justify-end">
+          <Button variant="ghost" size="sm" className="h-7 px-2 text-[11px] text-white/55">
+            Reply
+          </Button>
+        </div>
       </div>
     </div>
   );

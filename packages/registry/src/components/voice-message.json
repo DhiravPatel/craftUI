@@ -1,0 +1,25 @@
+{
+  "name": "voice-message",
+  "description": "A chat voice / audio message bubble with a static SVG waveform, play/pause control, a moving playhead that fills the played bars in the accent color, and click-to-seek. Supports incoming and outgoing variants, optional avatar, and a deterministic waveform shape when one isn't supplied.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/voice-message/voice-message.tsx",
+      "target": "{{components}}/voice-message.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": [
+    "voice",
+    "voice-message",
+    "audio",
+    "waveform",
+    "chat",
+    "messaging",
+    "bubble",
+    "player"
+  ]
+}

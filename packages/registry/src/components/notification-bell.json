@@ -1,0 +1,25 @@
+{
+  "name": "notification-bell",
+  "description": "Top-bar bell icon button with an unread-count badge and a dropdown panel listing recent notifications. Each row has an icon, title, optional body, and timestamp; unread rows get a sky left-stripe and tint, and the bell wobbles when new alerts arrive.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/notification-bell/notification-bell.tsx",
+      "target": "{{components}}/notification-bell.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": [
+    "notification",
+    "bell",
+    "badge",
+    "dropdown",
+    "alerts",
+    "inbox",
+    "saas",
+    "topbar"
+  ]
+}

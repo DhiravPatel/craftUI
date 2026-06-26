@@ -1,0 +1,24 @@
+{
+  "name": "comment-thread",
+  "description": "A threaded discussion component with avatars, badges, timestamps, emoji reactions, and inline Reply / React / Edit / Delete actions. Supports arbitrary nesting with a configurable max-depth cap, an inline reply composer per node, a six-emoji reaction picker, per-comment collapse, and an optional top-level composer. Zero dependencies — pure React + Tailwind.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/comment-thread/comment-thread.tsx",
+      "target": "{{components}}/comment-thread.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": [
+    "comments",
+    "thread",
+    "discussion",
+    "replies",
+    "reactions",
+    "social",
+    "saas"
+  ]
+}

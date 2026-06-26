@@ -1,0 +1,25 @@
+{
+  "name": "address-form",
+  "description": "A self-contained multi-field address form for billing, shipping, KYC, and contract flows. Wires every field to a single value object, includes a sleek dark country picker with type-ahead search that auto-swaps the region label between State, Province, County, and Prefecture, validates required fields on submit, and supports async onSubmit with a Saving… state.",
+  "category": "form",
+  "files": [
+    {
+      "path": "components/address-form/address-form.tsx",
+      "target": "{{components}}/address-form.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": [
+    "address",
+    "form",
+    "shipping",
+    "billing",
+    "kyc",
+    "country-picker",
+    "checkout",
+    "saas"
+  ]
+}

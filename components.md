@@ -1,6 +1,6 @@
 # CraftUI components
 
-> A copy-paste component library in a pnpm + turbo monorepo. **191 components** ship today.
+> A copy-paste component library in a pnpm + turbo monorepo. **199 components** ship today.
 
 ## How to use this file
 
@@ -20,68 +20,74 @@ Browse the live previews and full prop tables at the [docs site](./apps/docs).
 
 | | | | |
 |---|---|---|---|
-| [`accordion`](#accordion) | [`activity-heatmap`](#activity-heatmap) | [`alert`](#alert) | [`alert-dialog`](#alert-dialog) |
-| [`animated-beam`](#animated-beam) | [`animated-chart`](#animated-chart) | [`animated-text`](#animated-text) | [`animated-tooltip`](#animated-tooltip) |
-| [`api-key-display`](#api-key-display) | [`audio-player`](#audio-player) | [`audio-visualizer`](#audio-visualizer) | [`aurora`](#aurora) |
-| [`auth-card`](#auth-card) | [`avatar`](#avatar) | [`avatar-stack`](#avatar-stack) | [`background-beams`](#background-beams) |
-| [`background-boxes`](#background-boxes) | [`badge`](#badge) | [`banner`](#banner) | [`bento-grid`](#bento-grid) |
-| [`breadcrumb`](#breadcrumb) | [`button`](#button) | [`calendar`](#calendar) | [`card`](#card) |
-| [`card-hover-effect`](#card-hover-effect) | [`card-stack`](#card-stack) | [`carousel-3d`](#carousel-3d) | [`chat-bubble`](#chat-bubble) |
-| [`checkbox`](#checkbox) | [`code-rain`](#code-rain) | [`coin-flip`](#coin-flip) | [`color-picker`](#color-picker) |
-| [`combobox`](#combobox) | [`command`](#command) | [`compare`](#compare) | [`comparison-table`](#comparison-table) |
-| [`confetti`](#confetti) | [`context-menu`](#context-menu) | [`cookie-banner`](#cookie-banner) | [`copy-button`](#copy-button) |
-| [`count-up-ring`](#count-up-ring) | [`countdown-timer`](#countdown-timer) | [`coverflow`](#coverflow) | [`cube`](#cube) |
-| [`cube-matrix`](#cube-matrix) | [`currency-input`](#currency-input) | [`cursor-trail`](#cursor-trail) | [`data-table`](#data-table) |
-| [`date-picker`](#date-picker) | [`date-range-picker`](#date-range-picker) | [`dialog`](#dialog) | [`dice-roll`](#dice-roll) |
-| [`direction-aware-hover`](#direction-aware-hover) | [`dot-pattern`](#dot-pattern) | [`dot-progress`](#dot-progress) | [`drawer`](#drawer) |
-| [`dropdown-menu`](#dropdown-menu) | [`empty-state`](#empty-state) | [`evervault-card`](#evervault-card) | [`feature-card`](#feature-card) |
-| [`file-upload`](#file-upload) | [`flip-card`](#flip-card) | [`flip-words`](#flip-words) | [`floating-dock`](#floating-dock) |
-| [`flux-panels`](#flux-panels) | [`focus-cards`](#focus-cards) | [`fold-out`](#fold-out) | [`following-pointer`](#following-pointer) |
-| [`footer`](#footer) | [`form`](#form) | [`gauge-meter`](#gauge-meter) | [`glass-card`](#glass-card) |
-| [`glitch-clip`](#glitch-clip) | [`globe`](#globe) | [`gravity-well`](#gravity-well) | [`heartbeat-monitor`](#heartbeat-monitor) |
-| [`helix`](#helix) | [`hold-to-confirm`](#hold-to-confirm) | [`holo-card`](#holo-card) | [`holo-slices`](#holo-slices) |
-| [`hover-border-gradient`](#hover-border-gradient) | [`hover-card`](#hover-card) | [`infinite-moving-cards`](#infinite-moving-cards) | [`inline-edit`](#inline-edit) |
-| [`input`](#input) | [`input-otp`](#input-otp) | [`invite-people`](#invite-people) | [`kanban-board`](#kanban-board) |
-| [`kbd`](#kbd) | [`label`](#label) | [`lamp`](#lamp) | [`layout`](#layout) |
-| [`lens`](#lens) | [`logo-cloud`](#logo-cloud) | [`magic-layer`](#magic-layer) | [`magnet`](#magnet) |
-| [`magnetic-button`](#magnetic-button) | [`marquee-3d`](#marquee-3d) | [`mention-input`](#mention-input) | [`mesh-gradient`](#mesh-gradient) |
-| [`meteors`](#meteors) | [`moving-border`](#moving-border) | [`multi-step-loader`](#multi-step-loader) | [`navbar`](#navbar) |
-| [`neon-glow`](#neon-glow) | [`neon-portal`](#neon-portal) | [`notification-stack`](#notification-stack) | [`number-flip`](#number-flip) |
+| [`accordion`](#accordion) | [`activity-heatmap`](#activity-heatmap) | [`address-form`](#address-form) | [`alert`](#alert) |
+| [`alert-dialog`](#alert-dialog) | [`animated-beam`](#animated-beam) | [`animated-chart`](#animated-chart) | [`animated-text`](#animated-text) |
+| [`animated-tooltip`](#animated-tooltip) | [`api-key-display`](#api-key-display) | [`audio-player`](#audio-player) | [`audio-visualizer`](#audio-visualizer) |
+| [`aurora`](#aurora) | [`auth-card`](#auth-card) | [`avatar`](#avatar) | [`avatar-stack`](#avatar-stack) |
+| [`background-beams`](#background-beams) | [`background-boxes`](#background-boxes) | [`badge`](#badge) | [`banner`](#banner) |
+| [`bento-grid`](#bento-grid) | [`breadcrumb`](#breadcrumb) | [`button`](#button) | [`calendar`](#calendar) |
+| [`card`](#card) | [`card-hover-effect`](#card-hover-effect) | [`card-stack`](#card-stack) | [`carousel-3d`](#carousel-3d) |
+| [`chat-bubble`](#chat-bubble) | [`checkbox`](#checkbox) | [`code-rain`](#code-rain) | [`coin-flip`](#coin-flip) |
+| [`color-picker`](#color-picker) | [`combobox`](#combobox) | [`command`](#command) | [`comment-thread`](#comment-thread) |
+| [`compare`](#compare) | [`comparison-table`](#comparison-table) | [`confetti`](#confetti) | [`context-menu`](#context-menu) |
+| [`cookie-banner`](#cookie-banner) | [`copy-button`](#copy-button) | [`count-up-ring`](#count-up-ring) | [`countdown-timer`](#countdown-timer) |
+| [`coverflow`](#coverflow) | [`cube`](#cube) | [`cube-matrix`](#cube-matrix) | [`currency-input`](#currency-input) |
+| [`cursor-trail`](#cursor-trail) | [`data-table`](#data-table) | [`date-picker`](#date-picker) | [`date-range-picker`](#date-range-picker) |
+| [`dialog`](#dialog) | [`dice-roll`](#dice-roll) | [`direction-aware-hover`](#direction-aware-hover) | [`dot-pattern`](#dot-pattern) |
+| [`dot-progress`](#dot-progress) | [`drawer`](#drawer) | [`dropdown-menu`](#dropdown-menu) | [`emoji-picker`](#emoji-picker) |
+| [`empty-state`](#empty-state) | [`evervault-card`](#evervault-card) | [`feature-card`](#feature-card) | [`file-upload`](#file-upload) |
+| [`flip-card`](#flip-card) | [`flip-words`](#flip-words) | [`floating-dock`](#floating-dock) | [`flux-panels`](#flux-panels) |
+| [`focus-cards`](#focus-cards) | [`fold-out`](#fold-out) | [`following-pointer`](#following-pointer) | [`footer`](#footer) |
+| [`form`](#form) | [`gauge-meter`](#gauge-meter) | [`glass-card`](#glass-card) | [`glitch-clip`](#glitch-clip) |
+| [`globe`](#globe) | [`gravity-well`](#gravity-well) | [`heartbeat-monitor`](#heartbeat-monitor) | [`helix`](#helix) |
+| [`hold-to-confirm`](#hold-to-confirm) | [`holo-card`](#holo-card) | [`holo-slices`](#holo-slices) | [`hover-border-gradient`](#hover-border-gradient) |
+| [`hover-card`](#hover-card) | [`infinite-moving-cards`](#infinite-moving-cards) | [`inline-edit`](#inline-edit) | [`input`](#input) |
+| [`input-otp`](#input-otp) | [`invite-people`](#invite-people) | [`kanban-board`](#kanban-board) | [`kbd`](#kbd) |
+| [`label`](#label) | [`lamp`](#lamp) | [`layout`](#layout) | [`lens`](#lens) |
+| [`logo-cloud`](#logo-cloud) | [`magic-layer`](#magic-layer) | [`magnet`](#magnet) | [`magnetic-button`](#magnetic-button) |
+| [`marquee-3d`](#marquee-3d) | [`mention-input`](#mention-input) | [`mesh-gradient`](#mesh-gradient) | [`meteors`](#meteors) |
+| [`moving-border`](#moving-border) | [`multi-step-loader`](#multi-step-loader) | [`navbar`](#navbar) | [`neon-glow`](#neon-glow) |
+| [`neon-portal`](#neon-portal) | [`notification-bell`](#notification-bell) | [`notification-stack`](#notification-stack) | [`number-flip`](#number-flip) |
 | [`number-input`](#number-input) | [`number-ticker`](#number-ticker) | [`onboarding-checklist`](#onboarding-checklist) | [`orbit-stack`](#orbit-stack) |
 | [`orbital-menu`](#orbital-menu) | [`orbiting-circles`](#orbiting-circles) | [`page-curl`](#page-curl) | [`pagination`](#pagination) |
 | [`paper-plane`](#paper-plane) | [`parallax`](#parallax) | [`password-strength-meter`](#password-strength-meter) | [`payment-card`](#payment-card) |
-| [`perspective-box`](#perspective-box) | [`phone-mockup`](#phone-mockup) | [`pin-3d`](#pin-3d) | [`pin-board`](#pin-board) |
-| [`plan-card`](#plan-card) | [`plasma-field`](#plasma-field) | [`popover`](#popover) | [`portal-rings`](#portal-rings) |
-| [`pricing-cards`](#pricing-cards) | [`pricing-slider`](#pricing-slider) | [`prism-orb`](#prism-orb) | [`progress`](#progress) |
-| [`quantum-grid`](#quantum-grid) | [`radio-group`](#radio-group) | [`rating`](#rating) | [`resizable`](#resizable) |
-| [`retro-grid`](#retro-grid) | [`review-card`](#review-card) | [`ripple`](#ripple) | [`scratch-card`](#scratch-card) |
-| [`scroll-area`](#scroll-area) | [`scroll-progress`](#scroll-progress) | [`segmented-control`](#segmented-control) | [`select`](#select) |
-| [`separator`](#separator) | [`sheet`](#sheet) | [`sidebar`](#sidebar) | [`skeleton`](#skeleton) |
-| [`slider`](#slider) | [`sparkles`](#sparkles) | [`sparkles-text`](#sparkles-text) | [`sparkline`](#sparkline) |
-| [`spinner`](#spinner) | [`split-flap`](#split-flap) | [`spotlight`](#spotlight) | [`stat`](#stat) |
-| [`stat-card`](#stat-card) | [`stat-ring`](#stat-ring) | [`status-dot`](#status-dot) | [`stepper`](#stepper) |
-| [`swipe-stack`](#swipe-stack) | [`switch`](#switch) | [`table`](#table) | [`tabs`](#tabs) |
-| [`tag-input`](#tag-input) | [`task-card`](#task-card) | [`testimonial-quote`](#testimonial-quote) | [`text-generate-effect`](#text-generate-effect) |
-| [`text-scramble`](#text-scramble) | [`textarea`](#textarea) | [`theme-provider`](#theme-provider) | [`theme-selector`](#theme-selector) |
-| [`theme-toggle`](#theme-toggle) | [`tilt`](#tilt) | [`tilt-tiles`](#tilt-tiles) | [`time-picker`](#time-picker) |
-| [`timeline`](#timeline) | [`toast`](#toast) | [`toggle`](#toggle) | [`toggle-group`](#toggle-group) |
-| [`toolbar`](#toolbar) | [`tooltip`](#tooltip) | [`tracing-beam`](#tracing-beam) | [`tree-view`](#tree-view) |
-| [`two-factor-setup`](#two-factor-setup) | [`usage-bar`](#usage-bar) | [`vote-widget`](#vote-widget) | [`wave-grid`](#wave-grid) |
+| [`perspective-box`](#perspective-box) | [`phone-input`](#phone-input) | [`phone-mockup`](#phone-mockup) | [`pin-3d`](#pin-3d) |
+| [`pin-board`](#pin-board) | [`plan-card`](#plan-card) | [`plasma-field`](#plasma-field) | [`popover`](#popover) |
+| [`portal-rings`](#portal-rings) | [`pricing-cards`](#pricing-cards) | [`pricing-slider`](#pricing-slider) | [`prism-orb`](#prism-orb) |
+| [`progress`](#progress) | [`quantum-grid`](#quantum-grid) | [`radio-group`](#radio-group) | [`rating`](#rating) |
+| [`resizable`](#resizable) | [`retro-grid`](#retro-grid) | [`review-card`](#review-card) | [`ripple`](#ripple) |
+| [`scratch-card`](#scratch-card) | [`scroll-area`](#scroll-area) | [`scroll-progress`](#scroll-progress) | [`segmented-control`](#segmented-control) |
+| [`select`](#select) | [`separator`](#separator) | [`sheet`](#sheet) | [`sidebar`](#sidebar) |
+| [`signature-pad`](#signature-pad) | [`skeleton`](#skeleton) | [`slider`](#slider) | [`sparkles`](#sparkles) |
+| [`sparkles-text`](#sparkles-text) | [`sparkline`](#sparkline) | [`spinner`](#spinner) | [`split-flap`](#split-flap) |
+| [`spotlight`](#spotlight) | [`stat`](#stat) | [`stat-card`](#stat-card) | [`stat-ring`](#stat-ring) |
+| [`status-dot`](#status-dot) | [`stepper`](#stepper) | [`swipe-stack`](#swipe-stack) | [`switch`](#switch) |
+| [`table`](#table) | [`tabs`](#tabs) | [`tag-input`](#tag-input) | [`task-card`](#task-card) |
+| [`testimonial-quote`](#testimonial-quote) | [`text-generate-effect`](#text-generate-effect) | [`text-scramble`](#text-scramble) | [`textarea`](#textarea) |
+| [`theme-provider`](#theme-provider) | [`theme-selector`](#theme-selector) | [`theme-toggle`](#theme-toggle) | [`tilt`](#tilt) |
+| [`tilt-tiles`](#tilt-tiles) | [`time-picker`](#time-picker) | [`timeline`](#timeline) | [`toast`](#toast) |
+| [`toggle`](#toggle) | [`toggle-group`](#toggle-group) | [`toolbar`](#toolbar) | [`tooltip`](#tooltip) |
+| [`tracing-beam`](#tracing-beam) | [`tree-view`](#tree-view) | [`two-factor-setup`](#two-factor-setup) | [`usage-bar`](#usage-bar) |
+| [`video-player`](#video-player) | [`voice-message`](#voice-message) | [`vote-widget`](#vote-widget) | [`wave-grid`](#wave-grid) |
 | [`wavy-background`](#wavy-background) | [`wavy-text`](#wavy-text) | [`world-map`](#world-map) |  |
 
-## Form <small>(9)</small>
+## Form <small>(13)</small>
 
+- <a id="address-form"></a>**`address-form`** — A self-contained multi-field address form for billing, shipping, KYC, and contract flows. Wires every field to a single value object, includes a sleek dark country picker with type-ahead search that auto-swaps the region label between State, Province, County, and Prefecture, validates required fields on submit, and supports async onSubmit with a Saving… state. _keywords: address, form, shipping, billing, kyc, country-picker, checkout, saas_
 - <a id="auth-card"></a>**`auth-card`** — A production sign-in / sign-up card with social login buttons, divider, email + password fields with show/hide toggle, async-safe submit, forgot-password link, and a footer switch between sign-in and sign-up. Includes inline validation for required fields and email format. _keywords: auth, login, signin, signup, register, oauth, social, form, saas_
 - <a id="currency-input"></a>**`currency-input`** — A locale-aware money input that groups digits as the user types, respects the locale's decimal separator, and re-formats on blur with the currency's natural fraction digits. The currency symbol is rendered inside the input as a prefix (derived via Intl.NumberFormat.formatToParts). Optional right-side dropdown lets the user switch currency. Works controlled or uncontrolled with `value` + `onValueChange`. _keywords: currency, money, input, form, intl, locale, price, amount_
 - <a id="date-range-picker"></a>**`date-range-picker`** — Inline two-month calendar for choosing a start + end date, with a preset shortcuts rail (Today / Yesterday / Last 7 days / Last 30 days / This month / Last month). Click to set start, click again to set end; hover during selection previews the range. Dependency-free, native Date math only. _keywords: date, range, calendar, picker, analytics, filter_
+- <a id="emoji-picker"></a>**`emoji-picker`** — A categorized, searchable emoji picker with nine tabs (Smileys, People, Animals, Food, Activities, Travel, Objects, Symbols, Flags), keyword search, full keyboard nav, and a hovered-label footer. Bundles ~180 curated emojis inline — zero dependencies, no network. _keywords: emoji, picker, reaction, search, chat, input_
 - <a id="inline-edit"></a>**`inline-edit`** — Click-to-edit field for settings, profile rows, and card titles. Read mode shows the value; clicking switches into an editor that commits on Enter or Save and reverts on Esc or Cancel. Async-safe (onSubmit can return a promise) with optional inline validation. _keywords: inline, edit, editable, form, settings, profile_
 - <a id="invite-people"></a>**`invite-people`** — Team invite block for SaaS settings. Email field with inline validation, role dropdown, Send button, and a pending-invites list with Resend / Revoke per row. Fully callback-driven. _keywords: invite, team, members, settings, form, roles, saas_
 - <a id="mention-input"></a>**`mention-input`** — A textarea with @ mention autocomplete. Type `@` to open the dropdown, filter by name or handle, navigate with arrow keys, and Enter to insert the mention at the cursor. Self-contained, no dependencies. _keywords: mention, input, textarea, autocomplete, comment, social_
 - <a id="password-strength-meter"></a>**`password-strength-meter`** — Password input that scores the value live against a checklist of criteria, renders a 4-segment strength bar that fills and tints as the score climbs, and shows the criteria checklist with each row ticking green when it passes. Includes a show/hide eye toggle. _keywords: password, strength, auth, input, signup, security_
+- <a id="phone-input"></a>**`phone-input`** — An international phone number input with a searchable country-code dropdown (flag emoji + dial code) and a number field that formats digits as the user types. Auto-detects the country from a controlled E.164 value, emits a canonical `+<dialCode><digits>` string, ships a built-in country list, and has zero external dependencies. _keywords: phone, tel, input, international, country, dial-code, form, e164_
+- <a id="signature-pad"></a>**`signature-pad`** — A canvas-based signature capture surface for contract signing, checkout consent, and document workflows. DPR-aware for crisp retina rendering, smooth strokes via midpoint quadratic curves, mouse + touch via pointer events, a 'Sign here' placeholder, and Clear / Save buttons that emit the PNG dataURL. Exposes an imperative ref with clear / toDataURL / isEmpty. _keywords: signature, signature-pad, canvas, draw, consent, contract, esign, form_
 - <a id="theme-selector"></a>**`theme-selector`** — A three-option visual theme picker (Light / Dark / System) rendered as clickable cards with mini browser-window mockup previews. Sky accent ring and animated check badge mark the active card. Fully keyboard-accessible radiogroup. _keywords: theme, selector, light, dark, system, appearance, settings, preferences_
 - <a id="two-factor-setup"></a>**`two-factor-setup`** — A 2FA / TOTP setup flow card. Step 1 renders an inline-SVG QR code from an otpauth URL with a copyable manual key. Step 2 is a 6-digit verification field with auto-advance, paste-distribution, async verify, and an animated success state. _keywords: 2fa, two-factor, totp, authenticator, otp, security, qr-code, saas_
 
-## Display <small>(115)</small>
+## Display <small>(119)</small>
 
 - <a id="activity-heatmap"></a>**`activity-heatmap`** — GitHub-style contribution calendar. Auto-bucketed intensity cells, month labels, an optional legend, a diagonal mount-in animation, and click-to-select. _keywords: heatmap, calendar, activity, contributions, chart, saas_
 - <a id="animated-beam"></a>**`animated-beam`** — Draws a glowing gradient beam between two elements and sweeps light along it on a loop. Give it a positioned container plus refs to a from and to node; it measures their centers, draws a curved SVG path, and recomputes on resize. Perfect for connect-your-tools, integration maps, and architecture diagrams. The sweep uses SVG SMIL, so it runs without JavaScript once painted. _keywords: beam, animated, connect, integration, diagram, svg, gradient, network_
@@ -104,6 +110,7 @@ Browse the live previews and full prop tables at the [docs site](./apps/docs).
 - <a id="chat-bubble"></a>**`chat-bubble`** — A single message in a conversation thread with optional avatar, sender name, timestamp, read receipts (sent/delivered/read), and a three-dot typing indicator. _keywords: chat, bubble, message, conversation, messaging, ai, saas_
 - <a id="code-rain"></a>**`code-rain`** — Matrix-style digital rain rendered to a canvas: each column tracks its own falling head with a fading trail. DPR-aware, pauses when the page is hidden, and resizes to its container. Optional children render on top. _keywords: matrix, rain, code, canvas, background, hero, animated_
 - <a id="coin-flip"></a>**`coin-flip`** — A 3D flipping coin with custom heads and tails faces and a real edge band visible at angles. _keywords: 3d, coin, flip, interactive, animated_
+- <a id="comment-thread"></a>**`comment-thread`** — A threaded discussion component with avatars, badges, timestamps, emoji reactions, and inline Reply / React / Edit / Delete actions. Supports arbitrary nesting with a configurable max-depth cap, an inline reply composer per node, a six-emoji reaction picker, per-comment collapse, and an optional top-level composer. Zero dependencies — pure React + Tailwind. _keywords: comments, thread, discussion, replies, reactions, social, saas_
 - <a id="compare"></a>**`compare`** — Drag-to-compare slider that reveals two layers — perfect for before/after image comparisons or theme previews. _keywords: 3d, compare, slider, before-after, image_
 - <a id="comparison-table"></a>**`comparison-table`** — Plan / feature comparison matrix for pricing pages. Highlightable column with a Popular ribbon, grouped feature sections, and cells that accept booleans, text, or any node, plus an optional CTA row. _keywords: comparison, table, pricing, plans, features, saas_
 - <a id="confetti"></a>**`confetti`** — A celebratory particle burst on a transparent canvas. Drop it inside a relative (or fixed inset-0) container and call fire() on its ref — on a successful payment, a finished onboarding step, a won game. Pieces fling in a cone, tumble under gravity, and fade out, then the animation stops on its own. Dependency-free and pointer-events-none. _keywords: confetti, celebration, particles, canvas, success, animation, reward_
@@ -149,6 +156,7 @@ Browse the live previews and full prop tables at the [docs site](./apps/docs).
 - <a id="moving-border"></a>**`moving-border`** — Animated conic-gradient border that traces the perimeter. Wrap any content to add a premium, attention-grabbing edge. _keywords: 3d, border, gradient, animation, card_
 - <a id="neon-glow"></a>**`neon-glow`** — Neon glow wrapper. Layers concentric box-shadows in a chosen color to make any element look like a neon sign — dark backgrounds make it pop. _keywords: 3d, neon, glow, border, premium_
 - <a id="neon-portal"></a>**`neon-portal`** — A rotating neon portal ring with pulsing core. _keywords: 3d, portal, neon, ring, animated_
+- <a id="notification-bell"></a>**`notification-bell`** — Top-bar bell icon button with an unread-count badge and a dropdown panel listing recent notifications. Each row has an icon, title, optional body, and timestamp; unread rows get a sky left-stripe and tint, and the bell wobbles when new alerts arrive. _keywords: notification, bell, badge, dropdown, alerts, inbox, saas, topbar_
 - <a id="notification-stack"></a>**`notification-stack`** — Auto-cycling stack of iOS-style push notifications. Each new alert slides in at the top while older ones translate down with a slight scale and opacity falloff. _keywords: notifications, stack, saas, landing, animated_
 - <a id="number-flip"></a>**`number-flip`** — Odometer / split-flap-style numeric display. Each digit is a window into a stack of 0-9 glyphs that translates vertically when the value changes, so only the digit places that actually change animate. _keywords: number, odometer, flip, counter, animated_
 - <a id="number-ticker"></a>**`number-ticker`** — Animated number counter that rolls from `from` to `value` with a cubic ease. Defaults to triggering when scrolled into view; supports custom formatting. _keywords: 3d, number, counter, stat, animation_
@@ -194,6 +202,8 @@ Browse the live previews and full prop tables at the [docs site](./apps/docs).
 - <a id="tracing-beam"></a>**`tracing-beam`** — Scroll-driven vertical progress line with a glowing dot that travels down as the user reads through the wrapped content. _keywords: 3d, scroll, progress, beam, article_
 - <a id="tree-view"></a>**`tree-view`** — A collapsible hierarchical list for file explorers, nested navigation, or category pickers. Branches toggle on click, leaves fire selection, and rows fall back to folder / file glyphs when no icon is supplied. Expansion and selection are each controllable, keyboard accessible, and dependency-free. _keywords: tree, treeview, file, explorer, hierarchy, nested, folder, navigation_
 - <a id="usage-bar"></a>**`usage-bar`** — Quota / usage indicator for billing and admin dashboards. A labelled progress bar that shifts from accent to amber to rose as usage crosses warn / danger thresholds, with current and limit values rendered alongside. Pass limit=Infinity for unlimited plans. _keywords: usage, quota, progress, billing, saas, limit_
+- <a id="video-player"></a>**`video-player`** — A native <video>-backed player card with custom controls: a big centered play button overlay, an auto-hiding bottom control bar with mm:ss / HH:MM:SS scrubber, volume slider + mute toggle, fullscreen toggle, and an optional captions (VTT) toggle. Dark, sky-accented, dependency-free. _keywords: video, player, media, fullscreen, captions, saas_
+- <a id="voice-message"></a>**`voice-message`** — A chat voice / audio message bubble with a static SVG waveform, play/pause control, a moving playhead that fills the played bars in the accent color, and click-to-seek. Supports incoming and outgoing variants, optional avatar, and a deterministic waveform shape when one isn't supplied. _keywords: voice, voice-message, audio, waveform, chat, messaging, bubble, player_
 - <a id="wave-grid"></a>**`wave-grid`** — A grid of dots that ripple in 3D when clicked. Multiple ripples sum and decay independently. _keywords: 3d, wave, ripple, grid, physics, interactive, animated_
 - <a id="wavy-background"></a>**`wavy-background`** — Animated wavy SVG lines that drift behind your content. Multiple colored waves with blur — perfect for atmospheric heroes. _keywords: 3d, background, wavy, lines, hero_
 - <a id="wavy-text"></a>**`wavy-text`** — Text whose characters oscillate vertically on a sine wave with a per-character delay, so the wave travels through the word. _keywords: 3d, text, wave, animation_

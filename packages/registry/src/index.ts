@@ -2,6 +2,7 @@ import type { Registry, RegistryEntry } from "./types";
 
 import accordion from "./components/accordion.json";
 import activityHeatmap from "./components/activity-heatmap.json";
+import addressForm from "./components/address-form.json";
 import alert from "./components/alert.json";
 import alertDialog from "./components/alert-dialog.json";
 import animatedBeam from "./components/animated-beam.json";
@@ -37,6 +38,7 @@ import contextMenu from "./components/context-menu.json";
 import compare from "./components/compare.json";
 import comparisonTable from "./components/comparison-table.json";
 import colorPicker from "./components/color-picker.json";
+import commentThread from "./components/comment-thread.json";
 import cookieBanner from "./components/cookie-banner.json";
 import confetti from "./components/confetti.json";
 import copyButton from "./components/copy-button.json";
@@ -57,6 +59,7 @@ import dotPattern from "./components/dot-pattern.json";
 import dotProgress from "./components/dot-progress.json";
 import drawer from "./components/drawer.json";
 import dropdownMenu from "./components/dropdown-menu.json";
+import emojiPicker from "./components/emoji-picker.json";
 import emptyState from "./components/empty-state.json";
 import evervaultCard from "./components/evervault-card.json";
 import featureCard from "./components/feature-card.json";
@@ -106,6 +109,7 @@ import multiStepLoader from "./components/multi-step-loader.json";
 import navbar from "./components/navbar.json";
 import neonGlow from "./components/neon-glow.json";
 import neonPortal from "./components/neon-portal.json";
+import notificationBell from "./components/notification-bell.json";
 import notificationStack from "./components/notification-stack.json";
 import numberFlip from "./components/number-flip.json";
 import numberInput from "./components/number-input.json";
@@ -121,6 +125,7 @@ import parallax from "./components/parallax.json";
 import passwordStrengthMeter from "./components/password-strength-meter.json";
 import paymentCard from "./components/payment-card.json";
 import perspectiveBox from "./components/perspective-box.json";
+import phoneInput from "./components/phone-input.json";
 import phoneMockup from "./components/phone-mockup.json";
 import pin3d from "./components/pin-3d.json";
 import planCard from "./components/plan-card.json";
@@ -147,6 +152,7 @@ import select from "./components/select.json";
 import separator from "./components/separator.json";
 import sheet from "./components/sheet.json";
 import sidebar from "./components/sidebar.json";
+import signaturePad from "./components/signature-pad.json";
 import skeleton from "./components/skeleton.json";
 import slider from "./components/slider.json";
 import sparkles from "./components/sparkles.json";
@@ -186,6 +192,8 @@ import tracingBeam from "./components/tracing-beam.json";
 import treeView from "./components/tree-view.json";
 import twoFactorSetup from "./components/two-factor-setup.json";
 import usageBar from "./components/usage-bar.json";
+import videoPlayer from "./components/video-player.json";
+import voiceMessage from "./components/voice-message.json";
 import voteWidget from "./components/vote-widget.json";
 import waveGrid from "./components/wave-grid.json";
 import wavyBackground from "./components/wavy-background.json";
@@ -195,6 +203,7 @@ import worldMap from "./components/world-map.json";
 export const registry: Registry = [
   accordion,
   activityHeatmap,
+  addressForm,
   alert,
   alertDialog,
   animatedBeam,
@@ -230,6 +239,7 @@ export const registry: Registry = [
   compare,
   comparisonTable,
   colorPicker,
+  commentThread,
   cookieBanner,
   confetti,
   copyButton,
@@ -250,6 +260,7 @@ export const registry: Registry = [
   dotProgress,
   drawer,
   dropdownMenu,
+  emojiPicker,
   emptyState,
   evervaultCard,
   featureCard,
@@ -299,6 +310,7 @@ export const registry: Registry = [
   navbar,
   neonGlow,
   neonPortal,
+  notificationBell,
   notificationStack,
   numberFlip,
   numberInput,
@@ -314,6 +326,7 @@ export const registry: Registry = [
   passwordStrengthMeter,
   paymentCard,
   perspectiveBox,
+  phoneInput,
   phoneMockup,
   pin3d,
   pinBoard,
@@ -340,6 +353,7 @@ export const registry: Registry = [
   separator,
   sheet,
   sidebar,
+  signaturePad,
   skeleton,
   slider,
   sparkles,
@@ -379,6 +393,8 @@ export const registry: Registry = [
   treeView,
   twoFactorSetup,
   usageBar,
+  videoPlayer,
+  voiceMessage,
   voteWidget,
   waveGrid,
   wavyBackground,

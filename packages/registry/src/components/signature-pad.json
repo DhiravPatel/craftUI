@@ -1,0 +1,25 @@
+{
+  "name": "signature-pad",
+  "description": "A canvas-based signature capture surface for contract signing, checkout consent, and document workflows. DPR-aware for crisp retina rendering, smooth strokes via midpoint quadratic curves, mouse + touch via pointer events, a 'Sign here' placeholder, and Clear / Save buttons that emit the PNG dataURL. Exposes an imperative ref with clear / toDataURL / isEmpty.",
+  "category": "form",
+  "files": [
+    {
+      "path": "components/signature-pad/signature-pad.tsx",
+      "target": "{{components}}/signature-pad.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": [
+    "signature",
+    "signature-pad",
+    "canvas",
+    "draw",
+    "consent",
+    "contract",
+    "esign",
+    "form"
+  ]
+}

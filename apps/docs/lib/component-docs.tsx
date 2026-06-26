@@ -161,6 +161,7 @@ import {
 } from "@/components/demos/interactive-demos";
 import {
   ActivityHeatmapDemo,
+  AddressFormDemo,
   AnimatedBeamDemo,
   AnimatedChartDemo,
   AnimatedTextDemo,
@@ -182,6 +183,7 @@ import {
   CodeRainDemo,
   CoinFlipDemo,
   ColorPickerDemo,
+  CommentThreadDemo,
   CookieBannerDemo,
   ConfettiDemo,
   ContextMenuDemo,
@@ -201,6 +203,7 @@ import {
   DirectionAwareHoverDemo,
   DotPatternDemo,
   DotProgressDemo,
+  EmojiPickerDemo,
   EvervaultCardDemo,
   FeatureCardDemo,
   FluxPanelsDemo,
@@ -239,6 +242,7 @@ import {
   MultiStepLoaderDemo,
   NeonGlowDemo,
   NeonPortalDemo,
+  NotificationBellDemo,
   NotificationStackDemo,
   NumberFlipDemo,
   NumberInputDemo,
@@ -253,6 +257,7 @@ import {
   PasswordStrengthMeterDemo,
   PaymentCardDemo,
   PerspectiveBoxDemo,
+  PhoneInputDemo,
   PhoneMockupDemo,
   Pin3DDemo,
   PinBoardDemo,
@@ -270,6 +275,7 @@ import {
   ScratchCardDemo,
   ScrollProgressDemo,
   SegmentedControlDemo,
+  SignaturePadDemo,
   SparklesDemo,
   SparklesStarfieldDemo,
   SparklesTextDemo,
@@ -295,6 +301,8 @@ import {
   TreeViewDemo,
   TwoFactorSetupDemo,
   UsageBarDemo,
+  VideoPlayerDemo,
+  VoiceMessageDemo,
   VoteWidgetDemo,
   WaveGridDemo,
   WavyBackgroundDemo,
@@ -10876,6 +10884,414 @@ const [count, setCount] = React.useState(128);
       { name: "description", type: "string", description: "Card subtitle / instructions under the title." },
     ],
     related: ["api-key-display", "password-strength-meter", "input-otp"],
+  },
+
+
+  // ---------- AddressForm ----------
+  {
+    name: "address-form",
+    title: "Address Form",
+    description:
+      "A self-contained multi-field address form for billing, shipping, contract, and KYC flows. Wires every field — street, line 2, city, region, postal code, country — to a single `AddressFormValue` object so callers don't have to manage state per input, and includes a sleek dark-themed country picker (type-ahead, keyboard navigable) that auto-swaps the region label between State, Province, County, and Prefecture based on the selected country. Validates required fields on submit and supports async `onSubmit` — the Save button shows a Saving… state while it resolves, and thrown errors surface inline.",
+    imports: `import { AddressForm } from "@/components/ui/address-form";\nimport type { AddressFormValue } from "@/components/ui/address-form";`,
+    usage: `<AddressForm
+  value={address}
+  onChange={setAddress}
+  onSubmit={async (next) => saveAddress(next)}
+/>`,
+    defaultExample: {
+      title: "Controlled shipping address with async save",
+      code: `const [value, setValue] = React.useState<AddressFormValue>({
+  name: "Maya Rodriguez",
+  line1: "440 Brannan St",
+  line2: "Suite 300",
+  city: "San Francisco",
+  region: "CA",
+  postalCode: "94107",
+  country: "US",
+});
+
+<AddressForm
+  value={value}
+  onChange={setValue}
+  onSubmit={async (next) => {
+    await fetch("/api/address", {
+      method: "PUT",
+      body: JSON.stringify(next),
+    });
+  }}
+  showName
+  title="Shipping address"
+  description="Where should we send your order?"
+/>`,
+      render: <AddressFormDemo />,
+    },
+    props: [
+      { name: "value", type: "AddressFormValue", description: "Controlled value — the full address object." },
+      { name: "defaultValue", type: "AddressFormValue", description: "Initial value when uncontrolled." },
+      { name: "onChange", type: "(value: AddressFormValue) => void", description: "Fires on every keystroke / picker change with the full address object." },
+      { name: "onSubmit", type: "(value: AddressFormValue) => void | Promise<void>", description: "Submit handler. Async-safe — the Save button shows \"Saving…\" while it resolves; throw to surface an inline error." },
+      { name: "title", type: "ReactNode", default: '"Shipping address"', description: "Header title shown above the fields." },
+      { name: "description", type: "ReactNode", description: "Optional one-line description under the title." },
+      { name: "countries", type: "AddressFormCountry[]", description: "Override the built-in compact country list. Each entry is `{ iso, name, flag? }`." },
+      { name: "regionLabel", type: "(countryIso: string) => string", description: "Map ISO code -> region label (\"State\", \"Province\", \"County\", …). Drives the label of the region field." },
+      { name: "showName", type: "boolean", default: "false", description: "Render a Full name field at the top of the form." },
+      { name: "showCompany", type: "boolean", default: "false", description: "Render a Company field below the name." },
+      { name: "submitLabel", type: "string", default: '"Save address"', description: "Submit button label." },
+      { name: "showSubmit", type: "boolean", default: "true", description: "Render the submit button. Turn off when the form lives inside a parent form/wizard footer." },
+      { name: "accentColor", type: "string", default: '"rgb(125, 211, 252)"', description: "Accent color used for the focus ring and submit button." },
+    ],
+    related: ["payment-card", "invite-people", "auth-card"],
+  },
+  // ---------- CommentThread ----------
+  {
+    name: "comment-thread",
+    title: "Comment Thread",
+    description:
+      "A threaded discussion component with avatars, author badges, relative timestamps, reaction chips (emoji + count, with the viewer's reactions accent-highlighted), and a Reply / React / Edit / Delete action row that's gated per prop. Reply opens an inline composer; React opens a six-emoji popover; Edit swaps the body for a textarea; Delete asks for inline confirmation. Nested replies indent under a left border up to a configurable `maxDepth` cap, and every parent comment has a collapse toggle for the reply count. Pure React + Tailwind, no dependencies.",
+    imports: `import {
+  CommentThread,
+  type CommentThreadNode,
+} from "@/components/ui/comment-thread";`,
+    usage: `<CommentThread
+  comments={comments}
+  currentUser={{ name: "You" }}
+  onReply={(parentId, body) => post(parentId, body)}
+  onReact={(id, reactionId) => toggleReaction(id, reactionId)}
+  canEdit
+  canDelete
+/>`,
+    defaultExample: {
+      title: "Threaded discussion with reactions and inline replies",
+      code: `const [comments, setComments] = React.useState<CommentThreadNode[]>([
+  {
+    id: "c1",
+    author: { name: "Maya Rodriguez", badge: "Author" },
+    time: "3h",
+    body: "Shipped the new pricing page today — would love a quick read before it goes live on Monday.",
+    reactions: [
+      { id: "fire", emoji: "🔥", count: 4, you: true },
+      { id: "love", emoji: "❤️", count: 2 },
+    ],
+    replies: [
+      {
+        id: "c1-r1",
+        author: { name: "Devon Park", badge: "Mod" },
+        time: "2h",
+        body: "Comparison table looks clean. The 'Most popular' badge disappears at the md breakpoint though.",
+        reactions: [{ id: "like", emoji: "👍", count: 3 }],
+      },
+    ],
+  },
+]);
+
+<CommentThread
+  comments={comments}
+  currentUser={{ name: "You" }}
+  onReply={handleReply}
+  onReact={handleReact}
+  onEdit={handleEdit}
+  onDelete={handleDelete}
+  canEdit
+  canDelete
+/>`,
+      render: <CommentThreadDemo />,
+    },
+    props: [
+      { name: "comments", type: "CommentThreadNode[]", required: true, description: "Tree of comments. Each node may carry its own `replies`, `reactions`, `time`, `edited`, and `author` with optional `badge`." },
+      { name: "currentUser", type: "{ name: string; avatar?: string }", description: "Current viewer. Drives the composer avatar and is used by `onReact` consumers to mark `you=true` chips." },
+      { name: "onReply", type: "(parentId: string | null, body: string) => void", description: "Fires when the user submits the composer. `parentId === null` for the top-level composer." },
+      { name: "onReact", type: "(commentId: string, reactionId: string) => void", description: "Fires when the user picks an emoji from the React picker or toggles an existing reaction chip." },
+      { name: "onEdit", type: "(commentId: string, body: string) => void", description: "Fires when the user saves an inline edit." },
+      { name: "onDelete", type: "(commentId: string) => void", description: "Fires when the user confirms a delete." },
+      { name: "maxDepth", type: "number", default: "3", description: "Max nesting depth before the indent caps. Deeper replies still render but stop adding indent." },
+      { name: "canReply", type: "boolean", default: "true", description: "Render the Reply action and the top-level composer." },
+      { name: "canReact", type: "boolean", default: "true", description: "Render the React action and the emoji picker." },
+      { name: "canEdit", type: "boolean", default: "false", description: "Render the Edit action on every comment." },
+      { name: "canDelete", type: "boolean", default: "false", description: "Render the Delete action on every comment." },
+      { name: "accentColor", type: "string", default: '"rgb(125, 211, 252)"', description: "Color used for the viewer's reaction chips, badges, focus rings, and the primary composer button." },
+      { name: "showTopComposer", type: "boolean", default: "true", description: "Show the composer at the top of the thread." },
+      { name: "composerPlaceholder", type: "string", default: '"Write a reply…"', description: "Placeholder for any inline reply composer." },
+    ],
+    related: ["review-card", "activity-feed", "inline-edit"],
+  },
+  // ---------- EmojiPicker ----------
+  {
+    name: "emoji-picker",
+    title: "Emoji Picker",
+    description:
+      "A compact, categorized emoji picker with nine tabs (Smileys, People, Animals, Food, Activities, Travel, Objects, Symbols, Flags) and a keyword search that fans out across every category. Click an emoji to insert it via `onSelect`, or use arrow keys to navigate the grid and Enter to pick. Bundles a curated ~180-emoji inline dataset — no external library, no font hack, no network call.",
+    imports: `import { EmojiPicker } from "@/components/ui/emoji-picker";`,
+    usage: `<EmojiPicker onSelect={(emoji) => console.log(emoji)} />`,
+    defaultExample: {
+      title: "Insert emojis into a chat composer",
+      code: `const [message, setMessage] = React.useState("Ship it ");
+
+<EmojiPicker
+  defaultCategory="smileys"
+  columns={8}
+  onSelect={(emoji) => setMessage((m) => m + emoji)}
+/>`,
+      render: <EmojiPickerDemo />,
+    },
+    props: [
+      { name: "onSelect", type: "(emoji: string) => void", description: "Fires when the user picks an emoji via click or Enter key." },
+      { name: "defaultCategory", type: "EmojiPickerCategory", default: '"smileys"', description: "Which category tab is open on first paint. One of smileys, people, animals, food, activities, travel, objects, symbols, flags." },
+      { name: "categories", type: "EmojiPickerCategory[]", description: "Restrict and/or reorder which category tabs appear. Defaults to all nine." },
+      { name: "showSearch", type: "boolean", default: "true", description: "Show the search input below the tab strip. Press / inside the picker to focus it." },
+      { name: "columns", type: "number", default: "8", description: "Number of columns in the emoji grid." },
+      { name: "placeholder", type: "string", default: '"Search emojis..."', description: "Placeholder text inside the search input." },
+      { name: "accentColor", type: "string", default: '"rgb(125, 211, 252)"', description: "Color of the active tab underline and the focus ring." },
+    ],
+    related: ["mention-input", "chat-bubble", "inline-edit"],
+  },
+  // ---------- NotificationBell ----------
+  {
+    name: "notification-bell",
+    title: "Notification Bell",
+    description:
+      "A top-bar bell icon button with an unread-count badge and a dropdown panel of recent notifications. Each row carries an icon, bold title (lighter when read), an optional body line, and a right-aligned timestamp; unread rows get a soft sky tint and a left stripe. The bell wobbles briefly when the unread count crosses from 0 to 1+, and the badge pops in. Works fully uncontrolled or controlled via `open` + `onOpenChange`; closes on outside click and Escape.",
+    imports: `import { NotificationBell } from "@/components/ui/notification-bell";`,
+    usage: `<NotificationBell
+  notifications={items}
+  onMarkAllRead={markAllRead}
+  onMarkRead={(id) => markRead(id)}
+/>`,
+    defaultExample: {
+      title: "Top-bar bell with live activity feed",
+      code: `const [items, setItems] = React.useState<NotificationBellItem[]>(seed);
+
+<NotificationBell
+  notifications={items}
+  onMarkAllRead={() =>
+    setItems((cur) => cur.map((n) => ({ ...n, read: true })))
+  }
+  onMarkRead={(id) =>
+    setItems((cur) =>
+      cur.map((n) => (n.id === id ? { ...n, read: true } : n))
+    )
+  }
+  onClickItem={(item) => router.push(\`/inbox/\${item.id}\`)}
+/>`,
+      render: <NotificationBellDemo />,
+    },
+    props: [
+      { name: "notifications", type: "NotificationBellItem[]", required: true, description: "Items rendered inside the dropdown panel." },
+      { name: "unreadCount", type: "number", description: "Override the derived unread count (useful when the server already knows the total)." },
+      { name: "onMarkAllRead", type: "() => void", description: "Fires when the user clicks \"Mark all as read\"." },
+      { name: "onMarkRead", type: "(id: string) => void", description: "Fires when a single unread item is clicked." },
+      { name: "onClickItem", type: "(item: NotificationBellItem) => void", description: "Fires whenever a row is clicked (after the per-item `onClick`)." },
+      { name: "title", type: "ReactNode", default: '"Notifications"', description: "Dropdown header text." },
+      { name: "emptyLabel", type: "ReactNode", default: '"You are all caught up"', description: "Message shown when `notifications` is empty." },
+      { name: "maxBadge", type: "number", default: "99", description: "Cap the badge — counts above this show as e.g. \"99+\"." },
+      { name: "defaultOpen", type: "boolean", default: "false", description: "Initial open state (uncontrolled)." },
+      { name: "open", type: "boolean", description: "Controlled open state." },
+      { name: "onOpenChange", type: "(open: boolean) => void", description: "Fires when the dropdown opens or closes." },
+      { name: "accentColor", type: "string", default: '"rgb(125, 211, 252)"', description: "Color of the badge, unread stripe, and focus ring." },
+      { name: "align", type: '"left" | "right"', default: '"right"', description: "Side the dropdown anchors to relative to the bell." },
+    ],
+    related: ["banner", "inbox-list", "toast"],
+  },
+  // ---------- PhoneInput ----------
+  {
+    name: "phone-input",
+    title: "Phone Input",
+    description:
+      "An international phone number input pairing a searchable country dropdown (flag emoji + dial code) with a number field that formats digits into readable groups (3-3-4 for 10 digits) as the user types. Auto-parses a controlled `+<dialCode><digits>` value to pick the matching country (longest-prefix match), emits the canonical E.164-ish string via `onValueChange`, and ships a built-in list of about 30 ISO-2 countries with flags derived from the regional-indicator code-point trick — zero external dependencies, fully keyboard-navigable, ARIA-correct.",
+    imports: `import { PhoneInput } from "@/components/ui/phone-input";`,
+    usage: `<PhoneInput
+  value={phone}
+  onValueChange={setPhone}
+  defaultCountry="US"
+/>`,
+    defaultExample: {
+      title: "Controlled phone field with country picker",
+      code: `const [value, setValue] = React.useState("+14155550134");
+const [country, setCountry] = React.useState("US");
+
+<PhoneInput
+  value={value}
+  onValueChange={setValue}
+  onCountryChange={setCountry}
+  defaultCountry="US"
+  placeholder="(415) 555 0134"
+/>
+
+<PhoneInput defaultCountry="IN" placeholder="98765 43210" />`,
+      render: <PhoneInputDemo />,
+    },
+    props: [
+      { name: "value", type: "string", description: "Controlled canonical value in `+<dialCode><digits>` form (E.164-ish)." },
+      { name: "defaultValue", type: "string", description: "Initial value for uncontrolled usage. Parsed the same way as `value`." },
+      { name: "onValueChange", type: "(value: string) => void", description: "Fires whenever the canonical value changes. Emits empty string when the input is cleared." },
+      { name: "defaultCountry", type: "string", default: '"US"', description: "ISO-3166 alpha-2 country used when no value is provided or it cannot be parsed." },
+      { name: "countries", type: "PhoneInputCountry[]", description: "Override the built-in country list. Each entry: `{ iso, name, dialCode, flag? }`. If `flag` is omitted it's derived from `iso`." },
+      { name: "onCountryChange", type: "(iso: string) => void", description: "Fires when the user picks a different country from the dropdown." },
+      { name: "placeholder", type: "string", default: '"Phone number"', description: "Placeholder for the number portion." },
+      { name: "disabled", type: "boolean", default: "false", description: "Disable both the country trigger and the input." },
+    ],
+    related: ["input", "combobox", "two-factor-setup"],
+  },
+  {
+    name: "signature-pad",
+    title: "Signature Pad",
+    description:
+      "A canvas-based signature capture card for contract signing, checkout consent, and document workflows. Renders smooth, DPR-aware strokes via midpoint quadratic curves, supports mouse and touch through pointer events, and shows a 'Sign here' placeholder when empty. Ships with Clear and Save buttons that emit the PNG dataURL, plus an imperative ref with clear / toDataURL / isEmpty.",
+    imports: `import { SignaturePad, type SignaturePadHandle } from "@/components/ui/signature-pad";`,
+    usage: `<SignaturePad
+  width={480}
+  height={180}
+  onSave={(dataUrl) => upload(dataUrl)}
+/>`,
+    defaultExample: {
+      title: "Capture a signature for a contract",
+      code: `const padRef = React.useRef<SignaturePadHandle | null>(null);
+const [saved, setSaved] = React.useState<string | null>(null);
+
+<SignaturePad
+  ref={padRef}
+  width={480}
+  height={180}
+  penColor="#fff"
+  penWidth={2.2}
+  placeholder="Sign here"
+  onSave={(dataUrl) => setSaved(dataUrl)}
+/>
+
+<Button onClick={() => padRef.current?.clear()}>Reset</Button>`,
+      render: <SignaturePadDemo />,
+    },
+    props: [
+      { name: "width", type: "number", default: "480", description: "Canvas width in CSS pixels." },
+      { name: "height", type: "number", default: "180", description: "Canvas height in CSS pixels." },
+      { name: "penColor", type: "string", default: '"#fff"', description: "Stroke color used for the signature." },
+      { name: "penWidth", type: "number", default: "2.2", description: "Stroke width in CSS pixels." },
+      { name: "backgroundColor", type: "string", default: '"transparent"', description: "Canvas backing color. Use a solid color when you need the saved PNG to have a background." },
+      { name: "onChange", type: "(dataUrl: string, isEmpty: boolean) => void", description: "Fires after each stroke ends with the current PNG dataURL and an empty flag." },
+      { name: "onClear", type: "() => void", description: "Fires when the user presses the Clear button." },
+      { name: "onSave", type: "(dataUrl: string) => void", description: "Fires when the user presses the Save button, with the PNG dataURL." },
+      { name: "showClearButton", type: "boolean", default: "true", description: "Render the Clear button in the action row." },
+      { name: "showSaveButton", type: "boolean", default: "true", description: "Render the Save button in the action row." },
+      { name: "clearLabel", type: "string", default: '"Clear"', description: "Label for the Clear button." },
+      { name: "saveLabel", type: "string", default: '"Save signature"', description: "Label for the Save button." },
+      { name: "placeholder", type: "string", default: '"Sign here"', description: "Hint text drawn inside the empty canvas." },
+      { name: "disabled", type: "boolean", default: "false", description: "Disable drawing and the action buttons." },
+    ],
+    related: ["inline-edit", "two-factor-setup", "checkbox"],
+  },
+  // ---------- VideoPlayer ----------
+  {
+    name: "video-player",
+    title: "Video Player",
+    description:
+      "A native `<video>`-backed player card with a custom control overlay. A big centered sky-accented play button sits over the frame when paused; once playback starts a bottom gradient bar surfaces a progress scrubber with mm:ss (or HH:MM:SS for hour-plus videos) labels, a volume slider with a smart speaker-icon mute toggle, a fullscreen toggle that uses the wrapper's `requestFullscreen`, and an optional CC toggle that flips a real `<track>` element on and off. The control bar auto-hides 2.5 seconds after the cursor stops moving while playing. Dark, dependency-free, and the visual counterpart to AudioPlayer.",
+    imports: `import { VideoPlayer } from "@/components/ui/video-player";`,
+    usage: `<VideoPlayer
+  src="/clips/launch.mp4"
+  poster="/clips/launch-poster.jpg"
+  title="Inside the launch"
+  subtitle="Acme Studio"
+/>`,
+    defaultExample: {
+      title: "Playlist with poster + captions",
+      code: `const clips = [
+  {
+    title: "Designing for motion",
+    subtitle: "Fable Studio",
+    src: "/clips/motion.mp4",
+    poster: "/clips/motion.jpg",
+    captionsSrc: "/clips/motion.vtt",
+  },
+  {
+    title: "Inside the dashboard rebuild",
+    subtitle: "Polar Hues",
+    src: "/clips/dashboard.mp4",
+    poster: "/clips/dashboard.jpg",
+  },
+];
+const [index, setIndex] = React.useState(0);
+const clip = clips[index];
+
+<VideoPlayer
+  src={clip.src}
+  poster={clip.poster}
+  title={clip.title}
+  subtitle={clip.subtitle}
+  captionsSrc={clip.captionsSrc}
+  onEnded={() => setIndex((i) => (i + 1) % clips.length)}
+/>`,
+      render: <VideoPlayerDemo />,
+    },
+    props: [
+      { name: "src", type: "string", description: "Video URL. When omitted the chrome still renders for layout previews." },
+      { name: "title", type: "ReactNode", description: "Bold primary label rendered in the control bar." },
+      { name: "subtitle", type: "ReactNode", description: "Optional channel / author line under the title." },
+      { name: "poster", type: "string", description: "Poster image URL shown before playback starts." },
+      { name: "captionsSrc", type: "string", description: "Optional WebVTT captions track URL." },
+      { name: "captionsLabel", type: "string", default: '"English"', description: "Label used for the captions track." },
+      { name: "autoplay", type: "boolean", default: "false", description: "Start playback as soon as the source loads (subject to browser autoplay rules)." },
+      { name: "loop", type: "boolean", default: "false", description: "Loop playback." },
+      { name: "muted", type: "boolean", default: "false", description: "Start muted." },
+      { name: "showVolume", type: "boolean", default: "true", description: "Show the volume slider + mute toggle." },
+      { name: "showFullscreen", type: "boolean", default: "true", description: "Show the fullscreen button." },
+      { name: "showCaptionsToggle", type: "boolean", description: "Show the CC button. Defaults to true when `captionsSrc` is provided." },
+      { name: "aspectRatio", type: "number", default: "16 / 9", description: "Aspect ratio for the video frame." },
+      { name: "onPlay", type: "() => void", description: "Fires when playback starts." },
+      { name: "onPause", type: "() => void", description: "Fires when playback pauses." },
+      { name: "onEnded", type: "() => void", description: "Fires when the video reaches the end." },
+      { name: "onTimeUpdate", type: "(currentTime: number, duration: number) => void", description: "Fires on every timeupdate with the current playback time and duration." },
+      { name: "accentColor", type: "string", default: '"rgb(125, 211, 252)"', description: "Accent color for the play button, progress fill, and focus ring." },
+    ],
+    related: ["audio-player", "audio-visualizer", "card"],
+  },
+// ---------- VoiceMessage ----------
+  {
+    name: "voice-message",
+    title: "Voice Message",
+    description:
+      "A voice / audio message bubble for chat threads. Renders a play/pause button, a static SVG waveform of N bars, and a moving playhead that fills the played bars in the accent color; clicking anywhere on the waveform seeks the underlying native `<audio>` element. Two variants — `incoming` (left, neutral surface) and `outgoing` (right, sky gradient with dark glyphs). When no `waveform` array is passed, a deterministic shape is generated from a hash of `src` + `duration` so the bubble looks consistent across renders without `Math.random`.",
+    imports: `import { VoiceMessage } from "@/components/ui/voice-message";`,
+    usage: `<VoiceMessage
+  src="/audio/note.mp3"
+  duration={14}
+  variant="incoming"
+  avatar="/avatars/nova.png"
+  timestamp="9:41 AM"
+/>`,
+    defaultExample: {
+      title: "Voice notes inside a chat thread",
+      code: `<VoiceMessage
+  variant="incoming"
+  avatar="/avatars/nova.png"
+  src="/audio/incoming.mp3"
+  duration={14}
+  timestamp="9:41 AM"
+/>
+
+<VoiceMessage
+  variant="outgoing"
+  src="/audio/outgoing.mp3"
+  duration={9}
+  timestamp="9:42 AM · Read"
+/>`,
+      render: <VoiceMessageDemo />,
+    },
+    props: [
+      { name: "src", type: "string", required: true, description: "Audio file URL — wired to a hidden native `<audio>` element for playback and seeking." },
+      { name: "duration", type: "number", description: "Total clip length in seconds. Lets the waveform and time readout render before `loadedmetadata` fires; the real duration takes over once metadata loads." },
+      { name: "waveform", type: "number[]", description: "Pre-computed amplitude values (0..1) — one per bar. If omitted, a deterministic shape is derived from `src` + `duration`." },
+      { name: "bars", type: "number", default: "40", description: "Number of bars rendered across the bubble." },
+      { name: "variant", type: '"incoming" | "outgoing"', default: '"incoming"', description: "Bubble alignment + color scheme. Incoming = left, neutral. Outgoing = right, sky gradient." },
+      { name: "avatar", type: "string", description: "Sender avatar image URL." },
+      { name: "avatarFallback", type: "string", description: "Initials shown when no avatar image is supplied." },
+      { name: "showAvatar", type: "boolean", default: "true", description: "Render the avatar bubble alongside the message." },
+      { name: "timestamp", type: "ReactNode", description: "Right- or left-aligned caption beneath the bubble (time, read receipt, etc.)." },
+      { name: "accentColor", type: "string", default: '"rgb(125, 211, 252)"', description: "Color used for the play button and the played portion of the waveform." },
+      { name: "onPlay", type: "() => void", description: "Fires when audio playback starts (`play` event)." },
+      { name: "onPause", type: "() => void", description: "Fires when audio playback pauses (`pause` event)." },
+      { name: "onEnded", type: "() => void", description: "Fires when the audio reaches the end." },
+    ],
+    related: ["chat-bubble", "audio-player", "audio-visualizer"],
   },
 ];
 

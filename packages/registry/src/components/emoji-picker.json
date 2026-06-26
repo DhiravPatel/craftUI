@@ -1,0 +1,23 @@
+{
+  "name": "emoji-picker",
+  "description": "A categorized, searchable emoji picker with nine tabs (Smileys, People, Animals, Food, Activities, Travel, Objects, Symbols, Flags), keyword search, full keyboard nav, and a hovered-label footer. Bundles ~180 curated emojis inline — zero dependencies, no network.",
+  "category": "form",
+  "files": [
+    {
+      "path": "components/emoji-picker/emoji-picker.tsx",
+      "target": "{{components}}/emoji-picker.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": [
+    "emoji",
+    "picker",
+    "reaction",
+    "search",
+    "chat",
+    "input"
+  ]
+}

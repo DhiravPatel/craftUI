@@ -1,0 +1,23 @@
+{
+  "name": "video-player",
+  "description": "A native <video>-backed player card with custom controls: a big centered play button overlay, an auto-hiding bottom control bar with mm:ss / HH:MM:SS scrubber, volume slider + mute toggle, fullscreen toggle, and an optional captions (VTT) toggle. Dark, sky-accented, dependency-free.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/video-player/video-player.tsx",
+      "target": "{{components}}/video-player.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": [
+    "video",
+    "player",
+    "media",
+    "fullscreen",
+    "captions",
+    "saas"
+  ]
+}

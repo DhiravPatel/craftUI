@@ -1,0 +1,25 @@
+{
+  "name": "phone-input",
+  "description": "An international phone number input with a searchable country-code dropdown (flag emoji + dial code) and a number field that formats digits as the user types. Auto-detects the country from a controlled E.164 value, emits a canonical `+<dialCode><digits>` string, ships a built-in country list, and has zero external dependencies.",
+  "category": "form",
+  "files": [
+    {
+      "path": "components/phone-input/phone-input.tsx",
+      "target": "{{components}}/phone-input.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": [
+    "phone",
+    "tel",
+    "input",
+    "international",
+    "country",
+    "dial-code",
+    "form",
+    "e164"
+  ]
+}
