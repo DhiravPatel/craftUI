@@ -1,0 +1,23 @@
+{
+  "name": "audio-player",
+  "description": "A compact music / podcast player card with album art, track meta, play/pause, prev/next, a seek slider with mm:ss labels, and an optional volume slider. Wraps a hidden native audio element.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/audio-player/audio-player.tsx",
+      "target": "{{components}}/audio-player.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": [
+    "audio",
+    "player",
+    "music",
+    "podcast",
+    "media",
+    "saas"
+  ]
+}

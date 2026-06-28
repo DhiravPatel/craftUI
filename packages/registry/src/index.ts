@@ -9,8 +9,10 @@ import animatedChart from "./components/animated-chart.json";
 import animatedText from "./components/animated-text.json";
 import animatedTooltip from "./components/animated-tooltip.json";
 import apiKeyDisplay from "./components/api-key-display.json";
+import audioPlayer from "./components/audio-player.json";
 import audioVisualizer from "./components/audio-visualizer.json";
 import aurora from "./components/aurora.json";
+import authCard from "./components/auth-card.json";
 import avatar from "./components/avatar.json";
 import avatarStack from "./components/avatar-stack.json";
 import backgroundBeams from "./components/background-beams.json";
@@ -35,6 +37,7 @@ import contextMenu from "./components/context-menu.json";
 import compare from "./components/compare.json";
 import comparisonTable from "./components/comparison-table.json";
 import colorPicker from "./components/color-picker.json";
+import cookieBanner from "./components/cookie-banner.json";
 import confetti from "./components/confetti.json";
 import copyButton from "./components/copy-button.json";
 import countUpRing from "./components/count-up-ring.json";
@@ -42,6 +45,7 @@ import countdownTimer from "./components/countdown-timer.json";
 import coverflow from "./components/coverflow.json";
 import cube from "./components/cube.json";
 import cubeMatrix from "./components/cube-matrix.json";
+import currencyInput from "./components/currency-input.json";
 import cursorTrail from "./components/cursor-trail.json";
 import dataTable from "./components/data-table.json";
 import datePicker from "./components/date-picker.json";
@@ -133,6 +137,7 @@ import radioGroup from "./components/radio-group.json";
 import rating from "./components/rating.json";
 import resizable from "./components/resizable.json";
 import retroGrid from "./components/retro-grid.json";
+import reviewCard from "./components/review-card.json";
 import ripple from "./components/ripple.json";
 import scratchCard from "./components/scratch-card.json";
 import scrollArea from "./components/scroll-area.json";
@@ -146,6 +151,7 @@ import skeleton from "./components/skeleton.json";
 import slider from "./components/slider.json";
 import sparkles from "./components/sparkles.json";
 import sparklesText from "./components/sparkles-text.json";
+import sparkline from "./components/sparkline.json";
 import spinner from "./components/spinner.json";
 import splitFlap from "./components/split-flap.json";
 import spotlight from "./components/spotlight.json";
@@ -165,6 +171,7 @@ import textGenerateEffect from "./components/text-generate-effect.json";
 import textScramble from "./components/text-scramble.json";
 import textarea from "./components/textarea.json";
 import themeProvider from "./components/theme-provider.json";
+import themeSelector from "./components/theme-selector.json";
 import themeToggle from "./components/theme-toggle.json";
 import tilt from "./components/tilt.json";
 import tiltTiles from "./components/tilt-tiles.json";
@@ -177,6 +184,7 @@ import toolbar from "./components/toolbar.json";
 import tooltip from "./components/tooltip.json";
 import tracingBeam from "./components/tracing-beam.json";
 import treeView from "./components/tree-view.json";
+import twoFactorSetup from "./components/two-factor-setup.json";
 import usageBar from "./components/usage-bar.json";
 import voteWidget from "./components/vote-widget.json";
 import waveGrid from "./components/wave-grid.json";
@@ -194,8 +202,10 @@ export const registry: Registry = [
   animatedText,
   animatedTooltip,
   apiKeyDisplay,
+  audioPlayer,
   audioVisualizer,
   aurora,
+  authCard,
   avatar,
   avatarStack,
   backgroundBeams,
@@ -220,6 +230,7 @@ export const registry: Registry = [
   compare,
   comparisonTable,
   colorPicker,
+  cookieBanner,
   confetti,
   copyButton,
   countUpRing,
@@ -227,6 +238,7 @@ export const registry: Registry = [
   coverflow,
   cube,
   cubeMatrix,
+  currencyInput,
   cursorTrail,
   dataTable,
   datePicker,
@@ -318,6 +330,7 @@ export const registry: Registry = [
   rating,
   resizable,
   retroGrid,
+  reviewCard,
   ripple,
   scratchCard,
   scrollArea,
@@ -331,6 +344,7 @@ export const registry: Registry = [
   slider,
   sparkles,
   sparklesText,
+  sparkline,
   spinner,
   splitFlap,
   spotlight,
@@ -350,6 +364,7 @@ export const registry: Registry = [
   textScramble,
   textarea,
   themeProvider,
+  themeSelector,
   themeToggle,
   tilt,
   tiltTiles,
@@ -362,6 +377,7 @@ export const registry: Registry = [
   tooltip,
   tracingBeam,
   treeView,
+  twoFactorSetup,
   usageBar,
   voteWidget,
   waveGrid,

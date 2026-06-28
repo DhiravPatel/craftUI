@@ -1,0 +1,25 @@
+{
+  "name": "currency-input",
+  "description": "A locale-aware money input that groups digits as the user types, respects the locale's decimal separator, and re-formats on blur with the currency's natural fraction digits. The currency symbol is rendered inside the input as a prefix (derived via Intl.NumberFormat.formatToParts). Optional right-side dropdown lets the user switch currency. Works controlled or uncontrolled with `value` + `onValueChange`.",
+  "category": "form",
+  "files": [
+    {
+      "path": "components/currency-input/currency-input.tsx",
+      "target": "{{components}}/currency-input.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": [
+    "currency",
+    "money",
+    "input",
+    "form",
+    "intl",
+    "locale",
+    "price",
+    "amount"
+  ]
+}

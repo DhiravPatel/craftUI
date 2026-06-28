@@ -1,0 +1,24 @@
+{
+  "name": "sparkline",
+  "description": "An inline, axis-less SVG trend chart. Renders a series as either a line or a filled area, auto-scales to the data range, supports Catmull-Rom smoothing, and marks the latest point with a soft glowing dot. Pure SVG, deterministic ids, no external dependencies.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/sparkline/sparkline.tsx",
+      "target": "{{components}}/sparkline.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": [
+    "sparkline",
+    "chart",
+    "trend",
+    "kpi",
+    "mini-chart",
+    "svg",
+    "data-viz"
+  ]
+}

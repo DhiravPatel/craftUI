@@ -1,0 +1,26 @@
+{
+  "name": "review-card",
+  "description": "A product review card with a half-star SVG rating row, reviewer avatar and name, optional emerald verified-purchase pill, bold title and body, optional pros/cons columns with iconified bullets, and a Helpful voting button that works controlled or uncontrolled.",
+  "category": "display",
+  "files": [
+    {
+      "path": "components/review-card/review-card.tsx",
+      "target": "{{components}}/review-card.tsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [],
+  "keywords": [
+    "review",
+    "rating",
+    "stars",
+    "testimonial",
+    "feedback",
+    "verified",
+    "helpful",
+    "ecommerce",
+    "saas"
+  ]
+}
